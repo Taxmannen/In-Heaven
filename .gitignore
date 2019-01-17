@@ -66,3 +66,6 @@ Assets/StreamingAssets/Master Bank.bank
 Assets/StreamingAssets/Master Bank.strings.bank
 
 fmod_editor.log
+Assets/Editor\.meta
+
+Assets/Resources\.meta
