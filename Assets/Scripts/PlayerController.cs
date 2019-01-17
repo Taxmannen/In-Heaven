@@ -206,29 +206,42 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int amt)
     {
         
-        if (hP - amt <= 0)
+        if (playerState != Global.PlayerState.Invincible)
         {
-            hP = 0;
-            Die();
+            if (hP - amt <= 0)
+            {
+                hP = 0;
+                Die();
+            }
+
+            else
+            {
+                hP -= amt;
+                Hit();
+            }
         }
 
         else
         {
-            hP -= amt;
-            Hit();
+            Invincible();
         }
 
     }
 
-    public void Die()
+    private void Die()
     {
         Debug.Log("Died, resetted hp.");
         hP = maxHP;
     }
 
-    public void Hit()
+    private void Hit()
     {
         Debug.Log("Hit, " + hP + "/" + maxHP + " hp.");
+    }
+
+    private void Invincible()
+    {
+        Debug.Log("Invincible, hp remains unchanged.");
     }
 
 }
