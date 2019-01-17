@@ -1,3 +1,12 @@
+Assets/Editor Default Resources/
+Assets/Plugins/
+Assets/GoogleVR/
+Assets/ResonanceAudio/
+
+# Created by https://www.gitignore.io/api/unity
+# Edit at https://www.gitignore.io/?templates=unity
+
+### Unity ###
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -35,3 +44,28 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# End of https://www.gitignore.io/api/unity
+Assets/ProBuilder Data/ProBuilderPreferences.asset
+
+Assets/ProBuilder Data/ProBuilderPreferences.asset.meta
+Assets/Resources/FMODStudioSettings.asset.meta
+Assets/Resources/FMODStudioSettings.asset
+Assets/Editor/FMODMigrationUtil.cs
+Assets/Editor/FMODMigrationUtil.cs.meta
+Assets/FMODStudioCache.asset
+Assets/FMODStudioCache.asset.meta
+Assets/Gizmos.meta
+Assets/Gizmos/FMODEmitter.tiff
+Assets/Gizmos/FMODEmitter.tiff.meta
+Assets/GoogleVR.meta
+Assets/Plugins.meta
+Assets/ResonanceAudio.meta
+Assets/Editor Default Resources.meta
+Assets/StreamingAssets/Master Bank.bank
+Assets/StreamingAssets/Master Bank.strings.bank
+
+fmod_editor.log
+Assets/Editor\.meta
+
+Assets/Resources\.meta
