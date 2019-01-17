@@ -40,10 +40,14 @@ public class GameController : MonoBehaviour
             playerController.Dash(direction);
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
+        //==================================================
+
+        if (InputController.instance.GetKeyDownTest())
         {
             playerController.TakeDamage(1);
         }
+
+        //==================================================
 
     }
 
