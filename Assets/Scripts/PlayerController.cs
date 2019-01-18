@@ -146,8 +146,9 @@ public class PlayerController : MonoBehaviour
         if (grounded)
         {
             jumping = true;
-            AudioController.instance.Jump();
+            AudioController.instance.PlayerJump();
             verticalVelocity = jumpPower;
+
         }
 
         else
@@ -155,7 +156,7 @@ public class PlayerController : MonoBehaviour
             if (doubleJumps > 0)
             {
                 doubleJumps--;
-                AudioController.instance.DoubleJump();
+                AudioController.instance.PlayerDoubleJump();
                 verticalVelocity = jumpPower;
             }
         }

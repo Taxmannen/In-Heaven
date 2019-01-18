@@ -2340,6 +2340,8 @@ MonoBehaviour:
   bossRecieveDamage: event:/BossHitSound
   bossDeath: event:/BossDeath
   playerDash: event:/PlayerDash
+  playerJump: event:/PlayerJump
+  playerDoubleJump: event:/PlayerDoubleJump
 --- !u!4 &1779224532
 Transform:
   m_ObjectHideFlags: 0
