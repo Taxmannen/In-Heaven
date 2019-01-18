@@ -114,18 +114,10 @@ public class PlayerController : MonoBehaviour
             dashCoroutine = null;
         }
 
-        else
-        {
-
-            if (grounded && !dashing)
-            {
-                AudioController.instance.Walk();
-            }
-
-        }
-
         rigi.velocity = new Vector3((direction * movementSpeed) + dashVelocity, verticalVelocity, 0f);
     }
+
+
 
     /// <summary>
     /// Applies custom coded gravity on the player.

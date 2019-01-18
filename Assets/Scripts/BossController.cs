@@ -37,6 +37,7 @@ public class BossController : MonoBehaviour
                 {
                     hP -= other.GetComponent<Bullet>().GetDamage();
                     InterfaceController.instance.UpdateBossHP(hP, maxHP);
+                    AudioController.instance.BossHit();
                 }
             }
 

@@ -2336,7 +2336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299bd7898fd2a5147822c743838bf057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shoot: event:/Silence
+  shoot: event:/PlayerShoot
 --- !u!4 &1779224532
 Transform:
   m_ObjectHideFlags: 0
