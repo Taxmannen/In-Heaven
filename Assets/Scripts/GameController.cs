@@ -123,7 +123,8 @@ public class GameController : MonoBehaviour
 
         if (InputController.instance.GetKeyDownTest())
         {
-            playerController.Receive(1);
+            Time.timeScale = 0.025f;
+            //playerController.Receive(1);
         }
 
         //==================================================
