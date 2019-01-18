@@ -31,6 +31,7 @@ public class BossController : MonoBehaviour
                 if (hP - other.GetComponent<Bullet>().GetDamage() <= 0)
                 {
                     Die();
+                    AudioController.instance.BossHit();
                 }
 
                 else

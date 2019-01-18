@@ -2288,8 +2288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411744f2434562847aa99007b897afcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 11077
-  hP: 11077
+  maxHP: 59339
+  hP: 59339
   bossState: 0
 --- !u!54 &1735779635
 Rigidbody:
@@ -2337,6 +2337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shoot: event:/PlayerShoot
+  bossHit: event:/BossHitSound
 --- !u!4 &1779224532
 Transform:
   m_ObjectHideFlags: 0

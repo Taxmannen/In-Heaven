@@ -77,7 +77,8 @@ public class AudioController : MonoBehaviour
     {
 
     }
-    void BossHit()
+
+    public void BossHit()
     {
         FMODUnity.RuntimeManager.PlayOneShot(bossHit);
     }
