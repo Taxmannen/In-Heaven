@@ -10,36 +10,37 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
 
     //Design
-    [SerializeField] private int maxHP = 10; //Max Hit Points
+    [SerializeField] [Range(0, 1000)] private int maxHP = 10; //Max Hit Points
 
-    [SerializeField] private float baseMovementSpeed = 15f; //Base Movement Speed
+    [SerializeField] [Range(0, 100)] private float baseMovementSpeed = 15f; //Base Movement Speed
 
-    [SerializeField] private float gravity = 75f; //Gravity (Works agaisnt Jump Power)
-    [SerializeField] private float jumpPower = 25f; //Jump Power (Works against Gravity)
-    [SerializeField] private float groundCheckRaycastDistance = 0.75f; //Distance to ground from players pivot point
-    [SerializeField] private int baseDoubleJumps = 1; //Number of jumps possible in air
+    [SerializeField] [Range(-1000, 1000)] private float gravity = 75f; //Gravity (Works agaisnt Jump Power)
+    [SerializeField] [Range(0, 100)] private float jumpPower = 25f; //Jump Power (Works against Gravity)
+    [SerializeField] [Range(0, 10)] private float groundCheckRaycastDistance = 0.75f; //Distance to ground from players pivot point
+    [SerializeField] [Range(0, 100)] private int baseDoubleJumps = 1; //Number of jumps possible in air
 
-    [SerializeField] private int bulletDamage = 7;
-    [SerializeField] private float bulletsPerSecond = 10f; //Bullets per second during left mouse down
-    [SerializeField] private float bulletSpeed = 25f; //The speed of the bullets
-    [SerializeField] private float bulletDuration = 3f; //The duration the bullets last until they are destroyed, low number reduces potential lag
-    [SerializeField] private float bulletTrajectoryDistance = 50f; //The max end point for the bullets trajectory, should be about the same as the distance between the player face and the boss face.
+    [SerializeField] [Range(0, 100000)] private int bulletDamage = 7;
+    [SerializeField] [Range(1, 100)] private float bulletsPerSecond = 10f; //Bullets per second during left mouse down
+    [SerializeField] [Range(0, 1000)] private float bulletSpeed = 25f; //The speed of the bullets
+    [SerializeField] [Range(0, 10)] private float bulletDuration = 3f; //The duration the bullets last until they are destroyed, low number reduces potential lag
+    [SerializeField] [Range(0, 1000)] private float bulletTrajectoryDistance = 50f; //The max end point for the bullets trajectory, should be about the same as the distance between the player face and the boss face.
 
-    [SerializeField] private float dashPower = 50f; //The speed of the dash (affects dash distance)
-    [SerializeField] private float dashDuration = 0.1f; //The duration of the dash (affects dash distance)
-    [SerializeField] private float baseDashes = 1; //Number of dashes possible in air
+    [SerializeField] [Range(0, 1000)] private float dashPower = 50f; //The speed of the dash (affects dash distance)
+    [SerializeField] [Range(0, 10)] private float dashDuration = 0.1f; //The duration of the dash (affects dash distance)
+    [SerializeField] [Range(0, 100)] private float baseDashes = 1; //Number of dashes possible in air
 
-    [SerializeField] private float dashInvincibleDuration = 0.25f; //Duration of invincibility state after the start of a dash
-    [SerializeField] private float hitInvincibleDuration = 0.1f; //Duration of invincibility state after being hit, necessary to avoid getting hit rapidly multiple times.
+    [SerializeField] [Range(0, 10)] private float dashInvincibleDuration = 0.25f; //Duration of invincibility state after the start of a dash
+    [SerializeField] [Range(0, 10)] private float hitInvincibleDuration = 0.1f; //Duration of invincibility state after being hit, necessary to avoid getting hit rapidly multiple times.
 
     //Debug
-    [SerializeField] private int hP;
-    [SerializeField] private float movementSpeed = 0f;
-    [SerializeField] private int doubleJumps = 0;
-    [SerializeField] private float dashes = 0;
-    [SerializeField] private bool grounded;
-    [SerializeField] private bool jumping;
-    [SerializeField] private Global.PlayerState playerState = Global.PlayerState.Default;
+    [SerializeField] [ReadOnly] private int hP;
+    [SerializeField] [ReadOnly] private float movementSpeed = 0f;
+    [SerializeField] [ReadOnly] private int doubleJumps = 0;
+    [SerializeField] [ReadOnly] private float dashes = 0;
+    [SerializeField] [ReadOnly] private bool grounded;
+    [SerializeField] [ReadOnly] private bool jumping;
+    [SerializeField] [ReadOnly] private bool dashing;
+    [SerializeField] [ReadOnly] private Global.PlayerState playerState = Global.PlayerState.Default;
 
     //Private
     private float verticalVelocity = 0f;
@@ -55,6 +56,10 @@ public class PlayerController : MonoBehaviour
         doubleJumps = baseDoubleJumps;
         dashes = baseDashes;
         hP = maxHP;
+
+        InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
+        InterfaceController.instance.UpdatePlayerState(playerState);
+
     }
 
     /// <summary>
@@ -112,6 +117,8 @@ public class PlayerController : MonoBehaviour
         rigi.velocity = new Vector3((direction * movementSpeed) + dashVelocity, verticalVelocity, 0f);
     }
 
+
+
     /// <summary>
     /// Applies custom coded gravity on the player.
     /// </summary>
@@ -139,6 +146,7 @@ public class PlayerController : MonoBehaviour
         if (grounded)
         {
             jumping = true;
+            AudioController.instance.Jump();
             verticalVelocity = jumpPower;
         }
 
@@ -147,6 +155,7 @@ public class PlayerController : MonoBehaviour
             if (doubleJumps > 0)
             {
                 doubleJumps--;
+                AudioController.instance.DoubleJump();
                 verticalVelocity = jumpPower;
             }
         }
@@ -201,6 +210,8 @@ public class PlayerController : MonoBehaviour
 
         bullet.GetComponent<Bullet>().SetDamage(bulletDamage);
 
+        AudioController.instance.PlayerShoot();
+
         yield return new WaitForSeconds(1 / bulletsPerSecond);
         shootCoroutine = null;
         yield break;
@@ -238,8 +249,11 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DashCoroutine(float direction)
     {
         Invincible(dashInvincibleDuration);
+        dashing = true;
         dashVelocity = direction * dashPower;
+        AudioController.instance.Dash();
         yield return new WaitForSeconds(dashDuration);
+        dashing = false;
         dashVelocity = 0f;
         dashCoroutine = null;
         yield break;
@@ -307,6 +321,13 @@ public class PlayerController : MonoBehaviour
     private void InvincibleFeedback()
     {
         //Invincible Visual Effects?
+    }
+
+    //Inspector
+    [ExecuteInEditMode]
+    void OnValidate()
+    {
+        hP = maxHP;
     }
 
 }
