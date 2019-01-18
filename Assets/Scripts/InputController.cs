@@ -53,4 +53,13 @@ public class InputController : MonoBehaviour
         return Input.GetKeyDown(KeyCode.LeftShift);
     }
 
+    //==================================================
+
+    public bool GetKeyDownTest()
+    {
+        return Input.GetKeyDown(KeyCode.T);
+    }
+
+    //==================================================
+
 }
