@@ -5,12 +5,49 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
+    //Instance
+    public static GameController instance;
+
+    //Design
+    [SerializeField] private float doubleTapInterval = 0.25f;
+
+    //Debug
+    [SerializeField] private Global.GameState gameState = Global.GameState.Idle;
     [SerializeField] private PlayerController playerController;
+
+    //Private
+    private bool canDashRight = false;
+    private bool canDashLeft = false;
+
+    private void Awake()
+    {
+
+        if (instance)
+        {
+            Destroy(gameObject);
+        }
+
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            enabled = true;
+        }
+
+    }
+
+    private void Start()
+    {
+        gameState = Global.GameState.Game;
+    }
 
     private void Update()
     {
 
-        UpdatePlayer();
+        if (gameState == Global.GameState.Game)
+        {
+            UpdatePlayer();
+        }
 
     }
 
@@ -35,16 +72,58 @@ public class GameController : MonoBehaviour
             playerController.Shoot();
         }
 
-        if (InputController.instance.GetKeyDownLeftShift() && direction != 0)
+        //Dash: Double Tap
+        if (Global.doubleTapDashing)
         {
-            playerController.Dash(direction);
+
+            if (InputController.instance.GetKeyDownLeft())
+            {
+
+                if (canDashLeft)
+                {
+                    playerController.Dash(-1f);
+                }
+
+                else
+                {
+                    StartCoroutine(DoubleTapDashCoroutine(-1f));
+                }
+
+            }
+
+            if (InputController.instance.GetKeyDownRight())
+            {
+
+                if (canDashRight)
+                {
+                    playerController.Dash(1f);
+                }
+
+                else
+                {
+                    StartCoroutine(DoubleTapDashCoroutine(1f));
+                }
+
+            }
+
         }
 
+        //Dash: Shift
+        if (Global.shiftDashing)
+        {
+
+            if (InputController.instance.GetKeyDownLeftShift() && direction != 0)
+            {
+                playerController.Dash(direction);
+            }
+
+        }
+        
         //==================================================
 
         if (InputController.instance.GetKeyDownTest())
         {
-            playerController.TakeDamage(1);
+            playerController.Receive(1);
         }
 
         //==================================================
@@ -72,6 +151,35 @@ public class GameController : MonoBehaviour
 
         return direction;
 
+    }
+
+    private IEnumerator DoubleTapDashCoroutine(float direction)
+    {
+
+        switch (direction)
+        {
+
+            case 1:
+                canDashLeft = false;
+                canDashRight = true;
+                yield return new WaitForSeconds(doubleTapInterval);
+                canDashRight = false;
+                yield break;
+
+            case -1:
+                canDashRight = false;
+                canDashLeft = true;
+                yield return new WaitForSeconds(doubleTapInterval);
+                canDashLeft = false;
+                yield break;
+
+        }
+
+    }
+
+    public void SetGameState(Global.GameState gameState)
+    {
+        this.gameState = gameState;
     }
 
 }
