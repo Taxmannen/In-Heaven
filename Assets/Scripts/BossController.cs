@@ -48,6 +48,8 @@ public class BossController : MonoBehaviour
 
     private void Die()
     {
+        bossState = Global.BossState.Dead;
+        AudioController.instance.BossDeath();
         hP = 0;
         InterfaceController.instance.UpdateBossHP(hP, maxHP);
         //bossState = PHASE

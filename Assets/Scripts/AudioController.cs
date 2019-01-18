@@ -12,6 +12,8 @@ public class AudioController : MonoBehaviour
     public string shoot;
     [FMODUnity.EventRef]
     public string bossHit;
+    [FMODUnity.EventRef]
+    public string bossDeath;
 
     private void Awake()
     {
@@ -81,6 +83,10 @@ public class AudioController : MonoBehaviour
     public void BossHit()
     {
         FMODUnity.RuntimeManager.PlayOneShot(bossHit);
+    }
+    public void BossDeath()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(bossDeath);
     }
 
 }
