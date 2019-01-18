@@ -199,7 +199,11 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ShootCoroutine(Vector3 point)
     {
-        GameObject bullet = Instantiate(bulletPrefab, rigi.position, bulletPrefab.transform.rotation, null);
+
+        float xangle = Mathf.Atan2(point.z - rigi.position.z, point.y - rigi.position.y) * 180 / Mathf.PI;
+        float yangle = Mathf.Atan2(point.x - rigi.position.x, point.z - rigi.position.z) * 180 / Mathf.PI;
+
+        GameObject bullet = Instantiate(bulletPrefab, rigi.position, Quaternion.Euler(xangle, yangle, 0), null);
         Destroy(bullet, bulletDuration);
 
         Vector3 dir = point - rigi.position;

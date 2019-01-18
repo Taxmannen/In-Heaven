@@ -9,9 +9,13 @@ public class AudioController : MonoBehaviour
     //___________________________________________________
 
     [FMODUnity.EventRef]
-    public string shoot;
+    public string playerShoot;
     [FMODUnity.EventRef]
-    public string bossHit;
+    public string bossRecieveDamage;
+    [FMODUnity.EventRef]
+    public string bossDeath;
+    [FMODUnity.EventRef]
+    public string playerDash;
 
     private void Awake()
     {
@@ -44,11 +48,11 @@ public class AudioController : MonoBehaviour
     }
     public void Dash()
     {
-        //FMODUnity.RuntimeManager.PlayOneShot(shoot);
+        FMODUnity.RuntimeManager.PlayOneShot(playerDash);
     }
     public void PlayerShoot()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(shoot);
+        FMODUnity.RuntimeManager.PlayOneShot(playerShoot);
     }
     void Shield()
     {
@@ -80,7 +84,11 @@ public class AudioController : MonoBehaviour
 
     public void BossHit()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(bossHit);
+        FMODUnity.RuntimeManager.PlayOneShot(bossRecieveDamage);
+    }
+    public void BossDeath()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(bossDeath);
     }
 
 }

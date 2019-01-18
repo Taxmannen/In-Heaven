@@ -25,6 +25,7 @@ public class Global : MonoBehaviour
     public enum BossState
     {
         Default,
+        Dead,
     }
 
 }
