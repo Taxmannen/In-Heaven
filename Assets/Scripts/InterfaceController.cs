@@ -9,14 +9,13 @@ public class InterfaceController : MonoBehaviour
 
     public static InterfaceController instance;
 
-    [SerializeField] private GameObject gameOverPanel;
-
     [SerializeField] private Text playerHpText;
-    [SerializeField] private Text bossHpText;
-
-    [SerializeField] private GameObject playerHpPanel;
-
     [SerializeField] private Text playerStateText;
+
+    [SerializeField] private Text bossHpText;
+    [SerializeField] private Text bossStateText;
+
+    [SerializeField] private GameObject gameOverPanel;
 
     private void Awake()
     {
@@ -48,6 +47,11 @@ public class InterfaceController : MonoBehaviour
     public void UpdateBossHP(int hP, int maxHP)
     {
         bossHpText.text = "HP: " + hP + "/" + maxHP;
+    }
+
+    public void UpdateBossState(Global.BossState bossState)
+    {
+        bossStateText.text = "BossState: " + bossState;
     }
 
     public void GameOver()

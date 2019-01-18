@@ -2,28 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioController : MonoBehaviour
 {
-    public static AudioManager audioManager;
+    public static AudioController instance;
 
     //___________________________________________________
 
-
-
-
-
-
-
+    [FMODUnity.EventRef]
+    public string shoot;
 
     private void Awake()
     {
-        if (audioManager)
+        if (instance)
         {
             Destroy(gameObject);
         }
         else
         {
-            audioManager = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
             enabled = true;
         }
@@ -32,25 +28,25 @@ public class AudioManager : MonoBehaviour
     //___________________________________________________
     //_______PLAYER________
 
-    void Walk()
+    public void Walk()
     {
-       
+        FMODUnity.RuntimeManager.PlayOneShot(shoot);
     }
-    void Jump()
+    public void Jump()
     {
-
+        FMODUnity.RuntimeManager.PlayOneShot(shoot);
     }
-    void DoubleJump()
+    public void DoubleJump()
     {
-
+        FMODUnity.RuntimeManager.PlayOneShot(shoot);
     }
-    void Dash()
+    public void Dash()
     {
-
+        FMODUnity.RuntimeManager.PlayOneShot(shoot);
     }
-    void PlayerShoot()
+    public void PlayerShoot()
     {
-
+        FMODUnity.RuntimeManager.PlayOneShot(shoot);
     }
     void Shield()
     {

@@ -5,15 +5,19 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
 
-    [SerializeField] Global.BossState bossState = Global.BossState.Default;
+    //Design
+    [SerializeField] [Range(0, 100000)] private int maxHP = 1000;
 
-    [SerializeField] private int maxHP = 1000;
-
-    [SerializeField] private int hP;
+    //Debug
+    [SerializeField] [ReadOnly] private int hP;
+    [SerializeField] [ReadOnly] Global.BossState bossState = Global.BossState.Default;
 
     private void Start()
     {
         hP = maxHP;
+
+        InterfaceController.instance.UpdateBossHP(hP, maxHP);
+        InterfaceController.instance.UpdateBossState(bossState);
     }
 
     void OnTriggerEnter(Collider other)
@@ -47,6 +51,13 @@ public class BossController : MonoBehaviour
         //bossState = PHASE
         //gameState = COMPLETE (if last phase died)
         InterfaceController.instance.GameOver(); //winScreen
+    }
+
+    //Inspector
+    [ExecuteInEditMode]
+    void OnValidate()
+    {
+        hP = maxHP;
     }
 
 }
