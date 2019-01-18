@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
 
     /// <summary>
-    /// Applies custom coded gravity on the player.
+    /// Applies a custom-coded gravity on the object.
     /// </summary>
     public void Gravity()
     {
@@ -282,10 +282,10 @@ public class PlayerController : MonoBehaviour
     private IEnumerator InvincibleCoroutine(float duration)
     {
         playerState = Global.PlayerState.Invincible;
-        InterfaceController.instance.UpdatePlayerState(playerState);
+        InterfaceController.instance.UpdatePlayerState(playerState); //Debug?
         yield return new WaitForSeconds(duration);
         playerState = Global.PlayerState.Default;
-        InterfaceController.instance.UpdatePlayerState(playerState);
+        InterfaceController.instance.UpdatePlayerState(playerState); //Debug?
         yield break;
     }
 
