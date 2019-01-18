@@ -11,6 +11,8 @@ public class InputController : MonoBehaviour
     private KeyCode left = KeyCode.A;
     private KeyCode right = KeyCode.D;
 
+    private KeyCode test = KeyCode.T;
+
     private void Awake()
     {
 
@@ -38,6 +40,16 @@ public class InputController : MonoBehaviour
         return Input.GetKeyDown(jump);
     }
 
+    public bool GetKeyDownLeft()
+    {
+        return Input.GetKeyDown(left);
+    }
+
+    public bool GetKeyDownRight()
+    {
+        return Input.GetKeyDown(right);
+    }
+
     public bool GetKeyLeft()
     {
         return Input.GetKey(left);
@@ -57,7 +69,7 @@ public class InputController : MonoBehaviour
 
     public bool GetKeyDownTest()
     {
-        return Input.GetKeyDown(KeyCode.T);
+        return Input.GetKeyDown(test);
     }
 
     //==================================================
