@@ -16,6 +16,10 @@ public class AudioController : MonoBehaviour
     public string bossDeath;
     [FMODUnity.EventRef]
     public string playerDash;
+    [FMODUnity.EventRef]
+    public string playerJump;
+    [FMODUnity.EventRef]
+    public string playerDoubleJump;
 
     private void Awake()
     {
@@ -36,15 +40,15 @@ public class AudioController : MonoBehaviour
 
     public void Walk()
     {
-        //FMODUnity.RuntimeManager.PlayOneShot(shoot);
+        
     }
-    public void Jump()
+    public void PlayerJump()
     {
-        //FMODUnity.RuntimeManager.PlayOneShot(shoot);
+        FMODUnity.RuntimeManager.PlayOneShot(playerJump);
     }
-    public void DoubleJump()
+    public void PlayerDoubleJump()
     {
-        //FMODUnity.RuntimeManager.PlayOneShot(shoot);
+        FMODUnity.RuntimeManager.PlayOneShot(playerDoubleJump);
     }
     public void Dash()
     {
@@ -61,23 +65,23 @@ public class AudioController : MonoBehaviour
 
     //_________ENEMY_________
 
-    void EnemyShoot()
+    public void EnemyShoot()
     {
 
     }
-    void Attack1()
+    public void Attack1()
     {
 
     }
-    void Attack2()
+    public void Attack2()
     {
 
     }
-    void Attack3()
+    public void Attack3()
     {
 
     }
-    void Move()
+    public void Move()
     {
 
     }
