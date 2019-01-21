@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
 
     /// <summary>
-    /// Applies custom coded gravity on the player.
+    /// Applies a custom-coded gravity on the object.
     /// </summary>
     public void Gravity()
     {
@@ -146,8 +146,9 @@ public class PlayerController : MonoBehaviour
         if (grounded)
         {
             jumping = true;
-            AudioController.instance.Jump();
+            AudioController.instance.PlayerJump();
             verticalVelocity = jumpPower;
+
         }
 
         else
@@ -155,7 +156,7 @@ public class PlayerController : MonoBehaviour
             if (doubleJumps > 0)
             {
                 doubleJumps--;
-                AudioController.instance.DoubleJump();
+                AudioController.instance.PlayerDoubleJump();
                 verticalVelocity = jumpPower;
             }
         }
@@ -199,7 +200,11 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ShootCoroutine(Vector3 point)
     {
-        GameObject bullet = Instantiate(bulletPrefab, rigi.position, bulletPrefab.transform.rotation, null);
+
+        float xangle = Mathf.Atan2(point.z - rigi.position.z, point.y - rigi.position.y) * 180 / Mathf.PI;
+        float yangle = Mathf.Atan2(point.x - rigi.position.x, point.z - rigi.position.z) * 180 / Mathf.PI;
+
+        GameObject bullet = Instantiate(bulletPrefab, rigi.position, Quaternion.Euler(xangle, yangle, 0), null);
         Destroy(bullet, bulletDuration);
 
         Vector3 dir = point - rigi.position;
@@ -278,10 +283,10 @@ public class PlayerController : MonoBehaviour
     private IEnumerator InvincibleCoroutine(float duration)
     {
         playerState = Global.PlayerState.Invincible;
-        InterfaceController.instance.UpdatePlayerState(playerState);
+        InterfaceController.instance.UpdatePlayerState(playerState); //Debug?
         yield return new WaitForSeconds(duration);
         playerState = Global.PlayerState.Default;
-        InterfaceController.instance.UpdatePlayerState(playerState);
+        InterfaceController.instance.UpdatePlayerState(playerState); //Debug?
         yield break;
     }
 

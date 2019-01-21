@@ -153,7 +153,7 @@ MonoBehaviour:
   baseDoubleJumps: 1
   bulletDamage: 817
   bulletsPerSecond: 10
-  bulletSpeed: 100
+  bulletSpeed: 75
   bulletDuration: 3
   bulletTrajectoryDistance: 50
   dashPower: 50
@@ -2288,8 +2288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411744f2434562847aa99007b897afcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 1415
-  hP: 1415
+  maxHP: 100000
+  hP: 100000
   bossState: 0
 --- !u!54 &1735779635
 Rigidbody:
@@ -2336,9 +2336,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299bd7898fd2a5147822c743838bf057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shoot: event:/PlayerShoot
-  bossHit: event:/BossHitSound
+  playerShoot: event:/PlayerShoot
+  bossRecieveDamage: event:/BossHitSound
   bossDeath: event:/BossDeath
+  playerDash: event:/PlayerDash
+  playerJump: event:/PlayerJump
+  playerDoubleJump: event:/PlayerDoubleJump
 --- !u!4 &1779224532
 Transform:
   m_ObjectHideFlags: 0
