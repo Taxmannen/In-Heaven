@@ -15,10 +15,12 @@ public class GameController : MonoBehaviour
     //Debug
     [SerializeField] private Global.GameState gameState = Global.GameState.Idle;
     [SerializeField] private PlayerController playerController;
+    [SerializeField] private BossController bossController;
 
     //Private
     private bool canDashRight = false;
     private bool canDashLeft = false;
+    private Coroutine restartCoroutine;
 
     private void Awake()
     {
@@ -57,9 +59,23 @@ public class GameController : MonoBehaviour
         if (gameState == Global.GameState.Game)
         {
             UpdatePlayer();
+            UpdateBoss();
         }
 
     }
+
+
+
+    public void Restart()
+    {
+
+        playerController.Start();
+        bossController.Start();
+        gameState = Global.GameState.Game;
+
+    }
+
+
 
     private void UpdatePlayer()
     {
@@ -141,6 +157,22 @@ public class GameController : MonoBehaviour
 
         //==================================================
 
+    }
+
+    private void UpdateBoss()
+    {
+        bossController.NewMove();
+        bossController.Shoot();
+    }
+
+    public void FreezeBoss()
+    {
+        bossController.Freeze();
+    }
+
+    public void FreezePlayer()
+    {
+        playerController.Freeze();
     }
 
     /// <summary>

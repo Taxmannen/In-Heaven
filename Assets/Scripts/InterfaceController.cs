@@ -15,7 +15,8 @@ public class InterfaceController : MonoBehaviour
     [SerializeField] private Text bossHpText;
     [SerializeField] private Text bossStateText;
 
-    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject failPanel;
+    [SerializeField] private GameObject successPanel;
 
     private void Awake()
     {
@@ -56,7 +57,12 @@ public class InterfaceController : MonoBehaviour
 
     public void Fail()
     {
-        gameOverPanel.SetActive(true);
+        failPanel.SetActive(true);
+    }
+
+    public void Success()
+    {
+        successPanel.SetActive(true);
     }
 
 }

@@ -5,9 +5,23 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    //Components
+    //Serialized
     [SerializeField] private Rigidbody rigi;
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform bullets;
+
+    //Private
+    private float verticalVelocity = 0f;
+    private int layerMask = 1 << 9;
+    private Coroutine shootCoroutine;
+    private Coroutine dashCoroutine;
+    private float dashVelocity = 0f;
+    private Coroutine invincibleCoroutine;
+    private float inputDirection;
+    private RaycastHit aimHit;
+    private Vector3 aimPoint;
+    private Vector3 spawn;
+    private bool spawned;
 
     //Design
     [SerializeField] [Range(0, 1000)] private int maxHP = 10; //Max Hit Points
@@ -42,18 +56,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [ReadOnly] private bool dashing;
     [SerializeField] [ReadOnly] private Global.PlayerState playerState = Global.PlayerState.Default;
 
-    //Private
-    private float verticalVelocity = 0f;
-    private int layerMask = 1 << 9;
-    private Coroutine shootCoroutine;
-    private Coroutine dashCoroutine;
-    private float dashVelocity = 0f;
-    private Coroutine invincibleCoroutine;
-    private float direction;
 
-    //Design
+
     [ExecuteInEditMode]
-    void OnValidate()
+    private void OnValidate()
     {
 
         movementSpeed = baseMovementSpeed;
@@ -63,18 +69,62 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void Start()
+
+
+    public void Start()
     {
+
+        if (!spawned)
+        {
+            spawn = rigi.position;
+            spawned = true;
+        }
+
+        else
+        {
+            rigi.position = spawn;
+        }
 
         movementSpeed = baseMovementSpeed;
         doubleJumps = baseDoubleJumps;
         dashes = baseDashes;
-        hP = maxHP;
 
+        hP = maxHP;
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
+
+        playerState = Global.PlayerState.Default;
         InterfaceController.instance.UpdatePlayerState(playerState);
 
     }
+
+
+
+    public void Freeze()
+    {
+
+        rigi.velocity = Vector3.zero;
+
+        if (shootCoroutine != null)
+        {
+            StopCoroutine(shootCoroutine);
+            shootCoroutine = null;
+        }
+        
+        if (dashCoroutine != null)
+        {
+            StopCoroutine(dashCoroutine);
+            dashCoroutine = null;
+        }
+        
+        if (invincibleCoroutine != null)
+        {
+            StopCoroutine(invincibleCoroutine);
+            invincibleCoroutine = null;
+        }
+
+    }
+
+
 
     /// <summary>
     /// Updates general player values.
@@ -82,7 +132,7 @@ public class PlayerController : MonoBehaviour
     public void Upd8(float direction)
     {
 
-        this.direction = direction;
+        this.inputDirection = direction;
 
         //Dash Controller
         if (direction == 0)
@@ -116,13 +166,17 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+
     /// <summary>
     /// Applies velocity to the player.
     /// </summary>
     public void Move()
     {
-        rigi.velocity = new Vector3((direction * movementSpeed) + dashVelocity, verticalVelocity, 0f);
+        rigi.velocity = new Vector3((inputDirection * movementSpeed) + dashVelocity, verticalVelocity, 0f);
     }
+
+
 
     /// <summary>
     /// Applies a custom-coded gravity on the object.
@@ -141,6 +195,8 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+
 
     /// <summary>
     /// Applies a vertical velocity to the player.
@@ -169,6 +225,8 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+
 
     /// <summary>
     /// Applies a horizontal velocity to the player.
@@ -202,7 +260,7 @@ public class PlayerController : MonoBehaviour
     {
         Invincible(dashInvincibleDuration);
         dashing = true;
-        dashVelocity = direction * dashPower;
+        dashVelocity = inputDirection * dashPower;
         AudioController.instance.Dash();
         yield return new WaitForSeconds(dashDuration);
         dashing = false;
@@ -210,42 +268,45 @@ public class PlayerController : MonoBehaviour
         dashCoroutine = null;
         yield break;
     }
+    
 
-    RaycastHit hit;
-    Vector3 point;
 
+    /// <summary>
+    /// Updates the direction the player is aiming towards.
+    /// </summary>
     public void Aim()
     {
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out aimHit))
         {
 
-            if (hit.transform.gameObject.tag != "Player")
+            if (aimHit.transform.gameObject.tag != "Player")
             {
-                point = hit.point;
+                aimPoint = aimHit.point;
             }
 
         }
 
         else
         {
-            point = ray.GetPoint(bulletTrajectoryDistance);
+            aimPoint = ray.GetPoint(bulletTrajectoryDistance);
         }
 
     }
 
 
+
     /// <summary>
-    /// (WIP) Shoots forward.
+    /// Shoots towards the direction the player is aiming towards.
     /// </summary>
     public void Shoot()
     {
 
         if (shootCoroutine == null)
         {
-            shootCoroutine = StartCoroutine(ShootCoroutine(point));
+            shootCoroutine = StartCoroutine(ShootCoroutine(aimPoint));
         }
 
     }
@@ -256,7 +317,7 @@ public class PlayerController : MonoBehaviour
         float xangle = Mathf.Atan2(point.z - rigi.position.z, point.y - rigi.position.y) * 180 / Mathf.PI;
         float yangle = Mathf.Atan2(point.x - rigi.position.x, point.z - rigi.position.z) * 180 / Mathf.PI;
 
-        GameObject bullet = Instantiate(bulletPrefab, rigi.position, Quaternion.Euler(xangle, yangle, 0), null);
+        GameObject bullet = Instantiate(bulletPrefab, rigi.position, Quaternion.Euler(xangle, yangle, 0), bullets);
         Destroy(bullet, bulletDuration);
 
         Vector3 dir = point - rigi.position;
@@ -273,10 +334,6 @@ public class PlayerController : MonoBehaviour
         shootCoroutine = null;
         yield break;
     }
-
-
-
-
 
 
 
@@ -306,6 +363,12 @@ public class PlayerController : MonoBehaviour
         yield break;
     }
 
+
+
+    /// <summary>
+    /// Event for entering triggers.
+    /// </summary>
+    /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
 
@@ -321,10 +384,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+
+    /// <summary>
+    /// Checks whether the player should die or get hit by the source depending on the amount sent as a parameter.
+    /// </summary>
+    /// <param name="amt"></param>
     public void Receive(int amt)
     {
         
-        if (playerState != Global.PlayerState.Invincible)
+        if (playerState == Global.PlayerState.Default)
         {
             if (hP - amt <= 0)
             {
@@ -339,20 +408,38 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+
+    /// <summary>
+    /// Kills the player.
+    /// </summary>
     private void Die()
     {
+
+        Freeze();
+        GameController.instance.FreezeBoss();
+
         hP = 0;
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
         playerState = Global.PlayerState.Dead;
         GameController.instance.SetGameState(Global.GameState.Fail);
         InterfaceController.instance.Fail();
+
     }
 
+
+
+    /// <summary>
+    /// Hits the player for the amount sent as a parameter.
+    /// </summary>
+    /// <param name="amt"></param>
     private void Hit(int amt)
     {
         hP -= amt;
         Invincible(hitInvincibleDuration);
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
     }
+
+
 
 }
