@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
 
     //Design
     [SerializeField] private float doubleTapInterval = 0.25f;
+    [SerializeField] private Texture2D crosshairTexture;
 
     //Debug
     [SerializeField] private Global.GameState gameState = Global.GameState.Idle;
@@ -38,7 +39,16 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+
+        SetCursorToCrosshair();
+
         gameState = Global.GameState.Game;
+
+    }
+
+    private void SetCursorToCrosshair()
+    {
+        Cursor.SetCursor(crosshairTexture, new Vector2(8, 8), CursorMode.Auto);
     }
 
     private void Update()
@@ -56,9 +66,9 @@ public class GameController : MonoBehaviour
 
         float direction = CalculateDirection();
 
-        playerController.CustomUpdate();
+        playerController.Upd8(direction);
 
-        playerController.Move(direction);
+        playerController.Move();
 
         playerController.Gravity();
 
@@ -66,6 +76,8 @@ public class GameController : MonoBehaviour
         {
             playerController.Jump();
         }
+
+        playerController.Aim();
 
         if (InputController.instance.GetMouseButtonLeft())
         {
@@ -81,7 +93,7 @@ public class GameController : MonoBehaviour
 
                 if (canDashLeft)
                 {
-                    playerController.Dash(-1f);
+                    playerController.Dash();
                 }
 
                 else
@@ -96,7 +108,7 @@ public class GameController : MonoBehaviour
 
                 if (canDashRight)
                 {
-                    playerController.Dash(1f);
+                    playerController.Dash();
                 }
 
                 else
@@ -114,7 +126,7 @@ public class GameController : MonoBehaviour
 
             if (InputController.instance.GetKeyDownLeftShift() && direction != 0)
             {
-                playerController.Dash(direction);
+                playerController.Dash();
             }
 
         }

@@ -14,12 +14,15 @@ public class Global : MonoBehaviour
         Menu,
         Game,
         Pause,
+        Fail,
+        Success,
     }
 
     public enum PlayerState
     {
         Default,
         Invincible,
+        Dead,
     }
 
     public enum BossState
