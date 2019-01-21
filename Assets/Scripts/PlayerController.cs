@@ -49,9 +49,23 @@ public class PlayerController : MonoBehaviour
     private Coroutine dashCoroutine;
     private float dashVelocity = 0f;
     private Coroutine invincibleCoroutine;
+    private float direction;
+
+    //Design
+    [ExecuteInEditMode]
+    void OnValidate()
+    {
+
+        movementSpeed = baseMovementSpeed;
+        doubleJumps = baseDoubleJumps;
+        dashes = baseDashes;
+        hP = maxHP;
+
+    }
 
     private void Start()
     {
+
         movementSpeed = baseMovementSpeed;
         doubleJumps = baseDoubleJumps;
         dashes = baseDashes;
@@ -63,47 +77,14 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates general player variables such as bool's keeping track of whether the player is grounded/jumping or not but also in charge of resetting bool's like doubleJump and dashes.
+    /// Updates general player values.
     /// </summary>
-    public void CustomUpdate()
+    public void Upd8(float direction)
     {
 
-        if (verticalVelocity < 0)
-        {
-            jumping = false;
-        }
+        this.direction = direction;
 
-        if (grounded && jumping)
-        {
-            grounded = false;
-        }
-
-        else
-        {
-
-            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + GetComponentInChildren<Collider>().bounds.extents.y, transform.position.z) ,Vector3.down, groundCheckRaycastDistance, layerMask))
-            {
-                doubleJumps = baseDoubleJumps;
-                dashes = baseDashes;
-                grounded = true;
-            }
-
-            else
-            {
-                grounded = false;
-            }
-
-        }
-
-    }
-
-    /// <summary>
-    /// Moves the player in the direction sent as a parameter.
-    /// </summary>
-    /// <param name="direction"></param>
-    public void Move(float direction)
-    {
-
+        //Dash Controller
         if (direction == 0)
         {
             if (dashCoroutine != null)
@@ -114,10 +95,34 @@ public class PlayerController : MonoBehaviour
             dashCoroutine = null;
         }
 
-        rigi.velocity = new Vector3((direction * movementSpeed) + dashVelocity, verticalVelocity, 0f);
+        //Grounded & Jumping Controller
+        if (verticalVelocity > 0)
+        {
+            grounded = false;
+        }
+
+        else
+        {
+
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + GetComponentInChildren<Collider>().bounds.extents.y, transform.position.z), Vector3.down, groundCheckRaycastDistance, layerMask))
+            {
+                doubleJumps = baseDoubleJumps;
+                dashes = baseDashes;
+                grounded = true;
+                jumping = false;
+            }
+
+        }
+
     }
 
-
+    /// <summary>
+    /// Applies velocity to the player.
+    /// </summary>
+    public void Move()
+    {
+        rigi.velocity = new Vector3((direction * movementSpeed) + dashVelocity, verticalVelocity, 0f);
+    }
 
     /// <summary>
     /// Applies a custom-coded gravity on the object.
@@ -138,7 +143,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Tells the player to jump/doubleJump if allowed to do so.
+    /// Applies a vertical velocity to the player.
     /// </summary>
     public void Jump()
     {
@@ -146,30 +151,72 @@ public class PlayerController : MonoBehaviour
         if (grounded)
         {
             jumping = true;
-            AudioController.instance.PlayerJump();
             verticalVelocity = jumpPower;
+            AudioController.instance.PlayerJump();
 
         }
 
         else
         {
+
             if (doubleJumps > 0)
             {
                 doubleJumps--;
-                AudioController.instance.PlayerDoubleJump();
                 verticalVelocity = jumpPower;
+                AudioController.instance.PlayerDoubleJump();
             }
+
         }
 
     }
 
     /// <summary>
-    /// (WIP) Shoots forward.
+    /// Applies a horizontal velocity to the player.
     /// </summary>
-    public void Shoot()
+    public void Dash()
     {
 
-        RaycastHit hit;
+        if (grounded)
+        {
+            if (dashCoroutine == null)
+            {
+                dashCoroutine = StartCoroutine(DashCoroutine());
+            }
+        }
+
+        if (!grounded)
+        {
+            if (dashes > 0)
+            {
+                if (dashCoroutine == null)
+                {
+                    dashes--;
+                    dashCoroutine = StartCoroutine(DashCoroutine());
+                }
+            }
+        }
+
+    }
+
+    private IEnumerator DashCoroutine()
+    {
+        Invincible(dashInvincibleDuration);
+        dashing = true;
+        dashVelocity = direction * dashPower;
+        AudioController.instance.Dash();
+        yield return new WaitForSeconds(dashDuration);
+        dashing = false;
+        dashVelocity = 0f;
+        dashCoroutine = null;
+        yield break;
+    }
+
+    RaycastHit hit;
+    Vector3 point;
+
+    public void Aim()
+    {
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit))
@@ -177,23 +224,28 @@ public class PlayerController : MonoBehaviour
 
             if (hit.transform.gameObject.tag != "Player")
             {
-                if (hit.point.z > 0)
-                {
-                    if (shootCoroutine == null)
-                    {
-                        shootCoroutine = StartCoroutine(ShootCoroutine(hit.point));
-                    }
-                }
+                point = hit.point;
             }
 
         }
 
         else
         {
-            if (shootCoroutine == null)
-            {
-                shootCoroutine = StartCoroutine(ShootCoroutine(ray.GetPoint(bulletTrajectoryDistance)));
-            }
+            point = ray.GetPoint(bulletTrajectoryDistance);
+        }
+
+    }
+
+
+    /// <summary>
+    /// (WIP) Shoots forward.
+    /// </summary>
+    public void Shoot()
+    {
+
+        if (shootCoroutine == null)
+        {
+            shootCoroutine = StartCoroutine(ShootCoroutine(point));
         }
 
     }
@@ -222,50 +274,14 @@ public class PlayerController : MonoBehaviour
         yield break;
     }
 
-    /// <summary>
-    /// Tells the player to dash in the direction sent as a parameter.
-    /// </summary>
-    /// <param name="direction"></param>
-    public void Dash(float direction)
-    {
-        
-        if (grounded)
-        {
-            if (dashCoroutine == null)
-            {
-                dashCoroutine = StartCoroutine(DashCoroutine(direction));
-            }
-        }
 
-        if (!grounded)
-        {
-            if (dashes > 0)
-            {
-                if (dashCoroutine == null)
-                {
-                    dashes--;
-                    dashCoroutine = StartCoroutine(DashCoroutine(direction));
-                }
-            }
-        }
 
-    }
 
-    private IEnumerator DashCoroutine(float direction)
-    {
-        Invincible(dashInvincibleDuration);
-        dashing = true;
-        dashVelocity = direction * dashPower;
-        AudioController.instance.Dash();
-        yield return new WaitForSeconds(dashDuration);
-        dashing = false;
-        dashVelocity = 0f;
-        dashCoroutine = null;
-        yield break;
-    }
+
+
 
     /// <summary>
-    /// Sets the state of the player to invincible for the duration sent as a parameter.
+    /// Applies the Invincible PlayerState to the object for the duration sent as a parameter.
     /// </summary>
     /// <param name="duration"></param>
     private void Invincible(float duration)
@@ -283,11 +299,26 @@ public class PlayerController : MonoBehaviour
     private IEnumerator InvincibleCoroutine(float duration)
     {
         playerState = Global.PlayerState.Invincible;
-        InterfaceController.instance.UpdatePlayerState(playerState); //Debug?
+        InterfaceController.instance.UpdatePlayerState(playerState); //Debug
         yield return new WaitForSeconds(duration);
         playerState = Global.PlayerState.Default;
-        InterfaceController.instance.UpdatePlayerState(playerState); //Debug?
+        InterfaceController.instance.UpdatePlayerState(playerState); //Debug
         yield break;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+
+        if (other.tag == "BossBullet")
+        {
+
+            if (playerState == Global.PlayerState.Default)
+            {
+                Receive(other.GetComponent<Bullet>().GetDamage());
+            }
+
+        }
+
     }
 
     public void Receive(int amt)
@@ -302,15 +333,8 @@ public class PlayerController : MonoBehaviour
 
             else
             {
-                hP -= amt;
-                InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
-                Invincible(0.1f);
+                Hit(amt);
             }
-        }
-
-        else
-        {
-            InvincibleFeedback();
         }
 
     }
@@ -319,20 +343,16 @@ public class PlayerController : MonoBehaviour
     {
         hP = 0;
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
-        GameController.instance.SetGameState(Global.GameState.Idle);
-        InterfaceController.instance.GameOver();
+        playerState = Global.PlayerState.Dead;
+        GameController.instance.SetGameState(Global.GameState.Fail);
+        InterfaceController.instance.Fail();
     }
 
-    private void InvincibleFeedback()
+    private void Hit(int amt)
     {
-        //Invincible Visual Effects?
-    }
-
-    //Inspector
-    [ExecuteInEditMode]
-    void OnValidate()
-    {
-        hP = maxHP;
+        hP -= amt;
+        Invincible(hitInvincibleDuration);
+        InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
     }
 
 }

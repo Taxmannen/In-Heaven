@@ -54,7 +54,7 @@ public class InterfaceController : MonoBehaviour
         bossStateText.text = "BossState: " + bossState;
     }
 
-    public void GameOver()
+    public void Fail()
     {
         gameOverPanel.SetActive(true);
     }
