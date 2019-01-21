@@ -125,6 +125,8 @@ public class BossController : MonoBehaviour
         Destroy(bossBulletClone, 3f);
         bossBulletClone.GetComponent<Rigidbody>().velocity = new Vector3(0, -0.4f*bossBulletSpeed, -bossBulletSpeed);
 
+        bossBulletClone.GetComponent<Bullet>().SetDamage(25);
+
         bossBulletClone = Instantiate(bossBullet, bossBulletSpawn2.position, bossBulletSpawn2.rotation);
         Destroy(bossBulletClone, 3f);
         bossBulletClone.GetComponent<Rigidbody>().velocity = new Vector3(0, -0.4f * bossBulletSpeed, -bossBulletSpeed);
