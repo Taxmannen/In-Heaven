@@ -80,9 +80,10 @@ public class GameController : MonoBehaviour
     private void UpdatePlayer()
     {
 
-        float direction = CalculateDirection();
+        float horizontalDirection = CalculateHorizontalDirection();
+        float verticalDirection = CalculateVerticalDirection();
 
-        playerController.Upd8(direction, 0f);
+        playerController.Upd8(horizontalDirection, verticalDirection);
 
         playerController.Move();
 
@@ -140,7 +141,7 @@ public class GameController : MonoBehaviour
         if (Global.shiftDashing)
         {
 
-            if (InputController.instance.GetKeyDownLeftShift() && direction != 0)
+            if (InputController.instance.GetKeyDownLeftShift() && horizontalDirection != 0)
             {
                 playerController.Dash();
             }
@@ -180,7 +181,7 @@ public class GameController : MonoBehaviour
     /// Returns the direction the player moves in depending on which inputs are pressed.
     /// </summary>
     /// <returns></returns>
-    private float CalculateDirection()
+    private float CalculateHorizontalDirection()
     {
 
         float direction = 0f;
@@ -193,6 +194,20 @@ public class GameController : MonoBehaviour
         if (InputController.instance.GetKeyRight())
         {
             direction += 1f;
+        }
+
+        return direction;
+
+    }
+
+    private float CalculateVerticalDirection()
+    {
+
+        float direction = 0f;
+
+        if (InputController.instance.GetKeyDown())
+        {
+            direction -= 1f;
         }
 
         return direction;

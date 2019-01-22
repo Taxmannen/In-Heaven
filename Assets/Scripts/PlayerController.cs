@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 spawn;
     private bool spawned;
     private Coroutine dashCooldownCoroutine;
-
+    private float actualForcedGravity;
+    
     //Design
     [SerializeField] [Range(0, 1000)] private int maxHP = 10; //Max Hit Points
     [SerializeField] [Range(0, 100)] private float baseMovementSpeed = 15f; //Base Movement Speed
@@ -42,8 +43,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0, 100)] private float baseDashes = 1; //Number of dashes possible in air
     [SerializeField] [Range(0, 10)] private float dashInvincibleDuration = 0.25f; //Duration of invincibility state after the start of a dash
     [SerializeField] [Range(0, 10)] private float hitInvincibleDuration = 0.1f; //Duration of invincibility state after being hit, necessary to avoid getting hit rapidly multiple times.
-    [SerializeField] [Range(0, 10)] private float dashCooldown = 1f;
-    [SerializeField] [Range(0, 2)] private float verticalReductionDuringDash = 0.5f;
+    [SerializeField] [Range(0, 10)] private float dashCooldown = 1f; //Cooldown for dash, ground and air
+    [SerializeField] [Range(0, 2)] private float verticalReductionDuringDash = 0.5f; //Reduces the vertical velocity affecting the player during the dash
+    [SerializeField] [Range(0, 100)] private float forcedGravitySpeed = 25f; //The additional force affecting the player on pressed down, during aired
 
     //Debug
     [SerializeField] [ReadOnly] private int hP;
@@ -137,11 +139,25 @@ public class PlayerController : MonoBehaviour
     public void Upd8(float horizontalDirection, float verticalDirection)
     {
 
+        float temp = this.horizontalDirection;
         this.horizontalDirection = horizontalDirection;
         this.verticalDirection = verticalDirection;
 
+        if (!grounded && verticalVelocity < 0f)
+        {
+            if (verticalDirection != 0)
+            {
+                actualForcedGravity = verticalDirection * forcedGravitySpeed;
+            }
+        }
+
+        else
+        {
+            actualForcedGravity = 0f;
+        }
+
         //Dash Controller
-        if (horizontalDirection == 0)
+        if (horizontalDirection != temp || verticalDirection != 0)
         {
             if (dashCoroutine != null)
             {
@@ -180,7 +196,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Move()
     {
-        rigi.velocity = new Vector3((horizontalDirection * movementSpeed) + dashVelocity, verticalVelocity * actualVerticalReductionDuringDash, 0f);
+        rigi.velocity = new Vector3((horizontalDirection * movementSpeed) + dashVelocity, (verticalVelocity + actualForcedGravity) * actualVerticalReductionDuringDash, 0f);
     }
 
 
