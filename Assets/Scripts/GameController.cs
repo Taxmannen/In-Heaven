@@ -82,7 +82,7 @@ public class GameController : MonoBehaviour
 
         float direction = CalculateDirection();
 
-        playerController.Upd8(direction);
+        playerController.Upd8(direction, 0f);
 
         playerController.Move();
 

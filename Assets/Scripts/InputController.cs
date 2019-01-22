@@ -10,6 +10,7 @@ public class InputController : MonoBehaviour
     private KeyCode jump = KeyCode.Space;
     private KeyCode left = KeyCode.A;
     private KeyCode right = KeyCode.D;
+    private KeyCode down = KeyCode.S;
 
     private KeyCode test = KeyCode.T;
 
@@ -48,6 +49,11 @@ public class InputController : MonoBehaviour
     public bool GetKeyDownRight()
     {
         return Input.GetKeyDown(right);
+    }
+
+    public bool GetKeyDown()
+    {
+        return Input.GetKey(down);
     }
 
     public bool GetKeyLeft()

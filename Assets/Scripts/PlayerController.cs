@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
     private Coroutine dashCoroutine;
     private float dashVelocity = 0f;
     private Coroutine invincibleCoroutine;
-    private float inputDirection;
+    private float horizontalDirection;
+    private float verticalDirection;
     private RaycastHit aimHit;
     private Vector3 aimPoint;
     private Vector3 spawn;
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0, 100)] private float baseMovementSpeed = 15f; //Base Movement Speed
     [SerializeField] [Range(-1000, 1000)] private float gravity = 75f; //Gravity (Works agaisnt Jump Power)
     [SerializeField] [Range(0, 100)] private float jumpPower = 25f; //Jump Power (Works against Gravity)
-    [SerializeField] [Range(0, 10)] private float groundCheckRaycastDistance = 0.75f; //Distance to ground from players pivot point
+    [SerializeField] [Range(0, 10)] private float groundCheckRaycastDistance = 0.9f + 0.25f; //Distance to ground from players pivot point (FIRST VALUE = HALF PLAYER HEIGHT)
     [SerializeField] [Range(0, 100)] private int baseDoubleJumps = 1; //Number of jumps possible in air
     [SerializeField] [Range(0, 100000)] private int bulletDamage = 7;
     [SerializeField] [Range(1, 100)] private float bulletsPerSecond = 10f; //Bullets per second during left mouse down
@@ -133,13 +134,14 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Updates general player values.
     /// </summary>
-    public void Upd8(float direction)
+    public void Upd8(float horizontalDirection, float verticalDirection)
     {
 
-        this.inputDirection = direction;
+        this.horizontalDirection = horizontalDirection;
+        this.verticalDirection = verticalDirection;
 
         //Dash Controller
-        if (direction == 0)
+        if (horizontalDirection == 0)
         {
             if (dashCoroutine != null)
             {
@@ -178,7 +180,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Move()
     {
-        rigi.velocity = new Vector3((inputDirection * movementSpeed) + dashVelocity, verticalVelocity * actualVerticalReductionDuringDash, 0f);
+        rigi.velocity = new Vector3((horizontalDirection * movementSpeed) + dashVelocity, verticalVelocity * actualVerticalReductionDuringDash, 0f);
     }
 
 
@@ -272,7 +274,7 @@ public class PlayerController : MonoBehaviour
     {
         dashOnCooldown = true;
         Invincible(dashInvincibleDuration);
-        dashVelocity = inputDirection * dashPower;
+        dashVelocity = horizontalDirection * dashPower;
         AudioController.instance.Dash();
         actualVerticalReductionDuringDash = verticalReductionDuringDash;
         yield return new WaitForSeconds(dashDuration);
