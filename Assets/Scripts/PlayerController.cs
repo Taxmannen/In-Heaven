@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
 
     //Private
     private float verticalVelocity = 0f;
-    private int layerMask = 1 << 9;
     private Coroutine shootCoroutine;
     private Coroutine dashCoroutine;
     private float dashVelocity = 0f;
@@ -47,6 +46,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0, 2)] private float verticalReductionDuringDash = 0.5f; //Reduces the vertical velocity affecting the player during the dash
     [SerializeField] [Range(0, 100)] private float forcedGravitySpeed = 25f; //The additional force affecting the player on pressed down, during aired
     [SerializeField] [Range(0, 100)] private float forcedPower = 40f; //Forced gravity power when pressing down key.
+    [SerializeField] [Range(0, 1000)] private float parryBulletSpeed = 100f;
 
     //Debug
     [SerializeField] [ReadOnly] private int hP;
@@ -132,14 +132,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
-
     /// <summary>
     /// Updates general player values.
     /// </summary>
     public void Upd8(float horizontalDirection, float verticalDirection)
     {
-
         float temp = this.horizontalDirection;
         this.horizontalDirection = horizontalDirection;
         this.verticalDirection = verticalDirection;
@@ -178,7 +175,7 @@ public class PlayerController : MonoBehaviour
         else
         {
 
-            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + GetComponentInChildren<Collider>().bounds.extents.y, transform.position.z), Vector3.down, groundCheckRaycastDistance, layerMask))
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + GetComponentInChildren<Collider>().bounds.extents.y, transform.position.z), Vector3.down, groundCheckRaycastDistance, 1 << 9))
             {
                 doubleJumps = baseDoubleJumps;
                 dashes = baseDashes;
@@ -321,7 +318,7 @@ public class PlayerController : MonoBehaviour
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out aimHit))
+        if (Physics.Raycast(ray, out aimHit, 0))
         {
 
             if (aimHit.transform.gameObject.tag != "Player")
@@ -415,7 +412,7 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-        if (other.tag == "BossBullet" || other.tag == "BossLaserRay")
+        if (other.tag == "Boss Bullet" || other.tag == "Boss Parryable Bullet" || other.tag == "BossLaserRay")
         {
 
             if (playerState == Global.PlayerState.Default)
@@ -489,6 +486,50 @@ public class PlayerController : MonoBehaviour
     public void PlayerShootReverb()
     {
         AudioController.instance.GunReverb();
+    }
+
+
+
+    [SerializeField] private BoxCollider parrybox;
+    Coroutine parryCoroutine = null;
+    Coroutine parryCooldownCoroutine = null;
+
+    public void Parry()
+    {
+
+        if (parryCooldownCoroutine == null)
+        {
+            parryCoroutine = StartCoroutine(ParryCoroutine());
+            parryCooldownCoroutine = StartCoroutine(ParryCooldownCoroutine());
+        }
+
+    }
+
+    private IEnumerator ParryCoroutine()
+    {
+        parrybox.enabled = true;
+        yield return new WaitForSeconds(50f);
+        parrybox.enabled = false;
+        parryCoroutine = null;
+        yield break;
+    }
+
+    private IEnumerator ParryCooldownCoroutine()
+    {
+        yield return new WaitUntil(() => parryCoroutine == null);
+        yield return new WaitForSeconds(0.1f);
+        parryCooldownCoroutine = null;
+        yield break;
+    }
+
+    public float GetParryBulletSpeed()
+    {
+        return parryBulletSpeed;
+    }
+
+    public float GetBulletTrajectoryDistance()
+    {
+        return bulletTrajectoryDistance;
     }
 
 }

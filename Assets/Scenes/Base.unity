@@ -124,6 +124,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbc4f514659f3548ad0f37ea00ab9f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &622324437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 622324438}
+  - component: {fileID: 622324439}
+  - component: {fileID: 622324440}
+  m_Layer: 10
+  m_Name: Parrybox
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &622324438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622324437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.9, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1332379029}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &622324439
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622324437}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 25, y: 25, z: 25}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &622324440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622324437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa07964d35255547a6fbe4d064b1d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lm:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &689379659 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4998537457116376936, guid: ff3809ce05ec13140831cf6e93f92a88,
@@ -184,6 +244,12 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1332379029 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1008925013563656533, guid: 51757afcc1290b14eb37486733ab937f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1008925013438116984}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1529339189 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4998537455202675478, guid: ff3809ce05ec13140831cf6e93f92a88,
@@ -642,6 +708,16 @@ PrefabInstance:
         type: 3}
       propertyPath: hP
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008925013563656532, guid: 51757afcc1290b14eb37486733ab937f,
+        type: 3}
+      propertyPath: parrybox
+      value: 
+      objectReference: {fileID: 622324439}
+    - target: {fileID: 1008925013563656532, guid: 51757afcc1290b14eb37486733ab937f,
+        type: 3}
+      propertyPath: mask.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1008925013960216300, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}

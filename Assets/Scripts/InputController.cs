@@ -36,6 +36,11 @@ public class InputController : MonoBehaviour
         return Input.GetMouseButtonDown(0);
     }
 
+    public bool GetMouseButtonDownRight()
+    {
+        return Input.GetMouseButtonDown(1);
+    }
+
     public bool GetMouseButtonLeft()
     {
         return Input.GetMouseButton(0);

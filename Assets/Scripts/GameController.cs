@@ -158,6 +158,11 @@ public class GameController : MonoBehaviour
             AudioController.instance.CommenceShooting();
         }
 
+        if (InputController.instance.GetMouseButtonDownRight())
+        {
+            playerController.Parry();
+        }
+
     }
 
     private void UpdateBoss()
