@@ -18,6 +18,8 @@ public class InterfaceController : MonoBehaviour
     [SerializeField] private GameObject failPanel;
     [SerializeField] private GameObject successPanel;
 
+    [SerializeField] private GameObject test;
+
     private void Awake()
     {
 
@@ -63,6 +65,16 @@ public class InterfaceController : MonoBehaviour
     public void Success()
     {
         successPanel.SetActive(true);
+    }
+
+    public void BossBulletOverlay(Vector3 point)
+    {
+
+        Vector3 cameraPoint = Camera.main.WorldToScreenPoint(point);
+
+        GameObject testClone = Instantiate(test, cameraPoint, Quaternion.identity, FindObjectOfType<Canvas>().gameObject.transform);
+        Destroy(testClone, 1f);
+
     }
 
 }

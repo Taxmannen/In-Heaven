@@ -24,7 +24,7 @@ public class BossController : MonoBehaviour
     [SerializeField] [Range(0, 10)] private float movementSpeed;
     [SerializeField] [Range(0, 100000)] private int maxHP = 1000;
     [SerializeField] [Range(0, 500)] private float bossBulletSpeed;
-    [SerializeField] [Range(0, 1)] private float bossBulletFireRate;
+    [SerializeField] [Range(1, 100)] private float bossBulletFireRate;
 
     //Debug
     [SerializeField] [ReadOnly] private int hP;
@@ -167,19 +167,38 @@ public class BossController : MonoBehaviour
     private IEnumerator ShootCoroutine()
     {
 
-        GameObject bossBulletClone = Instantiate(bossBullet, bossBulletSpawn1.position, bossBulletSpawn1.rotation, bullets);
+        Vector3 bossBulletSpawnPosition = new Vector3(rigi.position.x - 14, rigi.position.y + 15.7f, rigi.position.z - 13);
+        GameObject bossBulletClone = Instantiate(bossBullet, bossBulletSpawnPosition, Quaternion.identity, bullets);
+
+        Destroy(bossBulletClone, 3f);
+
+        Vector3 dir = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>().position - bossBulletClone.GetComponent<Rigidbody>().position;
+
+        dir.Normalize();
+
+        bossBulletClone.GetComponent<Rigidbody>().velocity = dir * bossBulletSpeed;
+
+        InterfaceController.instance.BossBulletOverlay(FindObjectOfType<PlayerController>().GetComponent<Rigidbody>().position);
+
+        bossBulletClone.GetComponent<Bullet>().SetDamage(25);
+
+        /*
+        GameObject bossBulletClone = Instantiate(bossBullet, new Vector3(rigi.position.x - 14, rigi.position.y + 15.7f, rigi.position.z -13), bossBulletSpawn1.rotation, bullets);
         Destroy(bossBulletClone, 3f);
         bossBulletClone.GetComponent<Rigidbody>().velocity = new Vector3(0, -0.4f * bossBulletSpeed, -bossBulletSpeed);
 
         bossBulletClone.GetComponent<Bullet>().SetDamage(25);
+        */
 
-        bossBulletClone = Instantiate(bossBullet, bossBulletSpawn2.position, bossBulletSpawn2.rotation, bullets);
+        /*
+        bossBulletClone = Instantiate(bossBullet, new Vector3(rigi.position.x + 14, rigi.position.y + 15.7f, rigi.position.z -13), bossBulletSpawn2.rotation, bullets);
         Destroy(bossBulletClone, 3f);
         bossBulletClone.GetComponent<Rigidbody>().velocity = new Vector3(0, -0.4f * bossBulletSpeed, -bossBulletSpeed);
 
         bossBulletClone.GetComponent<Bullet>().SetDamage(25);
+        */
 
-        yield return new WaitForSeconds(bossBulletFireRate);
+        yield return new WaitForSeconds(1 / bossBulletFireRate);
         bossShootCoroutine = null;
         yield break;
     }
