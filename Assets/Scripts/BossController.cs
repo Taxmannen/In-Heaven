@@ -25,6 +25,7 @@ public class BossController : MonoBehaviour
     [SerializeField] [Range(0, 100000)] private int maxHP = 1000;
     [SerializeField] [Range(0, 500)] private float bossBulletSpeed;
     [SerializeField] [Range(1, 100)] private float bossBulletFireRate;
+    [SerializeField] [Range(1, 10)] private float bossLaserRaySpeed;
 
     //Debug
     [SerializeField] [ReadOnly] private int hP;
@@ -180,7 +181,7 @@ public class BossController : MonoBehaviour
 
         InterfaceController.instance.BossBulletOverlay(FindObjectOfType<PlayerController>().GetComponent<Rigidbody>().position);
 
-        bossBulletClone.GetComponent<Bullet>().SetDamage(25);
+        bossBulletClone.GetComponent<Damage>().SetDamage(25);
 
         /*
         GameObject bossBulletClone = Instantiate(bossBullet, new Vector3(rigi.position.x - 14, rigi.position.y + 15.7f, rigi.position.z -13), bossBulletSpawn1.rotation, bullets);
@@ -217,7 +218,7 @@ public class BossController : MonoBehaviour
 
             if (bossState == Global.BossState.Default)
             {
-                Receive(other.GetComponent<Bullet>().GetDamage());
+                Receive(other.GetComponent<Damage>().GetDamage());
                 AudioController.instance.BossHit();
             }
 
@@ -289,12 +290,34 @@ public class BossController : MonoBehaviour
 
     public void Laser()
     {
-        //Here
+        StartCoroutine(LaserCoroutine());
     }
 
     private IEnumerator LaserCoroutine()
     {
         //Here If Needed
+       Rigidbody laserRigi = GameObject.FindGameObjectWithTag("BossLaserRay").GetComponent<Rigidbody>();
+        laserRigi.GetComponent<Damage>().SetDamage(1337);
+        if (laserRigi.position.x >= 19)
+        {
+            laserRigi.velocity = Vector3.left * bossLaserRaySpeed;
+            yield return new WaitUntil(() => laserRigi.position.x <= -19);
+            laserRigi.velocity = Vector3.zero;
+
+        }
+        else if (laserRigi.position.x <= -19)
+        {
+            laserRigi.velocity = Vector3.right * bossLaserRaySpeed;
+            yield return new WaitUntil(() => laserRigi.position.x >= 19);
+            laserRigi.velocity = Vector3.zero;
+        }
+       
+
+
+        //laserRigi.velocity = Vector3.left * 10;
+        //yield return new WaitUntil(() => laserRigi.position.x <= -19);
+
+        
         yield break;
     }
     

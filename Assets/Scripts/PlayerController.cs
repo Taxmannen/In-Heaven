@@ -368,7 +368,7 @@ public class PlayerController : MonoBehaviour
 
         bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
 
-        bullet.GetComponent<Bullet>().SetDamage(bulletDamage);
+        bullet.GetComponent<Damage>().SetDamage(bulletDamage);
 
         AudioController.instance.PlayerShoot();
 
@@ -415,15 +415,16 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-        if (other.tag == "BossBullet")
+        if (other.tag == "BossBullet" || other.tag == "BossLaserRay")
         {
 
             if (playerState == Global.PlayerState.Default)
             {
-                Receive(other.GetComponent<Bullet>().GetDamage());
+                Receive(other.GetComponent<Damage>().GetDamage());
             }
 
         }
+
 
     }
 
