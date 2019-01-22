@@ -153,6 +153,11 @@ public class GameController : MonoBehaviour
             playerController.PlayerShootReverb();
         }
 
+        if (InputController.instance.GetMouseButtonDownLeft())
+        {
+            AudioController.instance.CommenceShooting();
+        }
+
     }
 
     private void UpdateBoss()
