@@ -468,7 +468,7 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerShootReverb()
     {
-        //Here
+        AudioController.instance.GunReverb();
     }
 
 }
