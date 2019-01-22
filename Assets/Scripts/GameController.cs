@@ -157,6 +157,11 @@ public class GameController : MonoBehaviour
 
         //==================================================
 
+        if (InputController.instance.GetMouseButtonUpLeft())
+        {
+            playerController.PlayerShootReverb();
+        }
+
     }
 
     private void UpdateBoss()

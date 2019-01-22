@@ -60,6 +60,11 @@ public class InputController : MonoBehaviour
         return Input.GetKey(right);
     }
 
+    public bool GetMouseButtonUpLeft()
+    {
+        return Input.GetMouseButtonUp(0);
+    }
+
     public bool GetKeyDownLeftShift()
     {
         return Input.GetKeyDown(KeyCode.LeftShift);

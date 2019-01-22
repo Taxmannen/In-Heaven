@@ -6,6 +6,7 @@ public class BossController : MonoBehaviour
 {
 
     //Serialized
+    [SerializeField] private Transform bullets;
     [SerializeField] private Rigidbody rigi;
     [SerializeField] private Transform bossBulletSpawn1;
     [SerializeField] private Transform bossBulletSpawn2;
@@ -136,7 +137,17 @@ public class BossController : MonoBehaviour
             StopCoroutine(newMoveCoroutine);
             newMoveCoroutine = null;
         }
-        
+
+        if (bossShootCoroutine != null)
+        {
+            StopCoroutine(bossShootCoroutine);
+            bossShootCoroutine = null;
+        }
+
+        foreach (Transform bullet in bullets)
+        {
+            Destroy(bullet.gameObject);
+        }
 
     }
 
@@ -155,13 +166,14 @@ public class BossController : MonoBehaviour
 
     private IEnumerator ShootCoroutine()
     {
-        GameObject bossBulletClone = Instantiate(bossBullet, bossBulletSpawn1.position, bossBulletSpawn1.rotation);
+
+        GameObject bossBulletClone = Instantiate(bossBullet, bossBulletSpawn1.position, bossBulletSpawn1.rotation, bullets);
         Destroy(bossBulletClone, 3f);
         bossBulletClone.GetComponent<Rigidbody>().velocity = new Vector3(0, -0.4f * bossBulletSpeed, -bossBulletSpeed);
 
         bossBulletClone.GetComponent<Bullet>().SetDamage(25);
 
-        bossBulletClone = Instantiate(bossBullet, bossBulletSpawn2.position, bossBulletSpawn2.rotation);
+        bossBulletClone = Instantiate(bossBullet, bossBulletSpawn2.position, bossBulletSpawn2.rotation, bullets);
         Destroy(bossBulletClone, 3f);
         bossBulletClone.GetComponent<Rigidbody>().velocity = new Vector3(0, -0.4f * bossBulletSpeed, -bossBulletSpeed);
 

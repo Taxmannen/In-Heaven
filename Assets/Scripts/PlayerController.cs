@@ -22,29 +22,27 @@ public class PlayerController : MonoBehaviour
     private Vector3 aimPoint;
     private Vector3 spawn;
     private bool spawned;
+    private Coroutine dashCooldownCoroutine;
 
     //Design
     [SerializeField] [Range(0, 1000)] private int maxHP = 10; //Max Hit Points
-
     [SerializeField] [Range(0, 100)] private float baseMovementSpeed = 15f; //Base Movement Speed
-
     [SerializeField] [Range(-1000, 1000)] private float gravity = 75f; //Gravity (Works agaisnt Jump Power)
     [SerializeField] [Range(0, 100)] private float jumpPower = 25f; //Jump Power (Works against Gravity)
     [SerializeField] [Range(0, 10)] private float groundCheckRaycastDistance = 0.75f; //Distance to ground from players pivot point
     [SerializeField] [Range(0, 100)] private int baseDoubleJumps = 1; //Number of jumps possible in air
-
     [SerializeField] [Range(0, 100000)] private int bulletDamage = 7;
     [SerializeField] [Range(1, 100)] private float bulletsPerSecond = 10f; //Bullets per second during left mouse down
     [SerializeField] [Range(0, 1000)] private float bulletSpeed = 25f; //The speed of the bullets
     [SerializeField] [Range(0, 10)] private float bulletDuration = 3f; //The duration the bullets last until they are destroyed, low number reduces potential lag
     [SerializeField] [Range(0, 1000)] private float bulletTrajectoryDistance = 50f; //The max end point for the bullets trajectory, should be about the same as the distance between the player face and the boss face.
-
     [SerializeField] [Range(0, 1000)] private float dashPower = 50f; //The speed of the dash (affects dash distance)
     [SerializeField] [Range(0, 10)] private float dashDuration = 0.1f; //The duration of the dash (affects dash distance)
     [SerializeField] [Range(0, 100)] private float baseDashes = 1; //Number of dashes possible in air
-
     [SerializeField] [Range(0, 10)] private float dashInvincibleDuration = 0.25f; //Duration of invincibility state after the start of a dash
     [SerializeField] [Range(0, 10)] private float hitInvincibleDuration = 0.1f; //Duration of invincibility state after being hit, necessary to avoid getting hit rapidly multiple times.
+    [SerializeField] [Range(0, 10)] private float dashCooldown = 1f;
+    [SerializeField] [Range(0, 2)] private float verticalReductionDuringDash = 0.5f;
 
     //Debug
     [SerializeField] [ReadOnly] private int hP;
@@ -53,7 +51,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [ReadOnly] private float dashes = 0;
     [SerializeField] [ReadOnly] private bool grounded;
     [SerializeField] [ReadOnly] private bool jumping;
-    [SerializeField] [ReadOnly] private bool dashing;
+    [SerializeField] [ReadOnly] private float actualVerticalReductionDuringDash = 1;
+    [SerializeField] [ReadOnly] private bool dashOnCooldown;
     [SerializeField] [ReadOnly] private Global.PlayerState playerState = Global.PlayerState.Default;
 
 
@@ -122,6 +121,11 @@ public class PlayerController : MonoBehaviour
             invincibleCoroutine = null;
         }
 
+        foreach (Transform bullet in bullets)
+        {
+            Destroy(bullet.gameObject);
+        }
+
     }
 
 
@@ -143,6 +147,7 @@ public class PlayerController : MonoBehaviour
             }
             dashVelocity = 0f;
             dashCoroutine = null;
+            actualVerticalReductionDuringDash = 1f;
         }
 
         //Grounded & Jumping Controller
@@ -173,7 +178,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Move()
     {
-        rigi.velocity = new Vector3((inputDirection * movementSpeed) + dashVelocity, verticalVelocity, 0f);
+        rigi.velocity = new Vector3((inputDirection * movementSpeed) + dashVelocity, verticalVelocity * actualVerticalReductionDuringDash, 0f);
     }
 
 
@@ -234,11 +239,17 @@ public class PlayerController : MonoBehaviour
     public void Dash()
     {
 
+        if (dashOnCooldown)
+        {
+            return;
+        }
+
         if (grounded)
         {
             if (dashCoroutine == null)
             {
                 dashCoroutine = StartCoroutine(DashCoroutine());
+                dashCooldownCoroutine = StartCoroutine(DashCooldownCoroutine());
             }
         }
 
@@ -250,6 +261,7 @@ public class PlayerController : MonoBehaviour
                 {
                     dashes--;
                     dashCoroutine = StartCoroutine(DashCoroutine());
+                    dashCooldownCoroutine = StartCoroutine(DashCooldownCoroutine());
                 }
             }
         }
@@ -258,18 +270,27 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
+        dashOnCooldown = true;
         Invincible(dashInvincibleDuration);
-        dashing = true;
         dashVelocity = inputDirection * dashPower;
         AudioController.instance.Dash();
+        actualVerticalReductionDuringDash = verticalReductionDuringDash;
         yield return new WaitForSeconds(dashDuration);
-        dashing = false;
+        actualVerticalReductionDuringDash = 1f;
         dashVelocity = 0f;
         dashCoroutine = null;
         yield break;
     }
     
+    private IEnumerator DashCooldownCoroutine()
+    {
+        yield return new WaitUntil(() => dashCoroutine == null);
+        yield return new WaitForSeconds(dashCooldown);
+        dashOnCooldown = false;
+        yield break;
+    }
 
+    
 
     /// <summary>
     /// Updates the direction the player is aiming towards.
@@ -333,6 +354,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1 / bulletsPerSecond);
         shootCoroutine = null;
         yield break;
+
     }
 
 
@@ -441,5 +463,10 @@ public class PlayerController : MonoBehaviour
     }
 
 
+
+    public void PlayerShootReverb()
+    {
+        //Here
+    }
 
 }
