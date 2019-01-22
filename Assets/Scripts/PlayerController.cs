@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 spawn;
     private bool spawned;
     private Coroutine dashCooldownCoroutine;
-    private float actualForcedGravity;
+    [SerializeField] [ReadOnly] private float actualForcedGravity;
     
     //Design
     [SerializeField] [Range(0, 1000)] private int maxHP = 10; //Max Hit Points
@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0, 10)] private float dashCooldown = 1f; //Cooldown for dash, ground and air
     [SerializeField] [Range(0, 2)] private float verticalReductionDuringDash = 0.5f; //Reduces the vertical velocity affecting the player during the dash
     [SerializeField] [Range(0, 100)] private float forcedGravitySpeed = 25f; //The additional force affecting the player on pressed down, during aired
+    [SerializeField] [Range(0, 100)] private float forcedPower = 40f; //Forced gravity power when pressing down key.
 
     //Debug
     [SerializeField] [ReadOnly] private int hP;
@@ -143,11 +144,11 @@ public class PlayerController : MonoBehaviour
         this.horizontalDirection = horizontalDirection;
         this.verticalDirection = verticalDirection;
 
-        if (!grounded && verticalVelocity < 0f)
+        if (!grounded)
         {
-            if (verticalDirection != 0)
+            if (verticalDirection < 0)
             {
-                actualForcedGravity = verticalDirection * forcedGravitySpeed;
+                actualForcedGravity = -forcedPower;
             }
         }
 
@@ -229,6 +230,7 @@ public class PlayerController : MonoBehaviour
 
         if (grounded)
         {
+
             jumping = true;
             verticalVelocity = jumpPower;
             AudioController.instance.PlayerJump();
@@ -240,6 +242,7 @@ public class PlayerController : MonoBehaviour
 
             if (doubleJumps > 0)
             {
+                actualForcedGravity = 0f;
                 doubleJumps--;
                 verticalVelocity = jumpPower;
                 AudioController.instance.PlayerDoubleJump();

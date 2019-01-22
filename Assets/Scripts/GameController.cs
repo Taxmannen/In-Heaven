@@ -205,7 +205,7 @@ public class GameController : MonoBehaviour
 
         float direction = 0f;
 
-        if (InputController.instance.GetKeyDown())
+        if (InputController.instance.GetKeyDownDown())
         {
             direction -= 1f;
         }

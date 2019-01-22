@@ -51,9 +51,9 @@ public class InputController : MonoBehaviour
         return Input.GetKeyDown(right);
     }
 
-    public bool GetKeyDown()
+    public bool GetKeyDownDown()
     {
-        return Input.GetKey(down);
+        return Input.GetKeyDown(down);
     }
 
     public bool GetKeyLeft()
