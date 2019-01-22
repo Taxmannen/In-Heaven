@@ -146,16 +146,6 @@ public class GameController : MonoBehaviour
             }
 
         }
-        
-        //==================================================
-
-        if (InputController.instance.GetKeyDownTest())
-        {
-            Time.timeScale = 0.025f;
-            //playerController.Receive(1);
-        }
-
-        //==================================================
 
         if (InputController.instance.GetMouseButtonUpLeft())
         {
@@ -168,6 +158,12 @@ public class GameController : MonoBehaviour
     {
         bossController.NewMove();
         bossController.Shoot();
+
+        if (InputController.instance.GetKeyDownTest())
+        {
+            bossController.Laser();
+        }
+
     }
 
     public void FreezeBoss()

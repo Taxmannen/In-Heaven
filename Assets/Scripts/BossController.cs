@@ -287,6 +287,15 @@ public class BossController : MonoBehaviour
         InterfaceController.instance.UpdateBossHP(hP, maxHP);
     }
 
+    public void Laser()
+    {
+        //Here
+    }
 
+    private IEnumerator LaserCoroutine()
+    {
+        //Here If Needed
+        yield break;
+    }
     
 }
