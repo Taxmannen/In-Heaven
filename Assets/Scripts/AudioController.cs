@@ -20,6 +20,8 @@ public class AudioController : MonoBehaviour
     public string playerJump;
     [FMODUnity.EventRef]
     public string playerDoubleJump;
+    [FMODUnity.EventRef]
+    public string gunReverb;
 
     private void Awake()
     {
@@ -61,6 +63,10 @@ public class AudioController : MonoBehaviour
     void Shield()
     {
 
+    }
+    public void GunReverb()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(gunReverb);
     }
 
     //_________ENEMY_________
