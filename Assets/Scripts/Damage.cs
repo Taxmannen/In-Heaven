@@ -5,14 +5,14 @@ using UnityEngine;
 public class Damage : MonoBehaviour
 {
 
-    int damage;
+    float damage;
 
-    public void SetDamage(int damage)
+    public void SetDamage(float damage)
     {
         this.damage = damage;
     }
 
-    public int GetDamage()
+    public float GetDamage()
     {
         return damage;
     }

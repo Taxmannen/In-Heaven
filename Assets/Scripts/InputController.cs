@@ -11,6 +11,7 @@ public class InputController : MonoBehaviour
     private KeyCode left = KeyCode.A;
     private KeyCode right = KeyCode.D;
     private KeyCode down = KeyCode.S;
+    private KeyCode supercharge = KeyCode.Q;
 
     private KeyCode test = KeyCode.T;
 
@@ -84,6 +85,11 @@ public class InputController : MonoBehaviour
     public bool GetKeyDownLeftShift()
     {
         return Input.GetKeyDown(KeyCode.LeftShift);
+    }
+
+    public bool GetKeyDownSupercharge()
+    {
+        return Input.GetKeyDown(supercharge);
     }
 
     //==================================================

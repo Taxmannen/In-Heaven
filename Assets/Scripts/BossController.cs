@@ -22,13 +22,13 @@ public class BossController : MonoBehaviour
 
     //Design
     [SerializeField] [Range(0, 10)] private float movementSpeed;
-    [SerializeField] [Range(0, 100000)] private int maxHP = 1000;
+    [SerializeField] [Range(0, 100000)] private float maxHP = 1000;
     [SerializeField] [Range(0, 500)] private float bossBulletSpeed;
     [SerializeField] [Range(1, 100)] private float bossBulletFireRate;
     [SerializeField] [Range(1, 10)] private float bossLaserRaySpeed;
 
     //Debug
-    [SerializeField] [ReadOnly] private int hP;
+    [SerializeField] [ReadOnly] private float hP;
     [SerializeField] [ReadOnly] Global.BossState bossState = Global.BossState.Default;
     [SerializeField] private Vector3 rightStop = new Vector3 (36, 0 , 0);
     [SerializeField] private Vector3 leftStop = new Vector3 (-36, 0 , 0);
@@ -128,6 +128,9 @@ public class BossController : MonoBehaviour
 
     
 
+    /// <summary>
+    /// Freezes the boss.
+    /// </summary>
     public void Freeze()
     {
 
@@ -232,7 +235,7 @@ public class BossController : MonoBehaviour
     /// Checks whether the boss should die or get hit by the source depending on the amount sent as a parameter.
     /// </summary>
     /// <param name="amt"></param>
-    public void Receive(int amt)
+    public void Receive(float amt)
     {
 
         if (bossState == Global.BossState.Default)
@@ -282,12 +285,17 @@ public class BossController : MonoBehaviour
     /// Hits the boss for the amount sent as a parameter.
     /// </summary>
     /// <param name="amt"></param>
-    private void Hit(int amt)
+    private void Hit(float amt)
     {
         hP -= amt;
         InterfaceController.instance.UpdateBossHP(hP, maxHP);
     }
 
+
+
+    /// <summary>
+    /// Laser
+    /// </summary>
     public void Laser()
     {
         StartCoroutine(LaserCoroutine());

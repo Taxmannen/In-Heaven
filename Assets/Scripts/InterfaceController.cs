@@ -20,6 +20,10 @@ public class InterfaceController : MonoBehaviour
 
     [SerializeField] private GameObject test;
 
+    [SerializeField] private Slider slider;
+
+
+
     private void Awake()
     {
 
@@ -37,7 +41,13 @@ public class InterfaceController : MonoBehaviour
 
     }
 
-    public void UpdatePlayerHP(int hP, int maxHP)
+    private void Start()
+    {
+        slider.maxValue = GameController.instance.GetPlayerController().GetSuperChargeMax();
+        slider.value = slider.value / slider.maxValue;
+    }
+
+    public void UpdatePlayerHP(float hP, float maxHP)
     {
         playerHpText.text = "HP: " + hP + "/" + maxHP;
     }
@@ -47,7 +57,7 @@ public class InterfaceController : MonoBehaviour
         playerStateText.text = "PlayerState: " + playerState;
     }
 
-    public void UpdateBossHP(int hP, int maxHP)
+    public void UpdateBossHP(float hP, float maxHP)
     {
         bossHpText.text = "HP: " + hP + "/" + maxHP;
     }
@@ -75,6 +85,11 @@ public class InterfaceController : MonoBehaviour
         GameObject testClone = Instantiate(test, cameraPoint, Quaternion.identity, FindObjectOfType<Canvas>().gameObject.transform);
         Destroy(testClone, 1f);
 
+    }
+
+    public void UpdateSuperChargeSlider(float value)
+    {
+        slider.value = value;
     }
 
 }

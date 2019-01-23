@@ -8,6 +8,10 @@ public class Global : MonoBehaviour
     public static bool shiftDashing = true;
     public static bool doubleTapDashing = true;
 
+    //Use These
+    public static LayerMask groundLayerMask = 1 << 9;
+    public static LayerMask playerBulletLayerMask = 0;
+
     public enum GameState
     {
         Idle,

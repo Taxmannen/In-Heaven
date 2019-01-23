@@ -8,12 +8,7 @@ public class GameController : MonoBehaviour
     //Instance
     public static GameController instance;
 
-    //Design
-    [SerializeField] private float doubleTapInterval = 0.25f;
-    [SerializeField] private Texture2D crosshairTexture;
-
-    //Debug
-    [SerializeField] private Global.GameState gameState = Global.GameState.Idle;
+    //Serialized
     [SerializeField] private PlayerController playerController;
     [SerializeField] private BossController bossController;
 
@@ -21,6 +16,15 @@ public class GameController : MonoBehaviour
     private bool canDashRight = false;
     private bool canDashLeft = false;
     private Coroutine restartCoroutine;
+
+    //Design
+    [SerializeField] private float doubleTapInterval = 0.25f;
+    [SerializeField] private Texture2D crosshairTexture;
+
+    //Debug
+    [SerializeField] private Global.GameState gameState = Global.GameState.Idle;
+
+
 
     private void Awake()
     {
@@ -39,6 +43,8 @@ public class GameController : MonoBehaviour
 
     }
 
+
+
     private void Start()
     {
 
@@ -48,10 +54,15 @@ public class GameController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Sets the cursor texture to the crosshair texture.
+    /// </summary>
     private void SetCursorToCrosshair()
     {
         Cursor.SetCursor(crosshairTexture, new Vector2(8, 8), CursorMode.Auto);
     }
+
+
 
     private void Update()
     {
@@ -66,17 +77,9 @@ public class GameController : MonoBehaviour
 
 
 
-    public void Restart()
-    {
-
-        playerController.Start();
-        bossController.Start();
-        gameState = Global.GameState.Game;
-
-    }
-
-
-
+    /// <summary>
+    /// Updates everything in player.
+    /// </summary>
     private void UpdatePlayer()
     {
 
@@ -163,32 +166,95 @@ public class GameController : MonoBehaviour
             playerController.Parry();
         }
 
-    }
-
-    private void UpdateBoss()
-    {
-        bossController.NewMove();
-        bossController.Shoot();
-
-        if (InputController.instance.GetKeyDownTest())
+        if (InputController.instance.GetKeyDownSupercharge())
         {
-            bossController.Laser();
+            playerController.SuperCharge();
         }
 
     }
 
+    bool ready;
+
+    /// <summary>
+    /// Updates everything in boss.
+    /// </summary>
+    private void UpdateBoss()
+    {
+        bossController.NewMove();
+
+
+
+        if (ready)
+        {
+
+            int random = Random.Range((int)1, (int)3); // Change to 4 for spread
+
+            switch (random)
+            {
+                case 1:
+                    bossController.Shoot();
+                    patternCoroutine = StartCoroutine(Pattern());
+                    break;
+
+                case 2:
+                    bossController.Laser();
+                    patternCoroutine = StartCoroutine(Pattern());
+                    break;
+
+                case 3:
+                    
+                    break;
+            }
+
+        }
+
+    }
+
+    private Coroutine patternCoroutine;
+
+    private IEnumerator Pattern()
+    {
+        ready = false;
+        yield return new WaitForSeconds(3f);
+        ready = true;
+        patternCoroutine = null;
+        yield break;
+    }
+
+    /// <summary>
+    /// Restarts the game in game state.
+    /// </summary>
+    public void Restart()
+    {
+
+        playerController.Start();
+        bossController.Start();
+        gameState = Global.GameState.Game;
+
+    }
+
+
+
+    /// <summary>
+    /// Calls on the boss to freeze.
+    /// </summary>
     public void FreezeBoss()
     {
         bossController.Freeze();
     }
 
+    /// <summary>
+    /// Calls on the player to freeze.
+    /// </summary>
     public void FreezePlayer()
     {
         playerController.Freeze();
     }
 
+
+
     /// <summary>
-    /// Returns the direction the player moves in depending on which inputs are pressed.
+    /// Returns the horizontal direction of the player depending on input.
     /// </summary>
     /// <returns></returns>
     private float CalculateHorizontalDirection()
@@ -210,6 +276,10 @@ public class GameController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Returns the vertical direction of the player depending on input.
+    /// </summary>
+    /// <returns></returns>
     private float CalculateVerticalDirection()
     {
 
@@ -224,6 +294,13 @@ public class GameController : MonoBehaviour
 
     }
 
+
+
+    /// <summary>
+    /// Method which makes double tapping a direction to dash possible.
+    /// </summary>
+    /// <param name="direction"></param>
+    /// <returns></returns>
     private IEnumerator DoubleTapDashCoroutine(float direction)
     {
 
@@ -248,9 +325,20 @@ public class GameController : MonoBehaviour
 
     }
 
+
+
+    /// <summary>
+    /// Sets the game state of the game controller to desired state.
+    /// </summary>
+    /// <param name="gameState"></param>
     public void SetGameState(Global.GameState gameState)
     {
         this.gameState = gameState;
+    }
+
+    public PlayerController GetPlayerController()
+    {
+        return playerController;
     }
 
 }
