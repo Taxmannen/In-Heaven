@@ -328,7 +328,7 @@ public class PlayerController : MonoBehaviour
     {
         Invincible(dashInvincibleDuration);
         dashVelocity = horizontalDirection * dashPower;
-        AudioController.instance.Dash();
+        AudioController.instance.PlayerDash();
         actualVerticalReductionDuringDash = dashVerticalReduction;
         yield return new WaitForSeconds(dashDuration);
         actualVerticalReductionDuringDash = 1f;
@@ -414,7 +414,7 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerShootReverb()
     {
-        AudioController.instance.GunReverb();
+        AudioController.instance.PlayerGunReverb();
     }
 
 
