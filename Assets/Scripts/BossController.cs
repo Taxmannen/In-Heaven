@@ -222,7 +222,7 @@ public class BossController : MonoBehaviour
             if (bossState == Global.BossState.Default)
             {
                 Receive(other.GetComponent<Damage>().GetDamage());
-                AudioController.instance.BossHit();
+                AudioController.instance.BossHitRecieveDamage();
             }
 
         }

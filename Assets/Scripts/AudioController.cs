@@ -6,14 +6,11 @@ public class AudioController : MonoBehaviour
 {
     public static AudioController instance;
 
-    //___________________________________________________
+    [Header("")]
+    [Header ("PLAYER SOUNDS")]
 
     [FMODUnity.EventRef]
     public string playerShoot;
-    [FMODUnity.EventRef]
-    public string bossRecieveDamage;
-    [FMODUnity.EventRef]
-    public string bossDeath;
     [FMODUnity.EventRef]
     public string playerDash;
     [FMODUnity.EventRef]
@@ -21,9 +18,17 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     public string playerDoubleJump;
     [FMODUnity.EventRef]
-    public string gunReverb;
+    public string playerGunReverb;
     [FMODUnity.EventRef]
-    public string commenceShooting;
+    public string playerCommenceShooting;
+
+    [Header("")]
+    [Header ("BOSS SOUNDS")]
+
+    [FMODUnity.EventRef]
+    public string bossRecieveDamage;
+    [FMODUnity.EventRef]
+    public string bossDeath;
 
     private void Awake()
     {
@@ -39,10 +44,10 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    //___________________________________________________
-    //_______PLAYER________
 
-    public void Walk()
+    //==========PLAYER==========
+
+    public void PlayerWalk()
     {
         
     }
@@ -54,7 +59,7 @@ public class AudioController : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShot(playerDoubleJump);
     }
-    public void Dash()
+    public void PlayerDash()
     {
         FMODUnity.RuntimeManager.PlayOneShot(playerDash);
     }
@@ -62,42 +67,41 @@ public class AudioController : MonoBehaviour
     {
         FMODUnity.RuntimeManager.PlayOneShot(playerShoot);
     }
-    public void CommenceShooting()
-    {
-        
-        FMODUnity.RuntimeManager.PlayOneShot(commenceShooting);
+    public void PlayerCommenceShooting()
+    {       
+        FMODUnity.RuntimeManager.PlayOneShot(playerCommenceShooting);
     }
-    public void GunReverb()
+    public void PlayerGunReverb()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(gunReverb);
+        FMODUnity.RuntimeManager.PlayOneShot(playerGunReverb);
     }
 
-    //_________ENEMY_________
+    //==========ENEMY==========
 
-    public void EnemyShoot()
-    {
-
-    }
-    public void Attack1()
+    public void BossShoot()
     {
 
     }
-    public void Attack2()
+    public void BossScatterShot()
     {
 
     }
-    public void Attack3()
+    public void BossLaserRay()
     {
 
     }
-    public void Move()
+    public void BossMove()
     {
 
     }
 
-    public void BossHit()
+    public void BossHitRecieveDamage()
     {
         FMODUnity.RuntimeManager.PlayOneShot(bossRecieveDamage);
+    }
+    public void BossHitRecieveNoDamage()
+    {
+
     }
     public void BossDeath()
     {

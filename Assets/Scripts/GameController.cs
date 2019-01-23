@@ -158,7 +158,7 @@ public class GameController : MonoBehaviour
 
         if (InputController.instance.GetMouseButtonDownLeft())
         {
-            AudioController.instance.CommenceShooting();
+            AudioController.instance.PlayerCommenceShooting();
         }
 
         if (InputController.instance.GetMouseButtonDownRight())
