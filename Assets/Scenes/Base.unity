@@ -165,7 +165,7 @@ BoxCollider:
   m_GameObject: {fileID: 622324437}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 25, y: 25, z: 25}
   m_Center: {x: 0, y: 0, z: 0}
@@ -334,11 +334,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8481948331104647039, guid: 90c5b7b7cbe36474a94d9ea8e2d8b4d4,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90c5b7b7cbe36474a94d9ea8e2d8b4d4, type: 3}
@@ -901,6 +896,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1008925013960216299, guid: 51757afcc1290b14eb37486733ab937f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player Hitbox
+      objectReference: {fileID: 0}
     - target: {fileID: 1008925013960216300, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
       propertyPath: m_LocalScale.y
@@ -910,11 +910,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1008925013960216299, guid: 51757afcc1290b14eb37486733ab937f,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player Hitbox
       objectReference: {fileID: 0}
     - target: {fileID: 1008925013960216301, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}

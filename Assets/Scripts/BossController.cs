@@ -306,7 +306,7 @@ public class BossController : MonoBehaviour
     {
         //Here If Needed
        Rigidbody laserRigi = GameObject.FindGameObjectWithTag("BossLaserRay").GetComponent<Rigidbody>();
-        laserRigi.GetComponent<BossBullet>().SetDamage(1337);
+        laserRigi.GetComponent<BossLaser>().SetDamage(1337);
         if (laserRigi.position.x >= 19)
         {
             laserRigi.velocity = Vector3.left * bossLaserRaySpeed;

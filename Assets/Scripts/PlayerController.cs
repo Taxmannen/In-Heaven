@@ -59,13 +59,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0, 100)] private float superChargeIncrease = 1f;
 
     //Private
-    private Coroutine shootCoroutine;
-    private Coroutine dashCoroutine;
-    private Coroutine dashCooldownCoroutine;
-    private Coroutine invincibleCoroutine;
-    private Coroutine parryCoroutine;
-    private Coroutine parryCooldownCoroutine;
-    private Coroutine superChargeCoroutine;
+    private Coroutine shootCoroutine = null;
+    private Coroutine dashCoroutine = null;
+    private Coroutine dashCooldownCoroutine = null;
+    private Coroutine invincibleCoroutine = null;
+    private Coroutine parryCoroutine = null;
+    private Coroutine parryCooldownCoroutine = null;
+    private Coroutine superChargeCoroutine = null;
     private float verticalVelocity;
     private float dashVelocity;
     private float horizontalDirection;

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8481948331104647038}
   - component: {fileID: 8481948331104647039}
   - component: {fileID: 306118812}
-  - component: {fileID: 8517222653594220477}
+  - component: {fileID: 8592491481553164742}
   m_Layer: 0
   m_Name: BossLaserRay
   m_TagString: BossLaserRay
@@ -110,7 +110,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &8517222653594220477
+--- !u!114 &8592491481553164742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,6 +119,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8481948331104647024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e56367e5ade5bab42bdad10a07a021b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8910106a33660c54da5af7a1e76cdfc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
