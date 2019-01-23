@@ -173,7 +173,7 @@ public class GameController : MonoBehaviour
 
     }
 
-    bool ready;
+    bool ready = true;
 
     /// <summary>
     /// Updates everything in boss.
@@ -182,40 +182,58 @@ public class GameController : MonoBehaviour
     {
         bossController.NewMove();
 
-
-
-        if (ready)
+        if (patternCoroutine == null)
         {
-
-            int random = Random.Range((int)1, (int)3); // Change to 4 for spread
-
-            switch (random)
-            {
-                case 1:
-                    bossController.Shoot();
-                    patternCoroutine = StartCoroutine(Pattern());
-                    break;
-
-                case 2:
-                    bossController.Laser();
-                    patternCoroutine = StartCoroutine(Pattern());
-                    break;
-
-                case 3:
-                    
-                    break;
-            }
-
+            patternCoroutine = StartCoroutine(Pattern());
         }
 
     }
 
     private Coroutine patternCoroutine;
 
+    private float counter;
+
     private IEnumerator Pattern()
     {
+
+        int random = Random.Range((int)1, (int)3); // Change to 4 for spread
+
+        yield return new WaitForSeconds(1f);
+
+        for (counter = 3; counter > 0; counter -= Time.deltaTime)
+        {
+
+            switch (random)
+            {
+                case 1:
+                    bossController.Shoot();
+
+                    break;
+
+                case 2:
+                    bossController.Laser();
+                    break;
+            }
+
+            yield return null;
+        }
+
+        patternCoroutine = null;
+        yield break;
+
+    }
+
+    private IEnumerator ShootPattern()
+    {
+
         ready = false;
-        yield return new WaitForSeconds(3f);
+
+        for (counter = 3; counter > 0; counter -= Time.deltaTime)
+        {
+            bossController.Shoot();
+            yield return null;
+        }
+
         ready = true;
         patternCoroutine = null;
         yield break;

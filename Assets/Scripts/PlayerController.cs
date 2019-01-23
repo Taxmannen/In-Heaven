@@ -402,7 +402,7 @@ public class PlayerController : MonoBehaviour
 
         bullet.GetComponent<Rigidbody>().velocity = dir * playerBulletSpeed;
 
-        bullet.GetComponent<Damage>().SetDamage(playerBulletDamage);
+        bullet.GetComponent<PlayerBullet>().SetDamage(playerBulletDamage);
 
         AudioController.instance.PlayerShoot();
 
@@ -443,27 +443,6 @@ public class PlayerController : MonoBehaviour
         playerState = Global.PlayerState.Default;
         InterfaceController.instance.UpdatePlayerState(playerState); //Debug
         yield break;
-    }
-
-
-
-    /// <summary>
-    /// Event for entering triggers.
-    /// </summary>
-    /// <param name="other"></param>
-    void OnTriggerEnter(Collider other)
-    {
-
-        if (other.tag == "Boss Bullet" || other.tag == "Boss Parryable Bullet" || other.tag == "BossLaserRay")
-        {
-
-            if (playerState == Global.PlayerState.Default)
-            {
-                Receive(other.GetComponent<Damage>().GetDamage());
-            }
-
-        }
-
     }
 
 
@@ -542,6 +521,7 @@ public class PlayerController : MonoBehaviour
     {
 
         parrybox.enabled = true;
+        //playerState = Global.PlayerState.Invincible;    
 
         for (parryCoroutineCounter = sledgeDuration; parryCoroutineCounter > 0; parryCoroutineCounter -= Time.deltaTime)
         {
@@ -549,6 +529,7 @@ public class PlayerController : MonoBehaviour
             if (parryCoroutineCounter <= (sledgeDuration - parryDuration))
             {
                 parrybox.enabled = false;
+                //playerState = Global.PlayerState.Default;
                 break;
             }
 
@@ -624,6 +605,11 @@ public class PlayerController : MonoBehaviour
     public float GetSuperChargeMax()
     {
         return superChargeMax;
+    }
+
+    public Global.PlayerState GetPlayerState()
+    {
+        return playerState;
     }
 
 }

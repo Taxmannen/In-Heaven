@@ -184,7 +184,7 @@ public class BossController : MonoBehaviour
 
         InterfaceController.instance.BossBulletOverlay(FindObjectOfType<PlayerController>().GetComponent<Rigidbody>().position);
 
-        bossBulletClone.GetComponent<Damage>().SetDamage(25);
+        bossBulletClone.GetComponent<BossBullet>().SetDamage(25);
 
         /*
         GameObject bossBulletClone = Instantiate(bossBullet, new Vector3(rigi.position.x - 14, rigi.position.y + 15.7f, rigi.position.z -13), bossBulletSpawn1.rotation, bullets);
@@ -208,7 +208,7 @@ public class BossController : MonoBehaviour
     }
 
 
-
+    /*
     /// <summary>
     /// Event for entering triggers.
     /// </summary>
@@ -222,13 +222,13 @@ public class BossController : MonoBehaviour
             if (bossState == Global.BossState.Default)
             {
                 Receive(other.GetComponent<Damage>().GetDamage());
-                AudioController.instance.BossHitRecieveDamage();
+                AudioController.instance.BossHit();
             }
 
         }
         
     }
-
+    */
 
 
     /// <summary>
@@ -305,7 +305,7 @@ public class BossController : MonoBehaviour
     {
         //Here If Needed
        Rigidbody laserRigi = GameObject.FindGameObjectWithTag("BossLaserRay").GetComponent<Rigidbody>();
-        laserRigi.GetComponent<Damage>().SetDamage(1337);
+        laserRigi.GetComponent<BossBullet>().SetDamage(1337);
         if (laserRigi.position.x >= 19)
         {
             laserRigi.velocity = Vector3.left * bossLaserRaySpeed;
