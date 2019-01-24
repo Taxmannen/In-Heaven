@@ -73,7 +73,7 @@ public class SpreadShot : MonoBehaviour
     {
 
         Instantiate(SpreadShotProjectile, new Vector3(0, 5, 50), transform.rotation);
-        SpreadShotProjectile.GetComponent<Rigidbody>().velocity = new Vector3.back;
+        SpreadShotProjectile.GetComponent<Rigidbody>().velocity = Vector3.back;
 
         if (SpreadShotProjectile.GetComponent<Rigidbody>().position.z == 0)
         {
