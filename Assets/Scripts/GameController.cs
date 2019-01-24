@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     //Serialized
     [SerializeField] private PlayerController playerController;
     [SerializeField] private BossController bossController;
+    [SerializeField] private SpreadShot spreadShot;
 
     //Private
     private bool canDashRight = false;
@@ -214,6 +215,10 @@ public class GameController : MonoBehaviour
 
                 case 2:
                     bossController.Laser();
+                    break;
+
+                case 3:
+                    spreadShot.SpreadShotCorutine();
                     break;
             }
 
