@@ -75,7 +75,9 @@ public class GameController : MonoBehaviour
 
     }
 
-
+    float horizontalDirection;
+    float verticalDirection;
+    float direction;
 
     /// <summary>
     /// Updates everything in player.
@@ -83,8 +85,8 @@ public class GameController : MonoBehaviour
     private void UpdatePlayer()
     {
 
-        float horizontalDirection = CalculateHorizontalDirection();
-        float verticalDirection = CalculateVerticalDirection();
+        horizontalDirection = CalculateHorizontalDirection();
+        verticalDirection = CalculateVerticalDirection();
 
         playerController.Upd8(horizontalDirection, verticalDirection);
 
@@ -278,16 +280,63 @@ public class GameController : MonoBehaviour
     private float CalculateHorizontalDirection()
     {
 
-        float direction = 0f;
+        if (!InputController.instance.GetKeyLeft() && !InputController.instance.GetKeyRight())
+        {
+            direction = 0;
+            return direction;
+        }
 
         if (InputController.instance.GetKeyLeft())
         {
-            direction += -1f;
+
+            if (direction > 0)
+            {
+                direction = -.1f;
+            }
+
+            else
+            {
+
+                if (direction >= -0.9f)
+                {
+                    direction -= .1f;
+                }
+
+                else
+                {
+                    direction = -1f;
+                }
+
+                
+            }
+
+            
         }
 
         if (InputController.instance.GetKeyRight())
         {
-            direction += 1f;
+
+            if (direction < 0)
+            {
+                direction = .1f;
+            }
+
+            else
+            {
+
+                if (direction <= 0.9f)
+                {
+                    direction += .1f;
+                }
+
+                else
+                {
+                    direction = 1f;
+                }
+
+                
+            }
+
         }
 
         return direction;

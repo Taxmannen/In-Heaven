@@ -11,6 +11,7 @@ TagManager:
   - Player Hitbox
   - Boss
   - Boss Hitbox
+  - Boss Damage Hitbox
   layers:
   - Default
   - TransparentFX

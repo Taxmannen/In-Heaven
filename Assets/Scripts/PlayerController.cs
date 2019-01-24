@@ -327,7 +327,17 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DashCoroutine()
     {
         Invincible(dashInvincibleDuration);
-        dashVelocity = horizontalDirection * dashPower;
+
+        if (horizontalDirection < 0)
+        {
+            dashVelocity = -1 * dashPower;
+        }
+
+        else
+        {
+            dashVelocity = dashPower;
+        }
+        
         AudioController.instance.PlayerDash();
         actualVerticalReductionDuringDash = dashVerticalReduction;
         yield return new WaitForSeconds(dashDuration);
