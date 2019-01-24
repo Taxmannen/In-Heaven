@@ -248,7 +248,7 @@ public class BossController : MonoBehaviour
             else
             {
                 Hit(amt);
-                AudioController.instance.BossHit();
+                AudioController.instance.BossHitRecieveDamage();
             }
         }
 

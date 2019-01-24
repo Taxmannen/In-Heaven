@@ -6,14 +6,11 @@ public class AudioController : MonoBehaviour
 {
     public static AudioController instance;
 
-    //___________________________________________________
+    [Header("")]
+    [Header("PLAYER SOUNDS")]
 
     [FMODUnity.EventRef]
     public string playerShoot;
-    [FMODUnity.EventRef]
-    public string bossRecieveDamage;
-    [FMODUnity.EventRef]
-    public string bossDeath;
     [FMODUnity.EventRef]
     public string playerDash;
     [FMODUnity.EventRef]
@@ -21,9 +18,22 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     public string playerDoubleJump;
     [FMODUnity.EventRef]
-    public string gunReverb;
+    public string playerGunReverb;
     [FMODUnity.EventRef]
-    public string commenceShooting;
+    public string playerCommenceShooting;
+    [FMODUnity.EventRef]
+    public string playerSuccessfulParry;
+
+    [Header("")]
+    [Header("BOSS SOUNDS")]
+
+    [FMODUnity.EventRef]
+    public string bossHitRecieveDamage;
+    [FMODUnity.EventRef]
+    public string bossHitRecieveNoDamage;
+    [FMODUnity.EventRef]
+    public string bossDeath;
+
 
     private void Awake()
     {
@@ -39,7 +49,6 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    //___________________________________________________
     //_______PLAYER________
 
     public void Walk()
@@ -63,13 +72,24 @@ public class AudioController : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot(playerShoot);
     }
     public void PlayerCommenceShooting()
-    {
-        
-        FMODUnity.RuntimeManager.PlayOneShot(commenceShooting);
+    {       
+        FMODUnity.RuntimeManager.PlayOneShot(playerCommenceShooting);
     }
     public void PlayerGunReverb()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(gunReverb);
+        FMODUnity.RuntimeManager.PlayOneShot(playerGunReverb);
+    }
+    public void PlayerSuccessfulParry()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(playerSuccessfulParry);
+    }
+    public void PlayerUnsuccessfulParry()
+    {
+
+    }
+    public void PlayerParryEvent()
+    {
+
     }
 
     //_________ENEMY_________
@@ -95,9 +115,13 @@ public class AudioController : MonoBehaviour
 
     }
 
-    public void BossHit()
+    public void BossHitRecieveDamage()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(bossRecieveDamage);
+        FMODUnity.RuntimeManager.PlayOneShot(bossHitRecieveDamage);
+    }
+    public void BossHitRecieveNoDamage()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(bossHitRecieveNoDamage);
     }
     public void BossDeath()
     {
