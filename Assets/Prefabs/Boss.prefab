@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 937380584421009112}
   - component: {fileID: 937380584421009115}
   - component: {fileID: 937380584421009114}
+  - component: {fileID: 1117607716224625206}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -76,6 +77,25 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &1117607716224625206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937380584421009113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8621723bbf5ad894e97cd004d2f65af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpreadShotProjectile: {fileID: 9153461143725400711, guid: b05f5c1bae3c4fe4e970ab24293c434d,
+    type: 3}
+  SpreadShotBullet: {fileID: 9068329861117548950, guid: 34fbbefd43278e546a0f76c4f7110fc7,
+    type: 3}
+  SpreadShotProjectileSpeed: 5
+  SpreadShotBulletSpeed: 5
+  numberOfBullets: 6
 --- !u!1001 &3256132836347349299
 PrefabInstance:
   m_ObjectHideFlags: 0
