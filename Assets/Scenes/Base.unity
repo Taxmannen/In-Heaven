@@ -202,6 +202,81 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &970883458
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5587489486063978863, guid: a6d7f4b1eca57424ab2bf5525360361d,
+        type: 3}
+      propertyPath: m_Name
+      value: BossBullets
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a6d7f4b1eca57424ab2bf5525360361d, type: 3}
+--- !u!4 &970883459 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
+    type: 3}
+  m_PrefabInstance: {fileID: 970883458}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1206261219 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4998537455525618624, guid: ff3809ce05ec13140831cf6e93f92a88,
@@ -312,7 +387,7 @@ PrefabInstance:
     - target: {fileID: 8481948331104647036, guid: 90c5b7b7cbe36474a94d9ea8e2d8b4d4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8481948331104647036, guid: 90c5b7b7cbe36474a94d9ea8e2d8b4d4,
         type: 3}
@@ -635,7 +710,7 @@ PrefabInstance:
         type: 3}
       propertyPath: bullets
       value: 
-      objectReference: {fileID: 832332019}
+      objectReference: {fileID: 970883459}
     - target: {fileID: 937380584421009115, guid: 06477cabd24071c41bc21211c6e448b2,
         type: 3}
       propertyPath: bossBulletFireRate
@@ -1112,6 +1187,31 @@ PrefabInstance:
         type: 3}
       propertyPath: playerDoubleJump
       value: event:/Player/PlayerDoubleJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
+        type: 3}
+      propertyPath: playerGunReverb
+      value: event:/Player/PlayerShotReverb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
+        type: 3}
+      propertyPath: playerCommenceShooting
+      value: event:/Player/PlayerCommenceShooting
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
+        type: 3}
+      propertyPath: playerSuccessfulParry
+      value: event:/Player/PlayerParrySuccess
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
+        type: 3}
+      propertyPath: bossHitRecieveDamage
+      value: event:/Boss/BossHitRecieveDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
+        type: 3}
+      propertyPath: bossHitRecieveNoDamage
+      value: event:/Boss/BossHitRecieveNoDamage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7dc732299b93914eaca66e3f1ba3a85, type: 3}
