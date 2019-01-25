@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0, 2)] private float dashVerticalReduction = 0.5f; //Reduces the vertical velocity affecting the player during the dash
     [SerializeField] [Range(0, 100)] private float maxDashes = 1; //Number of dashes possible in air
     [SerializeField] [Range(0, 10)] private float dashCooldown = 1f; //Cooldown for dash, ground and air
+    [SerializeField] private bool shootDuringDash = true; //Allow player to shoot during dash?
 
     [Header("GRAVITY")]
     [SerializeField] [Range(-1000, 1000)] private float gravity = 75f; //Gravity (Works agaisnt Jump Power)
@@ -197,18 +198,6 @@ public class PlayerController : MonoBehaviour
             actualForcedGravity = 0f;
         }
 
-        //Dash Controller
-        if (horizontalDirection != temp || verticalDirection != 0)
-        {
-            if (dashCoroutine != null)
-            {
-                StopCoroutine(dashCoroutine);
-            }
-            dashVelocity = 0f;
-            dashCoroutine = null;
-            actualVerticalReductionDuringDash = 1f;
-        }
-
         //Grounded & Jumping Controller
         if (verticalVelocity > 0)
         {
@@ -337,7 +326,7 @@ public class PlayerController : MonoBehaviour
         {
             dashVelocity = dashPower;
         }
-        
+
         AudioController.instance.PlayerDash();
         actualVerticalReductionDuringDash = dashVerticalReduction;
         yield return new WaitForSeconds(dashDuration);
@@ -390,9 +379,24 @@ public class PlayerController : MonoBehaviour
     public void Shoot()
     {
 
-        if (shootCoroutine == null)
+        if (shootDuringDash)
         {
-            shootCoroutine = StartCoroutine(ShootCoroutine(aimPoint));
+
+            if (shootCoroutine == null)
+            {
+                shootCoroutine = StartCoroutine(ShootCoroutine(aimPoint));
+            }
+        }
+
+        else
+        {
+            if (dashVelocity == 0)
+            {
+                if (shootCoroutine == null)
+                {
+                    shootCoroutine = StartCoroutine(ShootCoroutine(aimPoint));
+                }
+            }
         }
 
     }

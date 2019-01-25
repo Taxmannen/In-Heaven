@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     //Serialized
     [SerializeField] private PlayerController playerController;
     [SerializeField] private BossController bossController;
+    [SerializeField] private SpreadShot spreadShot;
 
     //Private
     private bool canDashRight = false;
@@ -20,6 +21,9 @@ public class GameController : MonoBehaviour
     //Design
     [SerializeField] private float doubleTapInterval = 0.25f;
     [SerializeField] private Texture2D crosshairTexture;
+
+    [SerializeField] private float playerAccelerationControl = 1f;
+    [SerializeField] private float playerDeaccelerationControl = 1f;
 
     //Debug
     [SerializeField] private Global.GameState gameState = Global.GameState.Idle;
@@ -196,13 +200,18 @@ public class GameController : MonoBehaviour
 
     private float counter;
 
+    
+
     private IEnumerator Pattern()
     {
+        
 
-        int random = Random.Range((int)1, (int)3); // Change to 4 for spread
+        int random = Random.Range((int)1, (int)4); // Change to 4 for spread
+
+        Vector3 SpreadShotBulletSpawnPosition= spreadShot.generateSpreadShotSpawn();
 
         yield return new WaitForSeconds(1f);
-
+        Debug.Log("Testing");
         for (counter = 3; counter > 0; counter -= Time.deltaTime)
         {
 
@@ -210,11 +219,14 @@ public class GameController : MonoBehaviour
             {
                 case 1:
                     bossController.Shoot();
-
                     break;
 
                 case 2:
                     bossController.Laser();
+                    break;
+
+                case 3:                   
+                    spreadShot.SpreadShotShoot(SpreadShotBulletSpawnPosition);
                     break;
             }
 
@@ -283,59 +295,80 @@ public class GameController : MonoBehaviour
 
         if (!InputController.instance.GetKeyLeft() && !InputController.instance.GetKeyRight())
         {
-            direction = 0;
-            return direction;
-        }
-
-        if (InputController.instance.GetKeyLeft())
-        {
-
-            if (direction > 0)
-            {
-                direction = -.1f;
-            }
-
-            else
-            {
-
-                if (direction >= -0.9f)
-                {
-                    direction -= .1f;
-                }
-
-                else
-                {
-                    direction = -1f;
-                }
-
-                
-            }
-
             
-        }
-
-        if (InputController.instance.GetKeyRight())
-        {
-
-            if (direction < 0)
+            if ((direction < 0 && direction > playerDeaccelerationControl * Time.deltaTime) || (direction > 0 && direction < playerDeaccelerationControl * Time.deltaTime))
             {
-                direction = .1f;
+                direction = 0;
             }
 
             else
             {
 
-                if (direction <= 0.9f)
+                if (direction < 0)
                 {
-                    direction += .1f;
+                    direction += playerDeaccelerationControl * Time.deltaTime;
+                }
+
+                if (direction > 0)
+                {
+                    direction -= playerDeaccelerationControl * Time.deltaTime;
+                }
+
+            }
+
+        }
+
+        else
+        {
+
+            if (InputController.instance.GetKeyLeft())
+            {
+
+                if (direction > 0)
+                {
+                    direction = -playerAccelerationControl * Time.deltaTime;
                 }
 
                 else
                 {
-                    direction = 1f;
+
+                    if (direction >= -(1f + playerAccelerationControl * Time.deltaTime))
+                    {
+                        direction -= playerAccelerationControl * Time.deltaTime;
+                    }
+
+                    else
+                    {
+                        direction = -1f;
+                    }
+
                 }
 
-                
+            }
+
+            if (InputController.instance.GetKeyRight())
+            {
+
+                if (direction < 0)
+                {
+                    direction = playerAccelerationControl * Time.deltaTime;
+                }
+
+                else
+                {
+
+                    if (direction <= (1f - playerAccelerationControl * Time.deltaTime))
+                    {
+                        direction += playerAccelerationControl * Time.deltaTime;
+                    }
+
+                    else
+                    {
+                        direction = 1f;
+                    }
+
+                }
+
             }
 
         }
@@ -345,9 +378,9 @@ public class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns the vertical direction of the player depending on input.
-    /// </summary>
-    /// <returns></returns>
+/// Returns the vertical direction of the player depending on input.
+/// </summary>
+/// <returns></returns>
     private float CalculateVerticalDirection()
     {
 

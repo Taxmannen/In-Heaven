@@ -13,9 +13,17 @@ public class PatternImporterGUI : Editor
         if (patternImporter == null) patternImporter = (PatternImporter)target;
 
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Create Map"))
+        if (GUILayout.Button("Generate Pattern"))
         {
-            patternImporter.Thing();
+            try
+            {
+                patternImporter.GeneratePattern();
+            }
+            catch (System.Exception)
+            {
+                Debug.LogError("No texture found!");
+            }
+
         }
         GUILayout.EndHorizontal();
     }
