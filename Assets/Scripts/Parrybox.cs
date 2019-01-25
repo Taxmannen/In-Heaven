@@ -26,6 +26,7 @@ public class Parrybox : MonoBehaviour
 
             Destroy(other.gameObject);
             playerController.IncreaseSuperCharge();
+            GetComponent<Collider>().enabled = false;
 
         }
 

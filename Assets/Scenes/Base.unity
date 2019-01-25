@@ -588,7 +588,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1989255086 stripped
 MonoBehaviour:
@@ -810,7 +810,7 @@ PrefabInstance:
     - target: {fileID: 937380584421009115, guid: 06477cabd24071c41bc21211c6e448b2,
         type: 3}
       propertyPath: bossBulletSpeed
-      value: 150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 937380584421009115, guid: 06477cabd24071c41bc21211c6e448b2,
         type: 3}
@@ -1016,6 +1016,11 @@ PrefabInstance:
       propertyPath: playerBulletDamage
       value: 69
       objectReference: {fileID: 0}
+    - target: {fileID: 1008925013563656532, guid: 51757afcc1290b14eb37486733ab937f,
+        type: 3}
+      propertyPath: dashPower
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1008925013563656533, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1029,7 +1034,7 @@ PrefabInstance:
     - target: {fileID: 1008925013563656533, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1008925013563656533, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
@@ -1071,6 +1076,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1008925013960216299, guid: 51757afcc1290b14eb37486733ab937f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player Hitbox
+      objectReference: {fileID: 0}
     - target: {fileID: 1008925013960216300, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
       propertyPath: m_LocalScale.y
@@ -1080,11 +1090,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1008925013960216299, guid: 51757afcc1290b14eb37486733ab937f,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player Hitbox
       objectReference: {fileID: 0}
     - target: {fileID: 1008925013960216301, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
@@ -1809,6 +1814,26 @@ PrefabInstance:
       propertyPath: bossController
       value: 
       objectReference: {fileID: 1735779634}
+    - target: {fileID: 6525200260677797338, guid: 7680cb7d4288b0149bbb553db8a8336d,
+        type: 3}
+      propertyPath: playerAccelerationPower
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525200260677797338, guid: 7680cb7d4288b0149bbb553db8a8336d,
+        type: 3}
+      propertyPath: playerDeaccelerationPower
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525200260677797338, guid: 7680cb7d4288b0149bbb553db8a8336d,
+        type: 3}
+      propertyPath: playerAccelerationControl
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525200260677797338, guid: 7680cb7d4288b0149bbb553db8a8336d,
+        type: 3}
+      propertyPath: playerDeaccelerationControl
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6525200260677797339, guid: 7680cb7d4288b0149bbb553db8a8336d,
         type: 3}
       propertyPath: m_LocalPosition.x
