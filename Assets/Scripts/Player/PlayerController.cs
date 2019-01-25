@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     //Design
     [Header("GENERAL")]
     [SerializeField] [Range(0, 1000)] private float maxHP = 10; //Max Hit Points
-    
+
     [SerializeField] [Range(0, 10)] private float groundcheckDistance = 1.15f; //Distance to ground from players pivot point (FIRST VALUE = HALF PLAYER HEIGHT)
 
     [Header("HIT")]
@@ -28,10 +28,10 @@ public class PlayerController : MonoBehaviour
     //Debug
     [Header("DEBUG")]
     [SerializeField] [ReadOnly] private float hP;
-   
+
     [SerializeField] [ReadOnly] internal bool grounded;
     [SerializeField] [ReadOnly] internal bool jumping;
-    
+
     [SerializeField] [ReadOnly] private bool dashOnCooldown;
     [SerializeField] [ReadOnly] internal Global.PlayerState playerState = Global.PlayerState.Default;
 
@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="amt"></param>
     public void Receive(float amt)
     {
-        
+
         if (playerState == Global.PlayerState.Default)
         {
             if (hP - amt <= 0)
@@ -235,7 +235,7 @@ public class PlayerController : MonoBehaviour
         Invincible(hitInvincibleDuration);
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
     }
-    
+
     //Getters
     public float GetSuperChargeMax()
     {

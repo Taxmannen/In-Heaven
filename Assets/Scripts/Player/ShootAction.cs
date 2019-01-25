@@ -68,7 +68,7 @@ public class ShootAction : MonoBehaviour
         Destroy(bullet, playerBulletLifetime);
 
         Vector3 dir = point - rigidbody.position;
-        AudioController.instance.PlayerShootStart();
+        AudioController.instance.PlayerShoot();
         dir.Normalize();
 
         bullet.GetComponent<Rigidbody>().velocity = dir * playerBulletSpeed;
@@ -83,8 +83,7 @@ public class ShootAction : MonoBehaviour
     public void ShootReverb()
     {
         AudioController.instance.PlayerGunReverb();
-        AudioController.instance.PlayerShootStop();
-
+        
     }
     public void DestroyAllBullets()
     {
