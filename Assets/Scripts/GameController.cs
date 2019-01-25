@@ -159,7 +159,7 @@ public class GameController : MonoBehaviour
 
         if (InputController.instance.GetMouseButtonUpLeft())
         {
-            playerController.PlayerShootReverb();
+            playerController.shootAction.ShootReverb();
         }
 
         if (InputController.instance.GetMouseButtonDownLeft())

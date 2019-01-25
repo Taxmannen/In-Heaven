@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &622324437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 622324438}
+  - component: {fileID: 622324439}
+  - component: {fileID: 622324440}
+  m_Layer: 10
+  m_Name: Parrybox
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &622324438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622324437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.9, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1008925013563656533}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &622324439
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622324437}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 25, y: 25, z: 25}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &622324440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622324437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa07964d35255547a6fbe4d064b1d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lm:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1008925013563656531
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,6 +71,13 @@ GameObject:
   - component: {fileID: 1008925013563656533}
   - component: {fileID: 1008925013563656532}
   - component: {fileID: 1008925013563656534}
+  - component: {fileID: 338361051}
+  - component: {fileID: 338361054}
+  - component: {fileID: 338361049}
+  - component: {fileID: 338361050}
+  - component: {fileID: 338361052}
+  - component: {fileID: 338361053}
+  - component: {fileID: 338361055}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -30,6 +97,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1008925013960216300}
+  - {fileID: 622324438}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,34 +114,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigi: {fileID: 1008925013563656534}
-  bulletPrefab: {fileID: 8285528171375805240, guid: 3c16f5d6d6adc0943b37e56bae92fdbd,
-    type: 3}
-  bullets: {fileID: 0}
-  maxHP: 191
-  baseMovementSpeed: 25
-  gravity: 75
-  jumpPower: 25
-  groundCheckRaycastDistance: 0.75
-  baseDoubleJumps: 1
-  bulletDamage: 100000
-  bulletsPerSecond: 10
-  bulletSpeed: 75
-  bulletDuration: 3
-  bulletTrajectoryDistance: 50
-  dashPower: 50
-  dashDuration: 0.1
-  baseDashes: 1
-  dashInvincibleDuration: 0.25
+  maxHP: 1000
+  groundcheckDistance: 1.15
   hitInvincibleDuration: 0.1
-  dashCooldown: 3
-  verticalReductionDuringDash: 0
-  hP: 191
-  movementSpeed: 25
-  doubleJumps: 1
-  dashes: 1
+  hP: 1000
   grounded: 0
   jumping: 0
-  actualVerticalReductionDuringDash: 1
   dashOnCooldown: 0
   playerState: 0
 --- !u!54 &1008925013563656534
@@ -92,6 +138,125 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &338361051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008925013563656531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859c039c67f8ea349bf47007302e246a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMovementSpeed: 15
+  movementSpeed: 0
+  actualVerticalReductionDuringDash: 1
+  gravity: 75
+  forcedGravitySpeed: 25
+  forcedPower: 40
+  jumpPower: 25
+  maxDoubleJumps: 1
+  doubleJumps: 0
+--- !u!114 &338361054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008925013563656531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebea5c58f7fba5445a60f0f24f7f3138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBulletTrajectoryDistance: 100
+--- !u!114 &338361049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008925013563656531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb273763ed06b8b429207067c21e76be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 50
+  duration: 0.1
+  invincibleDuration: 0.25
+  verticalReduction: 0.5
+  maxDashesInAir: 1
+  cooldown: 1
+  shootDuringDash: 1
+  dashes: 0
+  actualVerticalReductionDuringDash: 1
+--- !u!114 &338361050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008925013563656531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5647b4fd8d17214aa11f8154505fde1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parrybox: {fileID: 622324439}
+  playerParryBulletDamage: 10
+  playerParryBulletSpeed: 100
+  parryDuration: 1
+  parryCooldown: 0
+  sledgeDuration: 2
+--- !u!114 &338361052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008925013563656531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d32842d15af5e459035c16b763cb4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8285528171375805240, guid: 3c16f5d6d6adc0943b37e56bae92fdbd,
+    type: 3}
+  bullets: {fileID: 0}
+  playerBulletDamage: 10
+  basePlayerBulletsPerSecond: 10
+  playerBulletSpeed: 75
+  playerBulletLifetime: 3
+--- !u!114 &338361053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008925013563656531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f2b81052026e64da91dbfdcd7467b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  superChargeMax: 12.9
+  superChargeIncrease: 0
+  superCharge: 0
+--- !u!114 &338361055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008925013563656531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445c55ad38dd4cb42a74c756ca02faab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1008925013960216299
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +271,7 @@ GameObject:
   - component: {fileID: 1008925013960216301}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Player Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,8 +284,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008925013960216299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1.8, z: 1}
   m_Children: []
   m_Father: {fileID: 1008925013563656533}
   m_RootOrder: 0
