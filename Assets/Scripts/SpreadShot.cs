@@ -21,41 +21,50 @@ public class SpreadShot : MonoBehaviour
 
     private Coroutine bossShootSpreadShot;
 
+
+
     public Vector3 generateSpreadShotSpawn()
     {
-   Vector3 SpreadShotBulletSpawnPosition = new Vector3(Random.Range(-12.0f, 12.0f), Random.Range(4.0f, 13.0f), 0);
+
+        Vector3 SpreadShotBulletSpawnPosition = new Vector3(Random.Range(-12.0f, 12.0f), Random.Range(4.0f, 13.0f), 0);
 
         return SpreadShotBulletSpawnPosition;
     }
 
+    public float generateSpreadShootTarget()
+    {
+        float spreadShotStartingTarget = Random.Range(-12f, 9f);
+
+        return spreadShotStartingTarget;
+    }
 
 
 
 
-
-    public void SpreadShotShoot(Vector3 SpreadShotBulletSpawnPosition)
+    public void SpreadShotShoot(Vector3 SpreadShotBulletSpawnPosition, float spreadShotStartingTarget)
     {
         if (bossShootSpreadShot == null)
-        {
-           
-            bossShootSpreadShot = StartCoroutine(SpreadShotCorutine(SpreadShotBulletSpawnPosition));
+        {           
+            bossShootSpreadShot = StartCoroutine(SpreadShotCorutine(SpreadShotBulletSpawnPosition, spreadShotStartingTarget));
         }
     }
 
+    
   
 
-    private IEnumerator SpreadShotCorutine(Vector3 SpreadShotBulletSpawnPosition)
+    private IEnumerator SpreadShotCorutine(Vector3 SpreadShotBulletSpawnPosition, float spreadShotStartingTarget)
     {
   
         
         Debug.Log(SpreadShotBulletSpawnPosition);
-        for (int i = 0; i < 4; i++){
-            int x = 0;
+        float x = 0;
+        for (int i = 0; i < numberOfBullets; i++){
+            
             GameObject spreadShotClone = Instantiate(SpreadShotBullet, SpreadShotBulletSpawnPosition, Quaternion.identity, spreadShotBullets);
 
             Destroy(spreadShotClone, 3f);
 
-            Vector3 SpreadShotTarget = new Vector3(-10 + (5 * x), 0, 0) - SpreadShotBulletSpawnPosition;
+            Vector3 SpreadShotTarget = new Vector3(spreadShotStartingTarget+ x, 0, 0) - SpreadShotBulletSpawnPosition;
 
 
             SpreadShotTarget.Normalize();
@@ -71,7 +80,7 @@ public class SpreadShot : MonoBehaviour
         }
 
         
-        yield return new WaitForSeconds(spreadShotFireRate);
+       yield return new WaitForSeconds(spreadShotFireRate);
         bossShootSpreadShot = null;
         yield break;
 
