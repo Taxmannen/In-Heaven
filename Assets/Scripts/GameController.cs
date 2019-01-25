@@ -207,8 +207,7 @@ public class GameController : MonoBehaviour
 
         int random = Random.Range((int)1, (int)4); // Change to 4 for spread
 
-        //Vector3 SpreadShotBulletSpawnPosition = new Vector3(Random.Range(-12.0f, 12.0f), Random.Range(4.0f, 13.0f), 0);
-       Vector3 SpreadShotBulletSpawnPosition= spreadShot.generateSpreadShotSpawn();
+        Vector3 SpreadShotBulletSpawnPosition= spreadShot.generateSpreadShotSpawn();
 
         yield return new WaitForSeconds(1f);
         Debug.Log("Testing");
@@ -219,17 +218,14 @@ public class GameController : MonoBehaviour
             {
                 case 1:
                     bossController.Shoot();
-                    Debug.Log("Standard shot");
                     break;
 
                 case 2:
                     bossController.Laser();
-                    Debug.Log("Standard laser");
                     break;
 
                 case 3:                   
                     spreadShot.SpreadShotShoot(SpreadShotBulletSpawnPosition);
-                    Debug.Log("Standard Spreadshot");
                     break;
             }
 
