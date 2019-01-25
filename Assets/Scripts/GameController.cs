@@ -160,6 +160,7 @@ public class GameController : MonoBehaviour
 
         if (InputController.instance.GetMouseButtonDownLeft())
         {
+           // AudioController.instance.PlayerShootStart();
             AudioController.instance.PlayerCommenceShooting();
         }
 

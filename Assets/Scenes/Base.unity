@@ -682,6 +682,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -13
       objectReference: {fileID: 0}
+    - target: {fileID: 721689150541280129, guid: a500a621295195e438eef28d177ba201,
+        type: 3}
+      propertyPath: ListenerNumber
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a500a621295195e438eef28d177ba201, type: 3}
 --- !u!1001 &937380583967212521
@@ -1161,12 +1166,12 @@ PrefabInstance:
     - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
         type: 3}
       propertyPath: playerShoot
-      value: event:/Player/PlayerShoot
+      value: event:/PlayerShootNew
       objectReference: {fileID: 0}
     - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
         type: 3}
       propertyPath: bossRecieveDamage
-      value: event:/Boss/BossHitRecieveNoDamage
+      value: event:/Boss/BossHitRecieveDamage
       objectReference: {fileID: 0}
     - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
         type: 3}

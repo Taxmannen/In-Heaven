@@ -11,30 +11,53 @@ public class AudioController : MonoBehaviour
 
     [FMODUnity.EventRef]
     public string playerShoot;
+    FMOD.Studio.EventInstance playerShootEv;
     [FMODUnity.EventRef]
     public string playerDash;
+    FMOD.Studio.EventInstance playerDashEv;
     [FMODUnity.EventRef]
     public string playerJump;
+    FMOD.Studio.EventInstance playerJumpEv;
     [FMODUnity.EventRef]
     public string playerDoubleJump;
+    FMOD.Studio.EventInstance playerDoubleJumpEv;
     [FMODUnity.EventRef]
     public string playerGunReverb;
+    FMOD.Studio.EventInstance playerGunReverbEv;
     [FMODUnity.EventRef]
     public string playerCommenceShooting;
+    FMOD.Studio.EventInstance playerCommenceShootingEv;
     [FMODUnity.EventRef]
     public string playerSuccessfulParry;
+    FMOD.Studio.EventInstance playerSuccessfulParryEv;
 
     [Header("")]
     [Header("BOSS SOUNDS")]
 
     [FMODUnity.EventRef]
     public string bossHitRecieveDamage;
+    FMOD.Studio.EventInstance bossHitRecieveDamageEv;
     [FMODUnity.EventRef]
     public string bossHitRecieveNoDamage;
+    FMOD.Studio.EventInstance bossHitRecieveNoDamageEv;
     [FMODUnity.EventRef]
     public string bossDeath;
+    FMOD.Studio.EventInstance bossDeathEv;
+    private void Start()
+    {
+        playerShootEv = FMODUnity.RuntimeManager.CreateInstance(playerShoot);
+        playerDashEv = FMODUnity.RuntimeManager.CreateInstance(playerDash);
+        playerJumpEv = FMODUnity.RuntimeManager.CreateInstance(playerJump);
+        playerDoubleJumpEv = FMODUnity.RuntimeManager.CreateInstance(playerDoubleJump);
+        playerGunReverbEv = FMODUnity.RuntimeManager.CreateInstance(playerGunReverb);
+        playerCommenceShootingEv = FMODUnity.RuntimeManager.CreateInstance(playerCommenceShooting);
+        playerSuccessfulParryEv = FMODUnity.RuntimeManager.CreateInstance(playerSuccessfulParry);
+        bossHitRecieveDamageEv = FMODUnity.RuntimeManager.CreateInstance(bossHitRecieveDamage);
+        bossHitRecieveNoDamageEv = FMODUnity.RuntimeManager.CreateInstance(bossHitRecieveNoDamage);
+        bossDeathEv = FMODUnity.RuntimeManager.CreateInstance(bossDeath);
 
-
+        //shootingEvent.getParameter("Stop", out stopShooting);
+    }
     private void Awake()
     {
         if (instance)
@@ -57,31 +80,35 @@ public class AudioController : MonoBehaviour
     }
     public void PlayerJump()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(playerJump);
+        playerJumpEv.start();
     }
     public void PlayerDoubleJump()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(playerDoubleJump);
+        playerDoubleJumpEv.start();
     }
     public void PlayerDash()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(playerDash);
+        playerDashEv.start();
     }
-    public void PlayerShoot()
+    public void PlayerShootStart()
+    {            
+        playerShootEv.start();       
+    }
+    public void PlayerShootStop()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(playerShoot);
+        
     }
     public void PlayerCommenceShooting()
-    {       
-        FMODUnity.RuntimeManager.PlayOneShot(playerCommenceShooting);
+    {
+        playerCommenceShootingEv.start();
     }
     public void PlayerGunReverb()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(playerGunReverb);
+        playerGunReverbEv.start();
     }
     public void PlayerSuccessfulParry()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(playerSuccessfulParry);
+        playerSuccessfulParryEv.start();
     }
     public void PlayerUnsuccessfulParry()
     {
@@ -117,15 +144,15 @@ public class AudioController : MonoBehaviour
 
     public void BossHitRecieveDamage()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(bossHitRecieveDamage);
+        bossHitRecieveNoDamageEv.start();
     }
     public void BossHitRecieveNoDamage()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(bossHitRecieveNoDamage);
+        bossHitRecieveDamageEv.start();
     }
     public void BossDeath()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(bossDeath);
+        bossDeathEv.start();
     }
 
 }

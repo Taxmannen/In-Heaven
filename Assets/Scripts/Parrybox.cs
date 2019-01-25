@@ -23,10 +23,10 @@ public class Parrybox : MonoBehaviour
 
         if (other.tag == "Boss Parryable Bullet")
         {
-
+            AudioController.instance.PlayerSuccessfulParry();
             Destroy(other.gameObject);
             playerController.IncreaseSuperCharge();
-
+            GetComponent<Collider>().enabled = false;
         }
 
     }

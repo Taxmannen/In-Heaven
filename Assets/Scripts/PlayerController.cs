@@ -407,14 +407,16 @@ public class PlayerController : MonoBehaviour
         Destroy(bullet, playerBulletLifetime);
 
         Vector3 dir = point - playerRigi.position;
-
+        AudioController.instance.PlayerShootStart();
         dir.Normalize();
 
         bullet.GetComponent<Rigidbody>().velocity = dir * playerBulletSpeed;
 
         bullet.GetComponent<PlayerBullet>().SetDamage(playerBulletDamage);
 
-        AudioController.instance.PlayerShoot();
+        
+        
+
 
         yield return new WaitForSeconds(1 / playerBulletsPerSecond);
         shootCoroutine = null;
@@ -425,6 +427,8 @@ public class PlayerController : MonoBehaviour
     public void PlayerShootReverb()
     {
         AudioController.instance.PlayerGunReverb();
+        AudioController.instance.PlayerShootStop();
+        
     }
 
 
