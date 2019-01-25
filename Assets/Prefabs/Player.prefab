@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1008925013563656533}
-  - component: {fileID: 1008925013563656532}
+  - component: {fileID: 7344333353121930191}
   - component: {fileID: 1008925013563656534}
   - component: {fileID: 338361051}
   - component: {fileID: 338361054}
@@ -101,7 +101,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1008925013563656532
+--- !u!114 &7344333353121930191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,14 +110,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1008925013563656531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cbc4f514659f3548ad0f37ea00ab9f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f7846307425818459763d58595dca98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigi: {fileID: 1008925013563656534}
-  maxHP: 1000
+  rigi: {fileID: 0}
+  maxHP: 10
   groundcheckDistance: 1.15
   hitInvincibleDuration: 0.1
-  hP: 1000
+  hP: 10
   grounded: 0
   jumping: 0
   dashOnCooldown: 0
