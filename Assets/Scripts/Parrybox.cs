@@ -10,12 +10,12 @@ public class Parrybox : MonoBehaviour
 
     //Private
     private PlayerController playerController;
-    private RaycastHit hit;
-    private Vector3 rayPoint;
+    internal BoxCollider collider;
 
     private void Start()
     {
         playerController = transform.parent.GetComponent<PlayerController>();
+        collider = GetComponent<BoxCollider>();
     }
 
     private void OnTriggerEnter(Collider other)

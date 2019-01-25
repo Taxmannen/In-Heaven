@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody playerRigi;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bullets;
-    [SerializeField] private BoxCollider parrybox;
+    
 
     //Design
     [Header("GENERAL")]
@@ -29,28 +29,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0, 10)] private float playerBulletLifetime = 3f; //The duration the bullets last until they are destroyed, low number reduces potential lag
     [SerializeField] [Range(0, 1000)] private float playerBulletTrajectoryDistance = 50f; //The max end point for the bullets trajectory, should be about the same as the distance between the player face and the boss face.
 
-    [Header("DASH")]
-    [SerializeField] [Range(0, 1000)] private float dashPower = 50f; //The speed of the dash (affects dash distance)
-    [SerializeField] [Range(0, 10)] private float dashDuration = 0.1f; //The duration of the dash (affects dash distance)
-    [SerializeField] [Range(0, 10)] private float dashInvincibleDuration = 0.25f; //Duration of invincibility state after the start of a dash
-    [SerializeField] [Range(0, 2)] private float dashVerticalReduction = 0.5f; //Reduces the vertical velocity affecting the player during the dash
-    [SerializeField] [Range(0, 100)] private float maxDashes = 1; //Number of dashes possible in air
-    [SerializeField] [Range(0, 10)] private float dashCooldown = 1f; //Cooldown for dash, ground and air
-    [SerializeField] private bool shootDuringDash = true; //Allow player to shoot during dash?
-
     [Header("GRAVITY")]
     [SerializeField] [Range(-1000, 1000)] private float gravity = 75f; //Gravity (Works agaisnt Jump Power)
     [SerializeField] [Range(0, 100)] private float forcedGravitySpeed = 25f; //The additional force affecting the player on pressed down, during aired
     [SerializeField] [Range(0, 100)] private float forcedPower = 40f; //Forced gravity power when pressing down key.
 
     [Header("PARRY")]
-    [SerializeField] [Range(0, 100000)] private float playerParryBulletDamage = 10f;
-    [SerializeField] [Range(0, 1000)] private float playerParryBulletSpeed = 100f;
-    [SerializeField] [Range(0, 10)] private float parryDuration = 1f;
-    [SerializeField] [Range(0, 10)] private float parryCooldown = 1f;
-
-    [Header("SLEDGEHAMMER")]
-    [SerializeField] [Range(0, 10)] private float sledgeDuration = 3f;
 
     [Header("HIT")]
     [SerializeField] [Range(0, 10)] private float hitInvincibleDuration = 0.1f; //Duration of invincibility state after being hit, necessary to avoid getting hit rapidly multiple times.
@@ -61,18 +45,15 @@ public class PlayerController : MonoBehaviour
 
     //Private
     private Coroutine shootCoroutine = null;
-    private Coroutine dashCoroutine = null;
-    private Coroutine dashCooldownCoroutine = null;
     private Coroutine invincibleCoroutine = null;
-    private Coroutine parryCoroutine = null;
-    private Coroutine parryCooldownCoroutine = null;
+
     private Coroutine superChargeCoroutine = null;
     private float verticalVelocity;
     private float dashVelocity;
     private float horizontalDirection;
     private float verticalDirection;
     private float actualForcedGravity;
-    private float parryCoroutineCounter;
+    
     private float playerBulletsPerSecond;
     private RaycastHit aimHit;
     private Vector3 aimPoint;
@@ -84,15 +65,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [ReadOnly] private float hP;
     [SerializeField] [ReadOnly] private float movementSpeed = 0f;
     [SerializeField] [ReadOnly] private int doubleJumps = 0;
-    [SerializeField] [ReadOnly] private float dashes = 0;
-    [SerializeField] [ReadOnly] private bool grounded;
+    [SerializeField] [ReadOnly] internal bool grounded;
     [SerializeField] [ReadOnly] private bool jumping;
     [SerializeField] [ReadOnly] private float actualVerticalReductionDuringDash = 1;
     [SerializeField] [ReadOnly] private bool dashOnCooldown;
     [SerializeField] [ReadOnly] private Global.PlayerState playerState = Global.PlayerState.Default;
     [SerializeField] [ReadOnly] private float superCharge;
 
-
+    private DashAction dashAction;
+    private ParryAction parryAction;
 
     /// <summary>
     /// Updates necessary values on direct changes in the hierarchy during both runtime and edit mode.
@@ -104,7 +85,6 @@ public class PlayerController : MonoBehaviour
         hP = maxHP;
         movementSpeed = baseMovementSpeed;
         doubleJumps = maxDoubleJumps;
-        dashes = maxDashes;
         playerBulletsPerSecond = basePlayerBulletsPerSecond;
 
     }
@@ -130,7 +110,6 @@ public class PlayerController : MonoBehaviour
 
         movementSpeed = baseMovementSpeed;
         doubleJumps = maxDoubleJumps;
-        dashes = maxDashes;
 
         hP = maxHP;
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
@@ -139,6 +118,8 @@ public class PlayerController : MonoBehaviour
         InterfaceController.instance.UpdatePlayerState(playerState);
 
         playerBulletsPerSecond = basePlayerBulletsPerSecond;
+        dashAction = GetComponent<DashAction>();
+        parryAction = GetComponent<ParryAction>();
 
     }
 
@@ -157,10 +138,10 @@ public class PlayerController : MonoBehaviour
             shootCoroutine = null;
         }
         
-        if (dashCoroutine != null)
+        if (dashAction.coroutine != null)
         {
-            StopCoroutine(dashCoroutine);
-            dashCoroutine = null;
+            StopCoroutine(dashAction.coroutine);
+            dashAction.coroutine = null;
         }
         
         if (invincibleCoroutine != null)
@@ -210,7 +191,7 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + GetComponentInChildren<Collider>().bounds.extents.y, transform.position.z), Vector3.down, groundcheckDistance, 1 << 9))
             {
                 doubleJumps = maxDoubleJumps;
-                dashes = maxDashes;
+                dashAction.Reset();
                 grounded = true;
                 jumping = false;
             }
@@ -226,7 +207,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Move()
     {
-        playerRigi.velocity = new Vector3((horizontalDirection * movementSpeed) + dashVelocity, (verticalVelocity + actualForcedGravity) * actualVerticalReductionDuringDash, 0f);
+        playerRigi.velocity = new Vector3((horizontalDirection * movementSpeed) + dashAction.velocity, (verticalVelocity + actualForcedGravity) * actualVerticalReductionDuringDash, 0f);
     }
 
 
@@ -280,7 +261,10 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
+    public void Parry()
+    {
+        parryAction.Parry();
+    }
 
 
     /// <summary>
@@ -288,63 +272,15 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Dash()
     {
-
-        if (grounded)
-        {
-            if (dashCooldownCoroutine == null)
-            {
-                dashCoroutine = StartCoroutine(DashCoroutine());
-                dashCooldownCoroutine = StartCoroutine(DashCooldownCoroutine());
-            }
-        }
-
-        if (!grounded)
-        {
-            if (dashes > 0)
-            {
-                if (dashCooldownCoroutine == null)
-                {
-                    dashes--;
-                    dashCoroutine = StartCoroutine(DashCoroutine());
-                    dashCooldownCoroutine = StartCoroutine(DashCooldownCoroutine());
-                }
-            }
-        }
-
-    }
-
-    private IEnumerator DashCoroutine()
-    {
-        Invincible(dashInvincibleDuration);
-
-        if (horizontalDirection < 0)
-        {
-            dashVelocity = -1 * dashPower;
-        }
-
-        else
-        {
-            dashVelocity = dashPower;
-        }
-
-        AudioController.instance.PlayerDash();
-        actualVerticalReductionDuringDash = dashVerticalReduction;
-        yield return new WaitForSeconds(dashDuration);
-        actualVerticalReductionDuringDash = 1f;
-        dashVelocity = 0f;
-        dashCoroutine = null;
-        yield break;
-    }
-    
-    private IEnumerator DashCooldownCoroutine()
-    {
-        yield return new WaitUntil(() => dashCoroutine == null);
-        yield return new WaitForSeconds(dashCooldown);
-        dashCooldownCoroutine = null;
-        yield break;
+        dashAction.Dash();
     }
 
     
+
+
+
+
+
 
     /// <summary>
     /// Updates the direction the player is aiming towards.
@@ -379,7 +315,7 @@ public class PlayerController : MonoBehaviour
     public void Shoot()
     {
 
-        if (shootDuringDash)
+        if (dashAction.shootDuringDash)
         {
 
             if (shootCoroutine == null)
@@ -441,7 +377,7 @@ public class PlayerController : MonoBehaviour
     /// Applies the Invincible PlayerState to the object for the duration sent as a parameter.
     /// </summary>
     /// <param name="duration"></param>
-    private void Invincible(float duration)
+    internal void Invincible(float duration)
     {
 
         if (invincibleCoroutine != null)
@@ -521,53 +457,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    /// <summary>
-    /// Parry WIP
-    /// </summary>
-    public void Parry()
-    {
-
-        if (parryCooldownCoroutine == null)
-        {
-            parryCoroutine = StartCoroutine(ParryCoroutine());
-            parryCooldownCoroutine = StartCoroutine(ParryCooldownCoroutine());
-        }
-
-    }
-
-    private IEnumerator ParryCoroutine()
-    {
-
-        parrybox.enabled = true;
-        //playerState = Global.PlayerState.Invincible;    
-
-        for (parryCoroutineCounter = sledgeDuration; parryCoroutineCounter > 0; parryCoroutineCounter -= Time.deltaTime)
-        {
-
-            if (parryCoroutineCounter <= (sledgeDuration - parryDuration))
-            {
-                parrybox.enabled = false;
-                //playerState = Global.PlayerState.Default;
-                break;
-            }
-
-            yield return null;
-
-        }
-
-        yield return new WaitForSeconds(parryCoroutineCounter);
-        parryCoroutine = null;
-        yield break;
-
-    }
-
-    private IEnumerator ParryCooldownCoroutine()
-    {
-        yield return new WaitUntil(() => parryCoroutine == null);
-        yield return new WaitForSeconds(parryCooldown);
-        parryCooldownCoroutine = null;
-        yield break;
-    }
+   
 
 
 
@@ -616,7 +506,10 @@ public class PlayerController : MonoBehaviour
         InterfaceController.instance.UpdateSuperChargeSlider(superCharge);
 
     }
-
+    public float GetHorizontalDirection()
+    {
+        return horizontalDirection;
+    }
 
 
     //Getters & Setters

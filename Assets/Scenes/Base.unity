@@ -118,12 +118,57 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1008925013438116984}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 338361048}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cbc4f514659f3548ad0f37ea00ab9f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &338361048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1008925013563656531, guid: 51757afcc1290b14eb37486733ab937f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1008925013438116984}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &338361049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338361048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb273763ed06b8b429207067c21e76be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 50
+  duration: 0.1
+  invincibleDuration: 0.25
+  verticalReduction: 0.5
+  maxDashesInAir: 1
+  cooldown: 1
+  shootDuringDash: 1
+  dashes: 0
+  actualVerticalReductionDuringDash: 1
+--- !u!114 &338361050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338361048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5647b4fd8d17214aa11f8154505fde1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parrybox: {fileID: 622324439}
+  playerParryBulletDamage: 10
+  playerParryBulletSpeed: 100
+  parryDuration: 1
+  parryCooldown: 0
+  sledgeDuration: 2
 --- !u!1 &622324437
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,6 +781,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: shotArray.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: spreadShotFireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: spreadShotBullets
+      value: 
+      objectReference: {fileID: 1511022943}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: SpreadShotBulletSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 937380584421009115, guid: 06477cabd24071c41bc21211c6e448b2,
         type: 3}
       propertyPath: canMove
@@ -870,26 +935,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Boss Hitbox
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
-        type: 3}
-      propertyPath: shotArray.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
-        type: 3}
-      propertyPath: spreadShotFireRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
-        type: 3}
-      propertyPath: spreadShotBullets
-      value: 
-      objectReference: {fileID: 1511022943}
-    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
-        type: 3}
-      propertyPath: SpreadShotBulletSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06477cabd24071c41bc21211c6e448b2, type: 3}
@@ -1047,6 +1092,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1008925013960216299, guid: 51757afcc1290b14eb37486733ab937f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player Hitbox
+      objectReference: {fileID: 0}
     - target: {fileID: 1008925013960216300, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
       propertyPath: m_LocalScale.y
@@ -1056,11 +1106,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1008925013960216299, guid: 51757afcc1290b14eb37486733ab937f,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player Hitbox
       objectReference: {fileID: 0}
     - target: {fileID: 1008925013960216301, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
