@@ -17,62 +17,60 @@ public class SpreadShot : MonoBehaviour
 
     public int numberOfBullets;
     private float spawnedBullets;
-    
-    private float spreadShotLocationX;
-    private float spreadShotLocationY;
-    private float spreadShotLocationZ;
-
+  
     public Vector3[] shotArray;
 
     [SerializeField] [Range(1, 100)] private float spreadShotFireRate;
 
-    private Coroutine bossShootCoroutine;
+    private Coroutine bossShootSpreadShot;
 
     private IEnumerator corutine;
     private IEnumerator corutine2;
 
     private float timer;
 
-    void Start()
+    public Vector3 generateSpreadShotSpawn()
     {
-      
+   Vector3 SpreadShotBulletSpawnPosition = new Vector3(Random.Range(-12.0f, 12.0f), Random.Range(4.0f, 13.0f), 0);
+
+        return SpreadShotBulletSpawnPosition;
     }
 
-    
-   
 
-  
 
-    void SpreadShotDetonate(Vector3 originPoint)
+
+
+
+    public void SpreadShotShoot(Vector3 SpreadShotBulletSpawnPosition)
     {
-        for (int i = 0; i < numberOfBullets; i++)
+       
+           
+       
+
+       
+        if (bossShootSpreadShot == null)
         {
-            Vector3 bulletSpawn = spawnCircle(originPoint, 1f);
-            spawnedBullets = spawnedBullets + 1;
-
-            Quaternion rotation = Quaternion.Euler(0, 10, 10);
-
-            Instantiate(SpreadShotBullet, bulletSpawn, rotation);
-            StartCoroutine(MoveBulletsCorutine());
+           
+            bossShootSpreadShot = StartCoroutine(SpreadShotCorutine(SpreadShotBulletSpawnPosition));
         }
     }
 
   
 
-    public IEnumerator SpreadShotCorutine()
+    private IEnumerator SpreadShotCorutine(Vector3 SpreadShotBulletSpawnPosition)
     {
-        Debug.Log("Shit seems to be working");
-        Vector3 bossBulletSpawnPosition = new Vector3(Random.Range(-12.0f, 12.0f), Random.Range(4.0f, 13.0f), 0);
-
+  
+        
+        Debug.Log(SpreadShotBulletSpawnPosition);
         for (int i = 0; i < 4; i++){
             int x = 0;
-            GameObject spreadShotClone = Instantiate(SpreadShotBullet, bossBulletSpawnPosition, Quaternion.identity, spreadShotBullets);
+            GameObject spreadShotClone = Instantiate(SpreadShotBullet, SpreadShotBulletSpawnPosition, Quaternion.identity, spreadShotBullets);
 
             Destroy(spreadShotClone, 3f);
 
-            Vector3 SpreadShotTarget = new Vector3(-10+(5 * x), 0, 0);
+            // Vector3 SpreadShotTarget =  new Vector3(-10+(5 * x), 0, 0) - FindObjectOfType<PlayerController>().GetComponent<Rigidbody>().position;
+            Vector3 SpreadShotTarget = new Vector3(-10 + (5 * x), 0, 0) - SpreadShotBulletSpawnPosition;
 
-          
 
             SpreadShotTarget.Normalize();
 
@@ -82,16 +80,16 @@ public class SpreadShot : MonoBehaviour
 
             InterfaceController.instance.BossBulletOverlay(FindObjectOfType<PlayerController>().GetComponent<Rigidbody>().position);
 
-            spreadShotClone.GetComponent<BossBullet>().SetDamage(40);
-
+            spreadShotClone.GetComponent<BossBullet>().SetDamage(90);
+            
         }
 
         
 
    
         
-        yield return new WaitForSeconds(5 / spreadShotFireRate);
-        bossShootCoroutine = null;
+        yield return new WaitForSeconds(spreadShotFireRate);
+        bossShootSpreadShot = null;
         yield break;
 
 

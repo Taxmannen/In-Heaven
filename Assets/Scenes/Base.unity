@@ -190,6 +190,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4998537456697538083}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &893150607 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 937380583967212521}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8621723bbf5ad894e97cd004d2f65af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &955244664 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4998537456818001499, guid: ff3809ce05ec13140831cf6e93f92a88,
@@ -584,7 +596,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897793201}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.99, y: 1.71, z: 0}
+  m_LocalPosition: {x: 9.99, y: 28.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -805,7 +817,7 @@ PrefabInstance:
     - target: {fileID: 937380584421009115, guid: 06477cabd24071c41bc21211c6e448b2,
         type: 3}
       propertyPath: bossBulletFireRate
-      value: 5
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 937380584421009115, guid: 06477cabd24071c41bc21211c6e448b2,
         type: 3}
@@ -815,7 +827,7 @@ PrefabInstance:
     - target: {fileID: 937380584421009115, guid: 06477cabd24071c41bc21211c6e448b2,
         type: 3}
       propertyPath: bossLaserRaySpeed
-      value: 1
+      value: 5.19
       objectReference: {fileID: 0}
     - target: {fileID: 937380584421009112, guid: 06477cabd24071c41bc21211c6e448b2,
         type: 3}
@@ -931,6 +943,22 @@ PrefabInstance:
         type: 3}
       propertyPath: shotArray.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: spreadShotFireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: spreadShotBullets
+      value: 
+      objectReference: {fileID: 9109459551355224644, guid: 34fbbefd43278e546a0f76c4f7110fc7,
+        type: 3}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: SpreadShotBulletSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06477cabd24071c41bc21211c6e448b2, type: 3}
