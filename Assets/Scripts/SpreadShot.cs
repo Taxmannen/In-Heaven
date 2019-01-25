@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class SpreadShot : MonoBehaviour
 {
+
+    private BossController boss;
+
     public GameObject SpreadShotProjectile;
     public GameObject SpreadShotBullet;
 
@@ -28,12 +31,15 @@ public class SpreadShot : MonoBehaviour
 
         Vector3 SpreadShotBulletSpawnPosition = new Vector3(Random.Range(-12.0f, 12.0f), Random.Range(4.0f, 13.0f), 0);
 
+        
+
+
         return SpreadShotBulletSpawnPosition;
     }
 
     public float generateSpreadShootTarget()
     {
-        float spreadShotStartingTarget = Random.Range(-12f, 9f);
+        float spreadShotStartingTarget = Random.Range(-12f, 0f);
 
         return spreadShotStartingTarget;
     }
@@ -62,7 +68,7 @@ public class SpreadShot : MonoBehaviour
             
             GameObject spreadShotClone = Instantiate(SpreadShotBullet, SpreadShotBulletSpawnPosition, Quaternion.identity, spreadShotBullets);
 
-            Destroy(spreadShotClone, 3f);
+            Destroy(spreadShotClone, 10f);
 
             Vector3 SpreadShotTarget = new Vector3(spreadShotStartingTarget+ x, 0, 0) - SpreadShotBulletSpawnPosition;
 
@@ -73,7 +79,7 @@ public class SpreadShot : MonoBehaviour
 
             spreadShotClone.GetComponent<Rigidbody>().velocity = SpreadShotTarget * SpreadShotBulletSpeed;
 
-            InterfaceController.instance.BossBulletOverlay(FindObjectOfType<PlayerController>().GetComponent<Rigidbody>().position);
+            InterfaceController.instance.BossBulletOverlay(new Vector3(spreadShotStartingTarget + x, 0, 0));
 
             spreadShotClone.GetComponent<BossBullet>().SetDamage(90);
             

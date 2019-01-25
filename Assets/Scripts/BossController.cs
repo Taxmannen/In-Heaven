@@ -8,6 +8,10 @@ public class BossController : MonoBehaviour
     //Serialized
     [SerializeField] private Transform bullets;
     [SerializeField] private Rigidbody rigi;
+
+
+    [SerializeField] private List<Transform> bossBulletSpawnPoint;
+
     [SerializeField] private Transform bossBulletSpawn1;
     [SerializeField] private Transform bossBulletSpawn2;
     [SerializeField] private GameObject bossBullet;
@@ -152,8 +156,31 @@ public class BossController : MonoBehaviour
         }
 
     }
+    public Vector3 RandomSpawnPoint()
+    {
+       
+        Vector3 spawnPoint = new Vector3(rigi.position.x - 14, rigi.position.y + 15.7f, rigi.position.z - 13);
+        if (bossBulletSpawnPoint.Count > 0)
+        {
+            int randomNumber = Random.Range(0, bossBulletSpawnPoint.Count);
+            spawnPoint = bossBulletSpawnPoint.ToArray()[randomNumber].position;
 
-
+        }
+        return spawnPoint;
+    }
+    public void RandomSpawnPointShoot()
+    {
+        Vector2 target = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>().position;
+        if(bossBulletSpawnPoint.Count > 0)
+        {
+            int randomNumber = Random.Range(0, bossBulletSpawnPoint.Count);
+            Vector3 spawnPoint = bossBulletSpawnPoint.ToArray()[randomNumber].position;
+            Shoot(target, spawnPoint);
+        }else
+        {
+            Shoot(target);
+        }
+    }
 
     /// <summary>
     /// (WIP) Shoots towards the direction the boss is aiming towards.
@@ -162,73 +189,46 @@ public class BossController : MonoBehaviour
     {
         if (bossShootCoroutine == null)
         {
-            bossShootCoroutine = StartCoroutine(ShootCoroutine());
+            Vector2 target = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>().position;
+            Shoot(target);
         }
     }
-
-    private IEnumerator ShootCoroutine()
+    public void Shoot(Vector2 target)
     {
-
-        Vector3 bossBulletSpawnPosition = new Vector3(rigi.position.x - 14, rigi.position.y + 15.7f, rigi.position.z - 13);
-        GameObject bossBulletClone = Instantiate(bossBullet, bossBulletSpawnPosition, Quaternion.identity, bullets);
+        if (bossShootCoroutine == null)
+        {
+            Vector3 bossBulletSpawnPosition = new Vector3(rigi.position.x - 14, rigi.position.y + 15.7f, rigi.position.z - 13);
+            Shoot(target, bossBulletSpawnPosition);
+        }
+    }
+    public void Shoot(Vector2 target, Vector3 spawnPosition)
+    {
+        if (bossShootCoroutine == null)
+        {
+            bossShootCoroutine = StartCoroutine(ShootCoroutine(target, spawnPosition,bossBullet));
+        }
+    }
+    private IEnumerator ShootCoroutine(Vector3 target, Vector3 spawnPosition, GameObject bullet)
+    {
+        GameObject bossBulletClone = Instantiate(bullet, spawnPosition, Quaternion.identity, bullets);
         AudioController.instance.BossShoot();
         Destroy(bossBulletClone, 3f);
         
 
-        Vector3 dir = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>().position - bossBulletClone.GetComponent<Rigidbody>().position;
+        Vector3 dir = target - bossBulletClone.GetComponent<Rigidbody>().position;
 
         dir.Normalize();
 
         bossBulletClone.GetComponent<Rigidbody>().velocity = dir * bossBulletSpeed;
 
-        InterfaceController.instance.BossBulletOverlay(FindObjectOfType<PlayerController>().GetComponent<Rigidbody>().position);
+        InterfaceController.instance.BossBulletOverlay(target);
 
         bossBulletClone.GetComponent<BossBullet>().SetDamage(25);
-
-        /*
-        GameObject bossBulletClone = Instantiate(bossBullet, new Vector3(rigi.position.x - 14, rigi.position.y + 15.7f, rigi.position.z -13), bossBulletSpawn1.rotation, bullets);
-        Destroy(bossBulletClone, 3f);
-        bossBulletClone.GetComponent<Rigidbody>().velocity = new Vector3(0, -0.4f * bossBulletSpeed, -bossBulletSpeed);
-
-        bossBulletClone.GetComponent<Bullet>().SetDamage(25);
-        */
-
-        /*
-        bossBulletClone = Instantiate(bossBullet, new Vector3(rigi.position.x + 14, rigi.position.y + 15.7f, rigi.position.z -13), bossBulletSpawn2.rotation, bullets);
-        Destroy(bossBulletClone, 3f);
-        bossBulletClone.GetComponent<Rigidbody>().velocity = new Vector3(0, -0.4f * bossBulletSpeed, -bossBulletSpeed);
-
-        bossBulletClone.GetComponent<Bullet>().SetDamage(25);
-        */
 
         yield return new WaitForSeconds(1 / bossBulletFireRate);
         bossShootCoroutine = null;
         yield break;
     }
-
-
-    /*
-    /// <summary>
-    /// Event for entering triggers.
-    /// </summary>
-    /// <param name="other"></param>
-    void OnTriggerEnter(Collider other)
-    {
-
-        if (other.tag == "Bullet")
-        {
-
-            if (bossState == Global.BossState.Default)
-            {
-                Receive(other.GetComponent<Damage>().GetDamage());
-                AudioController.instance.BossHit();
-            }
-
-        }
-        
-    }
-    */
-
 
     /// <summary>
     /// Checks whether the boss should die or get hit by the source depending on the amount sent as a parameter.

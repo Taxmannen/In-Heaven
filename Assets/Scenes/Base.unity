@@ -112,16 +112,22 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &143392044 stripped
+--- !u!54 &133189986 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 1008925013563656534, guid: 51757afcc1290b14eb37486733ab937f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1008925013438116984}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &133189988 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1008925013563656532, guid: 51757afcc1290b14eb37486733ab937f,
+  m_CorrespondingSourceObject: {fileID: 7344333353121930191, guid: 51757afcc1290b14eb37486733ab937f,
     type: 3}
   m_PrefabInstance: {fileID: 1008925013438116984}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cbc4f514659f3548ad0f37ea00ab9f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f7846307425818459763d58595dca98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &689379659 stripped
@@ -908,7 +914,13 @@ PrefabInstance:
       propertyPath: superChargeIncrease
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7344333353121930191, guid: 51757afcc1290b14eb37486733ab937f,
+        type: 3}
+      propertyPath: rigi
+      value: 
+      objectReference: {fileID: 133189986}
+    m_RemovedComponents:
+    - {fileID: 1008925013563656532, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
 --- !u!1001 &3172763609380002011
 PrefabInstance:
@@ -1630,7 +1642,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 143392044}
+      objectReference: {fileID: 133189988}
     - target: {fileID: 6525200260677797338, guid: 7680cb7d4288b0149bbb553db8a8336d,
         type: 3}
       propertyPath: bossController
