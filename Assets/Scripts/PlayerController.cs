@@ -411,7 +411,7 @@ public class PlayerController : MonoBehaviour
         Destroy(bullet, playerBulletLifetime);
 
         Vector3 dir = point - playerRigi.position;
-        AudioController.instance.PlayerShootStart();
+        AudioController.instance.PlayerShoot();
         dir.Normalize();
 
         bullet.GetComponent<Rigidbody>().velocity = dir * playerBulletSpeed;
@@ -430,9 +430,7 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerShootReverb()
     {
-        AudioController.instance.PlayerGunReverb();
-        AudioController.instance.PlayerShootStop();
-        
+        AudioController.instance.PlayerGunReverb();      
     }
 
 
@@ -593,7 +591,7 @@ public class PlayerController : MonoBehaviour
     {
         superCharge = 0;
         InterfaceController.instance.UpdateSuperChargeSlider(0);
-        playerBulletsPerSecond *= 10f; //Hardcoded
+        playerBulletsPerSecond *= 2f; //Hardcoded
         yield return new WaitForSeconds(1f); //Hardcoded
         playerBulletsPerSecond = basePlayerBulletsPerSecond;
         superChargeCoroutine = null;

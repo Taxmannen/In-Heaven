@@ -173,8 +173,9 @@ public class BossController : MonoBehaviour
 
         Vector3 bossBulletSpawnPosition = new Vector3(rigi.position.x - 14, rigi.position.y + 15.7f, rigi.position.z - 13);
         GameObject bossBulletClone = Instantiate(bossBullet, bossBulletSpawnPosition, Quaternion.identity, bullets);
-
+        AudioController.instance.BossShoot();
         Destroy(bossBulletClone, 3f);
+        
 
         Vector3 dir = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>().position - bossBulletClone.GetComponent<Rigidbody>().position;
 

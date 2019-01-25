@@ -992,6 +992,11 @@ PrefabInstance:
       propertyPath: dashPower
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 1008925013563656532, guid: 51757afcc1290b14eb37486733ab937f,
+        type: 3}
+      propertyPath: basePlayerBulletsPerSecond
+      value: 12.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1008925013563656533, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1233,7 +1238,7 @@ PrefabInstance:
     - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
         type: 3}
       propertyPath: playerShoot
-      value: event:/PlayerShootNew
+      value: event:/Player/PlayerShootNew
       objectReference: {fileID: 0}
     - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
         type: 3}
@@ -1284,6 +1289,16 @@ PrefabInstance:
         type: 3}
       propertyPath: bossHitRecieveNoDamage
       value: event:/Boss/BossHitRecieveNoDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
+        type: 3}
+      propertyPath: playerParryEvent
+      value: event:/Player/PlayerParryEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
+        type: 3}
+      propertyPath: bossShoot
+      value: event:/Player/PlayerShoot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7dc732299b93914eaca66e3f1ba3a85, type: 3}
