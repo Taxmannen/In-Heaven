@@ -13,7 +13,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private GameObject bossBullet;
 
     // Private
-    internal Coroutine bossShootCoroutine;
+    private Coroutine bossShootCoroutine;
     private bool moveRight = true;
     private bool moveLeft;
     private Coroutine newMoveCoroutine;
@@ -34,7 +34,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private Vector3 leftStop = new Vector3 (-36, 0 , 0);
     [SerializeField] private bool canMove;
 
-    private Transform playerTransform;
+
 
     [ExecuteInEditMode]
     private void OnValidate()
@@ -63,7 +63,6 @@ public class BossController : MonoBehaviour
 
         bossState = Global.BossState.Default;
         InterfaceController.instance.UpdateBossState(bossState);
-        playerTransform = FindObjectOfType<PlayerController>().transform;
 
     }
 
@@ -161,21 +160,15 @@ public class BossController : MonoBehaviour
     /// <summary>
     /// (WIP) Shoots towards the direction the boss is aiming towards.
     /// </summary>
-    public Coroutine Shoot()
-    {
-        return Shoot(playerTransform.position);
-        
-    }
-    public Coroutine Shoot(Vector3 target)
+    public void Shoot()
     {
         if (bossShootCoroutine == null)
         {
-            bossShootCoroutine = StartCoroutine(ShootCoroutine(target));
+            bossShootCoroutine = StartCoroutine(ShootCoroutine());
         }
-        return bossShootCoroutine;
     }
 
-    internal IEnumerator ShootCoroutine(Vector3 targetPos)
+    private IEnumerator ShootCoroutine()
     {
 
         Vector3 bossBulletSpawnPosition = new Vector3(rigi.position.x - 14, rigi.position.y + 15.7f, rigi.position.z - 13);
@@ -183,17 +176,33 @@ public class BossController : MonoBehaviour
 
         Destroy(bossBulletClone, 3f);
 
-        Vector3 dir = targetPos - bossBulletClone.GetComponent<Rigidbody>().position;
+        Vector3 dir = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>().position - bossBulletClone.GetComponent<Rigidbody>().position;
 
         dir.Normalize();
 
         bossBulletClone.GetComponent<Rigidbody>().velocity = dir * bossBulletSpeed;
 
-        InterfaceController.instance.BossBulletOverlay(targetPos);
+        InterfaceController.instance.BossBulletOverlay(FindObjectOfType<PlayerController>().GetComponent<Rigidbody>().position);
 
         bossBulletClone.GetComponent<BossBullet>().SetDamage(25);
 
-        yield return new WaitForSeconds(bossBulletFireRate);
+        /*
+        GameObject bossBulletClone = Instantiate(bossBullet, new Vector3(rigi.position.x - 14, rigi.position.y + 15.7f, rigi.position.z -13), bossBulletSpawn1.rotation, bullets);
+        Destroy(bossBulletClone, 3f);
+        bossBulletClone.GetComponent<Rigidbody>().velocity = new Vector3(0, -0.4f * bossBulletSpeed, -bossBulletSpeed);
+
+        bossBulletClone.GetComponent<Bullet>().SetDamage(25);
+        */
+
+        /*
+        bossBulletClone = Instantiate(bossBullet, new Vector3(rigi.position.x + 14, rigi.position.y + 15.7f, rigi.position.z -13), bossBulletSpawn2.rotation, bullets);
+        Destroy(bossBulletClone, 3f);
+        bossBulletClone.GetComponent<Rigidbody>().velocity = new Vector3(0, -0.4f * bossBulletSpeed, -bossBulletSpeed);
+
+        bossBulletClone.GetComponent<Bullet>().SetDamage(25);
+        */
+
+        yield return new WaitForSeconds(1 / bossBulletFireRate);
         bossShootCoroutine = null;
         yield break;
     }
