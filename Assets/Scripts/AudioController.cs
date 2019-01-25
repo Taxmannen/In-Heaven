@@ -28,6 +28,9 @@ public class AudioController : MonoBehaviour
     public string playerCommenceShooting;
     FMOD.Studio.EventInstance playerCommenceShootingEv;
     [FMODUnity.EventRef]
+    public string playerParryEvent;
+    FMOD.Studio.EventInstance playerParryEventEv;
+    [FMODUnity.EventRef]
     public string playerSuccessfulParry;
     FMOD.Studio.EventInstance playerSuccessfulParryEv;
 
@@ -43,6 +46,9 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     public string bossDeath;
     FMOD.Studio.EventInstance bossDeathEv;
+    [FMODUnity.EventRef]
+    public string bossShoot;
+    FMOD.Studio.EventInstance bossShootEv;
     private void Start()
     {
         playerShootEv = FMODUnity.RuntimeManager.CreateInstance(playerShoot);
@@ -51,10 +57,12 @@ public class AudioController : MonoBehaviour
         playerDoubleJumpEv = FMODUnity.RuntimeManager.CreateInstance(playerDoubleJump);
         playerGunReverbEv = FMODUnity.RuntimeManager.CreateInstance(playerGunReverb);
         playerCommenceShootingEv = FMODUnity.RuntimeManager.CreateInstance(playerCommenceShooting);
+        playerParryEventEv = FMODUnity.RuntimeManager.CreateInstance(playerParryEvent);
         playerSuccessfulParryEv = FMODUnity.RuntimeManager.CreateInstance(playerSuccessfulParry);
         bossHitRecieveDamageEv = FMODUnity.RuntimeManager.CreateInstance(bossHitRecieveDamage);
         bossHitRecieveNoDamageEv = FMODUnity.RuntimeManager.CreateInstance(bossHitRecieveNoDamage);
         bossDeathEv = FMODUnity.RuntimeManager.CreateInstance(bossDeath);
+        bossShootEv = FMODUnity.RuntimeManager.CreateInstance(bossShoot);
 
         //shootingEvent.getParameter("Stop", out stopShooting);
     }
@@ -90,14 +98,12 @@ public class AudioController : MonoBehaviour
     {
         playerDashEv.start();
     }
-    public void PlayerShootStart()
-    {            
+    public void PlayerShoot()
+    {
+        playerShootEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         playerShootEv.start();       
     }
-    public void PlayerShootStop()
-    {
-        
-    }
+
     public void PlayerCommenceShooting()
     {
         playerCommenceShootingEv.start();
@@ -116,7 +122,7 @@ public class AudioController : MonoBehaviour
     }
     public void PlayerParryEvent()
     {
-
+        playerParryEventEv.start();
     }
 
     //_________ENEMY_________
@@ -144,15 +150,22 @@ public class AudioController : MonoBehaviour
 
     public void BossHitRecieveDamage()
     {
-        bossHitRecieveNoDamageEv.start();
+        bossHitRecieveDamageEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        bossHitRecieveDamageEv.start(); 
     }
     public void BossHitRecieveNoDamage()
     {
+        bossHitRecieveDamageEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         bossHitRecieveDamageEv.start();
     }
     public void BossDeath()
     {
         bossDeathEv.start();
+    }
+    public void BossShoot()
+    {
+        bossShootEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        bossShootEv.start();
     }
 
 }

@@ -171,6 +171,7 @@ public class GameController : MonoBehaviour
         if (InputController.instance.GetMouseButtonDownRight())
         {
             playerController.Parry();
+            AudioController.instance.PlayerParryEvent();
         }
 
         if (InputController.instance.GetKeyDownSupercharge())
@@ -213,8 +214,11 @@ public class GameController : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         Debug.Log("Testing");
+        //int i = 0;
         for (counter = 3; counter > 0; counter -= Time.deltaTime)
         {
+          //  i++;
+            //Debug.Log(i);
 
             switch (random)
             {
