@@ -7,90 +7,55 @@ public class PlayerController : MonoBehaviour
 
     //Serialized
     [Header("SERIALIZED")]
-    [SerializeField] private Rigidbody playerRigi;
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform bullets;
-    
+    [SerializeField] internal Rigidbody rigi;
 
     //Design
     [Header("GENERAL")]
     [SerializeField] [Range(0, 1000)] private float maxHP = 10; //Max Hit Points
-    [SerializeField] [Range(0, 100)] private float baseMovementSpeed = 15f; //Base Movement Speed
+    
     [SerializeField] [Range(0, 10)] private float groundcheckDistance = 1.15f; //Distance to ground from players pivot point (FIRST VALUE = HALF PLAYER HEIGHT)
 
-    [Header("JUMP")]
-    [SerializeField] [Range(0, 100)] private float jumpPower = 25f; //Jump Power (Works against Gravity)
-    [SerializeField] [Range(0, 100)] private int maxDoubleJumps = 1; //Number of jumps possible in air
-
-    [Header("BULLETS")]
-    [SerializeField] [Range(0, 100000)] private int playerBulletDamage = 7;
-    [SerializeField] [Range(1, 100)] private float basePlayerBulletsPerSecond = 10f; //Bullets per second during left mouse down
-    [SerializeField] [Range(0, 1000)] private float playerBulletSpeed = 25f; //The speed of the bullets
-    [SerializeField] [Range(0, 10)] private float playerBulletLifetime = 3f; //The duration the bullets last until they are destroyed, low number reduces potential lag
-    [SerializeField] [Range(0, 1000)] private float playerBulletTrajectoryDistance = 50f; //The max end point for the bullets trajectory, should be about the same as the distance between the player face and the boss face.
-
-    [Header("GRAVITY")]
-    [SerializeField] [Range(-1000, 1000)] private float gravity = 75f; //Gravity (Works agaisnt Jump Power)
-    [SerializeField] [Range(0, 100)] private float forcedGravitySpeed = 25f; //The additional force affecting the player on pressed down, during aired
-    [SerializeField] [Range(0, 100)] private float forcedPower = 40f; //Forced gravity power when pressing down key.
-
-    [Header("PARRY")]
-
     [Header("HIT")]
-    [SerializeField] [Range(0, 10)] private float hitInvincibleDuration = 0.1f; //Duration of invincibility state after being hit, necessary to avoid getting hit rapidly multiple times.
-
-    [Header("SUPERCHARGE")]
-    [SerializeField] [Range(0, 100)] private float superChargeMax = 1f;
-    [SerializeField] [Range(0, 100)] private float superChargeIncrease = 1f;
+    [SerializeField] [Range(0, 10)] private float hitInvincibleDuration = 0.1f; //Duration of invincibility state after being hit, necessary to avoid getting hit rapidly multiple times.    
 
     //Private
-    private Coroutine shootCoroutine = null;
-    private Coroutine invincibleCoroutine = null;
+    internal float horizontalDirection;
+    internal float verticalDirection;
 
-    private Coroutine superChargeCoroutine = null;
-    private float verticalVelocity;
-    private float dashVelocity;
-    private float horizontalDirection;
-    private float verticalDirection;
-    private float actualForcedGravity;
-    
-    private float playerBulletsPerSecond;
-    private RaycastHit aimHit;
-    private Vector3 aimPoint;
     private Vector3 spawnPoint;
     private bool spawned;
 
     //Debug
     [Header("DEBUG")]
     [SerializeField] [ReadOnly] private float hP;
-    [SerializeField] [ReadOnly] private float movementSpeed = 0f;
-    [SerializeField] [ReadOnly] private int doubleJumps = 0;
+   
     [SerializeField] [ReadOnly] internal bool grounded;
-    [SerializeField] [ReadOnly] private bool jumping;
-    [SerializeField] [ReadOnly] private float actualVerticalReductionDuringDash = 1;
+    [SerializeField] [ReadOnly] internal bool jumping;
+    
     [SerializeField] [ReadOnly] private bool dashOnCooldown;
-    [SerializeField] [ReadOnly] private Global.PlayerState playerState = Global.PlayerState.Default;
-    [SerializeField] [ReadOnly] private float superCharge;
+    [SerializeField] [ReadOnly] internal Global.PlayerState playerState = Global.PlayerState.Default;
 
-    private DashAction dashAction;
-    private ParryAction parryAction;
-
+    internal DashAction dashAction;
+    internal ParryAction parryAction;
+    internal ShootAction shootAction;
+    internal InvincibleEffect invincible;
+    internal PlayerMovement movement;
+    internal SuperChargeResource superChargeResource;
+    internal AimMechanic aim;
     /// <summary>
     /// Updates necessary values on direct changes in the hierarchy during both runtime and edit mode.
     /// </summary>
     [ExecuteInEditMode]
     private void OnValidate()
     {
-
         hP = maxHP;
-        movementSpeed = baseMovementSpeed;
-        doubleJumps = maxDoubleJumps;
-        playerBulletsPerSecond = basePlayerBulletsPerSecond;
-
+        dashAction = dashAction == null ? GetComponent<DashAction>() : dashAction;
+        parryAction = parryAction == null ? GetComponent<ParryAction>() : parryAction;
+        shootAction = shootAction == null ? GetComponent<ShootAction>() : shootAction;
+        invincible = invincible == null ? GetComponent<InvincibleEffect>() : invincible;
+        movement = movement == null ? GetComponent<PlayerMovement>() : movement;
+        superChargeResource = superChargeResource == null ? GetComponent<SuperChargeResource>() : superChargeResource;
     }
-
-
-
     /// <summary>
     /// Player Setup.
     /// </summary>
@@ -99,17 +64,14 @@ public class PlayerController : MonoBehaviour
 
         if (!spawned)
         {
-            spawnPoint = playerRigi.position;
+            spawnPoint = rigi.position;
             spawned = true;
         }
 
         else
         {
-            playerRigi.position = spawnPoint;
+            rigi.position = spawnPoint;
         }
-
-        movementSpeed = baseMovementSpeed;
-        doubleJumps = maxDoubleJumps;
 
         hP = maxHP;
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
@@ -117,43 +79,29 @@ public class PlayerController : MonoBehaviour
         playerState = Global.PlayerState.Default;
         InterfaceController.instance.UpdatePlayerState(playerState);
 
-        playerBulletsPerSecond = basePlayerBulletsPerSecond;
-        dashAction = GetComponent<DashAction>();
-        parryAction = GetComponent<ParryAction>();
+        aim = aim == null ? GetComponent<AimMechanic>() : aim;
+
+        dashAction = dashAction == null ? GetComponent<DashAction>() : dashAction;
+        parryAction = parryAction == null ? GetComponent<ParryAction>() : parryAction;
+        shootAction = shootAction == null ? GetComponent<ShootAction>() : shootAction;
+        invincible = invincible == null ? GetComponent<InvincibleEffect>() : invincible;
+        movement = movement == null ? GetComponent<PlayerMovement>() : movement;
+        superChargeResource = superChargeResource == null ? GetComponent<SuperChargeResource>() : superChargeResource;
 
     }
-
-
     /// <summary>
     /// Freezes the player.
     /// </summary>
     public void Freeze()
     {
+        rigi.velocity = Vector3.zero;
 
-        playerRigi.velocity = Vector3.zero;
+        dashAction.MyStopCorutine();
 
-        if (shootCoroutine != null)
-        {
-            StopCoroutine(shootCoroutine);
-            shootCoroutine = null;
-        }
-        
-        if (dashAction.coroutine != null)
-        {
-            StopCoroutine(dashAction.coroutine);
-            dashAction.coroutine = null;
-        }
-        
-        if (invincibleCoroutine != null)
-        {
-            StopCoroutine(invincibleCoroutine);
-            invincibleCoroutine = null;
-        }
+        invincible.MyStopCoroutine();
 
-        foreach (Transform bullet in bullets)
-        {
-            Destroy(bullet.gameObject);
-        }
+        shootAction.DestroyAllBullets();
+        shootAction.MyStopCorutine();
 
     }
 
@@ -166,21 +114,22 @@ public class PlayerController : MonoBehaviour
         this.horizontalDirection = horizontalDirection;
         this.verticalDirection = verticalDirection;
 
+        // If player wants to go faster down
         if (!grounded)
         {
             if (verticalDirection < 0)
             {
-                actualForcedGravity = -forcedPower;
+                movement.actualForcedGravity = -movement.forcedPower;
             }
         }
 
         else
         {
-            actualForcedGravity = 0f;
+            movement.actualForcedGravity = 0f;
         }
 
-        //Grounded & Jumping Controller
-        if (verticalVelocity > 0)
+        //Ground/Air check
+        if (movement.verticalVelocity > 0)
         {
             grounded = false;
         }
@@ -190,7 +139,7 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + GetComponentInChildren<Collider>().bounds.extents.y, transform.position.z), Vector3.down, groundcheckDistance, 1 << 9))
             {
-                doubleJumps = maxDoubleJumps;
+                movement.JumpReset();
                 dashAction.Reset();
                 grounded = true;
                 jumping = false;
@@ -199,208 +148,45 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
-
-
     /// <summary>
     /// Applies velocity to the player.
     /// </summary>
     public void Move()
     {
-        playerRigi.velocity = new Vector3((horizontalDirection * movementSpeed) + dashAction.velocity, (verticalVelocity + actualForcedGravity) * actualVerticalReductionDuringDash, 0f);
+        movement.Move();
     }
-
-
-
-    /// <summary>
-    /// Applies a custom-coded gravity on the object.
-    /// </summary>
-    public void Gravity()
-    {
-
-        if (grounded && !jumping)
-        {
-            verticalVelocity = -gravity * Time.deltaTime;
-        }
-
-        else
-        {
-            verticalVelocity -= gravity * Time.deltaTime;
-        }
-
-    }
-
-
-
-    /// <summary>
-    /// Applies a vertical velocity to the player.
-    /// </summary>
     public void Jump()
     {
-
-        if (grounded)
-        {
-
-            jumping = true;
-            verticalVelocity = jumpPower;
-            AudioController.instance.PlayerJump();
-
-        }
-
-        else
-        {
-
-            if (doubleJumps > 0)
-            {
-                actualForcedGravity = 0f;
-                doubleJumps--;
-                verticalVelocity = jumpPower;
-                AudioController.instance.PlayerDoubleJump();
-            }
-
-        }
-
+        movement.Jump();
+    }
+    public void Gravity()
+    {
+        movement.Gravity();
     }
     public void Parry()
     {
         parryAction.Parry();
     }
-
-
-    /// <summary>
-    /// Applies a horizontal velocity to the player.
-    /// </summary>
     public void Dash()
     {
         dashAction.Dash();
     }
-
-    
-
-
-
-
-
-
-    /// <summary>
-    /// Updates the direction the player is aiming towards.
-    /// </summary>
-    public void Aim()
-    {
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out aimHit, 0))
-        {
-
-            if (aimHit.transform.gameObject.tag != "Player")
-            {
-                aimPoint = aimHit.point;
-            }
-
-        }
-
-        else
-        {
-            aimPoint = ray.GetPoint(playerBulletTrajectoryDistance);
-        }
-
-    }
-
-
-
-    /// <summary>
-    /// Shoots towards the direction the player is aiming towards.
-    /// </summary>
     public void Shoot()
     {
-
-        if (dashAction.shootDuringDash)
-        {
-
-            if (shootCoroutine == null)
-            {
-                shootCoroutine = StartCoroutine(ShootCoroutine(aimPoint));
-            }
-        }
-
-        else
-        {
-            if (dashVelocity == 0)
-            {
-                if (shootCoroutine == null)
-                {
-                    shootCoroutine = StartCoroutine(ShootCoroutine(aimPoint));
-                }
-            }
-        }
-
+        shootAction.Shoot();
     }
-
-    private IEnumerator ShootCoroutine(Vector3 point)
+    public void SuperCharge()
     {
-
-        float xangle = Mathf.Atan2(point.z - playerRigi.position.z, point.y - playerRigi.position.y) * 180 / Mathf.PI;
-        float yangle = Mathf.Atan2(point.x - playerRigi.position.x, point.z - playerRigi.position.z) * 180 / Mathf.PI;
-
-        GameObject bullet = Instantiate(bulletPrefab, playerRigi.position, Quaternion.Euler(xangle, yangle, 0), bullets);
-        Destroy(bullet, playerBulletLifetime);
-
-        Vector3 dir = point - playerRigi.position;
-        AudioController.instance.PlayerShootStart();
-        dir.Normalize();
-
-        bullet.GetComponent<Rigidbody>().velocity = dir * playerBulletSpeed;
-
-        bullet.GetComponent<PlayerBullet>().SetDamage(playerBulletDamage);
-
-        
-        
-
-
-        yield return new WaitForSeconds(1 / playerBulletsPerSecond);
-        shootCoroutine = null;
-        yield break;
-
+        superChargeResource.SuperCharge();
     }
-
-    public void PlayerShootReverb()
+    public void Invincible(float duration)
     {
-        AudioController.instance.PlayerGunReverb();
-        AudioController.instance.PlayerShootStop();
-        
+        invincible.Invincible(duration);
     }
-
-
-
-    /// <summary>
-    /// Applies the Invincible PlayerState to the object for the duration sent as a parameter.
-    /// </summary>
-    /// <param name="duration"></param>
-    internal void Invincible(float duration)
+    public void Aim()
     {
-
-        if (invincibleCoroutine != null)
-        {
-            StopCoroutine(invincibleCoroutine);
-        }
-
-        invincibleCoroutine = StartCoroutine(InvincibleCoroutine(duration));
-
+        aim.Aim();
     }
-
-    private IEnumerator InvincibleCoroutine(float duration)
-    {
-        playerState = Global.PlayerState.Invincible;
-        InterfaceController.instance.UpdatePlayerState(playerState); //Debug
-        yield return new WaitForSeconds(duration);
-        playerState = Global.PlayerState.Default;
-        InterfaceController.instance.UpdatePlayerState(playerState); //Debug
-        yield break;
-    }
-
-
-
     /// <summary>
     /// Checks whether the player should die or get hit by the source depending on the amount sent as a parameter.
     /// </summary>
@@ -422,9 +208,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
-
-
     /// <summary>
     /// Kills the player.
     /// </summary>
@@ -442,8 +225,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
-
     /// <summary>
     /// Hits the player for the amount sent as a parameter.
     /// </summary>
@@ -454,68 +235,11 @@ public class PlayerController : MonoBehaviour
         Invincible(hitInvincibleDuration);
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
     }
-
-
-
-   
-
-
-
-    /// <summary>
-    /// TBI
-    /// </summary>
-    public void SuperCharge()
-    {
-
-        if (superCharge == superChargeMax)
-        {
-
-            if (superChargeCoroutine == null)
-            {
-                superChargeCoroutine = StartCoroutine(SuperChargeCoroutine());
-            }
-
-        }
-
-    }
-
-    private IEnumerator SuperChargeCoroutine()
-    {
-        superCharge = 0;
-        InterfaceController.instance.UpdateSuperChargeSlider(0);
-        playerBulletsPerSecond *= 10f; //Hardcoded
-        yield return new WaitForSeconds(1f); //Hardcoded
-        playerBulletsPerSecond = basePlayerBulletsPerSecond;
-        superChargeCoroutine = null;
-        yield break;
-    }
-
-    public void IncreaseSuperCharge()
-    {
-
-        if (superCharge + superChargeIncrease >= superChargeMax)
-        {
-            superCharge = superChargeMax;
-        }
-
-        else
-        {
-            superCharge += superChargeIncrease;
-        }
-
-        InterfaceController.instance.UpdateSuperChargeSlider(superCharge);
-
-    }
-    public float GetHorizontalDirection()
-    {
-        return horizontalDirection;
-    }
-
-
-    //Getters & Setters
+    
+    //Getters
     public float GetSuperChargeMax()
     {
-        return superChargeMax;
+        return superChargeResource.superChargeMax;
     }
 
     public Global.PlayerState GetPlayerState()
@@ -523,4 +247,18 @@ public class PlayerController : MonoBehaviour
         return playerState;
     }
 
+    public float GetHorizontalDirection()
+    {
+        return horizontalDirection;
+    }
+
+    public float GetDashVelocity()
+    {
+        return dashAction.velocity;
+    }
+
+    public bool GetShootDuringDash()
+    {
+        return dashAction.shootDuringDash;
+    }
 }

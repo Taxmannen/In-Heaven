@@ -34,8 +34,6 @@ public class BossController : MonoBehaviour
     [SerializeField] private Vector3 leftStop = new Vector3 (-36, 0 , 0);
     [SerializeField] private bool canMove;
 
-
-
     [ExecuteInEditMode]
     private void OnValidate()
     {

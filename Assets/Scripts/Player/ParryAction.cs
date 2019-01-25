@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(PlayerController))]
 public class ParryAction : MonoBehaviour
 {
-    
+
+    private PlayerController player;
+
     [SerializeField] private BoxCollider parrybox;
     [SerializeField] [Range(0, 100000)] private float playerParryBulletDamage = 10f;
     [SerializeField] [Range(0, 1000)] private float playerParryBulletSpeed = 100f;
@@ -21,6 +23,7 @@ public class ParryAction : MonoBehaviour
     void Start()
     {
         parrybox = GetComponentInChildren<Parrybox>().GetComponent<BoxCollider>();
+        player = GetComponent<PlayerController>();
     }
 
     /// <summary>
@@ -41,7 +44,7 @@ public class ParryAction : MonoBehaviour
     {
 
         parrybox.enabled = true;
-        //playerState = Global.PlayerState.Invincible;    
+        player.playerState = Global.PlayerState.Invincible;    
 
         for (parryCoroutineCounter = sledgeDuration; parryCoroutineCounter > 0; parryCoroutineCounter -= Time.deltaTime)
         {
@@ -49,7 +52,7 @@ public class ParryAction : MonoBehaviour
             if (parryCoroutineCounter <= (sledgeDuration - parryDuration))
             {
                 parrybox.enabled = false;
-                //playerState = Global.PlayerState.Default;
+                player.playerState = Global.PlayerState.Default;
                 break;
             }
 

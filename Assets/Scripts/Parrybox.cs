@@ -25,7 +25,7 @@ public class Parrybox : MonoBehaviour
         {
             AudioController.instance.PlayerSuccessfulParry();
             Destroy(other.gameObject);
-            playerController.IncreaseSuperCharge();
+            playerController.superChargeResource.IncreaseSuperCharge();
             GetComponent<Collider>().enabled = false;
         }
     }

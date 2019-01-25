@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(PlayerController))]
 public class DashAction : MonoBehaviour
 {
 
@@ -89,5 +89,13 @@ public class DashAction : MonoBehaviour
         yield return new WaitForSeconds(cooldown);
         cooldownCorutine = null;
         yield break;
+    }
+    public void MyStopCorutine()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
     }
 }
