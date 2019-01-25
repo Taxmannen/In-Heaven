@@ -209,6 +209,7 @@ public class GameController : MonoBehaviour
         int random = Random.Range((int)1, (int)4); // Change to 4 for spread
 
         Vector3 SpreadShotBulletSpawnPosition= spreadShot.generateSpreadShotSpawn();
+        float spreadShotStartingTarget = spreadShot.generateSpreadShootTarget();
 
         yield return new WaitForSeconds(1f);
         Debug.Log("Testing");
@@ -226,7 +227,7 @@ public class GameController : MonoBehaviour
                     break;
 
                 case 3:                   
-                    spreadShot.SpreadShotShoot(SpreadShotBulletSpawnPosition);
+                    spreadShot.SpreadShotShoot(SpreadShotBulletSpawnPosition, spreadShotStartingTarget);
                     break;
             }
 
