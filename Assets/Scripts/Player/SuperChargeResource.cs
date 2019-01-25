@@ -38,7 +38,7 @@ public class SuperChargeResource : MonoBehaviour
     {
         superCharge = 0;
         InterfaceController.instance.UpdateSuperChargeSlider(0);
-        player.shootAction.playerBulletsPerSecond *= 10f; //Hardcoded
+        player.shootAction.playerBulletsPerSecond *= 2f; //Hardcoded
         yield return new WaitForSeconds(1f); //Hardcoded
         player.shootAction.BulletPerSecondReset();
         superChargeCoroutine = null;
