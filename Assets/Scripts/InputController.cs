@@ -16,6 +16,7 @@ public class InputController : MonoBehaviour {
     private KeyCode dashController = KeyCode.JoystickButton2;
     private KeyCode superchargeController = KeyCode.JoystickButton3;
 
+    //For AXIS
     private bool shootController;
     private bool leftController;
     private bool rightController;
@@ -118,7 +119,7 @@ public class InputController : MonoBehaviour {
 
     public bool GetMouseButtonUpLeft()
     {
-        if (isController) return !leftController;
+        if (isController) return !leftController; //??
         else return Input.GetMouseButtonUp(0);
     }
 
