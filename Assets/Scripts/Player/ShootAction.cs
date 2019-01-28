@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShootAction : MonoBehaviour
 {
     private PlayerController player;
-    private Rigidbody rigidbody;
+    [SerializeField] private Transform tf;
     internal Coroutine shootCoroutine = null;
 
     [SerializeField] private GameObject bulletPrefab;
@@ -23,7 +23,6 @@ public class ShootAction : MonoBehaviour
     void Start()
     {
         player = GetComponent<PlayerController>();
-        rigidbody = GetComponent<Rigidbody>();
         BulletPerSecondReset();
     }
     public void BulletPerSecondReset()
@@ -61,13 +60,13 @@ public class ShootAction : MonoBehaviour
     private IEnumerator ShootCoroutine(Vector3 point)
     {
 
-        float xangle = Mathf.Atan2(point.z - rigidbody.position.z, point.y - rigidbody.position.y) * 180 / Mathf.PI;
-        float yangle = Mathf.Atan2(point.x - rigidbody.position.x, point.z - rigidbody.position.z) * 180 / Mathf.PI;
+        float xangle = Mathf.Atan2(point.z - tf.position.z, point.y - tf.position.y) * 180 / Mathf.PI;
+        float yangle = Mathf.Atan2(point.x - tf.position.x, point.z - tf.position.z) * 180 / Mathf.PI;
 
-        GameObject bullet = Instantiate(bulletPrefab, rigidbody.position, Quaternion.Euler(xangle, yangle, 0), bullets);
+        GameObject bullet = Instantiate(bulletPrefab, tf.position, Quaternion.Euler(xangle, yangle, 0), bullets);
         Destroy(bullet, playerBulletLifetime);
 
-        Vector3 dir = point - rigidbody.position;
+        Vector3 dir = point - tf.position;
         AudioController.instance.PlayerShoot();
         dir.Normalize();
 
