@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Character
 {
 
     //Serialized
@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] internal Rigidbody rigi;
 
     //Design
-    [Header("GENERAL")]
-    [SerializeField] [Range(0, 1000)] private float maxHP = 10; //Max Hit Points
+    //[Header("GENERAL")]
+    //[SerializeField] [Range(0, 1000)] private float maxHP = 10; //Max Hit Points
 
     [SerializeField] [Range(0, 10)] private float groundcheckDistance = 1.15f; //Distance to ground from players pivot point (FIRST VALUE = HALF PLAYER HEIGHT)
 
@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
 
     //Debug
     [Header("DEBUG")]
-    [SerializeField] [ReadOnly] private float hP;
 
     [SerializeField] [ReadOnly] internal bool grounded;
     [SerializeField] [ReadOnly] internal bool jumping;
@@ -187,11 +186,9 @@ public class PlayerController : MonoBehaviour
     {
         aim.Aim();
     }
-    /// <summary>
-    /// Checks whether the player should die or get hit by the source depending on the amount sent as a parameter.
-    /// </summary>
-    /// <param name="amt"></param>
-    public void Receive(float amt)
+
+
+    internal override void Receive(float amt)
     {
 
         if (playerState == Global.PlayerState.Default)
@@ -211,7 +208,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Kills the player.
     /// </summary>
-    private void Die()
+    internal override void Die()
     {
 
         Freeze();
@@ -229,7 +226,7 @@ public class PlayerController : MonoBehaviour
     /// Hits the player for the amount sent as a parameter.
     /// </summary>
     /// <param name="amt"></param>
-    private void Hit(float amt)
+    internal override void Hit(float amt)
     {
         hP -= amt;
         Invincible(hitInvincibleDuration);
