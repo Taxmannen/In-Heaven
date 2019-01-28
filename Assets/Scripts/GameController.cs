@@ -98,7 +98,7 @@ public class GameController : MonoBehaviour
 
         playerController.Gravity();
 
-        if (InputController.instance.GetKeyDownJump())
+        if (InputController.instance.GetKeyDownJump() ||  InputController.instance.GetKeyDownUp())
         {
             playerController.Jump();
         }

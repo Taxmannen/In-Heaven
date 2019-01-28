@@ -6,6 +6,7 @@ public class InputController : MonoBehaviour {
     public static InputController instance;
 
     private KeyCode jump = KeyCode.Space;
+    private KeyCode up = KeyCode.W;
     private KeyCode left = KeyCode.A;
     private KeyCode right = KeyCode.D;
     private KeyCode down = KeyCode.S;
@@ -135,6 +136,12 @@ public class InputController : MonoBehaviour {
         else return Input.GetKeyDown(supercharge);
     }
 
+    public bool GetKeyDownUp()
+    {
+        if (isController) return Input.GetKeyDown(up);
+        else return Input.GetKeyDown(up);
+    }
+
     //==================================================
 
     public bool GetKeyDownTest()
@@ -143,4 +150,5 @@ public class InputController : MonoBehaviour {
     }
 
     //==================================================
+
 }
