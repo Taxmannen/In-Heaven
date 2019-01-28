@@ -81,7 +81,7 @@ public class SpreadShot : MonoBehaviour
 
             InterfaceController.instance.BossBulletOverlay(new Vector3(spreadShotStartingTarget + x, 0, 0));
 
-            spreadShotClone.GetComponent<BossBullet>().SetDamage(90);
+            spreadShotClone.GetComponent<BossBullet>().SetDamage(1);
             
         }
 

@@ -82,8 +82,8 @@ public class InterfaceController : MonoBehaviour
     public void BossBulletOverlay(Vector3 point)
     {
 
-        Vector3 cameraPoint = Camera.main.WorldToScreenPoint(point);
-
+        Vector3 cameraPoint = point;
+        
         GameObject testClone = Instantiate(test, cameraPoint, Quaternion.identity, FindObjectOfType<Canvas>().gameObject.transform);
         Destroy(testClone, 1f);
 

@@ -221,7 +221,7 @@ public class BossController : Character
 
         InterfaceController.instance.BossBulletOverlay(target);
 
-        bossBulletClone.GetComponent<BossBullet>().SetDamage(25);
+        bossBulletClone.GetComponent<BossBullet>().SetDamage(1);
 
         yield return new WaitForSeconds(1 / bossBulletFireRate);
         bossShootCoroutine = null;
