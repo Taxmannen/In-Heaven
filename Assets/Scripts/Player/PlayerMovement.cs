@@ -96,3 +96,94 @@ public class PlayerMovement : MonoBehaviour
     }
 
 }
+/// Horizontal Movment Acceleration needs to be implemented back/better
+/// Old Code down Below 
+
+//[SerializeField] private float playerAccelerationControl = 1f;
+//[SerializeField] private float playerDeaccelerationControl = 1f;
+//private float CalculateHorizontalDirection()
+//{
+
+//    if (!InputController.instance.GetKeyLeft() && !InputController.instance.GetKeyRight())
+//    {
+
+//        if ((direction < 0 && direction > playerDeaccelerationControl * Time.deltaTime) || (direction > 0 && direction < playerDeaccelerationControl * Time.deltaTime))
+//        {
+//            direction = 0;
+//        }
+
+//        else
+//        {
+
+//            if (direction < 0)
+//            {
+//                direction += playerDeaccelerationControl * Time.deltaTime;
+//            }
+
+//            if (direction > 0)
+//            {
+//                direction -= playerDeaccelerationControl * Time.deltaTime;
+//            }
+
+//        }
+
+//    }
+
+//    else
+//    {
+
+//        if (InputController.instance.GetKeyLeft())
+//        {
+
+//            if (direction > 0)
+//            {
+//                direction = -playerAccelerationControl * Time.deltaTime;
+//            }
+
+//            else
+//            {
+
+//                if (direction >= -(1f + playerAccelerationControl * Time.deltaTime))
+//                {
+//                    direction -= playerAccelerationControl * Time.deltaTime;
+//                }
+
+//                else
+//                {
+//                    direction = -1f;
+//                }
+
+//            }
+
+//        }
+
+//        if (InputController.instance.GetKeyRight())
+//        {
+
+//            if (direction < 0)
+//            {
+//                direction = playerAccelerationControl * Time.deltaTime;
+//            }
+
+//            else
+//            {
+
+//                if (direction <= (1f - playerAccelerationControl * Time.deltaTime))
+//                {
+//                    direction += playerAccelerationControl * Time.deltaTime;
+//                }
+
+//                else
+//                {
+//                    direction = 1f;
+//                }
+
+//            }
+
+//        }
+
+//    }
+
+//    return direction;
+
+//}

@@ -17,9 +17,15 @@ public class PlayerInput : MonoBehaviour
     {
         
     }
-
-    // Update is called once per frame
     private void Update()
+    {
+        if(GameController.instance.gameState == Global.GameState.Game)
+        {
+            UpdatePlayer();
+        }
+    }
+    // Update is called once per frame
+    private void UpdatePlayer()
     {
 
         horizontalDirection = GetHorizontal();

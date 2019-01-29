@@ -8,7 +8,7 @@ public class BossController : Character
     //Serialized
     [SerializeField] private Transform bullets;
     [SerializeField] private Rigidbody rigi;
-
+    SpreadShot spreadShot;
 
     [SerializeField] private List<Transform> bossBulletSpawnPoint;
 
@@ -35,6 +35,8 @@ public class BossController : Character
     [SerializeField] private Vector3 rightStop = new Vector3 (36, 0 , 0);
     [SerializeField] private Vector3 leftStop = new Vector3 (-36, 0 , 0);
     [SerializeField] private bool canMove;
+
+
 
     [ExecuteInEditMode]
     private void OnValidate()
@@ -64,7 +66,94 @@ public class BossController : Character
         bossState = Global.BossState.Default;
         InterfaceController.instance.UpdateBossState(bossState);
 
+        spreadShot = GetComponent<SpreadShot>();
+
     }
+    private void Update()
+    {
+        if(GameController.instance.gameState == Global.GameState.Game)
+        {
+            UpdateBoss();
+        }
+       
+    }
+    /// <summary>
+    /// Updates everything in boss.
+    /// </summary>
+    private void UpdateBoss()
+    {
+        NewMove();
+
+        if (patternCoroutine == null)
+        {
+            patternCoroutine = StartCoroutine(Pattern());
+        }
+
+    }
+
+    private Coroutine patternCoroutine;
+
+    private float counter;
+
+    bool ready = true;
+
+    private IEnumerator Pattern()
+    {
+
+
+        int random = Random.Range((int)1, (int)4); // Change to 4 for spread
+
+        Vector3 SpreadShotBulletSpawnPosition = RandomSpawnPoint();
+        float spreadShotStartingTarget = spreadShot.generateSpreadShootTarget();
+
+        yield return new WaitForSeconds(1f);
+        // Debug.Log("Testing");
+        //int i = 0;
+        for (counter = 3; counter > 0; counter -= Time.deltaTime)
+        {
+            //  i++;
+            //Debug.Log(i);
+
+            switch (random)
+            {
+                case 1:
+                    RandomSpawnPointShoot();
+                    break;
+
+                case 2:
+                    Laser();
+                    break;
+
+                case 3:
+                    spreadShot.SpreadShotShoot(SpreadShotBulletSpawnPosition, spreadShotStartingTarget);
+                    break;
+            }
+
+            yield return null;
+        }
+
+        patternCoroutine = null;
+        yield break;
+
+    }
+
+    private IEnumerator ShootPattern()
+    {
+
+        ready = false;
+
+        for (counter = 3; counter > 0; counter -= Time.deltaTime)
+        {
+            Shoot();
+            yield return null;
+        }
+
+        ready = true;
+        patternCoroutine = null;
+        yield break;
+    }
+
+
 
 
     /// <summary>
