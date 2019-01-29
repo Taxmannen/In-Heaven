@@ -175,6 +175,8 @@ MonoBehaviour:
   jumpPower: 25
   maxDoubleJumps: 1
   doubleJumps: 0
+  actualForcedGravity: 0
+  verticalVelocity: 0
 --- !u!114 &338361054
 MonoBehaviour:
   m_ObjectHideFlags: 0
