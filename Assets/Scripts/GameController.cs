@@ -14,12 +14,11 @@ public class GameController : MonoBehaviour
     [SerializeField] private SpreadShot spreadShot;
 
     //Private
-    private bool canDashRight = false;
-    private bool canDashLeft = false;
+
     private Coroutine restartCoroutine;
 
     //Design
-    [SerializeField] private float doubleTapInterval = 0.25f;
+
     [SerializeField] private Texture2D crosshairTexture;
 
     [SerializeField] private float playerAccelerationControl = 1f;
@@ -73,113 +72,19 @@ public class GameController : MonoBehaviour
 
         if (gameState == Global.GameState.Game)
         {
-            UpdatePlayer();
+            
             UpdateBoss();
         }
 
     }
 
-    float horizontalDirection;
-    float verticalDirection;
+
     float direction;
 
     /// <summary>
     /// Updates everything in player.
     /// </summary>
-    private void UpdatePlayer()
-    {
-
-        horizontalDirection = CalculateHorizontalDirection();
-        verticalDirection = CalculateVerticalDirection();
-
-        playerController.Upd8(horizontalDirection, verticalDirection);
-
-        playerController.Move();
-
-        playerController.Gravity();
-
-        if (InputController.instance.GetKeyDownJump() ||  InputController.instance.GetKeyDownUp())
-        {
-            playerController.Jump();
-        }
-
-        playerController.Aim();
-
-        if (InputController.instance.GetMouseButtonLeft())
-        {
-            playerController.Shoot();
-        }
-
-        //Dash: Double Tap
-        if (Global.doubleTapDashing)
-        {
-
-            if (InputController.instance.GetKeyDownLeft())
-            {
-
-                if (canDashLeft)
-                {
-                    playerController.Dash();
-                }
-
-                else
-                {
-                    StartCoroutine(DoubleTapDashCoroutine(-1f));
-                }
-
-            }
-
-            if (InputController.instance.GetKeyDownRight())
-            {
-
-                if (canDashRight)
-                {
-                    playerController.Dash();
-                }
-
-                else
-                {
-                    StartCoroutine(DoubleTapDashCoroutine(1f));
-                }
-
-            }
-
-        }
-
-        //Dash: Shift
-        if (Global.shiftDashing)
-        {
-
-            if (InputController.instance.GetKeyDownLeftShift() && horizontalDirection != 0)
-            {
-                playerController.Dash();
-            }
-
-        }
-
-        if (InputController.instance.GetMouseButtonUpLeft())
-        {
-            playerController.shootAction.ShootReverb();
-        }
-
-        if (InputController.instance.GetMouseButtonDownLeft())
-        {
-           // AudioController.instance.PlayerShootStart();
-            AudioController.instance.PlayerCommenceShooting();
-        }
-
-        if (InputController.instance.GetMouseButtonDownRight())
-        {
-            playerController.Parry();
-            AudioController.instance.PlayerParryEvent();
-        }
-
-        if (InputController.instance.GetKeyDownSupercharge())
-        {
-            playerController.SuperCharge();
-        }
-
-    }
+    
 
     bool ready = true;
 
@@ -381,58 +286,6 @@ public class GameController : MonoBehaviour
         return direction;
 
     }
-
-    /// <summary>
-/// Returns the vertical direction of the player depending on input.
-/// </summary>
-/// <returns></returns>
-    private float CalculateVerticalDirection()
-    {
-
-        float direction = 0f;
-
-        if (InputController.instance.GetKeyDownDown())
-        {
-            direction -= 1f;
-        }
-
-        return direction;
-
-    }
-
-
-
-    /// <summary>
-    /// Method which makes double tapping a direction to dash possible.
-    /// </summary>
-    /// <param name="direction"></param>
-    /// <returns></returns>
-    private IEnumerator DoubleTapDashCoroutine(float direction)
-    {
-
-        switch (direction)
-        {
-
-            case 1:
-                canDashLeft = false;
-                canDashRight = true;
-                yield return new WaitForSeconds(doubleTapInterval);
-                canDashRight = false;
-                yield break;
-
-            case -1:
-                canDashRight = false;
-                canDashLeft = true;
-                yield return new WaitForSeconds(doubleTapInterval);
-                canDashLeft = false;
-                yield break;
-
-        }
-
-    }
-
-
-
     /// <summary>
     /// Sets the game state of the game controller to desired state.
     /// </summary>
