@@ -213,7 +213,7 @@ public class GameController : MonoBehaviour
         float spreadShotStartingTarget = spreadShot.generateSpreadShootTarget();
 
         yield return new WaitForSeconds(1f);
-        Debug.Log("Testing");
+       // Debug.Log("Testing");
         //int i = 0;
         for (counter = 3; counter > 0; counter -= Time.deltaTime)
         {

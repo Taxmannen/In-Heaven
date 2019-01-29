@@ -12,6 +12,7 @@ TagManager:
   - Boss
   - Boss Hitbox
   - Boss Damage Hitbox
+  - TutorialBullet
   layers:
   - Default
   - TransparentFX
