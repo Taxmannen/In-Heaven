@@ -112,44 +112,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!54 &133189986 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 1008925013563656534, guid: 51757afcc1290b14eb37486733ab937f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1008925013438116984}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &133189988 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7344333353121930191, guid: 51757afcc1290b14eb37486733ab937f,
     type: 3}
   m_PrefabInstance: {fileID: 1008925013438116984}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348524006}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f7846307425818459763d58595dca98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &348524006 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1008925013563656531, guid: 51757afcc1290b14eb37486733ab937f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1008925013438116984}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &348524007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348524006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7349c686bd71bc945933896666512f02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 133189988}
-  doubleTapInterval: 0.25
 --- !u!1 &689379659 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4998537457116376936, guid: ff3809ce05ec13140831cf6e93f92a88,
@@ -871,11 +845,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7344333353121930191, guid: 51757afcc1290b14eb37486733ab937f,
-        type: 3}
-      propertyPath: rigi
-      value: 
-      objectReference: {fileID: 133189986}
     - target: {fileID: 1008925013563656533, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -935,28 +904,7 @@ PrefabInstance:
       propertyPath: bullets
       value: 
       objectReference: {fileID: 1742673354}
-    - target: {fileID: 338361053, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
-      propertyPath: superChargeIncrease
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 622324439, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
-      propertyPath: m_Size.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 622324439, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 622324439, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
-      propertyPath: m_Size.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 622324438, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.69
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1008925013563656532, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
 --- !u!1001 &3172763609380002011
 PrefabInstance:
