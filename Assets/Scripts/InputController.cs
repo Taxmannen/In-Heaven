@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class InputController : MonoBehaviour {
-    public bool isController;
+    public bool isGamePad;
 
     public static InputController instance;
 
@@ -66,79 +66,79 @@ public class InputController : MonoBehaviour {
 
     public bool GetMouseButtonDownLeft()
     {
-        if (isController) return shootController;
+        if (isGamePad) return shootController;
         else return Input.GetMouseButtonDown(0);
     }
 
     public bool GetMouseButtonDownRight()
     {
-        if (isController) return Input.GetKeyDown(parryController);
+        if (isGamePad) return Input.GetKeyDown(parryController);
         else return Input.GetMouseButtonDown(1);
     }
 
     public bool GetMouseButtonLeft()
     {
-        if (isController) return shootController;
+        if (isGamePad) return shootController;
         return Input.GetMouseButton(0);
     }
 
     public bool GetKeyDownJump()
     {
-        if (isController) return Input.GetKeyDown(jumpController);
+        if (isGamePad) return Input.GetKeyDown(jumpController);
         else return Input.GetKeyDown(jump);
     }
 
     public bool GetKeyDownLeft()
     {
-        if (isController) return leftController;
+        if (isGamePad) return leftController;
         else return Input.GetKeyDown(left);
     }
 
     public bool GetKeyDownRight()
     {
-        if (isController) return rightController;
+        if (isGamePad) return rightController;
         else return Input.GetKeyDown(right);
     }
 
     public bool GetKeyDownDown()
     {
-        if (isController) return downController;
+        if (isGamePad) return downController;
         else return Input.GetKeyDown(down);
     }
 
     public bool GetKeyLeft()
     {
-        if (isController) return leftController;
+        if (isGamePad) return leftController;
         else return Input.GetKey(left);
     }
 
     public bool GetKeyRight()
     {
-        if (isController) return rightController;
+        if (isGamePad) return rightController;
         else return Input.GetKey(right);
     }
 
     public bool GetMouseButtonUpLeft()
     {
-        if (isController) return !leftController; //??
+        if (isGamePad) return !leftController; //??
         else return Input.GetMouseButtonUp(0);
     }
 
     public bool GetKeyDownLeftShift()
     {
-        if (isController) return Input.GetKeyDown(dashController);
+        if (isGamePad) return Input.GetKeyDown(dashController);
         else return Input.GetKeyDown(KeyCode.LeftShift);
     }
 
     public bool GetKeyDownSupercharge()
     {
-        if (isController) return Input.GetKeyDown(superchargeController);
+        if (isGamePad) return Input.GetKeyDown(superchargeController);
         else return Input.GetKeyDown(supercharge);
     }
 
     public bool GetKeyDownUp()
     {
-        if (isController) return Input.GetKeyDown(up);
+        if (isGamePad) return Input.GetKeyDown(up);
         else return Input.GetKeyDown(up);
     }
 

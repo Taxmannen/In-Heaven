@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +12,14 @@ public class PlayerInput : MonoBehaviour
     float verticalDirection;
     private bool canDashRight = false;
     private bool canDashLeft = false;
+
+
+    [Header("Freature/Changes in Testing")]
+    [SerializeField] private bool changeDashKeyToMouse;
+    [SerializeField] private bool testKeyConfiguration;
+    //Timer/TimeCounter
+    [SerializeField] private float timeBeforeStartShooting = 0.2f;
+    [SerializeField][ReadOnly] private float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +52,7 @@ public class PlayerInput : MonoBehaviour
 
         playerController.Aim();
 
-        if (InputController.instance.GetMouseButtonLeft())
+        if (AbleToShoot())
         {
             playerController.Shoot();
         }
@@ -89,7 +97,7 @@ public class PlayerInput : MonoBehaviour
         if (Global.shiftDashing)
         {
 
-            if (InputController.instance.GetKeyDownLeftShift() && horizontalDirection != 0)
+            if (GetDiffrentDashKey() && horizontalDirection != 0)
             {
                 playerController.Dash();
             }
@@ -107,7 +115,7 @@ public class PlayerInput : MonoBehaviour
             AudioController.instance.PlayerCommenceShooting();
         }
 
-        if (InputController.instance.GetMouseButtonDownRight())
+        if (ParryButtonOnMouse() && !AbleToShoot())
         {
             playerController.Parry();
             AudioController.instance.PlayerParryEvent();
@@ -165,5 +173,58 @@ public class PlayerInput : MonoBehaviour
 
         }
 
+    }
+
+    private bool GetDiffrentDashKey()
+    {
+        if (changeDashKeyToMouse)
+        {
+            return InputController.instance.GetMouseButtonDownRight();
+
+        } else
+        {
+            return InputController.instance.GetKeyDownLeftShift();
+        }
+
+    }
+    //  Might be done better but works as intended 
+    private bool ParryButtonOnMouse()
+    {
+
+
+        if(testKeyConfiguration)
+        {
+            timer += Time.deltaTime;
+
+            if (InputController.instance.GetMouseButtonUpLeft() && timer < timeBeforeStartShooting)
+            {
+                Debug.Log("Parry");
+                return true;
+            }
+
+            if (!InputController.instance.GetMouseButtonLeft())
+            {
+                timer = 0;
+            }
+
+            return false;
+        }
+        
+        
+        return InputController.instance.GetMouseButtonDownRight();
+    }
+    private bool AbleToShoot()
+    {
+        if (testKeyConfiguration)
+        {
+            if(timer > timeBeforeStartShooting && InputController.instance.GetMouseButtonLeft())
+            {
+                Debug.Log("Shooting");
+                return true;
+             }
+            return false;
+        }
+
+        return InputController.instance.GetMouseButtonLeft();
     }
 }

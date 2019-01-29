@@ -1242,6 +1242,12 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 1332787139}
+    - target: {fileID: 4489877011405429397, guid: 60664ea132229c047a920f46c091fed4,
+        type: 3}
+      propertyPath: targetOverlay
+      value: 
+      objectReference: {fileID: 3838935042916201677, guid: ea3eec971c4bfca4486d9be941392c06,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60664ea132229c047a920f46c091fed4, type: 3}
 --- !u!1001 &4998537456697538083

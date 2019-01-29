@@ -18,7 +18,7 @@ public class InterfaceController : MonoBehaviour
     [SerializeField] private GameObject failPanel;
     [SerializeField] private GameObject successPanel;
 
-    [SerializeField] private GameObject test;
+    [SerializeField] private GameObject targetOverlay;
 
     [SerializeField] private Slider slider;
 
@@ -83,8 +83,7 @@ public class InterfaceController : MonoBehaviour
     {
 
         Vector3 cameraPoint = point;
-        
-        GameObject testClone = Instantiate(test, cameraPoint, Quaternion.identity, FindObjectOfType<Canvas>().gameObject.transform);
+        GameObject testClone = Instantiate(targetOverlay, cameraPoint, Quaternion.identity, FindObjectOfType<Canvas>().gameObject.transform);
         Destroy(testClone, 1f);
 
     }
