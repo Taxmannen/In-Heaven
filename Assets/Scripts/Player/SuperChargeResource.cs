@@ -37,6 +37,7 @@ public class SuperChargeResource : MonoBehaviour
     private IEnumerator SuperChargeCoroutine()
     {
         superCharge = 0;
+        Statistics.instance.numberOfSuperChargesUnleashed++;
         InterfaceController.instance.UpdateSuperChargeSlider(0);
         player.shootAction.playerBulletsPerSecond *= 2f; //Hardcoded
         yield return new WaitForSeconds(1f); //Hardcoded
@@ -56,6 +57,22 @@ public class SuperChargeResource : MonoBehaviour
         else
         {
             superCharge += superChargeIncrease;
+        }
+
+        InterfaceController.instance.UpdateSuperChargeSlider(superCharge);
+
+    }
+    public void IncreaseSuperCharge(float incres)
+    {
+
+        if (superCharge + superChargeMax/incres >= superChargeMax)
+        {
+            superCharge = superChargeMax;
+        }
+
+        else
+        {
+            superCharge += superChargeMax / incres;
         }
 
         InterfaceController.instance.UpdateSuperChargeSlider(superCharge);

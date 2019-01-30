@@ -16,7 +16,7 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Boss Parryable Bullet")
+        if (other.tag == "TutorialBullet")
         {
             if (lowerBulletSpeedRoutine == null)
             {
@@ -27,7 +27,7 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Boss Parryable Bullet")
+        if (other.tag == "TutorialBullet")
         {
 
             if (increaseBulletSpeedRoutine == null)

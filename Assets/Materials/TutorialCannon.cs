@@ -31,11 +31,17 @@ public class TutorialCannon : MonoBehaviour
 
     public void LowerSpeed()
     {
-        rigi.velocity = direction.normalized * bulletSpeed--;
+        if (rigi != null)
+        {
+            rigi.velocity = direction.normalized * bulletSpeed--;
+        }
     }
     public void IncreaseSpeed()
     {
-        rigi.velocity = direction.normalized * bulletSpeed++;
+        if (rigi != null)
+        {
+            rigi.velocity = direction.normalized * bulletSpeed++;
+        }
     }
 
 }

@@ -51,7 +51,6 @@ public class DashAction : MonoBehaviour
                 if (cooldownCorutine == null)
                 {
                     dashes--;
-                    
                     coroutine = StartCoroutine(DashCoroutine());
                     cooldownCorutine = StartCoroutine(DashCooldownCoroutine());
                 }
@@ -75,6 +74,7 @@ public class DashAction : MonoBehaviour
         }
 
         AudioController.instance.PlayerDash();
+        Statistics.instance.numberOfDashes++;
         actualVerticalReductionDuringDash = verticalReduction;
         yield return new WaitForSeconds(duration);
         actualVerticalReductionDuringDash = 1f;

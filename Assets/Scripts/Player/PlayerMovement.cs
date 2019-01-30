@@ -77,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
             player.jumping = true;
             verticalVelocity = jumpPower;
             AudioController.instance.PlayerJump();
+            Statistics.instance.numberOfJumps++;
 
         }
 
@@ -89,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
                 doubleJumps--;
                 verticalVelocity = jumpPower;
                 AudioController.instance.PlayerDoubleJump();
+                Statistics.instance.numberOfDoubleJumps++;
             }
 
         }
