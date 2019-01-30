@@ -4,26 +4,116 @@ using UnityEngine;
 
 public class TutorialParryBulletSpeedBox : MonoBehaviour
 {
-     TutorialBullet tutorialbullet;
-    private IEnumerator coroutine;
-    float speed;
+
+    internal Coroutine lowerBulletSpeedRoutine = null;
+    internal Coroutine increaseBulletSpeedRoutine = null;
+    [SerializeField] TutorialCannon tutorialCannon;
+
+
     private void Start()
     {
 
-        coroutine = LowerBulletSpeed(0.5f);
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "TutorialBullet")
+        if (other.tag == "Boss Parryable Bullet")
         {
-            Debug.Log("LKASJFAKF");
-            StartCoroutine(coroutine);
-            
+            if (lowerBulletSpeedRoutine == null)
+            {
+                Debug.Log("Entered");
+                lowerBulletSpeedRoutine = StartCoroutine(LowerBulletSpeed());
+            }
         }
     }
-    private IEnumerator LowerBulletSpeed (float time)
+    private void OnTriggerExit(Collider other)
     {
-        tutorialbullet.bulletSpeed--;
-        yield return new WaitForSeconds (time);
+        if (other.tag == "Boss Parryable Bullet")
+        {
+
+            if (increaseBulletSpeedRoutine == null)
+            {
+                Debug.Log("Exited");
+                //increaseBulletSpeedRoutine = StartCoroutine(IncreaseBulletSpeed());
+
+
+            }
+        }
     }
+
+
+
+    private IEnumerator LowerBulletSpeed()
+    {
+        while (true)
+        {
+
+            tutorialCannon.LowerSpeed();
+
+                if (tutorialCannon.bulletSpeed < 3)
+                {
+                    tutorialCannon.bulletSpeed = 2;
+                }
+            
+            yield return new WaitForSeconds(0.01f);
+        }
+        lowerBulletSpeedRoutine = null;
+        yield break;
+    }
+    /*private IEnumerator IncreaseBulletSpeed()
+    {
+        while (true)
+        {
+            Debug.Log("Testing");
+            tutorialCannon.IncreaseSpeed();
+            yield return new WaitForSeconds(0.01f);
+        }
+        lowerBulletSpeedRoutine = null;
+        yield break;
+    }*/
 }
+
+
+
+//private IEnumerator LowerBulletSpeed()
+//{
+//    while (true)
+//    {
+//        if (tutorialbullet != null)
+//        {
+//            tutorialbullet.UpdateVelocity(tutorialbullet.bulletSpeed--);
+//            if (tutorialbullet.bulletSpeed < 3)
+//            {
+//                tutorialbullet.bulletSpeed = 2;
+//            }
+//        }
+//        yield return new WaitForSeconds(0.03f);
+//    }
+//    lowerBulletSpeedRoutine = null;
+//    yield break;
+//}
+//    private IEnumerator IncreaseBulletSpeed()
+//    {
+//        while (true)
+//        {
+//            Debug.Log("Increase");
+//            tutorialbullet.UpdateVelocity(tutorialbullet.bulletSpeed++);
+//            yield return new WaitForSeconds(0.01f);
+
+
+//            yield break;
+//        }
+//        yield return new WaitForSeconds(1f);
+//        increaseBulletSpeedRoutine = null;
+//        yield break;
+
+
+
+//    }
+//    //private IEnumerator WaitaWhile()
+//    //{
+//    //    yield return new WaitForSeconds (1);
+
+//    //    yield break;
+//    //}
+
+//}

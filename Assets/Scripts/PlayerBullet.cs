@@ -18,14 +18,14 @@ public class PlayerBullet : MonoBehaviour
         if (other.tag == "Boss Hitbox")
         {
             AudioController.instance.BossHitRecieveNoDamage();
-            other.GetComponentInParent<BossController>().Receive(1);
+            other.GetComponentInParent<Character>().Receive(1);
             Destroy(gameObject);
         }
 
         else if (other.tag == "Boss Damage Hitbox")
         {
             AudioController.instance.BossHitRecieveDamage();
-            other.GetComponentInParent<BossController>().Receive(damage);
+            other.GetComponentInParent<Character>().Receive(damage);
             Destroy(gameObject);
         }
 

@@ -6,24 +6,38 @@ public class TutorialController : MonoBehaviour
 {
 
     public static TutorialController instance;
+    [SerializeField] TutorialCannon tutorialCannon;
 
     public int movementTargetsDestroyed;
     public int jumpingTargetsDestroyed;
     public int dashTargetsDestroyed;
     public int shootTargetsDestroyed;
+    public int parryTargetsDestroyed;
 
     public Transform movementDummyParent;
     public Transform jumpDummyParent;
     public Transform dashDummyParent;
     public Transform shootDummyParent;
+    public Transform parryDummyParent;
+
+    public Transform tutorialBulletOrigin;
+    public Transform tutorialBulletTarget;
+    public GameObject tutorialBulletPrefab;
+    public GameObject bulletClone;
+
+    //Rigidbody rigi;
+    //public float bulletSpeed;
+    //Vector3 bulletDirection;
+
 
     private void Awake()
     {
         instance = this;
     }
-
-
-
+    private void Start()
+    {
+        
+    }
     public enum TutorialState
     {
         Movement,
@@ -79,13 +93,17 @@ public class TutorialController : MonoBehaviour
     public void CheckShootingGoal()
     {
         shootTargetsDestroyed++;
+        Debug.Log(shootTargetsDestroyed);
         if (shootTargetsDestroyed >= shootDummyParent.childCount)
         {
+            Debug.Log(shootTargetsDestroyed);
             state = TutorialState.Parry;
+            tutorialCannon.SpawnBullet();
             //parryDummyParent.gameObject.SetActive(true);
             shootDummyParent.gameObject.SetActive(false);
+            ResetShootDummies();
         }
-        ResetShootDummies();
+        
     }
 
     public void ResetMovementDummies()
@@ -118,5 +136,4 @@ public class TutorialController : MonoBehaviour
             shootDummy.gameObject.SetActive(true);
         }
     }
-
 }

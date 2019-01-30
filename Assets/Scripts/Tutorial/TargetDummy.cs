@@ -14,23 +14,30 @@ public class TargetDummy : Character
             if (transform == TutorialController.instance.shootDummyParent.GetChild(i))
             {
                 index = i;
+                //TutorialController.instance.CheckShootingGoal();
             }
         }
         if (index > 0)
         {
             gameObject.SetActive(false);
+
         }
     }
 
     internal override void Die()
     {
         base.Die();
-        if (index<TutorialController.instance.shootDummyParent.childCount)
+        if (index < TutorialController.instance.shootDummyParent.childCount)
         {
             gameObject.SetActive(false);
-            TutorialController.instance.shootDummyParent.GetChild(index + 1).gameObject.SetActive(true);
+            if (index + 1 < TutorialController.instance.shootDummyParent.childCount)
+            {
+                TutorialController.instance.shootDummyParent.GetChild(index + 1).gameObject.SetActive(true);
+            }
+            TutorialController.instance.CheckShootingGoal();
         }
-        
+
+
     }
     //private void HideGameObject()
     //{
