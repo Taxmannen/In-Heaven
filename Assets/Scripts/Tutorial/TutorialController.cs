@@ -9,6 +9,15 @@ public class TutorialController : MonoBehaviour
     [SerializeField] TutorialCannon tutorialCannon;
     private SuperChargeResource superChargeResource;
     private Coroutine checkSuperChargeRoutine;
+    [SerializeField] private TutorialParryBulletSpeedBox speedBox;
+
+    [SerializeField] private Canvas moveCanvas;
+    [SerializeField] private Canvas jumpCanvas;
+    [SerializeField] private Canvas dashCanvas;
+    [SerializeField] private Canvas shootCanvas;
+    [SerializeField] private Canvas parryCanvas;
+    [SerializeField] private Canvas superChargeCanvas;
+
 
     public int movementTargetsDestroyed;
     public int jumpingTargetsDestroyed;
@@ -34,6 +43,7 @@ public class TutorialController : MonoBehaviour
     private void Start()
     {
         superChargeResource = FindObjectOfType<SuperChargeResource>();
+        moveCanvas.enabled = true;
     }
     public enum TutorialState
     {
@@ -50,11 +60,13 @@ public class TutorialController : MonoBehaviour
 
     public void CheckMovementGoal()
     {
+        
         movementTargetsDestroyed++;
         if (movementTargetsDestroyed >= movementDummyParent.childCount)
         {
             state = TutorialState.Jump;
-
+            moveCanvas.enabled = false;
+            jumpCanvas.enabled = true;
             jumpDummyParent.gameObject.SetActive(true);
             movementDummyParent.gameObject.SetActive(false);
             ResetMovementDummies();
@@ -66,7 +78,8 @@ public class TutorialController : MonoBehaviour
         if (jumpingTargetsDestroyed >= jumpDummyParent.childCount)
         {
             state = TutorialState.Dash;
-            Debug.Log("Dash");
+            jumpCanvas.enabled = false;
+            dashCanvas.enabled = true;
             dashDummyParent.gameObject.SetActive(true);
             jumpDummyParent.gameObject.SetActive(false);
             ResetJumpingDummies();
@@ -78,8 +91,9 @@ public class TutorialController : MonoBehaviour
         dashTargetsDestroyed++;
         if (dashTargetsDestroyed >= dashDummyParent.childCount)
         {
-            state = TutorialState.Shoot;
-            Debug.Log("Shoot");
+            dashCanvas.enabled = false;
+            shootCanvas.enabled = true;
+            state = TutorialState.Shoot;            
             shootDummyParent.gameObject.SetActive(true);
             dashDummyParent.gameObject.SetActive(false);
             ResetDashDummies();
@@ -89,8 +103,11 @@ public class TutorialController : MonoBehaviour
     public void CheckShootingGoal()
     {
         shootTargetsDestroyed++;
+
         if (shootTargetsDestroyed >= shootDummyParent.childCount)
         {
+            shootCanvas.enabled = false;
+            parryCanvas.enabled = true;
             state = TutorialState.Parry;
             tutorialCannon.SpawnBullet();
             //parryDummyParent.gameObject.SetActive(true);
@@ -102,9 +119,12 @@ public class TutorialController : MonoBehaviour
     {
         if (superChargeResource.superCharge == superChargeResource.superChargeMax)
         {
-
+            parryCanvas.enabled = false;
+            superChargeCanvas.enabled = true;
             state = TutorialState.SuperCharge;
+            speedBox.StopCoroutines();
             checkSuperChargeRoutine = StartCoroutine(CheckSuperchargeRoutine());
+            
         }
         else
         {
@@ -159,6 +179,7 @@ public class TutorialController : MonoBehaviour
             if (Statistics.instance.numberOfSuperChargesUnleashed == 1)
             {
                 Debug.Log("TUTORIAL FINISHED");
+                superChargeCanvas.enabled = false;
                 yield break;
             }
             yield return null;

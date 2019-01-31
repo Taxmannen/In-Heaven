@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class TutorialParryBulletSpeedBox : MonoBehaviour
 {
-
+    public static TutorialParryBulletSpeedBox instance;
     internal Coroutine lowerBulletSpeedRoutine = null;
     internal Coroutine increaseBulletSpeedRoutine = null;
     internal Coroutine resetBulletRoutine = null;
     [SerializeField] TutorialCannon tutorialCannon;
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,10 +32,13 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
 
             if (increaseBulletSpeedRoutine == null)
             {
-                StopCoroutine(lowerBulletSpeedRoutine);
                 Debug.Log("Exited");
+                //StopCoroutine(lowerBulletSpeedRoutine);
                 increaseBulletSpeedRoutine = StartCoroutine(IncreaseBulletSpeed());
             }
+            Destroy(other.gameObject, 1f);
+            StartCoroutine(InstantiateBulletRoutine());
+            lowerBulletSpeedRoutine = null;
         }
     }
 
@@ -49,7 +56,7 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
             
             yield return new WaitForSeconds(0.01f);
         }
-        lowerBulletSpeedRoutine = null;
+        
         yield break;
     }
     private IEnumerator IncreaseBulletSpeed()
@@ -59,13 +66,28 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
             tutorialCannon.IncreaseSpeed();
             yield return new WaitForSeconds(0.01f);
         }
-        lowerBulletSpeedRoutine = null;
+        increaseBulletSpeedRoutine = null;
         yield break;
     }
     public void StopCoroutines()
     {
         StopCoroutine(IncreaseBulletSpeed());
         StopCoroutine(LowerBulletSpeed());
+        increaseBulletSpeedRoutine = null;
+        lowerBulletSpeedRoutine = null;
+    }
+    public void NullCoroutinesStatic()
+    {
+        StopCoroutine(IncreaseBulletSpeed());
+        
+        increaseBulletSpeedRoutine = null;
+        lowerBulletSpeedRoutine = null;
+    }
+    private IEnumerator InstantiateBulletRoutine()
+    {
+        yield return new WaitForSeconds(2);
+        tutorialCannon.SpawnBullet();
+        yield break;
     }
 
 
