@@ -44,6 +44,7 @@ public class TutorialController : MonoBehaviour
     {
         superChargeResource = FindObjectOfType<SuperChargeResource>();
         moveCanvas.enabled = true;
+        tutorialCannon.gameObject.SetActive(false);
     }
     public enum TutorialState
     {
@@ -109,7 +110,9 @@ public class TutorialController : MonoBehaviour
             shootCanvas.enabled = false;
             parryCanvas.enabled = true;
             state = TutorialState.Parry;
+            tutorialCannon.gameObject.SetActive(true);
             tutorialCannon.SpawnBullet();
+           
             //parryDummyParent.gameObject.SetActive(true);
             shootDummyParent.gameObject.SetActive(false);
             ResetShootDummies();
@@ -128,7 +131,7 @@ public class TutorialController : MonoBehaviour
         }
         else
         {
-            tutorialCannon.SpawnBullet();
+            TutorialParryBulletSpeedBox.instance.StartShoot();
         }
     }
     public void CheckSuperChargeGoal()

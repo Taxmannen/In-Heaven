@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class TutorialBullet : MonoBehaviour
 {
-
+    
     private void OnDestroy()
     {
-        TutorialParryBulletSpeedBox.instance.NullCoroutinesStatic();       
+        if(TutorialParryBulletSpeedBox.instance != null)
+        {
+            TutorialParryBulletSpeedBox.instance.StartShoot();
+        }
+        
     }
 }

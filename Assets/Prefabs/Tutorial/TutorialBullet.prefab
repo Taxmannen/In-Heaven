@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2358153025898205319}
   - component: {fileID: 2358153025898205318}
   - component: {fileID: 2358153025898205336}
-  - component: {fileID: 5972212729477937050}
+  - component: {fileID: 4708246845542202693}
   m_Layer: 11
   m_Name: TutorialBullet
   m_TagString: TutorialBullet
@@ -109,7 +109,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &5972212729477937050
+--- !u!114 &4708246845542202693
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
