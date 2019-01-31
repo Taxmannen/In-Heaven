@@ -7,6 +7,8 @@ public class TutorialController : MonoBehaviour
 
     public static TutorialController instance;
     [SerializeField] TutorialCannon tutorialCannon;
+    private SuperChargeResource superChargeResource;
+    private Coroutine checkSuperChargeRoutine;
 
     public int movementTargetsDestroyed;
     public int jumpingTargetsDestroyed;
@@ -25,18 +27,13 @@ public class TutorialController : MonoBehaviour
     public GameObject tutorialBulletPrefab;
     public GameObject bulletClone;
 
-    //Rigidbody rigi;
-    //public float bulletSpeed;
-    //Vector3 bulletDirection;
-
-
     private void Awake()
     {
         instance = this;
     }
     private void Start()
     {
-        
+        superChargeResource = FindObjectOfType<SuperChargeResource>();
     }
     public enum TutorialState
     {
@@ -50,7 +47,7 @@ public class TutorialController : MonoBehaviour
         
     }
     internal static TutorialState state = TutorialState.Movement;
-    
+
     public void CheckMovementGoal()
     {
         movementTargetsDestroyed++;
@@ -63,7 +60,6 @@ public class TutorialController : MonoBehaviour
             ResetMovementDummies();
         }
     }
-
     public void CheckJumpingGoal()
     {
         jumpingTargetsDestroyed++;
@@ -93,17 +89,35 @@ public class TutorialController : MonoBehaviour
     public void CheckShootingGoal()
     {
         shootTargetsDestroyed++;
-        Debug.Log(shootTargetsDestroyed);
         if (shootTargetsDestroyed >= shootDummyParent.childCount)
         {
-            Debug.Log(shootTargetsDestroyed);
             state = TutorialState.Parry;
             tutorialCannon.SpawnBullet();
             //parryDummyParent.gameObject.SetActive(true);
             shootDummyParent.gameObject.SetActive(false);
             ResetShootDummies();
         }
-        
+    }
+    public void CheckParryGoal()
+    {
+        if (superChargeResource.superCharge == superChargeResource.superChargeMax)
+        {
+
+            state = TutorialState.SuperCharge;
+            checkSuperChargeRoutine = StartCoroutine(CheckSuperchargeRoutine());
+        }
+        else
+        {
+            tutorialCannon.SpawnBullet();
+        }
+    }
+    public void CheckSuperChargeGoal()
+    {
+        if (checkSuperChargeRoutine == null)
+        {
+            checkSuperChargeRoutine = StartCoroutine(CheckSuperchargeRoutine());
+
+        }
     }
 
     public void ResetMovementDummies()
@@ -120,7 +134,6 @@ public class TutorialController : MonoBehaviour
             jumpDummy.gameObject.SetActive(true);
         }
     }
-
     public void ResetDashDummies()
     {
         foreach (Transform dashDummy in dashDummyParent)
@@ -128,12 +141,27 @@ public class TutorialController : MonoBehaviour
             dashDummy.gameObject.SetActive(true);
         }
     }
-
     public void ResetShootDummies()
     {
         foreach (Transform shootDummy in shootDummyParent)
         {
             shootDummy.gameObject.SetActive(true);
+        }
+    }
+    public void ResetParryDummy()
+    {
+        tutorialCannon.SpawnBullet();
+    }
+    private IEnumerator CheckSuperchargeRoutine()
+    {
+        while (true)
+        {
+            if (Statistics.instance.numberOfSuperChargesUnleashed == 1)
+            {
+                Debug.Log("TUTORIAL FINISHED");
+                yield break;
+            }
+            yield return null;
         }
     }
 }
