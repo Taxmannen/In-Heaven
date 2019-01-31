@@ -70,6 +70,7 @@ public class TutorialController : MonoBehaviour
             jumpCanvas.enabled = true;
             jumpDummyParent.gameObject.SetActive(true);
             movementDummyParent.gameObject.SetActive(false);
+            Statistics.instance.timeTookToCompleteMovementTutorial = Time.timeSinceLevelLoad;
             ResetMovementDummies();
         }
     }
@@ -83,6 +84,7 @@ public class TutorialController : MonoBehaviour
             dashCanvas.enabled = true;
             dashDummyParent.gameObject.SetActive(true);
             jumpDummyParent.gameObject.SetActive(false);
+            Statistics.instance.UpdateTimeCompleteJump(Time.timeSinceLevelLoad);
             ResetJumpingDummies();
 
         }
@@ -97,6 +99,7 @@ public class TutorialController : MonoBehaviour
             state = TutorialState.Shoot;            
             shootDummyParent.gameObject.SetActive(true);
             dashDummyParent.gameObject.SetActive(false);
+            Statistics.instance.UpdateTimeCompleteDash(Time.timeSinceLevelLoad);
             ResetDashDummies();
 
         }
@@ -112,7 +115,7 @@ public class TutorialController : MonoBehaviour
             state = TutorialState.Parry;
             tutorialCannon.gameObject.SetActive(true);
             tutorialCannon.SpawnBullet();
-           
+            Statistics.instance.UpdateTimeCompleteShoot(Time.timeSinceLevelLoad);
             //parryDummyParent.gameObject.SetActive(true);
             shootDummyParent.gameObject.SetActive(false);
             ResetShootDummies();
@@ -125,6 +128,7 @@ public class TutorialController : MonoBehaviour
             parryCanvas.enabled = false;
             superChargeCanvas.enabled = true;
             state = TutorialState.SuperCharge;
+            Statistics.instance.UpdateTimeCompleteParry(Time.timeSinceLevelLoad);
             speedBox.StopCoroutines();
             checkSuperChargeRoutine = StartCoroutine(CheckSuperchargeRoutine());
             
@@ -182,6 +186,8 @@ public class TutorialController : MonoBehaviour
             if (Statistics.instance.numberOfSuperChargesUnleashed == 1)
             {
                 Debug.Log("TUTORIAL FINISHED");
+                Statistics.instance.UpdateTimeCompleteSuperCharge(Time.timeSinceLevelLoad);
+                Statistics.instance.UpdateTimeCompleteTutorial(Time.timeSinceLevelLoad);
                 superChargeCanvas.enabled = false;
                 yield break;
             }
