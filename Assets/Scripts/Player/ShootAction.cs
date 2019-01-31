@@ -68,6 +68,7 @@ public class ShootAction : MonoBehaviour
 
         Vector3 dir = point - tf.position;
         AudioController.instance.PlayerShoot();
+        Statistics.instance.numberOfBulletsFired++;
         dir.Normalize();
 
         bullet.GetComponent<Rigidbody>().velocity = dir * playerBulletSpeed;

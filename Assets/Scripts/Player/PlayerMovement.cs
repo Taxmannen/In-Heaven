@@ -12,6 +12,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] [ReadOnly] private float actualVerticalReductionDuringDash = 1;
 
 
+    [Header("Acceleration")]
+    [SerializeField] [Range(0.1f, 2.0f)][Tooltip("The value is in Seconds.")] private float timeToMaxMovmentSpeed = 0.1f;
+    [SerializeField] [Range(0.1f, 2.0f)][Tooltip("The value is in Seconds.")] private float timeToMinMovementSpeed = 0.1f;
+
+
+
     [Header("GRAVITY")]
     [SerializeField] [Range(-1000, 1000)] private float gravity = 75f; //Gravity (Works agaisnt Jump Power)
     [SerializeField] [Range(0, 100)] private float forcedGravitySpeed = 25f; //The additional force affecting the player on pressed down, during aired
@@ -27,6 +33,17 @@ public class PlayerMovement : MonoBehaviour
     internal float actualForcedGravity;
     internal float verticalVelocity;
 
+    [Header("DEBUG")]
+    internal float velocityDirection;
+    internal float deaccelerationValue;
+    internal float accelerationValue;
+
+    private void OnValidate()
+    {
+        accelerationValue = baseMovementSpeed / timeToMaxMovmentSpeed;
+        deaccelerationValue = baseMovementSpeed / timeToMinMovementSpeed;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +53,65 @@ public class PlayerMovement : MonoBehaviour
 
         dash = GetComponent<DashAction>();
     }
+
+
+    public float HorizontalAcceleration(float direction)
+    {
+        if(direction == 0 )
+        {
+
+            if((velocityDirection < 0 && velocityDirection > deaccelerationValue * Time.deltaTime) || (velocityDirection > 0 && velocityDirection < deaccelerationValue * Time.deltaTime))
+            {
+                velocityDirection = 0;
+
+            }
+            else
+            {
+                if (velocityDirection > 0)
+                {
+                    velocityDirection -= deaccelerationValue * Time.deltaTime;
+                }
+                if (velocityDirection < 0)
+                {
+                    velocityDirection += deaccelerationValue * Time.deltaTime;
+                }
+            }
+
+
+
+            
+
+        } else
+        {
+            if(direction > 0)
+            {
+                if(velocityDirection > 0)
+                {
+                    velocityDirection += accelerationValue * Time.deltaTime;
+                } else
+                {
+                    velocityDirection += deaccelerationValue * Time.deltaTime;
+                }
+                
+            } else if(direction < 0)
+            {
+
+                if(velocityDirection < 0)
+                {
+                    velocityDirection -= accelerationValue * Time.deltaTime;
+                } else
+                {
+                    velocityDirection -= deaccelerationValue * Time.deltaTime;
+                }
+               
+            }
+
+        }
+        velocityDirection = Mathf.Clamp(velocityDirection, -baseMovementSpeed, baseMovementSpeed);
+        return velocityDirection;
+    }
+
+
 
     public void Move()
     {
@@ -47,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public float GetHorizontalMovement(float horizontalDirection)
     {
-        return (horizontalDirection * movementSpeed) + dash.velocity;
+        return HorizontalAcceleration(horizontalDirection) + dash.velocity;
     }
 
     public void Gravity()
@@ -77,6 +153,7 @@ public class PlayerMovement : MonoBehaviour
             player.jumping = true;
             verticalVelocity = jumpPower;
             AudioController.instance.PlayerJump();
+            Statistics.instance.numberOfJumps++;
 
         }
 
@@ -89,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
                 doubleJumps--;
                 verticalVelocity = jumpPower;
                 AudioController.instance.PlayerDoubleJump();
+                Statistics.instance.numberOfDoubleJumps++;
             }
 
         }

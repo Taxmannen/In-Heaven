@@ -44,6 +44,7 @@ public class ParryAction : MonoBehaviour
     {
 
         parrybox.enabled = true;
+        Statistics.instance.numberOfParrys++;
         player.playerState = Global.PlayerState.Invincible;    
 
         for (parryCoroutineCounter = sledgeDuration; parryCoroutineCounter > 0; parryCoroutineCounter -= Time.deltaTime)

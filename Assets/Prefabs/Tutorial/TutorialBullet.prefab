@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2358153025898205336}
   m_Layer: 11
   m_Name: TutorialBullet
-  m_TagString: Boss Parryable Bullet
+  m_TagString: TutorialBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

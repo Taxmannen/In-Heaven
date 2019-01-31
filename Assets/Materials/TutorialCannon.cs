@@ -10,32 +10,48 @@ public class TutorialCannon : MonoBehaviour
     public Transform tutorialBulletTargetPos;
     public Rigidbody rigi;
     public Vector3 direction;
-
+    [SerializeField] TutorialParryBulletSpeedBox speedBox;
     GameObject tutorialBulletClone;
-    float originalBulletSpeed = 40;
+    public float originalBulletSpeed = 40;
     public float bulletSpeed = 40;
 
     private void Start()
     {
         bulletSpeed = originalBulletSpeed;
         direction = tutorialBulletTargetPos.position - tutorialBulletOriginpos.position;
+      
     }
 
     public void SpawnBullet()
     {
+        speedBox.StopCoroutines();
         tutorialBulletClone = Instantiate(tutorialBulletPrefab, tutorialBulletOriginpos.position, tutorialBulletOriginpos.rotation);
         rigi = tutorialBulletClone.GetComponent<Rigidbody>();
+        ResetSpeed();
         rigi.velocity = direction.normalized * bulletSpeed;
 
     }
 
     public void LowerSpeed()
     {
-        rigi.velocity = direction.normalized * bulletSpeed--;
+        if (rigi != null)
+        {
+            rigi.velocity = direction.normalized * bulletSpeed--;
+        }
     }
     public void IncreaseSpeed()
     {
-        rigi.velocity = direction.normalized * bulletSpeed++;
+        if (rigi != null)
+        {
+            rigi.velocity = direction.normalized * bulletSpeed++;
+        }
     }
+    public void ResetSpeed()
+    {
+        bulletSpeed = originalBulletSpeed;
+        rigi.velocity = direction.normalized * bulletSpeed;
+
+    }
+
 
 }
