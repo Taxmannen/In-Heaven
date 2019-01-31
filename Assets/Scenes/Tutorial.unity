@@ -2855,7 +2855,7 @@ MonoBehaviour:
   speedBox: {fileID: 620466452}
   originalBulletSpeed: 40
   bulletSpeed: 40
-  bulletLifeTime: 2
+  bulletLifeTime: 2.2
   bulletParent: {fileID: 2059464509}
 --- !u!4 &769381851
 Transform:

@@ -70,6 +70,7 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
     {
         StopCoroutine(IncreaseBulletSpeed());
         StopCoroutine(LowerBulletSpeed());
+        tutorialCannon.bulletSpeed = tutorialCannon.originalBulletSpeed;
         increaseBulletSpeedRoutine = null;
         lowerBulletSpeedRoutine = null;
     }
@@ -91,9 +92,9 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
     private IEnumerator InstantiateBulletRoutine()
     {
         StopCoroutines();
-        tutorialCannon.bulletSpeed = 2;
+        tutorialCannon.bulletSpeed = tutorialCannon.originalBulletSpeed;
         tutorialCannon.SpawnBullet();
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1f);
         instantiateBulletRoutine = null;        
         yield break;
     }
