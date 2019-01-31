@@ -3422,6 +3422,13 @@ MonoBehaviour:
   numberOfDeaths: 0
   numberOfWeakpointHits: 0
   numberOfBossHits: 0
+  timeTookToCompleteTutorial: 0
+  timeTookToCompleteMovementTutorial: 0
+  timeTookToCompleteJumpTutorial: 0
+  timeTookToCompleteDashTutorial: 0
+  timeTookToCompleteShootTutorial: 0
+  timeTookToCompleteParryTutorial: 0
+  timeTookToCompleteSuperCharageTutorial: 0
 --- !u!4 &1006805421
 Transform:
   m_ObjectHideFlags: 0

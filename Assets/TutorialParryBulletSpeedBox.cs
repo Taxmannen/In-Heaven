@@ -47,9 +47,10 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
         while (tutorialCannon.rigi != null)
         {
             tutorialCannon.LowerSpeed();
-                if (tutorialCannon.bulletSpeed < 3)
+                if (tutorialCannon.bulletSpeed < 2)
                 {
                     tutorialCannon.bulletSpeed = 2;
+                    break;
                 }
             yield return new WaitForSeconds(0.01f);
         }
@@ -61,6 +62,11 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
         while (tutorialCannon.bulletSpeed < tutorialCannon.originalBulletSpeed)
         {
             tutorialCannon.IncreaseSpeed();
+            if(tutorialCannon.bulletSpeed > tutorialCannon.originalBulletSpeed)
+            {
+                tutorialCannon.bulletSpeed = tutorialCannon.originalBulletSpeed;
+                break;
+            }
             yield return new WaitForSeconds(0.01f);
         }
         increaseBulletSpeedRoutine = null;
@@ -70,7 +76,9 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
     {
         StopCoroutine(IncreaseBulletSpeed());
         StopCoroutine(LowerBulletSpeed());
+
         tutorialCannon.bulletSpeed = tutorialCannon.originalBulletSpeed;
+
         increaseBulletSpeedRoutine = null;
         lowerBulletSpeedRoutine = null;
     }
