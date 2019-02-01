@@ -92,7 +92,7 @@ public class PlayerInput : MonoBehaviour
         //Dash: Shift
         if (Global.shiftDashing)
         {
-            if (GetDiffrentDashKey() && horizontalDirection != 0)
+            if (GetDiffrentDashKey())
             {
                 playerController.Dash();
             }
