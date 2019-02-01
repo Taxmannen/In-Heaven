@@ -9,7 +9,8 @@ public class Sight : MonoBehaviour
     [Range(300, 1500)]
     public float sensitivity;
 
-    Vector2 bounds;
+    Vector2 minBounds;
+    Vector2 maxBounds;
     Vector2 size;
     Image img;
 
@@ -20,7 +21,6 @@ public class Sight : MonoBehaviour
         Rect rect = GetComponent<RectTransform>().rect;
         size = new Vector2(rect.width, rect.height);
 
-        transform.position = new Vector2((canvasRect.rect.width - (size.x / 2)) / 2, (canvasRect.rect.height - (size.y / 2)) / 2);
         SetScreenBounds();
 
         if (InputController.instance.isGamePad)
@@ -38,14 +38,15 @@ public class Sight : MonoBehaviour
         if (InputController.instance.isGamePad)
         {
             Vector2 movement = new Vector2(x, y) * sensitivity * Time.deltaTime;
-            transform.position = new Vector3(Mathf.Clamp(transform.position.x + movement.x, 0, bounds.x), Mathf.Clamp(transform.position.y + movement.y, 0, bounds.y), 0);
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x + movement.x, minBounds.x, maxBounds.x), Mathf.Clamp(transform.position.y + movement.y, minBounds.y, maxBounds.y), 0);
         }
-        else transform.position = new Vector3(Input.mousePosition.x - (size.x/2), Input.mousePosition.y - (size.y/2), 0);
+        else transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
     }
 
     //Bör kallas vid resolution byte
     void SetScreenBounds()
     {
-        bounds = new Vector2(canvasRect.rect.width - size.x, canvasRect.rect.height - size.y);
+        minBounds = new Vector2(size.x/2, size.y/2);
+        maxBounds = new Vector2(canvasRect.rect.width - (size.x/2), canvasRect.rect.height - (size.y/2));  
     }
 }

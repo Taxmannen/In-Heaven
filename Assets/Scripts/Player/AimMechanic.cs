@@ -2,10 +2,11 @@
 
 public class AimMechanic : MonoBehaviour
 {
+    public Transform aim;
     [SerializeField] [Range(0, 1000)] private float playerBulletTrajectoryDistance = 50f; //The max end point for the bullets trajectory, should be about the same as the distance between the player face and the boss face.
     private RaycastHit aimHit;
     internal Vector3 aimPoint;
-    public Transform aim;
+   
 
     private Camera camera;
 
