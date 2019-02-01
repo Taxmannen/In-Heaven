@@ -50,17 +50,18 @@ public class PlayerMovement : MonoBehaviour
         player = GetComponent<PlayerController>();
         doubleJumps = maxDoubleJumps;
         movementSpeed = baseMovementSpeed;
-
+        accelerationValue = baseMovementSpeed / timeToMaxMovmentSpeed;
+        deaccelerationValue = baseMovementSpeed / timeToMinMovementSpeed;
         dash = GetComponent<DashAction>();
     }
 
 
     public float HorizontalAcceleration(float direction)
     {
-        if(direction == 0 )
+        if (direction == 0 )
         {
 
-            if((velocityDirection < 0 && velocityDirection > deaccelerationValue * Time.deltaTime) || (velocityDirection > 0 && velocityDirection < deaccelerationValue * Time.deltaTime))
+            if ((velocityDirection < 0 && velocityDirection > deaccelerationValue * Time.deltaTime) || (velocityDirection > 0 && velocityDirection < deaccelerationValue * Time.deltaTime))
             {
                 velocityDirection = 0;
 
@@ -79,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-            
+
 
         } else
         {

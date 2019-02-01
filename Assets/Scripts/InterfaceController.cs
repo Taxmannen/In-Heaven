@@ -45,7 +45,7 @@ public class InterfaceController : MonoBehaviour
     {
         PlayerController player =  GameController.instance.GetPlayerController();
 
-        slider.maxValue = player.GetSuperChargeMax();
+        //slider.maxValue = player.GetSuperChargeMax();
         slider.value = slider.value / slider.maxValue;
     }
 

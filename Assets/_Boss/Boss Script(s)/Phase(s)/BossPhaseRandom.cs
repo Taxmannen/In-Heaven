@@ -6,8 +6,7 @@ using UnityEngine;
 /// Made by: Filip Nilsson
 /// </summary>
 public class BossPhaseRandom : BossPhase
-{
-
+{ 
     protected override IEnumerator PhaseRoutine(Boss boss)
     {
 

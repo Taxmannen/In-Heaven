@@ -40,7 +40,7 @@ public class PlayerController : Character
     internal ShootAction shootAction;
     internal InvincibleEffect invincible;
     internal PlayerMovement movement;
-    internal SuperChargeResource superChargeResource;
+    [SerializeField]internal SuperChargeResource superChargeResource;
     internal AimMechanic aim;
     /// <summary>
     /// Updates necessary values on direct changes in the hierarchy during both runtime and edit mode.
