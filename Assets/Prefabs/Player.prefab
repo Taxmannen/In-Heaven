@@ -69,8 +69,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1008925013563656533}
-  - component: {fileID: 7344333353121930191}
   - component: {fileID: 1008925013563656534}
+  - component: {fileID: 7344333353121930191}
   - component: {fileID: 338361051}
   - component: {fileID: 338361054}
   - component: {fileID: 338361049}
@@ -104,6 +104,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1008925013563656534
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008925013563656531}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!114 &7344333353121930191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,22 +142,6 @@ MonoBehaviour:
   jumping: 0
   dashOnCooldown: 0
   playerState: 0
---- !u!54 &1008925013563656534
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008925013563656531}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 1
 --- !u!114 &338361051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebea5c58f7fba5445a60f0f24f7f3138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aim: {fileID: 0}
   playerBulletTrajectoryDistance: 100
 --- !u!114 &338361049
 MonoBehaviour:
@@ -280,6 +281,7 @@ MonoBehaviour:
   doubleTapInterval: 0.25
   changeDashKeyToMouse: 0
   testKeyConfiguration: 0
+  onlyShootOnGround: 0
   timeBeforeStartShooting: 0.2
   timer: 0
 --- !u!1 &1008925013960216299
