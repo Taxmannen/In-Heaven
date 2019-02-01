@@ -17,7 +17,7 @@ public class PatternShot : MonoBehaviour
     public void Start()
     {
         bossController = GameObject.Find("Boss").GetComponent<BossController>();
-        TextAsset txtAssets = (TextAsset)Resources.Load(pattern1);
+        TextAsset txtAssets = (TextAsset)Resources.Load("TextAssets/" + pattern1);
         txtContents = txtAssets.text;
     }
 

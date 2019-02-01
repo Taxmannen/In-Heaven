@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622e0e43be6545b4ba03e17490b5fa2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textFile: {fileID: 4900000, guid: fd2dcd7e645c87f42b9529128a5c8ad4, type: 3}
+  pattern1: PatternShot1
   PatternShotBullet: {fileID: 7929821046718854551, guid: 1c043f6cbc6af7e4bbf481f83a265237,
     type: 3}
 --- !u!114 &1989255086 stripped
@@ -816,11 +816,6 @@ PrefabInstance:
       propertyPath: bullets
       value: 
       objectReference: {fileID: 970883459}
-    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
-        type: 3}
-      propertyPath: spreadShotFireRate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 937380584421009115, guid: 06477cabd24071c41bc21211c6e448b2,
         type: 3}
       propertyPath: bossBulletSpeed
@@ -835,6 +830,11 @@ PrefabInstance:
         type: 3}
       propertyPath: shotArray.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: spreadShotFireRate
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
         type: 3}
@@ -1010,7 +1010,7 @@ PrefabInstance:
     - target: {fileID: 1008925013563656533, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1008925013563656533, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
