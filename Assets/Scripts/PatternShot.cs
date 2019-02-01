@@ -4,47 +4,74 @@ using UnityEngine;
 
 public class PatternShot : MonoBehaviour
 {
-    public TextAsset textFile;
+    public string pattern1 = "PatternShot1";
+    string txtContents;
     string[] patternString;
 
-  
+    private BossController bossController;
 
-    public void PatternGenerateArray()
+    public GameObject PatternShotBullet;
+
+    private Coroutine bossShootPatternShot;
+
+    public void Start()
     {
-        patternString = (textFile.text.Split('\n'));
+        bossController = GameObject.Find("Boss").GetComponent<BossController>();
+        TextAsset txtAssets = (TextAsset)Resources.Load(pattern1);
+        txtContents = txtAssets.text;
     }
 
-    private IEnumerator PatternShotCorutine(Vector3 PatternShotSpawnPosition, Vector3 PatternShotTargetPoint)
+   
+    public void PatternGenerateArray()
     {
-       //string[] textFile = Assets.Resources.TextAssets.PatternShot1.txt;
-            var textFile = Resources.Load<TextAsset>("TextAssets/PatternShots1");
+        //patternString = (pattern1.text.Split('\n'));
+    }
+    
+    public void PatternShotShoot(Vector3 PatternShotSpawnPosition)
+    {
+        if (bossShootPatternShot == null)
+        {
+            bossShootPatternShot = StartCoroutine(PatternShotCorutine(PatternShotSpawnPosition));
+        }
+    }
 
-        float[] patternLength = new float[patternString.Length];
+    private IEnumerator PatternShotCorutine(Vector3 PatternShotSpawnPosition)
+    {
+
+        //var textFile = Resources.Load<TextAsset>("TextAssets/PatternShots1");
+
+        float[] patternLength = new float[txtContents.Length];
 
         float patternSpread = float.Parse(patternString[0]);
 
         float patternShotTargetX = float.Parse(patternString[1]);
         float patternShotTargetY = float.Parse(patternString[2]);
 
-        Vector3 PatternStartingPoint = new Vector3();
-        Vector3 PatternShotTarget = new Vector3(patternShotTargetX, patternShotTargetY, 0);
-
-
+        Vector3 PatternShotStartingPoint = bossController.RandomSpawnPoint();
+        
         for (int i = 3; i < patternLength.Length; i++)
         {
 
-            Debug.Log(patternString[i]);
+            Vector3 PatternShotTarget = new Vector3(patternShotTargetX, patternShotTargetY, 0);
+
+             Vector3 direction = PatternShotTarget - PatternShotStartingPoint;
 
             if (float.Parse(patternString[i]) == 0)
             {
-
+                patternShotTargetX = patternShotTargetX + patternSpread;
             }
+
             if(float.Parse(patternString[i]) == 1)
             {
+                GameObject PatternShotBulletClone = Instantiate(PatternShotBullet, PatternShotStartingPoint, Quaternion.identity);
 
+                patternShotTargetX = patternShotTargetX + patternSpread;
             }
 
-
+            if(float.Parse(patternString[i]) == 2)
+            {
+                patternShotTargetY = patternShotTargetY + patternSpread;
+            }            
         }
 
         yield break;

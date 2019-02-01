@@ -429,7 +429,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 937380583967212521}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1875301011}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 411744f2434562847aa99007b897afcd, type: 3}
@@ -510,6 +510,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1742673353}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1875301011 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 937380584421009113, guid: 06477cabd24071c41bc21211c6e448b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 937380583967212521}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1875301012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875301011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 622e0e43be6545b4ba03e17490b5fa2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textFile: {fileID: 4900000, guid: fd2dcd7e645c87f42b9529128a5c8ad4, type: 3}
+  PatternShotBullet: {fileID: 7929821046718854551, guid: 1c043f6cbc6af7e4bbf481f83a265237,
+    type: 3}
 --- !u!114 &1989255086 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6525200260677797338, guid: 7680cb7d4288b0149bbb553db8a8336d,
@@ -765,6 +786,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 937380584421009113, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 937380584421009115, guid: 06477cabd24071c41bc21211c6e448b2,
         type: 3}
       propertyPath: bullets
@@ -774,6 +800,36 @@ PrefabInstance:
         type: 3}
       propertyPath: spreadShotFireRate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 937380584421009115, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: bossBulletSpeed
+      value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 937380584421009115, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: bossLaserRaySpeed
+      value: 5.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: shotArray.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: spreadShotFireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: spreadShotBullets
+      value: 
+      objectReference: {fileID: 1511022943}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: SpreadShotBulletSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 937380584421009112, guid: 06477cabd24071c41bc21211c6e448b2,
         type: 3}
@@ -908,7 +964,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 937380583967212521}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1875301011}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8621723bbf5ad894e97cd004d2f65af8, type: 3}

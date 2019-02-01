@@ -9,6 +9,7 @@ public class BossController : Character
     [SerializeField] private Transform bullets;
     [SerializeField] private Rigidbody rigi;
     SpreadShot spreadShot;
+    PatternShot patternShot;
 
     [SerializeField] private List<Transform> bossBulletSpawnPoint;
 
@@ -67,6 +68,7 @@ public class BossController : Character
         InterfaceController.instance.UpdateBossState(bossState);
 
         spreadShot = GetComponent<SpreadShot>();
+        patternShot = GetComponent<PatternShot>();
 
     }
     private void Update()
@@ -101,9 +103,12 @@ public class BossController : Character
     {
 
 
-        int random = Random.Range((int)1, (int)4); // Change to 4 for spread
+        int random = Random.Range((int)1, (int)5); // Change to 4 for spread
 
         Vector3 SpreadShotBulletSpawnPosition = RandomSpawnPoint();
+        Vector3 PatternShotSpawnPosition = RandomSpawnPoint();
+        
+
         float spreadShotStartingTarget = spreadShot.generateSpreadShootTarget();
 
         yield return new WaitForSeconds(1f);
@@ -126,6 +131,10 @@ public class BossController : Character
 
                 case 3:
                     spreadShot.SpreadShotShoot(SpreadShotBulletSpawnPosition, spreadShotStartingTarget);
+                    break;
+
+                case 4:
+                    patternShot.PatternShotShoot(PatternShotSpawnPosition);
                     break;
             }
 
