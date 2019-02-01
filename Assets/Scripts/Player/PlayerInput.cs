@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-
     [SerializeField] private PlayerController playerController;
     [SerializeField] private float doubleTapInterval = 0.25f;
 
@@ -21,11 +20,7 @@ public class PlayerInput : MonoBehaviour
     //Timer/TimeCounter
     [SerializeField] private float timeBeforeStartShooting = 0.2f;
     [SerializeField][ReadOnly] private float timer = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
     private void Update()
     {
         if(GameController.instance.gameState == Global.GameState.Game)
@@ -33,7 +28,7 @@ public class PlayerInput : MonoBehaviour
             UpdatePlayer();
         }
     }
-    // Update is called once per frame
+
     private void UpdatePlayer()
     {
 
@@ -59,7 +54,7 @@ public class PlayerInput : MonoBehaviour
         }
 
         //Dash: Double Tap
-        if (Global.doubleTapDashing)
+        if (Global.doubleTapDashing && !InputController.instance.isGamePad)
         {
 
             if (InputController.instance.GetKeyDownLeft())
@@ -97,12 +92,10 @@ public class PlayerInput : MonoBehaviour
         //Dash: Shift
         if (Global.shiftDashing)
         {
-
             if (GetDiffrentDashKey() && horizontalDirection != 0)
             {
                 playerController.Dash();
             }
-
         }
 
         if (InputController.instance.GetMouseButtonUpLeft())
@@ -188,7 +181,8 @@ public class PlayerInput : MonoBehaviour
         }
 
     }
-    //  Might be done better but works as intended 
+
+    //Might be done better but works as intended 
     private bool ParryButtonOnMouse()
     {
 
@@ -210,10 +204,9 @@ public class PlayerInput : MonoBehaviour
 
             return false;
         }
-        
-        
         return InputController.instance.GetMouseButtonDownRight();
     }
+
     private bool AbleToShoot()
     {
         if (testKeyConfiguration)
