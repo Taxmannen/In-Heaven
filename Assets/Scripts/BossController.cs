@@ -132,10 +132,10 @@ public class BossController : Character
                 case 3:
                     spreadShot.SpreadShotShoot(SpreadShotBulletSpawnPosition, spreadShotStartingTarget);
                     break;
-
+                /*
                 case 4:
                     patternShot.PatternShotShoot(PatternShotSpawnPosition);
-                    break;
+                    break;*/
             }
 
             yield return null;
