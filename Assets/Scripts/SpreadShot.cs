@@ -1,4 +1,4 @@
-﻿//using System;
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +12,7 @@ public class SpreadShot : MonoBehaviour
     public GameObject SpreadShotBullet;
 
     [SerializeField] private Transform spreadShotBullets;
+    [SerializeField] [Range(1, 100)] private float spreadShotFireRate;
 
     public float SpreadShotProjectileSpeed;
     public float SpreadShotBulletSpeed;
@@ -19,10 +20,10 @@ public class SpreadShot : MonoBehaviour
     public int numberOfBullets;
     
     public Vector3[] shotArray;
-
-    [SerializeField] [Range(1, 100)] private float spreadShotFireRate;
-
+    
     private Coroutine bossShootSpreadShot;
+    float timer;
+
 
 
 
@@ -30,10 +31,7 @@ public class SpreadShot : MonoBehaviour
     {
 
         Vector3 SpreadShotBulletSpawnPosition = new Vector3(Random.Range(-12.0f, 12.0f), Random.Range(4.0f, 13.0f), 0);
-
-        
-
-
+                
         return SpreadShotBulletSpawnPosition;
     }
 
