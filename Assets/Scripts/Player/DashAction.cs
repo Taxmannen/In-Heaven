@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 [RequireComponent(typeof(PlayerController))]
 public class DashAction : MonoBehaviour
 {
-
     private PlayerController player;
 
     [SerializeField] [Range(0, 1000)] private float power = 50f; //The speed of the dash (affects dash distance)
@@ -19,22 +18,29 @@ public class DashAction : MonoBehaviour
     internal Coroutine cooldownCorutine = null;
 
     internal float velocity;
+    float dir; //Added so you always dash the direction you faced last
 
     [Header("DEBUG")]
     [SerializeField] [ReadOnly] private float dashes = 0;
     [SerializeField] [ReadOnly] private float actualVerticalReductionDuringDash = 1;
-    // Start is called before the first frame update
+
     void Start()
     {
         player = GetComponent<PlayerController>();
     }
+
+    private void Update()
+    {
+        if (player.GetHorizontalDirection() != 0) dir = player.GetHorizontalDirection();
+    }
+
     public void Reset()
     {
         dashes = maxDashesInAir;
     }
+
     public void Dash()
     {
-        
         if (player.grounded)
         {
             if (cooldownCorutine == null)
@@ -62,16 +68,8 @@ public class DashAction : MonoBehaviour
     private IEnumerator DashCoroutine()
     {
         player.Invincible(invincibleDuration);
-
-        if (player.GetHorizontalDirection() < 0)
-        {
-            velocity = -1 * power;
-        }
-
-        else
-        {
-            velocity = power;
-        }
+    
+        velocity = dir * power;
 
         AudioController.instance.PlayerDash();
         Statistics.instance.numberOfDashes++;
@@ -90,6 +88,7 @@ public class DashAction : MonoBehaviour
         cooldownCorutine = null;
         yield break;
     }
+
     public void MyStopCorutine()
     {
         if (coroutine != null)

@@ -8,6 +8,7 @@ public class PlayerController : Character
     //Serialized
     [Header("SERIALIZED")]
     [SerializeField] internal Rigidbody rigi;
+    [SerializeField] internal Animator animator;
 
     //Design
     //[Header("GENERAL")]
@@ -74,12 +75,13 @@ public class PlayerController : Character
 
         hP = maxHP;
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
-
+        animator.SetBool("Dead", false);
         playerState = Global.PlayerState.Default;
         InterfaceController.instance.UpdatePlayerState(playerState);
 
-        aim = aim == null ? GetComponent<AimMechanic>() : aim;
+        animator = animator == null ? GetComponentInChildren<Animator>() : animator;
 
+        aim = aim == null ? GetComponent<AimMechanic>() : aim;
         dashAction = dashAction == null ? GetComponent<DashAction>() : dashAction;
         parryAction = parryAction == null ? GetComponent<ParryAction>() : parryAction;
         shootAction = shootAction == null ? GetComponent<ShootAction>() : shootAction;
@@ -145,7 +147,14 @@ public class PlayerController : Character
             }
 
         }
-
+        animator.SetBool("Jumping", jumping);
+        if(rigi.velocity.x == 0)
+        {
+            animator.SetBool("NotMoving", true);
+        } else
+        {
+            animator.SetBool("NotMoving", false);
+        }
     }
     /// <summary>
     /// Applies velocity to the player.
@@ -156,6 +165,7 @@ public class PlayerController : Character
     }
     public void Jump()
     {
+        animator.SetBool("Jumping", jumping);
         movement.Jump();
     }
     public void Gravity()
@@ -213,7 +223,7 @@ public class PlayerController : Character
 
         Freeze();
         GameController.instance.FreezeBoss();
-
+        animator.SetBool("Dead", true);
         hP = 0;
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
         playerState = Global.PlayerState.Dead;

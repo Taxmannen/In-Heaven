@@ -3037,6 +3037,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sight
       objectReference: {fileID: 0}
+    - target: {fileID: 2978530918832498210, guid: c596517a3f15f484b970a3ca97a34a18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2978530918832498209, guid: c596517a3f15f484b970a3ca97a34a18,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3147,6 +3152,16 @@ PrefabInstance:
       propertyPath: canvasRect
       value: 
       objectReference: {fileID: 4998537455927835904}
+    - target: {fileID: 2978530918832498208, guid: c596517a3f15f484b970a3ca97a34a18,
+        type: 3}
+      propertyPath: sensitivity
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978530918832498223, guid: c596517a3f15f484b970a3ca97a34a18,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c596517a3f15f484b970a3ca97a34a18, type: 3}
 --- !u!224 &3611587015460983107 stripped

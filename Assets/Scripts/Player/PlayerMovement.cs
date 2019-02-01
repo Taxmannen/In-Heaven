@@ -108,6 +108,8 @@ public class PlayerMovement : MonoBehaviour
 
         }
         velocityDirection = Mathf.Clamp(velocityDirection, -baseMovementSpeed, baseMovementSpeed);
+        player.animator.SetFloat("Movement", velocityDirection);
+        player.animator.transform.rotation = Quaternion.AngleAxis(direction * 90, Vector3.up);
         return velocityDirection;
     }
 
