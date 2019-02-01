@@ -13,6 +13,9 @@ TagManager:
   - Boss Hitbox
   - Boss Damage Hitbox
   - TutorialBullet
+  - Phase Parent
+  - Movement Parent
+  - Attack Parent
   layers:
   - Default
   - TransparentFX

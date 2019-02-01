@@ -15,18 +15,30 @@ public class PlayerBullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
+        BossHitbox bhb;
+
         if (other.tag == "Boss Hitbox")
         {
-            AudioController.instance.BossHitRecieveNoDamage();
-            other.GetComponentInParent<Character>().Receive(1);
-            Destroy(gameObject);
-        }
 
-        else if (other.tag == "Boss Damage Hitbox")
-        {
-            AudioController.instance.BossHitRecieveDamage();
-            other.GetComponentInParent<Character>().Receive(damage);
-            Destroy(gameObject);
+            if (bhb = other.GetComponent<BossHitbox>())
+            {
+
+                if (bhb.Damagable())
+                {
+                    other.GetComponent<BossHitbox>().Receive(damage);
+                    AudioController.instance.BossHitRecieveDamage();
+                    Destroy(gameObject);
+                }
+
+                else
+                {
+                    AudioController.instance.BossHitRecieveNoDamage();
+                    Destroy(gameObject);
+                }
+
+            }
+
+            
         }
 
     }
