@@ -59,20 +59,16 @@ public class ShootAction : MonoBehaviour
 
     private IEnumerator ShootCoroutine(Vector3 point)
     {
+        if(AudioController.instance)
+        {
+            AudioController.instance.PlayerShoot();
+        }
+        if(Statistics.instance)
+        {
+            Statistics.instance.numberOfBulletsFired++;
+        }
 
-        float xangle = Mathf.Atan2(point.z - tf.position.z, point.y - tf.position.y) * 180 / Mathf.PI;
-        float yangle = Mathf.Atan2(point.x - tf.position.x, point.z - tf.position.z) * 180 / Mathf.PI;
-
-        GameObject bullet = Instantiate(bulletPrefab, tf.position, Quaternion.Euler(xangle, yangle, 0), bullets);
-        Destroy(bullet, playerBulletLifetime);
-
-        Vector3 dir = point - tf.position;
-        AudioController.instance.PlayerShoot();
-        Statistics.instance.numberOfBulletsFired++;
-        dir.Normalize();
-
-        bullet.GetComponent<Rigidbody>().velocity = dir * playerBulletSpeed;
-
+        GameObject bullet = ShootingHelper.Shoot(transform.position, point, bulletPrefab, playerBulletSpeed, bullets);
         bullet.GetComponent<PlayerBullet>().SetDamage(playerBulletDamage);
         yield return new WaitForSeconds(1 / playerBulletsPerSecond);
         shootCoroutine = null;

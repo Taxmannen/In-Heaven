@@ -53,9 +53,8 @@ public class BossHitbox : MonoBehaviour
         //Fix
         if (hP <= 0)
         {
-            gameObject.SetActive(false);
+            weakpoint = false;
         }
-
 
 
         boss.Receive(damage);

@@ -220,6 +220,16 @@ public class Boss : Character
         Debug.Log("Boss died aka done with phases.");
         //Boss Dies Here, Animations & More... Tobe Coroutine
     }
+    internal virtual void Receive(float amt)
+    {
+        base.Receive(amt);
+        if(hP - amt < 0)
+        {
+            activePhase++;
+        }
+        
+    }
+
 
 
 

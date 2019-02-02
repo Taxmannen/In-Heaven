@@ -25,6 +25,7 @@ public class PlayerBullet : MonoBehaviour
 
                 if (bhb.Damagable())
                 {
+                    Debug.Log("Did Damage");
                     other.GetComponent<BossHitbox>().Receive(damage);
                     AudioController.instance.BossHitRecieveDamage();
                     Destroy(gameObject);
