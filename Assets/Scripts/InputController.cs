@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Made by: Filip Nilsson, Edited By: Daniel Nordahl and Jesper Uddefors
+/// </summary>
 public class InputController : MonoBehaviour {
     public bool isGamePad;
 
@@ -142,13 +145,9 @@ public class InputController : MonoBehaviour {
         else return Input.GetKeyDown(up);
     }
 
-    //==================================================
-
     public bool GetKeyDownTest()
     {
         return Input.GetKeyDown(test);
     }
-
-    //==================================================
 
 }

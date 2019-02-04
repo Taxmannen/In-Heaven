@@ -4,6 +4,9 @@ using UnityEngine;
 
 using UnityEngine.UI;
 
+/// <summary>
+/// Made by: Filip Nilsson
+/// </summary>
 public class InterfaceController : MonoBehaviour
 {
 

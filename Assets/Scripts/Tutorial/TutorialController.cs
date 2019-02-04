@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made By: Vidar M
+/// </summary>
 public class TutorialController : MonoBehaviour
 {
 

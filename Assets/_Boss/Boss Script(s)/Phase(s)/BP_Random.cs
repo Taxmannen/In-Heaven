@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Made by: Filip Nilsson
 /// </summary>
-public class BossPhaseRandom : BossPhase
+public class BP_Random : BossPhase
 { 
     protected override IEnumerator PhaseRoutine(Boss boss)
     {

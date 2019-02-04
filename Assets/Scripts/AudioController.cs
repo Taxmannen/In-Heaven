@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by: Vidar M
+/// </summary>
 public class AudioController : MonoBehaviour
 {
     public static AudioController instance;
