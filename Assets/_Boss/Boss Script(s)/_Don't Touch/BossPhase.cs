@@ -73,7 +73,7 @@ public class BossPhase : MonoBehaviour
 
             bossMovements.Clear();
 
-            foreach (BossMovement bossMovement in bossMovements)
+            foreach (BossMovement bossMovement in movementPrefabs)
             {
                 bossMovements.Add(Instantiate(bossMovement, this.movementParent));
             }
@@ -111,7 +111,7 @@ public class BossPhase : MonoBehaviour
 
             bossAttacks.Clear();
 
-            foreach (BossAttack attack in bossAttacks)
+            foreach (BossAttack attack in attackPrefabs)
             {
                 bossAttacks.Add(Instantiate(attack, this.attackParent));
             }

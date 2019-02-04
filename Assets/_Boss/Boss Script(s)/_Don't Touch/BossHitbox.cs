@@ -26,6 +26,7 @@ public class BossHitbox : MonoBehaviour
     private void Start()
     {
         boss = GetComponentInParent<Boss>();
+
     }
     public bool Damagable()
     {
@@ -72,6 +73,11 @@ public class BossHitbox : MonoBehaviour
     public void SetWeakpoint(bool weakpoint)
     {
         this.weakpoint = weakpoint;
+
+        if (this.weakpoint)
+        {
+            GetComponent<Renderer>().material.color = Color.red;
+        }
     }
 
     public float GetMaxHP()

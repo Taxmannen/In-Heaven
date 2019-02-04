@@ -4,18 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bullet
-  - BossBullet
   - BossLaserRay
-  - Boss Parryable Bullet
   - Player Hitbox
-  - Boss
   - Boss Hitbox
-  - Boss Damage Hitbox
-  - TutorialBullet
   - Phase Parent
   - Movement Parent
   - Attack Parent
+  - Boss Damage Hitbox
   layers:
   - Default
   - TransparentFX
