@@ -1,4 +1,4 @@
-﻿/* https://www.ronja-tutorials.com/2018/10/20/single-step-toon.html */
+/* https://www.ronja-tutorials.com/2018/10/20/single-step-toon.html */
 
 Shader "Custom/Cel Shader Final" {
 	Properties {
@@ -10,7 +10,7 @@ Shader "Custom/Cel Shader Final" {
 		[Header(Lighting)]
 		_ShadowTint("Shadow Color", Color) = (0.5, 0.5, 0.5, 1)
 
-		_OutlineOn("Outline On", Float) = 0
+		[Header(Outline)]
 		_OutlineColor("Outline Color", Color) = (0, 0, 0, 1)
 		_OutlineExtrusion("Outline Extrusion", float) = 0.04
 	}
@@ -18,7 +18,7 @@ Shader "Custom/Cel Shader Final" {
 	SubShader {
 		Tags{ "RenderType" = "Opaque" "Queue" = "Geometry" }
 
-		// Write to Stencil buffer (so that outline pass can read)
+		//Write to Stencil buffer (so that outline pass can read)
 		Stencil
 		{
 			Ref 4
@@ -43,13 +43,13 @@ Shader "Custom/Cel Shader Final" {
 			float towardsLightChange = fwidth(towardsLight);
 			float lightIntensity = smoothstep(0, towardsLightChange, towardsLight);
 
-		#ifdef USING_DIRECTIONAL_LIGHT
-			float attenuationChange = fwidth(shadowAttenuation) * 0.5;
-			float shadow = smoothstep(0.5 - attenuationChange, 0.5 + attenuationChange, shadowAttenuation);
-		#else
-			float attenuationChange = fwidth(shadowAttenuation);
-			float shadow = smoothstep(0, attenuationChange, shadowAttenuation);
-		#endif
+			#ifdef USING_DIRECTIONAL_LIGHT
+				float attenuationChange = fwidth(shadowAttenuation) * 0.5;
+				float shadow = smoothstep(0.5 - attenuationChange, 0.5 + attenuationChange, shadowAttenuation);
+			#else
+				float attenuationChange = fwidth(shadowAttenuation);
+				float shadow = smoothstep(0, attenuationChange, shadowAttenuation);
+			#endif
 			lightIntensity = lightIntensity * shadow;
 
 			float3 shadowColor = s.Albedo * _ShadowTint;
@@ -114,7 +114,6 @@ Shader "Custom/Cel Shader Final" {
 				newPos += float4(normal, 0.0) * _OutlineExtrusion;
 
 				output.pos = UnityObjectToClipPos(newPos);
-
 				output.color = _OutlineColor;
 
 				return output;
@@ -125,18 +124,8 @@ Shader "Custom/Cel Shader Final" {
 				return input.color;
 			}
 
-			
-
 			ENDCG
-			
 		}
 	}
 	FallBack "Standard"
-	
-	/*
-	Till Daniel
-	#if SHOW_OUTLINE
-	#else
-	#endif
-	*/
 }
