@@ -9,7 +9,7 @@ public class BossController : Character
     [SerializeField] private Transform bullets;
     [SerializeField] private Rigidbody rigi;
     SpreadShot spreadShot;
-    PatternShot patternShot;
+    //PatternShot patternShot;
 
     [SerializeField] private List<Transform> bossBulletSpawnPoint;
 
@@ -68,7 +68,7 @@ public class BossController : Character
         InterfaceController.instance.UpdateBossState(bossState);
 
         spreadShot = GetComponent<SpreadShot>();
-        patternShot = GetComponent<PatternShot>();
+       // patternShot = GetComponent<PatternShot>();
 
     }
     private void Update()

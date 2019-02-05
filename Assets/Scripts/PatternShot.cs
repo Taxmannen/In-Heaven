@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class PatternShot : MonoBehaviour
 {
     public string pattern1 = "PatternShot1";
@@ -37,12 +37,14 @@ public class PatternShot : MonoBehaviour
 
     private IEnumerator PatternShotCorutine(Vector3 PatternShotSpawnPosition)
     {
-
-        //var textFile = Resources.Load<TextAsset>("TextAssets/PatternShots1");
-
+        
         float[] patternLength = new float[txtContents.Length];
 
+        string[] patternString =  txtContents;
+
         float patternSpread = float.Parse(patternString[0]);
+
+        Debug.Log(txtContents);
 
         float patternShotTargetX = float.Parse(patternString[1]);
         float patternShotTargetY = float.Parse(patternString[2]);
@@ -78,3 +80,4 @@ public class PatternShot : MonoBehaviour
     }
 
 }
+*/
