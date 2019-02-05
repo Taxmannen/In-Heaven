@@ -21,8 +21,9 @@ public class ShootAction : MonoBehaviour
     [SerializeField] [Range(0, 1000)] private float playerBulletSpeed = 25f; //The speed of the bullets
     [SerializeField] [Range(0, 10)] private float playerBulletLifetime = 3f; //The duration the bullets last until they are destroyed, low number reduces potential lag
 
-    [SerializeField] private bool onlyShootOnGround;
-    [SerializeField] private bool onlyShootWhenStandingStill;
+    [Header("Testing Settings")]
+    [SerializeField] internal bool onlyShootOnGround;
+    [SerializeField] internal bool onlyShootWhenStandingStill;
 
     internal float playerBulletsPerSecond;
     // Start is called before the first frame update
