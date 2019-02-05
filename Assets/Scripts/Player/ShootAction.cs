@@ -20,7 +20,9 @@ public class ShootAction : MonoBehaviour
     [SerializeField] [Range(1, 100)] private float basePlayerBulletsPerSecond = 10f; //Bullets per second during left mouse down
     [SerializeField] [Range(0, 1000)] private float playerBulletSpeed = 25f; //The speed of the bullets
     [SerializeField] [Range(0, 10)] private float playerBulletLifetime = 3f; //The duration the bullets last until they are destroyed, low number reduces potential lag
-  
+
+    [SerializeField] private bool onlyShootOnGround;
+    [SerializeField] private bool onlyShootWhenStandingStill;
 
     internal float playerBulletsPerSecond;
     // Start is called before the first frame update
@@ -39,22 +41,26 @@ public class ShootAction : MonoBehaviour
     public void Shoot()
     {
 
-        if (player.GetShootDuringDash())
+        if ((onlyShootOnGround ? player.grounded : true) && (onlyShootWhenStandingStill? player.standingStill:true))
         {
 
-            if (shootCoroutine == null)
+            if (player.GetShootDuringDash())
             {
-                shootCoroutine = StartCoroutine(ShootCoroutine(player.aim.aimPoint));
-            }
-        }
 
-        else
-        {
-            if (player.GetDashVelocity() == 0)
-            {
                 if (shootCoroutine == null)
                 {
                     shootCoroutine = StartCoroutine(ShootCoroutine(player.aim.aimPoint));
+                }
+            }
+
+            else
+            {
+                if (player.GetDashVelocity() == 0)
+                {
+                    if (shootCoroutine == null)
+                    {
+                        shootCoroutine = StartCoroutine(ShootCoroutine(player.aim.aimPoint));
+                    }
                 }
             }
         }

@@ -19,7 +19,7 @@ public class PlayerInput : MonoBehaviour
     [Header("Freature/Changes in Testing")]
     [SerializeField] private bool changeDashKeyToMouse;
     [SerializeField] private bool testKeyConfiguration;
-    [SerializeField] private bool onlyShootOnGround;
+
     //Timer/TimeCounter
     [SerializeField] private float timeBeforeStartShooting = 0.2f;
     [SerializeField][ReadOnly] private float timer = 0;
@@ -51,7 +51,7 @@ public class PlayerInput : MonoBehaviour
 
         playerController.Aim();
 
-        if (AbleToShoot() && (onlyShootOnGround?playerController.grounded:true))
+        if (AbleToShoot())
         {
             playerController.Shoot();
         }
