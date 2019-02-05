@@ -1,7 +1,9 @@
 /* https://www.ronja-tutorials.com/2018/10/20/single-step-toon.html */
 
-Shader "Custom/Cel Shader Final" {
-	Properties {
+Shader "Custom/Cel Shader V1" 
+{
+	Properties 
+	{
 		[Header(Standard)]
 		_Color("Tint", Color) = (0, 0, 0, 1)
 		_MainTex("Texture", 2D) = "white" {}
@@ -15,7 +17,8 @@ Shader "Custom/Cel Shader Final" {
 		_OutlineExtrusion("Outline Extrusion", float) = 0.04
 	}
 
-	SubShader {
+	SubShader
+	{
 		Tags{ "RenderType" = "Opaque" "Queue" = "Geometry" }
 
 		//Write to Stencil buffer (so that outline pass can read)
@@ -38,7 +41,8 @@ Shader "Custom/Cel Shader Final" {
 
 		float3 _ShadowTint;
 
-		float4 LightingStepped(SurfaceOutput s, float3 lightDir, half3 viewDir, float shadowAttenuation) {
+		float4 LightingStepped(SurfaceOutput s, float3 lightDir, half3 viewDir, float shadowAttenuation) 
+		{
 			float towardsLight = dot(s.Normal, lightDir);
 			float towardsLightChange = fwidth(towardsLight);
 			float lightIntensity = smoothstep(0, towardsLightChange, towardsLight);
@@ -59,12 +63,13 @@ Shader "Custom/Cel Shader Final" {
 			return color;
 		}
 
-
-		struct Input {
+		struct Input 
+		{
 			float2 uv_MainTex;
 		};
 
-		void surf(Input i, inout SurfaceOutput o) {
+		void surf(Input i, inout SurfaceOutput o) 
+		{
 			fixed4 col = tex2D(_MainTex, i.uv_MainTex);
 			col *= _Color;
 			o.Albedo = col.rgb;
@@ -73,7 +78,8 @@ Shader "Custom/Cel Shader Final" {
 		ENDCG
 
 		//Outline 
-		Pass {
+		Pass 
+		{
 			Cull OFF
 			ZWrite OFF
 			ZTest ON
@@ -123,7 +129,6 @@ Shader "Custom/Cel Shader Final" {
 			{
 				return input.color;
 			}
-
 			ENDCG
 		}
 	}
