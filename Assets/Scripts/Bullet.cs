@@ -5,10 +5,10 @@ using UnityEngine;
 /// <summary>
 /// Made by: Filip Nilsson
 /// </summary>
-public class PlayerBullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
 
-    float damage;
+    float damage = 1;
 
     public void SetDamage(float damage)
     {
@@ -19,7 +19,7 @@ public class PlayerBullet : MonoBehaviour
     {
 
         BossHitbox bhb;
-
+        TargetDummy td;
         if (other.tag == "Boss Hitbox")
         {
 
@@ -40,6 +40,11 @@ public class PlayerBullet : MonoBehaviour
                     Destroy(gameObject);
                 }
 
+            }
+            if(td = other.GetComponent<TargetDummy>())
+            {
+                td.Receive(damage);
+                Destroy(gameObject);
             }
 
             
