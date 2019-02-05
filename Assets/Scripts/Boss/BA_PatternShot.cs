@@ -51,11 +51,11 @@ public class BA_PatternShot : BossAttack
 
                 //Then use the data from the item.
                 Vector3 target = new Vector3(item.x, item.y);
-                GameObject bullet = ShootingHelper.Shoot(spawnLocation + transform.position, target, bulletPrefab, 10, transform);
+                GameObject bullet = ShootingHelper.Shoot(spawnLocation + transform.position, target, bulletPrefab, 10, transform, 10);
 
                 // This line will change, we are going to make a GeneralBullet, that checks what it collides with and
                 // what it can damage. And if the shoot is parrable
-                bullet.GetComponent<BossBullet>().SetDamage(1);
+                bullet.GetComponent<Bullet>().SetDamage(1);
                 if (item.parryable)
                 {
                     // Set the bullet to be parriable 

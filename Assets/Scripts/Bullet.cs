@@ -8,11 +8,15 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    float damage = 1;
-
+    [SerializeField] private float damage = 1;
+    [SerializeField] private bool fromPlayer;
     public void SetDamage(float damage)
     {
         this.damage = damage;
+    }
+    public void SetFromPlayer(bool fromPlayer)
+    {
+        this.fromPlayer = fromPlayer;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,7 +24,7 @@ public class Bullet : MonoBehaviour
 
         BossHitbox bhb;
         TargetDummy td;
-        if (other.tag == "Boss Hitbox")
+        if (other.tag == "Boss Hitbox" && fromPlayer)
         {
 
             if (bhb = other.GetComponent<BossHitbox>())
@@ -48,6 +52,11 @@ public class Bullet : MonoBehaviour
             }
 
             
+        }
+        if (other.tag == "Player Hitbox" && !fromPlayer)
+        {
+            other.GetComponentInParent<PlayerController>().Receive(damage);
+            Destroy(gameObject);
         }
 
     }
