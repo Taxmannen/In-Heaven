@@ -29,7 +29,7 @@ public class BA_PatternShot : BossAttack
         // Here i get the Data from that object
         List<PatternStruct> targetLocations = pattern.GetComponent<PatternImporter>().patternList;
         targetLocations = targetLocations.OrderBy(x => x.timeDelay).ToList();
-        Debug.Log(targetLocations.ToString());
+        //Debug.Log(targetLocations.ToString());
         
         // This variable will be used later
         float lastTimeUpdate = Time.time;
@@ -66,7 +66,7 @@ public class BA_PatternShot : BossAttack
                 AudioController.instance.BossShoot();
             }
             counter += Time.time - lastTimeUpdate;
-            Debug.Log(counter);
+            //Debug.Log(counter);
             yield return new WaitForSeconds(delayAfterEachPattern);
         }
 

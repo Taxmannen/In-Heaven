@@ -50,7 +50,7 @@ public class Boss : Character
                         bossHitboxElement.SetActivePhase(1);
                     }
 
-                    else if (bossHitboxElement.GetActivePhase() > phases.Count)
+                    else if (bossHitboxElement.GetActivePhase() > phasePrefabs.Count)
                     {
                         bossHitboxElement.SetActivePhase(phasePrefabs.Count);
                     }
@@ -96,15 +96,19 @@ public class Boss : Character
         {
 
             bossHitboxElement.SetName(bossHitboxElement.GetHitbox().name);
-            maxHP += bossHitboxElement.GetMaxHP();
 
+            if (bossHitboxElement.GetActivePhase() == activePhase)
+            {
+                maxHP += bossHitboxElement.GetMaxHP();
+            }
+            
             bossHitboxElement.GetHitbox().SetMaxHP(bossHitboxElement.GetMaxHP());
             bossHitboxElement.GetHitbox().SetHP(bossHitboxElement.GetHitbox().GetMaxHP());
             bossHitboxElement.GetHitbox().SetWeakpoint(bossHitboxElement.GetWeakpoint());
 
             if (bossHitboxElement.GetHitbox().GetWeakpoint())
             {
-                bossHitboxElement.GetHitbox().SetActivePhase(bossHitboxElement.GetActivePhase() - 1);
+                bossHitboxElement.GetHitbox().SetActivePhase(bossHitboxElement.GetActivePhase());
             }
 
         }
@@ -121,17 +125,10 @@ public class Boss : Character
         if (!phaseParent)
         {
 
-            GameObject phaseObject;
+            GameObject phaseGameObject = Instantiate(new GameObject());
+            phaseGameObject.name = "Phase(s)";
+            phaseParent = phaseGameObject.transform;
 
-            if (phaseObject = GameObject.FindWithTag("Phase Parent"))
-            {
-
-                if (phaseParent = phaseObject.transform)
-                {
-
-                }
-
-            }
         }
 
         if (phaseParent)
@@ -158,7 +155,7 @@ public class Boss : Character
 
         else
         {
-            Debug.LogError("[Custom Error] : Couldn't find the \"Phase Parent\" transform, check the \"Phase Parent\" parameter on a boss script in the scene or check the tag on the \"Phase Parent\" GameObject you wish to use.");
+            Debug.LogError("[Custom Error] : Couldn't find the/instantiate a \"Phase Parent\" transform, check the \"Phase Parent\" parameter on a boss script in the scene in runtime.");
         }
 
     }
@@ -180,6 +177,9 @@ public class Boss : Character
 
         for (int i = (activePhase - 1); i < phases.Count; i++)
         {
+
+            InterfaceController.instance.UpdateBossHPBar(hP, maxHP);
+            InterfaceController.instance.ShowBossHPBar();
 
             phases[i].StartPhase(this, movementParent, attackParent);
 
@@ -221,16 +221,46 @@ public class Boss : Character
     {
         //Comment: Boss Dies Here, Animations & More... Tobe Coroutine
     }
-    internal virtual void Receive(float amt)
+
+    internal override void Receive(float amt)
     {
+
         base.Receive(amt);
-        if(hP - amt < 0)
-        {
-            activePhase++;
-        }
-        
+
+        InterfaceController.instance.UpdateBossHPBar(hP, maxHP);
+
     }
 
+    internal override void Die()
+    {
+
+        if (activePhase < phases.Count)
+        {
+
+            activePhase++;
+
+            maxHP = 0;
+
+            foreach (BossHitboxElement bossHitboxElement in bossHitboxElements)
+            {
+                if (bossHitboxElement.GetActivePhase() == activePhase)
+                {
+                    maxHP += bossHitboxElement.GetMaxHP();
+                }
+            }
+
+            hP = maxHP;
+
+        }
+
+        else
+        {
+            activePhase++;
+            base.Die();
+            InterfaceController.instance.HideBossHPBar();
+        }
+
+    }
 
 
 
@@ -279,7 +309,32 @@ public class Boss : Character
 
     public int GetActivePhase()
     {
-        return (activePhase - 1);
+        return activePhase;
+    }
+
+    public void SetActivePhase(int activePhase)
+    {
+
+        if (this.activePhase == activePhase)
+        {
+            //Comment: Reset This Phase
+        }
+
+        if (activePhase < 1)
+        {
+            activePhase = 1;
+        }
+
+        else if (activePhase > phases.Count)
+        {
+            activePhase = phases.Count;
+        }
+
+        else
+        {
+            this.activePhase = activePhase;
+        }
+
     }
 
 }

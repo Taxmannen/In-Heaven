@@ -42,7 +42,6 @@ public class SuperChargeResource : MonoBehaviour
     {
         superCharge = 0;
         Statistics.instance.numberOfSuperChargesUnleashed++;
-        InterfaceController.instance.UpdateSuperChargeSlider(0);
         player.shootAction.playerBulletsPerSecond *= 2f; //Hardcoded
         yield return new WaitForSeconds(1f); //Hardcoded
         player.shootAction.BulletPerSecondReset();
@@ -63,7 +62,6 @@ public class SuperChargeResource : MonoBehaviour
             superCharge += superChargeIncrease;
         }
 
-        InterfaceController.instance.UpdateSuperChargeSlider(superCharge);
 
     }
     public void IncreaseSuperCharge(float incres)
@@ -78,8 +76,6 @@ public class SuperChargeResource : MonoBehaviour
         {
             superCharge += superChargeMax / incres;
         }
-
-        InterfaceController.instance.UpdateSuperChargeSlider(superCharge);
 
     }
 

@@ -17,13 +17,13 @@ public class BossBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+        /*
         if (other.tag == "Player Hitbox")
         {
             other.GetComponentInParent<PlayerController>().Receive(damage);
             Destroy(gameObject);
         }
-
+        */
     }
 
 }

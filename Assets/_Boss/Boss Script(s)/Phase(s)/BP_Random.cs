@@ -10,8 +10,6 @@ public class BP_Random : BossPhase
     protected override IEnumerator PhaseRoutine(Boss boss)
     {
 
-
-
         while (true)
         {
 

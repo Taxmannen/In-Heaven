@@ -23,7 +23,9 @@ public class InterfaceController : MonoBehaviour
 
     [SerializeField] private GameObject targetOverlay;
 
+    [SerializeField] private GameObject sliderPanel;
     [SerializeField] private Slider slider;
+    [SerializeField] private Text sliderText;
 
 
 
@@ -91,9 +93,22 @@ public class InterfaceController : MonoBehaviour
 
     }
 
-    public void UpdateSuperChargeSlider(float value)
+    public void UpdateBossHPBar(float hP, float maxHP)
     {
-        slider.value = value;
+        slider.maxValue = maxHP;
+        slider.value = hP;
+        sliderText.text = hP + "/" + maxHP;
     }
+
+    public void HideBossHPBar()
+    {
+        sliderPanel.SetActive(false);
+    }
+
+    public void ShowBossHPBar()
+    {
+        sliderPanel.SetActive(true);
+    }
+
 
 }

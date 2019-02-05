@@ -56,7 +56,7 @@ public class BossPhase : MonoBehaviour
         {
 
             GameObject movementObject;
-
+            //Comment: Replace
             if (movementObject = GameObject.FindWithTag("Movement Parent"))
             {
 
@@ -94,7 +94,7 @@ public class BossPhase : MonoBehaviour
         {
 
             GameObject attackObject;
-
+            //Comment: Replace
             if (attackObject = GameObject.FindWithTag("Attack Parent"))
             {
 
