@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made By: Jesper Uddefors and Filip Nilsson
+/// </summary>
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;

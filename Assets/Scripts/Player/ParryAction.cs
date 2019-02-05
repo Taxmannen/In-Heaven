@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/// <summary>
+/// Made By: Jesper Uddefors and Filip Nilsson
+/// </summary>
 [RequireComponent(typeof(PlayerController))]
 public class ParryAction : MonoBehaviour
 {
