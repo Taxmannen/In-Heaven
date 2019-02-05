@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour
     {
 
         playerController.Start();
-        bossController.Start();
+        //bossController.Start();
         gameState = Global.GameState.Game;
 
     }
@@ -72,7 +72,7 @@ public class GameController : MonoBehaviour
     /// </summary>
     public void FreezeBoss()
     {
-        bossController.Freeze();
+        //bossController.Freeze();
     }
 
     /// <summary>
