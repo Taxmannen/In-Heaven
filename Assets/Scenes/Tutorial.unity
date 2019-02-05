@@ -4286,6 +4286,10 @@ PrefabInstance:
       propertyPath: playerBulletTrajectoryDistance
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 338361054, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
+      propertyPath: aim
+      value: 
+      objectReference: {fileID: 1544835503}
     - target: {fileID: 338361053, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
       propertyPath: superChargeIncrease
       value: 1
@@ -4511,6 +4515,12 @@ Transform:
   m_Father: {fileID: 769381851}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1544835503 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3611587015460983107, guid: ff3809ce05ec13140831cf6e93f92a88,
+    type: 3}
+  m_PrefabInstance: {fileID: 1746799702}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1557738724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6631,6 +6641,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: shotArray.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: spreadShotFireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: spreadShotBullets
+      value: 
+      objectReference: {fileID: 1103794144}
+    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
+        type: 3}
+      propertyPath: SpreadShotBulletSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 937380584421009115, guid: 06477cabd24071c41bc21211c6e448b2,
         type: 3}
       propertyPath: canMove
@@ -6655,26 +6685,6 @@ PrefabInstance:
         type: 3}
       propertyPath: bossLaserRaySpeed
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
-        type: 3}
-      propertyPath: shotArray.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
-        type: 3}
-      propertyPath: spreadShotFireRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
-        type: 3}
-      propertyPath: spreadShotBullets
-      value: 
-      objectReference: {fileID: 1103794144}
-    - target: {fileID: 1117607716224625206, guid: 06477cabd24071c41bc21211c6e448b2,
-        type: 3}
-      propertyPath: SpreadShotBulletSpeed
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 937380584421009112, guid: 06477cabd24071c41bc21211c6e448b2,
         type: 3}
