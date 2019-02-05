@@ -76,7 +76,7 @@ public class BossHitbox : MonoBehaviour
 
         if (this.weakpoint)
         {
-            GetComponent<Renderer>().material.color = Color.red;
+            GetComponent<Renderer>().material.color = Color.cyan;
         }
     }
 

@@ -56,6 +56,7 @@ public class ShootAction : MonoBehaviour
                 {
                     shootCoroutine = StartCoroutine(ShootCoroutine(player.aim.aimPoint));
                 }
+               
             }
         }
 
@@ -72,7 +73,7 @@ public class ShootAction : MonoBehaviour
             Statistics.instance.numberOfBulletsFired++;
         }
 
-        GameObject bullet = ShootingHelper.Shoot(transform.position, point, bulletPrefab, playerBulletSpeed, bullets);
+        GameObject bullet = ShootingHelper.Shoot(player.aim.animator.GetBoneTransform(HumanBodyBones.RightHand).position, point, bulletPrefab, playerBulletSpeed, bullets);
         bullet.GetComponent<PlayerBullet>().SetDamage(playerBulletDamage);
         yield return new WaitForSeconds(1 / playerBulletsPerSecond);
         shootCoroutine = null;

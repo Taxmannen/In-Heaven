@@ -12,11 +12,16 @@ public class AimMechanic : MonoBehaviour
    
 
     private Camera camera;
+    internal Animator animator;
+    private Transform chest;
 
     // Start is called before the first frame update
     void Start()
     {
         camera = Camera.main;
+        animator = GetComponentInChildren<Animator>();
+        chest = animator.GetBoneTransform(HumanBodyBones.Chest);
+
     }
     /// <summary>
     /// Updates the direction the player is aiming towards.
@@ -38,5 +43,9 @@ public class AimMechanic : MonoBehaviour
             aimPoint = ray.GetPoint(playerBulletTrajectoryDistance);
         }
 
+    }
+    private void LateUpdate()
+    {
+        chest.LookAt(aimPoint);
     }
 }

@@ -1,0 +1,437 @@
+fileFormatVersion: 2
+guid: 0463d539a631baf459e554c2aae185ef
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: AirHandlerMD
+    100002: AirHandlerMD_MetalLight
+    100004: AirHandlerMD_MetalLight 1
+    100006: AirHandlerMD_PlasticBrown
+    100008: AirHandlerMD_PlasticWhite
+    100010: AirHandlerMD_PlasticWhite 1
+    100012: AirHandlerXS
+    100014: AirHandlerXS_MetalLight
+    100016: AirHandlerXS_PlasticBrown
+    100018: AirHandlerXS_PlasticWhite
+    100020: AntDishA
+    100022: AntDishA_MetalDark
+    100024: AntDishA_MetalLight
+    100026: AntDishA_PlasticWhite
+    100028: AntDishB
+    100030: AntDishB_MetalLight
+    100032: AntDishB_PlasticBrown
+    100034: AntDishB_PlasticWhite
+    100036: AntMountB_MetalLight
+    100038: AntMountC_MetalLight
+    100040: BoxVentLOW
+    100042: BoxVentLOW_MetalLight
+    100044: BoxVentLOW_MetalLight 1
+    100046: BoxVentLOW_MetalLight 2
+    100048: BoxVentLOW_MetalLight 3
+    100050: BoxVentLOW_MetalLight 4
+    100052: BoxVentLOW_MetalLight 5
+    100054: BoxVentLOW_MetalLight 6
+    100056: FireEscape
+    100058: FireEscape_MetalDark
+    100060: FireEscape_MetalDark 1
+    100062: group2
+    100064: polySurface5
+    100066: polySurface8
+    100068: RoofAccessLG
+    100070: RoofAccessLG_ConcretePlain
+    100072: RoofAccessLG_GLASS
+    100074: RoofAccessLG_MetalDark
+    100076: RoofAccessLG_MetalDark 1
+    100078: RoofAccessLG_MetalLight
+    100080: RoofAccessLG_PlasticWhite
+    100082: RoofAccessLG_RoofTar
+    100084: RoofAccessLG_RoofTar 1
+    100086: RoofTop
+    100088: //RootNode
+    100090: transform1
+    100092: WireBox
+    100094: WireBox_MetalDark
+    100096: WireBox_MetalLight
+    100098: WireBox_MetalLight 1
+    100100: WireBox_MetalLight 2
+    400000: AirHandlerMD
+    400002: AirHandlerMD_MetalLight
+    400004: AirHandlerMD_MetalLight 1
+    400006: AirHandlerMD_PlasticBrown
+    400008: AirHandlerMD_PlasticWhite
+    400010: AirHandlerMD_PlasticWhite 1
+    400012: AirHandlerXS
+    400014: AirHandlerXS_MetalLight
+    400016: AirHandlerXS_PlasticBrown
+    400018: AirHandlerXS_PlasticWhite
+    400020: AntDishA
+    400022: AntDishA_MetalDark
+    400024: AntDishA_MetalLight
+    400026: AntDishA_PlasticWhite
+    400028: AntDishB
+    400030: AntDishB_MetalLight
+    400032: AntDishB_PlasticBrown
+    400034: AntDishB_PlasticWhite
+    400036: AntMountB_MetalLight
+    400038: AntMountC_MetalLight
+    400040: BoxVentLOW
+    400042: BoxVentLOW_MetalLight
+    400044: BoxVentLOW_MetalLight 1
+    400046: BoxVentLOW_MetalLight 2
+    400048: BoxVentLOW_MetalLight 3
+    400050: BoxVentLOW_MetalLight 4
+    400052: BoxVentLOW_MetalLight 5
+    400054: BoxVentLOW_MetalLight 6
+    400056: FireEscape
+    400058: FireEscape_MetalDark
+    400060: FireEscape_MetalDark 1
+    400062: group2
+    400064: polySurface5
+    400066: polySurface8
+    400068: RoofAccessLG
+    400070: RoofAccessLG_ConcretePlain
+    400072: RoofAccessLG_GLASS
+    400074: RoofAccessLG_MetalDark
+    400076: RoofAccessLG_MetalDark 1
+    400078: RoofAccessLG_MetalLight
+    400080: RoofAccessLG_PlasticWhite
+    400082: RoofAccessLG_RoofTar
+    400084: RoofAccessLG_RoofTar 1
+    400086: RoofTop
+    400088: //RootNode
+    400090: transform1
+    400092: WireBox
+    400094: WireBox_MetalDark
+    400096: WireBox_MetalLight
+    400098: WireBox_MetalLight 1
+    400100: WireBox_MetalLight 2
+    2100000: Roof_Floow
+    2100002: Parabol_Metal
+    2100004: FireEscape1
+    2100006: Wirebox
+    2100008: Paraboler_Plastic
+    2100010: Roof_tar
+    2100012: Rooftar_center
+    2100014: RoofAccess_Door
+    2100016: RoofAccess_MetalLight
+    2100018: Roof_Access_Glass
+    2100020: MetalDark
+    2100022: Roof_Access_Window_Frame
+    2100024: RoofAccess_Concrete_Plain
+    2100026: AirHandlerXS_Metal
+    2100028: AirHandlerXS_Plastic_white
+    2100030: AirHandlerL_Fins
+    2100032: AirHandlerL_Case
+    2100034: AirHandler_Bottom
+    2100036: AirHandlerL_Metal_Fan
+    2100038: Ventile
+    2100040: Roof_walls
+    2300000: AirHandlerMD_MetalLight
+    2300002: AirHandlerMD_MetalLight 1
+    2300004: AirHandlerMD_PlasticBrown
+    2300006: AirHandlerMD_PlasticWhite
+    2300008: AirHandlerMD_PlasticWhite 1
+    2300010: AirHandlerXS_MetalLight
+    2300012: AirHandlerXS_PlasticBrown
+    2300014: AirHandlerXS_PlasticWhite
+    2300016: AntDishA_MetalDark
+    2300018: AntDishA_MetalLight
+    2300020: AntDishA_PlasticWhite
+    2300022: AntDishB_MetalLight
+    2300024: AntDishB_PlasticBrown
+    2300026: AntDishB_PlasticWhite
+    2300028: AntMountB_MetalLight
+    2300030: AntMountC_MetalLight
+    2300032: BoxVentLOW_MetalLight
+    2300034: BoxVentLOW_MetalLight 1
+    2300036: BoxVentLOW_MetalLight 2
+    2300038: BoxVentLOW_MetalLight 3
+    2300040: BoxVentLOW_MetalLight 4
+    2300042: BoxVentLOW_MetalLight 5
+    2300044: BoxVentLOW_MetalLight 6
+    2300046: FireEscape_MetalDark
+    2300048: FireEscape_MetalDark 1
+    2300050: polySurface5
+    2300052: polySurface8
+    2300054: RoofAccessLG_ConcretePlain
+    2300056: RoofAccessLG_GLASS
+    2300058: RoofAccessLG_MetalDark
+    2300060: RoofAccessLG_MetalDark 1
+    2300062: RoofAccessLG_MetalLight
+    2300064: RoofAccessLG_PlasticWhite
+    2300066: RoofAccessLG_RoofTar
+    2300068: RoofAccessLG_RoofTar 1
+    2300070: WireBox_MetalDark
+    2300072: WireBox_MetalLight
+    2300074: WireBox_MetalLight 1
+    2300076: WireBox_MetalLight 2
+    3300000: AirHandlerMD_MetalLight
+    3300002: AirHandlerMD_MetalLight 1
+    3300004: AirHandlerMD_PlasticBrown
+    3300006: AirHandlerMD_PlasticWhite
+    3300008: AirHandlerMD_PlasticWhite 1
+    3300010: AirHandlerXS_MetalLight
+    3300012: AirHandlerXS_PlasticBrown
+    3300014: AirHandlerXS_PlasticWhite
+    3300016: AntDishA_MetalDark
+    3300018: AntDishA_MetalLight
+    3300020: AntDishA_PlasticWhite
+    3300022: AntDishB_MetalLight
+    3300024: AntDishB_PlasticBrown
+    3300026: AntDishB_PlasticWhite
+    3300028: AntMountB_MetalLight
+    3300030: AntMountC_MetalLight
+    3300032: BoxVentLOW_MetalLight
+    3300034: BoxVentLOW_MetalLight 1
+    3300036: BoxVentLOW_MetalLight 2
+    3300038: BoxVentLOW_MetalLight 3
+    3300040: BoxVentLOW_MetalLight 4
+    3300042: BoxVentLOW_MetalLight 5
+    3300044: BoxVentLOW_MetalLight 6
+    3300046: FireEscape_MetalDark
+    3300048: FireEscape_MetalDark 1
+    3300050: polySurface5
+    3300052: polySurface8
+    3300054: RoofAccessLG_ConcretePlain
+    3300056: RoofAccessLG_GLASS
+    3300058: RoofAccessLG_MetalDark
+    3300060: RoofAccessLG_MetalDark 1
+    3300062: RoofAccessLG_MetalLight
+    3300064: RoofAccessLG_PlasticWhite
+    3300066: RoofAccessLG_RoofTar
+    3300068: RoofAccessLG_RoofTar 1
+    3300070: WireBox_MetalDark
+    3300072: WireBox_MetalLight
+    3300074: WireBox_MetalLight 1
+    3300076: WireBox_MetalLight 2
+    4300000: polySurface8
+    4300002: AntMountC_MetalLight
+    4300004: FireEscape_MetalDark
+    4300006: FireEscape_MetalDark
+    4300008: WireBox_MetalDark
+    4300010: WireBox_MetalLight
+    4300012: WireBox_MetalLight
+    4300014: WireBox_MetalLight
+    4300016: AntDishB_MetalLight
+    4300018: AntDishB_PlasticBrown
+    4300020: AntDishB_PlasticWhite
+    4300022: RoofAccessLG_RoofTar
+    4300024: RoofAccessLG_RoofTar
+    4300026: RoofAccessLG_PlasticWhite
+    4300028: RoofAccessLG_MetalLight
+    4300030: RoofAccessLG_GLASS
+    4300032: RoofAccessLG_MetalDark
+    4300034: RoofAccessLG_MetalDark
+    4300036: RoofAccessLG_ConcretePlain
+    4300038: AirHandlerXS_MetalLight
+    4300040: AirHandlerXS_PlasticBrown
+    4300042: AirHandlerXS_PlasticWhite
+    4300044: AirHandlerMD_PlasticWhite
+    4300046: AirHandlerMD_PlasticWhite
+    4300048: AirHandlerMD_PlasticBrown
+    4300050: AirHandlerMD_MetalLight
+    4300052: AirHandlerMD_MetalLight
+    4300054: BoxVentLOW_MetalLight
+    4300056: BoxVentLOW_MetalLight
+    4300058: BoxVentLOW_MetalLight
+    4300060: BoxVentLOW_MetalLight
+    4300062: BoxVentLOW_MetalLight
+    4300064: BoxVentLOW_MetalLight
+    4300066: BoxVentLOW_MetalLight
+    4300068: AntMountB_MetalLight
+    4300070: AntDishA_PlasticWhite
+    4300072: AntDishA_MetalLight
+    4300074: AntDishA_MetalDark
+    4300076: polySurface5
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AirHandlerL_Case
+    second: {fileID: 2100000, guid: 8ee9e2e5e1cfc914d8a8e753c831881d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AirHandlerL_Fins
+    second: {fileID: 2100000, guid: 9f9f42e099021044394c4ff5fd64ab0b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AirHandlerL_Metal_Fan
+    second: {fileID: 2100000, guid: 7805437a55c7f324fb370329d137d0d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AirHandlerXS_Metal
+    second: {fileID: 2100000, guid: 59d4cd67266e5d94488b67ad2cdf8db2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AirHandlerXS_Plastic_white
+    second: {fileID: 2100000, guid: 8ad93b27f4b4c344fa92a3c1f145cb02, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AirHandler_Bottom
+    second: {fileID: 2100000, guid: bae409542de9e994fa6eb8507f9f52a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FireEscape1
+    second: {fileID: 2100000, guid: e871c3cc3bd709a4c93e020e5b54e7d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalDark
+    second: {fileID: 2100000, guid: f22314bec62c33e418b09b5c7bcafff5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Parabol_Metal
+    second: {fileID: 2100000, guid: acca61b1e754ddf41b348fc1d833bd2d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paraboler_Plastic
+    second: {fileID: 2100000, guid: 2a61bf14749b31142b14e58703a08a29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RoofAccess_Concrete_Plain
+    second: {fileID: 2100000, guid: 856b0567e2840c8459a5434c0dae1cde, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RoofAccess_Door
+    second: {fileID: 2100000, guid: 33cae3822b2e67d419d6e9705a93a1f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RoofAccess_MetalLight
+    second: {fileID: 2100000, guid: c948f2825254fc04d9eaf2b3fc833ebe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_Access_Glass
+    second: {fileID: 2100000, guid: f665b195fb953264281d63c0493199e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_Access_Window_Frame
+    second: {fileID: 2100000, guid: 7844aa81b061c0d4cab2751dd6a5768c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_Floow
+    second: {fileID: 2100000, guid: d05da3f089a0c8a43866f5c19f83859f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_tar
+    second: {fileID: 2100000, guid: 596c4c43c3ecaa541b105f3b3aba9d3b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_walls
+    second: {fileID: 2100000, guid: 054a4c3b23e902c488b6e31ac44c6a10, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rooftar_center
+    second: {fileID: 2100000, guid: 710c6d6eff6fdc34daa4e48d274c88d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ventile
+    second: {fileID: 2100000, guid: f02cd9c94e4b31e4ca07a2944fc41429, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wirebox
+    second: {fileID: 2100000, guid: a0b0312494d4e5f40b0d125e0977b84c, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
