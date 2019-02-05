@@ -36,6 +36,7 @@ public class BossHitbox : MonoBehaviour
             return false;
         }
 
+
         if (activePhase != boss.GetActivePhase())
         {
             return false;
@@ -44,21 +45,35 @@ public class BossHitbox : MonoBehaviour
         return true;
 
     }
-    public void Receive(float damage)
+    public void Receive(float amt)
     {
 
-
-        //Fix
-        hP -= damage;
-
-        //Fix
-        if (hP <= 0)
+        if (hP - amt <= 0)
         {
-            weakpoint = false;
+            Die();
         }
 
+        else
+        {
+            Hit(amt);
+        }
 
-        boss.Receive(damage);
+    }
+
+    private void Die()
+    {
+        boss.Receive(hP);
+        hP = 0;
+        weakpoint = false;
+        gameObject.GetComponent<Renderer>().enabled = false;
+        gameObject.GetComponent<Collider>().enabled = false;
+        AudioController.instance.BossDestruction();
+    }
+
+    private void Hit(float amt)
+    {
+        hP -= amt;
+        boss.Receive(amt);
     }
 
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialBullet : MonoBehaviour
+public class TutorialBullet : Bullet
 {
     
     private void OnDestroy()

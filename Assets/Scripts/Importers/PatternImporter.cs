@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by: Anton Lindkvist
+/// </summary>
 public class PatternImporter : MonoBehaviour
 {
     [Header("Requires texture Import Setting: 'Read/Write Enabled'!")]

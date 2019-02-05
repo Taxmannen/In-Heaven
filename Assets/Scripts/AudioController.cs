@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by: Vidar M
+/// </summary>
 public class AudioController : MonoBehaviour
 {
     public static AudioController instance;
@@ -10,45 +13,52 @@ public class AudioController : MonoBehaviour
     [Header("PLAYER SOUNDS")]
 
     [FMODUnity.EventRef]
-    public string playerShoot;
+    [SerializeField] private string playerShoot;
     FMOD.Studio.EventInstance playerShootEv;
     [FMODUnity.EventRef]
-    public string playerDash;
+    [SerializeField] private string playerDash;
     FMOD.Studio.EventInstance playerDashEv;
     [FMODUnity.EventRef]
-    public string playerJump;
+    [SerializeField] private string playerJump;
     FMOD.Studio.EventInstance playerJumpEv;
     [FMODUnity.EventRef]
-    public string playerDoubleJump;
+    [SerializeField] private string playerDoubleJump;
     FMOD.Studio.EventInstance playerDoubleJumpEv;
     [FMODUnity.EventRef]
-    public string playerGunReverb;
+    [SerializeField] private string playerGunReverb;
     FMOD.Studio.EventInstance playerGunReverbEv;
     [FMODUnity.EventRef]
-    public string playerCommenceShooting;
+    [SerializeField] private string playerCommenceShooting;
     FMOD.Studio.EventInstance playerCommenceShootingEv;
     [FMODUnity.EventRef]
-    public string playerParryEvent;
+    [SerializeField] private string playerParryEvent;
     FMOD.Studio.EventInstance playerParryEventEv;
     [FMODUnity.EventRef]
-    public string playerSuccessfulParry;
+    [SerializeField] private string playerSuccessfulParry;
     FMOD.Studio.EventInstance playerSuccessfulParryEv;
 
     [Header("")]
     [Header("BOSS SOUNDS")]
 
     [FMODUnity.EventRef]
-    public string bossHitRecieveDamage;
+    [SerializeField] private string bossHitRecieveDamage;
     FMOD.Studio.EventInstance bossHitRecieveDamageEv;
     [FMODUnity.EventRef]
-    public string bossHitRecieveNoDamage;
+    [SerializeField] private string bossHitRecieveNoDamage;
     FMOD.Studio.EventInstance bossHitRecieveNoDamageEv;
     [FMODUnity.EventRef]
-    public string bossDeath;
+    [SerializeField] private string bossDeath;
     FMOD.Studio.EventInstance bossDeathEv;
     [FMODUnity.EventRef]
-    public string bossShoot;
+    [SerializeField] private string bossShoot;
     FMOD.Studio.EventInstance bossShootEv;
+    [FMODUnity.EventRef]
+    [SerializeField] private string bossDestruction;
+    FMOD.Studio.EventInstance bossDestructionEv;
+
+    [SerializeField] private Queue<FMOD.Studio.EventInstance> bossDestructionQueue = new Queue<FMOD.Studio.EventInstance>();
+
+
     private void Start()
     {
         playerShootEv = FMODUnity.RuntimeManager.CreateInstance(playerShoot);
@@ -63,6 +73,7 @@ public class AudioController : MonoBehaviour
         bossHitRecieveNoDamageEv = FMODUnity.RuntimeManager.CreateInstance(bossHitRecieveNoDamage);
         bossDeathEv = FMODUnity.RuntimeManager.CreateInstance(bossDeath);
         bossShootEv = FMODUnity.RuntimeManager.CreateInstance(bossShoot);
+        bossDestructionEv = FMODUnity.RuntimeManager.CreateInstance(bossDestruction);
 
         //shootingEvent.getParameter("Stop", out stopShooting);
     }
@@ -150,9 +161,24 @@ public class AudioController : MonoBehaviour
 
     public void BossHitRecieveDamage()
     {
-        bossHitRecieveDamageEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        bossHitRecieveDamageEv.start(); 
+        Debug.Log(bossDestructionQueue.Count);
+        FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(bossHitRecieveDamage);
+        eventInstance.start();
+        bossDestructionQueue.Enqueue(eventInstance);
+        StartCoroutine(BossDestructionRoutine());
+
     }
+
+    private IEnumerator BossDestructionRoutine()
+    {
+        
+        yield return new WaitForSeconds(1.5f);
+        FMOD.Studio.EventInstance eventInstance = bossDestructionQueue.Dequeue();
+        eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        yield break;
+
+    }
+
     public void BossHitRecieveNoDamage()
     {
         bossHitRecieveDamageEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
@@ -166,6 +192,10 @@ public class AudioController : MonoBehaviour
     {
         bossShootEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         bossShootEv.start();
+    }
+    public void BossDestruction()
+    {
+        bossDestructionEv.start();
     }
 
 }

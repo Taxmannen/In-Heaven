@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Made By: Vidar M
+/// </summary>
 public class TutorialInterfaceController : MonoBehaviour
 {
     [SerializeField] private List<Image> xboxButtons;

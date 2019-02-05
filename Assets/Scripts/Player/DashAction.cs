@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Made By: Jesper Uddefors and Filip Nilsson
+/// </summary>
 [RequireComponent(typeof(PlayerController))]
 public class DashAction : MonoBehaviour
 {

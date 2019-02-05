@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/// <summary>
+/// Made By: Jesper Uddefors and Filip Nilsson
+/// </summary>
 [RequireComponent(typeof(PlayerController))]
 public class ShootAction : MonoBehaviour
 {
@@ -12,7 +16,7 @@ public class ShootAction : MonoBehaviour
     [SerializeField] private Transform bullets;
 
 
-    [SerializeField] [Range(0, 100000)] private int playerBulletDamage = 7;
+    [SerializeField] [Range(0, 1000)] private int playerBulletDamage = 7;
     [SerializeField] [Range(1, 100)] private float basePlayerBulletsPerSecond = 10f; //Bullets per second during left mouse down
     [SerializeField] [Range(0, 1000)] private float playerBulletSpeed = 25f; //The speed of the bullets
     [SerializeField] [Range(0, 10)] private float playerBulletLifetime = 3f; //The duration the bullets last until they are destroyed, low number reduces potential lag
@@ -68,8 +72,8 @@ public class ShootAction : MonoBehaviour
             Statistics.instance.numberOfBulletsFired++;
         }
 
-        GameObject bullet = ShootingHelper.Shoot(transform.position, point, bulletPrefab, playerBulletSpeed, bullets);
-        bullet.GetComponent<PlayerBullet>().SetDamage(playerBulletDamage);
+        GameObject bullet = ShootingHelper.Shoot(transform.position, point, bulletPrefab, playerBulletSpeed, bullets, 3);
+        bullet.GetComponent<Bullet>().SetDamage(playerBulletDamage);
         yield return new WaitForSeconds(1 / playerBulletsPerSecond);
         shootCoroutine = null;
         yield break;

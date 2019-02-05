@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by: Filip Nilsson, Edited By: Jesper Uddefors
+/// </summary>
 public class GameController : MonoBehaviour
 {
 

@@ -13,9 +13,9 @@ public class Boss : Character
     [SerializeField] private Transform phaseParent;
     [SerializeField] private Transform movementParent;
     [SerializeField] private Transform attackParent;
-    [SerializeField] private List<BossHitboxElement> bossHitboxElements;
+    [SerializeField] private List<BossHitboxElement> bossHitboxElements = new List<BossHitboxElement>();
     [SerializeField] private int activePhase = 0;
-    [SerializeField] private List<BossPhase> phasePrefabs;
+    [SerializeField] private List<BossPhase> phasePrefabs = new List<BossPhase>();
 
 
 
@@ -31,45 +31,50 @@ public class Boss : Character
     private void OnValidate()
     {
 
-        foreach (BossHitboxElement bossHitboxElement in bossHitboxElements)
+        if (bossHitboxElements.Count > 0)
         {
 
-            if (bossHitboxElement.GetWeakpoint())
+            foreach (BossHitboxElement bossHitboxElement in bossHitboxElements)
             {
 
-                if (bossHitboxElement.GetMaxHP() < 0)
+                if (bossHitboxElement.GetWeakpoint())
+                {
+
+                    if (bossHitboxElement.GetMaxHP() < 0)
+                    {
+                        bossHitboxElement.SetMaxHP(0);
+                    }
+
+                    if (bossHitboxElement.GetActivePhase() < 1)
+                    {
+                        bossHitboxElement.SetActivePhase(1);
+                    }
+
+                    else if (bossHitboxElement.GetActivePhase() > phasePrefabs.Count)
+                    {
+                        bossHitboxElement.SetActivePhase(phasePrefabs.Count);
+                    }
+
+                }
+
+                else
                 {
                     bossHitboxElement.SetMaxHP(0);
-                }
-
-                if (bossHitboxElement.GetActivePhase() < 1)
-                {
-                    bossHitboxElement.SetActivePhase(1);
-                }
-
-                else if (bossHitboxElement.GetActivePhase() > phases.Count)
-                {
-                    bossHitboxElement.SetActivePhase(phasePrefabs.Count);
+                    bossHitboxElement.SetActivePhase(0);
                 }
 
             }
 
-            else
-            {
-                bossHitboxElement.SetMaxHP(0);
-                bossHitboxElement.SetActivePhase(0);
-            }
+        }
 
+        if (activePhase > phasePrefabs.Count)
+        {
+            activePhase = phasePrefabs.Count;
         }
 
         if (activePhase < 1)
         {
             activePhase = 1;
-        }
-
-        else if (activePhase > phasePrefabs.Count)
-        {
-            activePhase = phasePrefabs.Count;
         }
 
     }
@@ -83,7 +88,7 @@ public class Boss : Character
 
         if (bossHitboxElements.Count > GetComponentsInChildren<BossHitbox>().Length)
         {
-            Debug.LogError("[Custom Error] : Update \"BossHitboxElement(s)\"");
+            Debug.LogError("[Custom Error] : List of \"BossHitboxElements\" is out of date for a boss, press the button \"Update BossHitboxElement(s)\" on the boss whose list is out of date.");
             return;
         }
 
@@ -91,15 +96,19 @@ public class Boss : Character
         {
 
             bossHitboxElement.SetName(bossHitboxElement.GetHitbox().name);
-            maxHP += bossHitboxElement.GetMaxHP();
 
+            if (bossHitboxElement.GetActivePhase() == activePhase)
+            {
+                maxHP += bossHitboxElement.GetMaxHP();
+            }
+            
             bossHitboxElement.GetHitbox().SetMaxHP(bossHitboxElement.GetMaxHP());
             bossHitboxElement.GetHitbox().SetHP(bossHitboxElement.GetHitbox().GetMaxHP());
             bossHitboxElement.GetHitbox().SetWeakpoint(bossHitboxElement.GetWeakpoint());
 
             if (bossHitboxElement.GetHitbox().GetWeakpoint())
             {
-                bossHitboxElement.GetHitbox().SetActivePhase(bossHitboxElement.GetActivePhase() - 1);
+                bossHitboxElement.GetHitbox().SetActivePhase(bossHitboxElement.GetActivePhase());
             }
 
         }
@@ -116,17 +125,10 @@ public class Boss : Character
         if (!phaseParent)
         {
 
-            GameObject phaseObject;
+            GameObject phaseGameObject = Instantiate(new GameObject());
+            phaseGameObject.name = "Phase(s)";
+            phaseParent = phaseGameObject.transform;
 
-            if (phaseObject = GameObject.FindWithTag("Phase Parent"))
-            {
-
-                if (phaseParent = phaseObject.transform)
-                {
-
-                }
-
-            }
         }
 
         if (phaseParent)
@@ -146,14 +148,14 @@ public class Boss : Character
 
             else
             {
-                Debug.LogError("[Custom Error] : List of \"phasePrefabs\" for a boss is empty.");
+                Debug.LogError("[Custom Error] : List of \"Phase Prefabs\" for a boss is empty, make sure every boss on the scene has at least one phase.");
             }
 
         }
 
         else
         {
-            Debug.LogError("[Custom Error] : Couldn't find the \"phaseParent\" transform, check the \"phaseParent\" parameter on the boss script in the hierarchy or check the tag on the \"phaseParent\" GameObject.");
+            Debug.LogError("[Custom Error] : Couldn't find the/instantiate a \"Phase Parent\" transform, check the \"Phase Parent\" parameter on a boss script in the scene in runtime.");
         }
 
     }
@@ -163,7 +165,7 @@ public class Boss : Character
         bossRoutine = StartCoroutine(BossRoutine());
     }
 
-    //Unused method, Implement a way to stop the boss for future.
+    //Comment: Unused method, Implement a way to stop the boss for future.
     private void StopBoss()
     {
         StopCoroutine(bossRoutine);
@@ -176,8 +178,9 @@ public class Boss : Character
         for (int i = (activePhase - 1); i < phases.Count; i++)
         {
 
-            //Devlog
-            Debug.Log("Started Phase: " + i);
+            InterfaceController.instance.UpdateBossHPBar(hP, maxHP);
+            InterfaceController.instance.ShowBossHPBar();
+
             phases[i].StartPhase(this, movementParent, attackParent);
 
             yield return new WaitUntil(() => (activePhase - 1) != i);
@@ -195,7 +198,7 @@ public class Boss : Character
                 else
                 {
                     i = phases.Count - 1;
-                    //Implement Reset To Phase Health @ Last Phase ...
+                    //Comment: Implement Reset To Phase Health @ Last Phase ...
                 }
 
             }
@@ -203,7 +206,7 @@ public class Boss : Character
             else
             {
                 i = (activePhase - 2);
-                //Implement Reset To Phase Health @ Newly Set Phase ...
+                //Comment: Implement Reset To Phase Health @ Newly Set Phase ...
             }
 
         }
@@ -216,20 +219,48 @@ public class Boss : Character
 
     private void BossDie()
     {
-        //Devlog
-        Debug.Log("Boss died aka done with phases.");
-        //Boss Dies Here, Animations & More... Tobe Coroutine
-    }
-    internal virtual void Receive(float amt)
-    {
-        base.Receive(amt);
-        if(hP - amt < 0)
-        {
-            activePhase++;
-        }
-        
+        //Comment: Boss Dies Here, Animations & More... Tobe Coroutine
     }
 
+    internal override void Receive(float amt)
+    {
+
+        base.Receive(amt);
+
+        InterfaceController.instance.UpdateBossHPBar(hP, maxHP);
+
+    }
+
+    internal override void Die()
+    {
+
+        if (activePhase < phases.Count)
+        {
+
+            activePhase++;
+
+            maxHP = 0;
+
+            foreach (BossHitboxElement bossHitboxElement in bossHitboxElements)
+            {
+                if (bossHitboxElement.GetActivePhase() == activePhase)
+                {
+                    maxHP += bossHitboxElement.GetMaxHP();
+                }
+            }
+
+            hP = maxHP;
+
+        }
+
+        else
+        {
+            activePhase++;
+            base.Die();
+            InterfaceController.instance.HideBossHPBar();
+        }
+
+    }
 
 
 
@@ -278,7 +309,32 @@ public class Boss : Character
 
     public int GetActivePhase()
     {
-        return (activePhase - 1);
+        return activePhase;
+    }
+
+    public void SetActivePhase(int activePhase)
+    {
+
+        if (this.activePhase == activePhase)
+        {
+            //Comment: Reset This Phase
+        }
+
+        if (activePhase < 1)
+        {
+            activePhase = 1;
+        }
+
+        else if (activePhase > phases.Count)
+        {
+            activePhase = phases.Count;
+        }
+
+        else
+        {
+            this.activePhase = activePhase;
+        }
+
     }
 
 }

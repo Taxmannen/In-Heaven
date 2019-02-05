@@ -29,7 +29,7 @@ public class BA_PatternShot : BossAttack
         // Here i get the Data from that object
         List<PatternStruct> targetLocations = pattern.GetComponent<PatternImporter>().patternList;
         targetLocations = targetLocations.OrderBy(x => x.timeDelay).ToList();
-        Debug.Log(targetLocations.ToString());
+        //Debug.Log(targetLocations.ToString());
         
         // This variable will be used later
         float lastTimeUpdate = Time.time;
@@ -51,11 +51,11 @@ public class BA_PatternShot : BossAttack
 
                 //Then use the data from the item.
                 Vector3 target = new Vector3(item.x, item.y);
-                GameObject bullet = ShootingHelper.Shoot(spawnLocation + transform.position, target, bulletPrefab, 10, transform);
+                GameObject bullet = ShootingHelper.Shoot(spawnLocation + transform.position, target, bulletPrefab, 10, transform, 10);
 
                 // This line will change, we are going to make a GeneralBullet, that checks what it collides with and
                 // what it can damage. And if the shoot is parrable
-                bullet.GetComponent<BossBullet>().SetDamage(1);
+                bullet.GetComponent<Bullet>().SetDamage(1);
                 if (item.parryable)
                 {
                     // Set the bullet to be parriable 
@@ -66,7 +66,7 @@ public class BA_PatternShot : BossAttack
                 AudioController.instance.BossShoot();
             }
             counter += Time.time - lastTimeUpdate;
-            Debug.Log(counter);
+            //Debug.Log(counter);
             yield return new WaitForSeconds(delayAfterEachPattern);
         }
 

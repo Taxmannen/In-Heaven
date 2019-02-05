@@ -2,22 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour
+/// <summary>
+/// Made by: Filip Nilsson
+/// </summary>
+public class Bullet : MonoBehaviour
 {
 
-    float damage;
-
+    [SerializeField] private float damage = 1;
+    [SerializeField] private bool fromPlayer;
     public void SetDamage(float damage)
     {
         this.damage = damage;
+    }
+    public void SetFromPlayer(bool fromPlayer)
+    {
+        this.fromPlayer = fromPlayer;
     }
 
     private void OnTriggerEnter(Collider other)
     {
 
         BossHitbox bhb;
-
-        if (other.tag == "Boss Hitbox")
+        TargetDummy td;
+        if (other.tag == "Boss Hitbox" && fromPlayer)
         {
 
             if (bhb = other.GetComponent<BossHitbox>())
@@ -38,8 +45,18 @@ public class PlayerBullet : MonoBehaviour
                 }
 
             }
+            if(td = other.GetComponent<TargetDummy>())
+            {
+                td.Receive(damage);
+                Destroy(gameObject);
+            }
 
             
+        }
+        if (other.tag == "Player Hitbox" && !fromPlayer)
+        {
+            other.GetComponentInParent<PlayerController>().Receive(damage);
+            Destroy(gameObject);
         }
 
     }

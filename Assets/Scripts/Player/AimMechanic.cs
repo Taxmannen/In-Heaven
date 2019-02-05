@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Made By: Jesper Uddefors and Filip Nilsson
+/// </summary>
 public class AimMechanic : MonoBehaviour
 {
     public Transform aim;

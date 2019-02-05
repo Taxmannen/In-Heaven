@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by: Filip Nilsson, Edited By: Vidar M
+/// </summary>
 public class Parrybox : MonoBehaviour
 {
 
@@ -30,6 +33,7 @@ public class Parrybox : MonoBehaviour
             playerController.superChargeResource.IncreaseSuperCharge();
             GetComponent<Collider>().enabled = false;
         }
+
         if (other.tag == "TutorialBullet")
         {
 

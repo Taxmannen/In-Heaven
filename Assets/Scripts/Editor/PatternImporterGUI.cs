@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+/// <summary>
+/// Made By: Anton Lindkvist
+/// </summary>
 [CustomEditor(typeof(PatternImporter))]
 public class PatternImporterGUI : Editor
 {
