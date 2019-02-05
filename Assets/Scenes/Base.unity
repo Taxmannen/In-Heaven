@@ -295,12 +295,12 @@ PrefabInstance:
     - target: {fileID: 786254963506694971, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 786254963506694971, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 86.9
+      value: 40.9
       objectReference: {fileID: 0}
     - target: {fileID: 786254963506694971, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
@@ -1394,7 +1394,7 @@ PrefabInstance:
     - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
         type: 3}
       propertyPath: playerShoot
-      value: event:/Player/PlayerShootNew
+      value: event:/Player/PlayerShoot (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
         type: 3}
@@ -1454,7 +1454,12 @@ PrefabInstance:
     - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
         type: 3}
       propertyPath: bossShoot
-      value: event:/Player/PlayerShoot
+      value: event:/Boss/BossShoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
+        type: 3}
+      propertyPath: bossDestruction
+      value: event:/Boss/Boss Destruction
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7dc732299b93914eaca66e3f1ba3a85, type: 3}
