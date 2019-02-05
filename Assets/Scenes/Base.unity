@@ -162,10 +162,10 @@ RectTransform:
   m_Father: {fileID: 1418377225}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: -16, y: -16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &211220064
 MonoBehaviour:
@@ -377,17 +377,17 @@ PrefabInstance:
     - target: {fileID: 786254963506694969, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
       propertyPath: bossHitboxElements.Array.data[0].maxHP
-      value: 3912
+      value: 1928375
       objectReference: {fileID: 0}
     - target: {fileID: 786254963506694969, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
       propertyPath: bossHitboxElements.Array.data[1].maxHP
-      value: 2183
+      value: 109372
       objectReference: {fileID: 0}
     - target: {fileID: 786254963506694969, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
       propertyPath: bossHitboxElements.Array.data[2].maxHP
-      value: 1923
+      value: 113742
       objectReference: {fileID: 0}
     - target: {fileID: 786254963506694969, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
@@ -400,6 +400,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2895060799350385471, guid: d1ee9bd7f30999a4d93829d194fc66bc,
         type: 3}
+    - target: {fileID: 786254963506694969, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: bossHitboxElements.Array.data[2].weakpoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2760993232885344733, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
       propertyPath: m_TagString
@@ -1165,7 +1170,7 @@ PrefabInstance:
       objectReference: {fileID: 1742673354}
     - target: {fileID: 338361052, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
       propertyPath: playerBulletDamage
-      value: 10
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 338361051, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
       propertyPath: timeToMaxMovmentSpeed
