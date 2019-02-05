@@ -73,7 +73,7 @@ public class ShootAction : MonoBehaviour
         }
 
         GameObject bullet = ShootingHelper.Shoot(transform.position, point, bulletPrefab, playerBulletSpeed, bullets);
-        bullet.GetComponent<PlayerBullet>().SetDamage(playerBulletDamage);
+        bullet.GetComponent<Bullet>().SetDamage(playerBulletDamage);
         yield return new WaitForSeconds(1 / playerBulletsPerSecond);
         shootCoroutine = null;
         yield break;
