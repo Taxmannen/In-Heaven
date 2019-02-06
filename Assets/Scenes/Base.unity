@@ -402,6 +402,21 @@ PrefabInstance:
       propertyPath: phasePrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 131653652}
+    - target: {fileID: 786254963506694969, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: bossHitboxElements.Array.data[0].maxHP
+      value: 192831
+      objectReference: {fileID: 0}
+    - target: {fileID: 786254963506694969, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: bossHitboxElements.Array.data[1].maxHP
+      value: 10935
+      objectReference: {fileID: 0}
+    - target: {fileID: 786254963506694969, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: bossHitboxElements.Array.data[2].maxHP
+      value: 11372
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
 --- !u!114 &955244664 stripped

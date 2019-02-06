@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by: Filip Nilsson, Planned by: Jesper Uddefors + Filip Nilsson
+/// </summary>
 public class BP_AttackThenMove : BossPhase
 {
 
