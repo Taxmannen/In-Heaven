@@ -1122,14 +1122,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 338361052, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
-      propertyPath: bullets
-      value: 
-      objectReference: {fileID: 1742673354}
-    - target: {fileID: 338361052, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
-      propertyPath: playerBulletDamage
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 338361051, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
       propertyPath: timeToMaxMovmentSpeed
       value: 0.1
@@ -1145,11 +1137,6 @@ PrefabInstance:
     - target: {fileID: 338361051, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
       propertyPath: deaccelerationValue
       value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 7670586060659001992, guid: 51757afcc1290b14eb37486733ab937f,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 338361054, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
       propertyPath: aim
@@ -1167,14 +1154,30 @@ PrefabInstance:
       propertyPath: verticalReduction
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 338361052, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
+      propertyPath: bullets
+      value: 
+      objectReference: {fileID: 1742673354}
+    - target: {fileID: 338361052, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
+      propertyPath: playerBulletDamage
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 338361053, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
       propertyPath: superChargeMax
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 7670586060651755734, guid: 51757afcc1290b14eb37486733ab937f,
-        type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 348524007, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
+      propertyPath: changeDashKeyToMouse
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 348524007, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
+      propertyPath: testKeyConfiguration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7670586060659001992, guid: 51757afcc1290b14eb37486733ab937f,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5636784593913015348, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}

@@ -228,7 +228,7 @@ public class PlayerInput : MonoBehaviour
         {
             if(timer > timeBeforeStartShooting && InputController.instance.GetMouseButtonLeft())
             {
-                Debug.Log("Shooting");
+                //Debug.Log("Shooting");
                 return true;
              }
             return false;
