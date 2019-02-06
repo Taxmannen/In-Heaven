@@ -141,6 +141,7 @@ MonoBehaviour:
   hitInvincibleDuration: 0.1
   grounded: 0
   jumping: 0
+  standingStill: 0
   dashOnCooldown: 0
   playerState: 0
   superChargeResource: {fileID: 338361053}
@@ -233,13 +234,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tf: {fileID: 4354847716225144663}
-  bulletPrefab: {fileID: 8285528171375805240, guid: 3c16f5d6d6adc0943b37e56bae92fdbd,
+  bulletPrefab: {fileID: 1554178573858449071, guid: d95fc37a3d314d0459621acfe6ae7588,
+    type: 3}
+  muzzleEfect: {fileID: 4271705615706652713, guid: 422fb2460c81bb440b56e74c0b0f6b0b,
     type: 3}
   bullets: {fileID: 0}
   playerBulletDamage: 1000
   basePlayerBulletsPerSecond: 10
   playerBulletSpeed: 75
   playerBulletLifetime: 3
+  onlyShootOnGround: 0
+  onlyShootWhenStandingStill: 0
+  isMuzzleEffect: 0
 --- !u!114 &338361053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +289,6 @@ MonoBehaviour:
   doubleTapInterval: 0.25
   changeDashKeyToMouse: 1
   testKeyConfiguration: 1
-  onlyShootOnGround: 0
   timeBeforeStartShooting: 0.2
   timer: 0
 --- !u!1 &1008925013960216299
@@ -466,10 +471,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1008925013563656533}
     m_Modifications:
-    - target: {fileID: 100158, guid: 3f0b83ce60120de488211f1b0af2fb6f, type: 3}
-      propertyPath: m_Name
-      value: Shooter
-      objectReference: {fileID: 0}
     - target: {fileID: 400158, guid: 3f0b83ce60120de488211f1b0af2fb6f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -513,6 +514,26 @@ PrefabInstance:
     - target: {fileID: 400158, guid: 3f0b83ce60120de488211f1b0af2fb6f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400066, guid: 3f0b83ce60120de488211f1b0af2fb6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.013309655
+      objectReference: {fileID: 0}
+    - target: {fileID: 400066, guid: 3f0b83ce60120de488211f1b0af2fb6f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.048789714
+      objectReference: {fileID: 0}
+    - target: {fileID: 400068, guid: 3f0b83ce60120de488211f1b0af2fb6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000028810624
+      objectReference: {fileID: 0}
+    - target: {fileID: 400068, guid: 3f0b83ce60120de488211f1b0af2fb6f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0009596958
+      objectReference: {fileID: 0}
+    - target: {fileID: 100158, guid: 3f0b83ce60120de488211f1b0af2fb6f, type: 3}
+      propertyPath: m_Name
+      value: Shooter
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 3f0b83ce60120de488211f1b0af2fb6f, type: 3}
       propertyPath: m_Controller
@@ -1006,22 +1027,6 @@ PrefabInstance:
       propertyPath: m_RootBone
       value: 
       objectReference: {fileID: 7670586060651521396}
-    - target: {fileID: 400066, guid: 3f0b83ce60120de488211f1b0af2fb6f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.013309655
-      objectReference: {fileID: 0}
-    - target: {fileID: 400066, guid: 3f0b83ce60120de488211f1b0af2fb6f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.048789714
-      objectReference: {fileID: 0}
-    - target: {fileID: 400068, guid: 3f0b83ce60120de488211f1b0af2fb6f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.00000028810624
-      objectReference: {fileID: 0}
-    - target: {fileID: 400068, guid: 3f0b83ce60120de488211f1b0af2fb6f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.0009596958
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f0b83ce60120de488211f1b0af2fb6f, type: 3}
 --- !u!4 &7670586060651521352 stripped

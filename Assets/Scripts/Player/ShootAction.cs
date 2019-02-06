@@ -13,6 +13,7 @@ public class ShootAction : MonoBehaviour
     internal Coroutine shootCoroutine = null;
 
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject muzzleEfect;
     [SerializeField] private Transform bullets;
 
 
@@ -24,6 +25,7 @@ public class ShootAction : MonoBehaviour
     [Header("Testing Settings")]
     [SerializeField] internal bool onlyShootOnGround;
     [SerializeField] internal bool onlyShootWhenStandingStill;
+    [SerializeField] internal bool isMuzzleEffect;
 
     internal float playerBulletsPerSecond;
     // Start is called before the first frame update
@@ -81,6 +83,13 @@ public class ShootAction : MonoBehaviour
 
         GameObject bullet = ShootingHelper.Shoot(transform.position, point, bulletPrefab, playerBulletSpeed, bullets, 3);
         bullet.GetComponent<Bullet>().SetDamage(playerBulletDamage);
+
+        if (isMuzzleEffect)
+        {
+            GameObject muzzle = Instantiate(muzzleEfect, transform.position, transform.rotation, bullets);
+            Destroy(muzzle, 1);
+        }
+
         yield return new WaitForSeconds(1 / playerBulletsPerSecond);
         shootCoroutine = null;
         yield break;
@@ -90,8 +99,8 @@ public class ShootAction : MonoBehaviour
     public void ShootReverb()
     {
         AudioController.instance.PlayerGunReverb();
-        
     }
+
     public void DestroyAllBullets()
     {
         foreach (Transform bullet in bullets)
@@ -99,6 +108,7 @@ public class ShootAction : MonoBehaviour
             Destroy(bullet.gameObject);
         }
     }
+
     public void MyStopCorutine()
     {
         if (shootCoroutine != null)
@@ -106,7 +116,5 @@ public class ShootAction : MonoBehaviour
             StopCoroutine(shootCoroutine);
             shootCoroutine = null;
         }
-
     }
-
 }

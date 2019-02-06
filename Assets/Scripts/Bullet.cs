@@ -1,19 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Made by: Filip Nilsson
 /// </summary>
 public class Bullet : MonoBehaviour
 {
-
     [SerializeField] private float damage = 1;
     [SerializeField] private bool fromPlayer;
+    [SerializeField] private GameObject collisionEffect;
+
     public void SetDamage(float damage)
     {
         this.damage = damage;
     }
+
     public void SetFromPlayer(bool fromPlayer)
     {
         this.fromPlayer = fromPlayer;
@@ -21,11 +21,15 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         BossHitbox bhb;
         TargetDummy td;
         if (other.tag == "Boss Hitbox" && fromPlayer)
         {
+            if (collisionEffect != null)
+            {
+                GameObject effect = Instantiate(collisionEffect, new Vector3(transform.position.x, transform.position.y, transform.position.z - 4), collisionEffect.transform.rotation, transform.parent);
+                Destroy(effect, 1);
+            }
 
             if (bhb = other.GetComponent<BossHitbox>())
             {
