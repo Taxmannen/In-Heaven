@@ -57,11 +57,12 @@ public class AudioController : MonoBehaviour
     FMOD.Studio.EventInstance bossDestructionEv;
 
     [SerializeField] private Queue<FMOD.Studio.EventInstance> bossDestructionQueue = new Queue<FMOD.Studio.EventInstance>();
+    [SerializeField] private Queue<FMOD.Studio.EventInstance> playerShootQueue = new Queue<FMOD.Studio.EventInstance>();
 
 
     private void Start()
     {
-        playerShootEv = FMODUnity.RuntimeManager.CreateInstance(playerShoot);
+        
         playerDashEv = FMODUnity.RuntimeManager.CreateInstance(playerDash);
         playerJumpEv = FMODUnity.RuntimeManager.CreateInstance(playerJump);
         playerDoubleJumpEv = FMODUnity.RuntimeManager.CreateInstance(playerDoubleJump);
@@ -69,7 +70,7 @@ public class AudioController : MonoBehaviour
         playerCommenceShootingEv = FMODUnity.RuntimeManager.CreateInstance(playerCommenceShooting);
         playerParryEventEv = FMODUnity.RuntimeManager.CreateInstance(playerParryEvent);
         playerSuccessfulParryEv = FMODUnity.RuntimeManager.CreateInstance(playerSuccessfulParry);
-        bossHitRecieveDamageEv = FMODUnity.RuntimeManager.CreateInstance(bossHitRecieveDamage);
+        
         bossHitRecieveNoDamageEv = FMODUnity.RuntimeManager.CreateInstance(bossHitRecieveNoDamage);
         bossDeathEv = FMODUnity.RuntimeManager.CreateInstance(bossDeath);
         bossShootEv = FMODUnity.RuntimeManager.CreateInstance(bossShoot);
@@ -111,8 +112,18 @@ public class AudioController : MonoBehaviour
     }
     public void PlayerShoot()
     {
-        playerShootEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        playerShootEv.start();       
+        FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(playerShoot);
+        eventInstance.start();
+        playerShootQueue.Enqueue(eventInstance);
+        StartCoroutine(PlayerShootRoutine());
+    }
+
+    private IEnumerator PlayerShootRoutine()
+    {
+        yield return new WaitForSeconds(0.05f);
+        FMOD.Studio.EventInstance eventInstance = playerShootQueue.Dequeue();
+        eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        yield break;
     }
 
     public void PlayerCommenceShooting()
@@ -161,7 +172,6 @@ public class AudioController : MonoBehaviour
 
     public void BossHitRecieveDamage()
     {
-        Debug.Log(bossDestructionQueue.Count);
         FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(bossHitRecieveDamage);
         eventInstance.start();
         bossDestructionQueue.Enqueue(eventInstance);
