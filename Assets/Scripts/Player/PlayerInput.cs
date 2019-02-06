@@ -16,10 +16,10 @@ public class PlayerInput : MonoBehaviour
     private bool canDashLeft = false;
 
 
-    [Header("Freature/Changes in Testing")]
+    [Header("Testing Settings")]
     [SerializeField] private bool changeDashKeyToMouse;
     [SerializeField] private bool testKeyConfiguration;
-    [SerializeField] private bool onlyShootOnGround;
+
     //Timer/TimeCounter
     [SerializeField] private float timeBeforeStartShooting = 0.2f;
     [SerializeField][ReadOnly] private float timer = 0;
@@ -29,6 +29,18 @@ public class PlayerInput : MonoBehaviour
         if(GameController.instance.gameState == Global.GameState.Game)
         {
             UpdatePlayer();
+        }
+
+
+        if(Input.GetKeyUp(KeyCode.U))
+        {
+            playerController.shootAction.onlyShootOnGround = !playerController.shootAction.onlyShootOnGround;
+            Debug.Log("Only shoot while on Ground: " + playerController.shootAction.onlyShootOnGround);
+        }
+        if (Input.GetKeyUp(KeyCode.I))
+        {
+            playerController.shootAction.onlyShootWhenStandingStill = !playerController.shootAction.onlyShootWhenStandingStill;
+            Debug.Log("Only shoot while not Moving: " + playerController.shootAction.onlyShootWhenStandingStill);
         }
     }
 
@@ -51,7 +63,7 @@ public class PlayerInput : MonoBehaviour
 
         playerController.Aim();
 
-        if (AbleToShoot() && (onlyShootOnGround?playerController.grounded:true))
+        if (AbleToShoot())
         {
             playerController.Shoot();
         }

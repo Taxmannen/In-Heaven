@@ -1223,6 +1223,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 348524007, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
+      propertyPath: changeDashKeyToMouse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 348524007, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
+      propertyPath: testKeyConfiguration
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
 --- !u!1001 &3172763609380002011

@@ -34,6 +34,7 @@ public class PlayerController : Character
 
     [SerializeField] [ReadOnly] internal bool grounded;
     [SerializeField] [ReadOnly] internal bool jumping;
+    [SerializeField] [ReadOnly] internal bool standingStill;
 
     [SerializeField] [ReadOnly] private bool dashOnCooldown;
     [SerializeField] [ReadOnly] internal Global.PlayerState playerState = Global.PlayerState.Default;
@@ -137,7 +138,6 @@ public class PlayerController : Character
         {
             grounded = false;
         }
-
         else
         {
 
@@ -150,6 +150,16 @@ public class PlayerController : Character
             }
 
         }
+
+        if (movement.velocityDirection == 0)
+        {
+            standingStill = true;
+        }
+        else
+        {
+            standingStill = false;
+        }
+
         animator.SetBool("Jumping", jumping);
         if(rigi.velocity.x == 0)
         {
