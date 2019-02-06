@@ -10,19 +10,32 @@ public class Boss : Character
 
     //Serialized
 
+    [Header("TRANSFORMS")]
+    [SerializeField] private Transform spawnParent;
     [SerializeField] private Transform phaseParent;
     [SerializeField] private Transform movementParent;
     [SerializeField] private Transform attackParent;
+    [SerializeField] private Transform deathParent;
+
+    [Header("HITBOXES")]
     [SerializeField] private List<BossHitboxElement> bossHitboxElements = new List<BossHitboxElement>();
-    [SerializeField] private int activePhase = 0;
+
+    [Header("PREFABS")]
+    [SerializeField] private BossSpawn spawnPrefab;
     [SerializeField] private List<BossPhase> phasePrefabs = new List<BossPhase>();
+    [SerializeField] private BossDeath deathPrefab;
+
+    [Header("ACTIVE PHASE")]
+    [SerializeField] private int activePhase = 0;
 
 
 
     //Private
 
-    private List<BossPhase> phases = new List<BossPhase>();
     private Coroutine bossRoutine = null;
+    private List<BossPhase> phases = new List<BossPhase>();
+    protected BossDeath death;
+    protected BossSpawn spawn;
 
 
 
@@ -82,40 +95,56 @@ public class Boss : Character
     private new void Start()
     {
 
+        SetupSpawn();
+
         SetupPhases();
 
-        maxHP = 0;
+        SetupDeath();
 
-        if (bossHitboxElements.Count > GetComponentsInChildren<BossHitbox>().Length)
-        {
-            Debug.LogError("[Custom Error] : List of \"BossHitboxElements\" is out of date for a boss, press the button \"Update BossHitboxElement(s)\" on the boss whose list is out of date.");
-            return;
-        }
-
-        foreach (BossHitboxElement bossHitboxElement in bossHitboxElements)
-        {
-
-            bossHitboxElement.SetName(bossHitboxElement.GetHitbox().name);
-
-            if (bossHitboxElement.GetActivePhase() == activePhase)
-            {
-                maxHP += bossHitboxElement.GetMaxHP();
-            }
-            
-            bossHitboxElement.GetHitbox().SetMaxHP(bossHitboxElement.GetMaxHP());
-            bossHitboxElement.GetHitbox().SetHP(bossHitboxElement.GetHitbox().GetMaxHP());
-            bossHitboxElement.GetHitbox().SetWeakpoint(bossHitboxElement.GetWeakpoint());
-
-            if (bossHitboxElement.GetHitbox().GetWeakpoint())
-            {
-                bossHitboxElement.GetHitbox().SetActivePhase(bossHitboxElement.GetActivePhase());
-            }
-
-        }
+        SetupHitboxes();
 
         base.Start();
 
         StartBoss();
+
+    }
+
+
+
+    private void SetupSpawn()
+    {
+
+        if (!spawnParent)
+        {
+            GameObject spawnObject = Instantiate(new GameObject(), transform);
+            spawnObject.name = "Spawn(s)";
+            spawnParent = spawnObject.transform;
+        }
+
+        if (spawnParent)
+        {
+
+            if (spawnParent.childCount > 0)
+            {
+
+                foreach (GameObject child in spawnParent)
+                {
+                    Destroy(child);
+                }
+
+            }
+
+            if (spawnPrefab)
+            {
+                spawn = Instantiate(spawnPrefab, spawnParent);
+            }
+
+            else
+            {
+                Debug.LogError("[Custom Error] : \"Spawn Prefab\" is null, make sure the boss has a \"Spawn Prefab\" attached.");
+            }
+
+        }
 
     }
 
@@ -125,7 +154,7 @@ public class Boss : Character
         if (!phaseParent)
         {
 
-            GameObject phaseGameObject = Instantiate(new GameObject());
+            GameObject phaseGameObject = Instantiate(new GameObject(), transform);
             phaseGameObject.name = "Phase(s)";
             phaseParent = phaseGameObject.transform;
 
@@ -160,20 +189,100 @@ public class Boss : Character
 
     }
 
+    private void SetupDeath()
+    {
+
+        if (!deathParent)
+        {
+            GameObject deathObject = Instantiate(new GameObject(), transform);
+            deathObject.name = "Death(s)";
+            deathParent = deathObject.transform;
+        }
+
+        if (deathParent)
+        {
+
+            if (deathParent.childCount > 0)
+            {
+                foreach (GameObject child in deathParent)
+                {
+                    Destroy(child);
+                }
+            }
+
+            if (deathPrefab)
+            {
+                death = Instantiate(deathPrefab, deathParent);
+            }
+
+            else
+            {
+                Debug.LogError("[Custom Error] : \"Death Prefab\" is null, make sure the boss has a \"Death Prefab\" attached.");
+            }
+
+        }
+
+    }
+
+    private void SetupHitboxes()
+    {
+
+        maxHP = 0;
+
+        if (bossHitboxElements.Count > GetComponentsInChildren<BossHitbox>().Length)
+        {
+            Debug.LogError("[Custom Error] : List of \"BossHitboxElements\" is out of date for a boss, press the button \"Update BossHitboxElement(s)\" on the boss whose list is out of date.");
+            return;
+        }
+
+        foreach (BossHitboxElement bossHitboxElement in bossHitboxElements)
+        {
+
+            bossHitboxElement.SetName(bossHitboxElement.GetHitbox().name);
+
+            if (bossHitboxElement.GetActivePhase() == activePhase)
+            {
+                maxHP += bossHitboxElement.GetMaxHP();
+            }
+
+            bossHitboxElement.GetHitbox().SetMaxHP(bossHitboxElement.GetMaxHP());
+            bossHitboxElement.GetHitbox().SetHP(bossHitboxElement.GetHitbox().GetMaxHP());
+            bossHitboxElement.GetHitbox().SetWeakpoint(bossHitboxElement.GetWeakpoint());
+
+            if (bossHitboxElement.GetHitbox().GetWeakpoint())
+            {
+                bossHitboxElement.GetHitbox().SetActivePhase(bossHitboxElement.GetActivePhase());
+            }
+
+        }
+
+    }
+    
+
+
     private void StartBoss()
     {
         bossRoutine = StartCoroutine(BossRoutine());
     }
 
-    //Comment: Unused method, Implement a way to stop the boss for future.
+    private void FreezeBoss()
+    {
+        //Comment: Unused method, Implement a way to freeze the boss for future.
+    }
+
     private void StopBoss()
     {
+        //Comment: Unused method, Implement a way to stop the boss for future.
         StopCoroutine(bossRoutine);
         bossRoutine = null;
     }
 
     private IEnumerator BossRoutine()
     {
+
+        BossSpawn();
+
+        yield return new WaitUntil(() => spawn.GetExecuteRoutine() == null);
 
         for (int i = (activePhase - 1); i < phases.Count; i++)
         {
@@ -211,22 +320,41 @@ public class Boss : Character
 
         }
 
-        BossDie();
+        BossDeath();
+
+        yield return new WaitUntil(() => death.GetExecuteRoutine() == null);
+
         bossRoutine = null;
         yield break;
 
     }
 
-    private void BossDie()
+    private void BossSpawn()
     {
-        //Comment: Boss Dies Here, Animations & More... Tobe Coroutine
+
+        if (spawn)
+        {
+            spawn.StartSpawn(this);
+        }
+        
     }
+
+    private void BossDeath()
+    {
+
+        if (death)
+        {
+            death.StartDeath(this);
+        }
+
+    }
+
+    
 
     internal override void Receive(float amt)
     {
 
         base.Receive(amt);
-
         InterfaceController.instance.UpdateBossHPBar(hP, maxHP);
 
     }
@@ -255,9 +383,11 @@ public class Boss : Character
 
         else
         {
+
             activePhase++;
             base.Die();
             InterfaceController.instance.HideBossHPBar();
+
         }
 
     }
@@ -314,6 +444,8 @@ public class Boss : Character
 
     public void SetActivePhase(int activePhase)
     {
+
+        //Comment: Not used yet.
 
         if (this.activePhase == activePhase)
         {

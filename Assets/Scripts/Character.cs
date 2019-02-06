@@ -8,8 +8,9 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
 
-    [SerializeField] [ReadOnly] internal float maxHP = 10000; //Max Hit Points
+    [Header("HP/MAXHP")]
     [SerializeField] [ReadOnly] internal float hP;
+    [SerializeField] [ReadOnly] internal float maxHP = 10000; //Max Hit Points
 
     // Start is called before the first frame update
     protected void Start()

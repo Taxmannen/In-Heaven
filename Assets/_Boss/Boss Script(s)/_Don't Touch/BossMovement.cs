@@ -31,4 +31,9 @@ public class BossMovement : MonoBehaviour
         yield break;
     }
 
+    public Coroutine GetExecuteRoutine()
+    {
+        return executeRoutine;
+    }
+
 }

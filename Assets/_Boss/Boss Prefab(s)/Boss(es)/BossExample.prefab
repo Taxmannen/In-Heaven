@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &637250700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 637250701}
+  m_Layer: 0
+  m_Name: Death(s)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &637250701
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637250700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 786254963506694971}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &786254963221932739
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,7 +58,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 786254963506694971}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &786254963506694974
 GameObject:
@@ -60,9 +90,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 786254964363065180}
+  - {fileID: 8625417603217154182}
   - {fileID: 786254964382639728}
   - {fileID: 786254964261383179}
   - {fileID: 786254963221932738}
+  - {fileID: 637250701}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -94,30 +126,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11c0b4d69711174c8a2559f78c346f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 0
   hP: 0
-  phaseParent: {fileID: 786254964382639728}
+  maxHP: 0
+  phaseParent: {fileID: 0}
   movementParent: {fileID: 786254964261383179}
   attackParent: {fileID: 786254963221932738}
+  deathParent: {fileID: 0}
+  spawnParent: {fileID: 0}
   bossHitboxElements:
   - name: Head_and_Neck
     bossHitbox: {fileID: 4634308027230804666}
     weakpoint: 1
-    maxHP: 1000
-    activePhase: 1
+    maxHP: 19283
+    activePhase: 3
   - name: LeftChest
     bossHitbox: {fileID: 8369086304198095635}
     weakpoint: 1
-    maxHP: 1000
+    maxHP: 1093
     activePhase: 1
   - name: RightChest
     bossHitbox: {fileID: 4560500525493191425}
     weakpoint: 1
-    maxHP: 1000
+    maxHP: 1137
     activePhase: 1
-  activePhase: 1
+  spawnPrefab: {fileID: 0}
   phasePrefabs:
-  - {fileID: 2914757462529741629, guid: 2293db9d06e3cff4f829269cc73fe8f3, type: 3}
+  - {fileID: 2895060799350385471, guid: d1ee9bd7f30999a4d93829d194fc66bc, type: 3}
+  - {fileID: 3903229002270639996, guid: 0e6ee973d8d7a6244a32eaaf21fe17ec, type: 3}
+  - {fileID: 2895060799350385471, guid: d1ee9bd7f30999a4d93829d194fc66bc, type: 3}
+  deathPrefab: {fileID: 0}
+  activePhase: 1
 --- !u!1 &786254964261383176
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +184,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 786254963506694971}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &786254964363065181
 GameObject:
@@ -207,7 +245,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 786254963506694971}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5139363340028123986
 BoxCollider:
@@ -220,8 +258,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 14.6274395, y: 15.678958, z: 11.035452}
-  m_Center: {x: 0.205742, y: 6.855345, z: -1.5140067}
+  m_Size: {x: 14.6274395, y: 11.083937, z: 11.035453}
+  m_Center: {x: 0.20574178, y: 9.152849, z: -1.5140067}
 --- !u!114 &4634308027230804666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +334,36 @@ MonoBehaviour:
   maxHP: 0
   hP: 0
   activePhase: 0
+--- !u!1 &8742185024279163189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8625417603217154182}
+  m_Layer: 0
+  m_Name: Spawn(s)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8625417603217154182
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8742185024279163189}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 786254963506694971}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2760993232885313343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -307,13 +375,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: robot_FBX
       objectReference: {fileID: 0}
-    - target: {fileID: 100044, guid: 01e7d64f2d9e4744ab702ee31806d77b, type: 3}
-      propertyPath: m_Name
-      value: LeftChest
+    - target: {fileID: 100096, guid: 01e7d64f2d9e4744ab702ee31806d77b, type: 3}
+      propertyPath: m_TagString
+      value: Boss Hitbox
       objectReference: {fileID: 0}
     - target: {fileID: 100066, guid: 01e7d64f2d9e4744ab702ee31806d77b, type: 3}
       propertyPath: m_Name
       value: RightChest
+      objectReference: {fileID: 0}
+    - target: {fileID: 100066, guid: 01e7d64f2d9e4744ab702ee31806d77b, type: 3}
+      propertyPath: m_TagString
+      value: Boss Hitbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 100044, guid: 01e7d64f2d9e4744ab702ee31806d77b, type: 3}
+      propertyPath: m_Name
+      value: LeftChest
+      objectReference: {fileID: 0}
+    - target: {fileID: 100044, guid: 01e7d64f2d9e4744ab702ee31806d77b, type: 3}
+      propertyPath: m_TagString
+      value: Boss Hitbox
       objectReference: {fileID: 0}
     - target: {fileID: 400112, guid: 01e7d64f2d9e4744ab702ee31806d77b, type: 3}
       propertyPath: m_LocalPosition.x

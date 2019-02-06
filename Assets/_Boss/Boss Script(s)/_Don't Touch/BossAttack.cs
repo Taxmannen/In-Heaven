@@ -31,4 +31,9 @@ public class BossAttack : MonoBehaviour
         yield break;
     }
 
+    public Coroutine GetExecuteRoutine()
+    {
+        return executeRoutine;
+    }
+
 }
