@@ -10,16 +10,12 @@ public class ShaderManager : MonoBehaviour {
     [SerializeField] private Color hitColor = new Color(0.5f, 0.5f, 0.5f);
     [Range(0, 15)] [Tooltip("The speed of lerp between the colors when invincible/boss getting hit")]
     [SerializeField] private float hitSpeed = 5;
-    [Range(0, 1)] [Tooltip("The percentage of lerping when invincible/boss getting hit")] //ÄNDRAS
-    [SerializeField] private float hitLerpPercentage = 0.5f;
 
     [Header("Dash")]
     [Tooltip("Color when dash recharged")]
     [SerializeField] private Color dashColor;
     [Range(0, 10)] [Tooltip("The speed of lerp beween the colors when dash is recharged")]
     [SerializeField] private float dashSpeed = 3;
-    [Range(0, 1)] [Tooltip("The percentage of lerping when dash is recharged")] //ÄNDRAS
-    [SerializeField] private float dashLerpPercentage = 1;
 
     [Header("Meshes")]
     [Tooltip("Add all the renderers that the mesh contain")]
@@ -29,6 +25,7 @@ public class ShaderManager : MonoBehaviour {
     private Color[] orgColors;
     private Color[] lerpedColors;
     private bool fading;
+    float timeStarted;
     #endregion
 
     private void Start()
@@ -38,33 +35,38 @@ public class ShaderManager : MonoBehaviour {
 
     public void HitEffect(float duration)
     {
-        StartCoroutine(ColorEffect(hitColor, hitSpeed, hitLerpPercentage));
+        StartCoroutine(ColorEffect(hitColor, hitSpeed, false));
         Invoke("StopColorEffect", duration);
     }
 
-    //Under Utveckling
     public void DashEffect()
     {
-        /*StartCoroutine(ColorEffect(dashColor, dashSpeed, dashLerpPercentage));
-        Invoke("StopColorEffect", 0.27f);*/
+        StartCoroutine(ColorEffect(dashColor, dashSpeed, true));
     }
 
-    private IEnumerator ColorEffect(Color color, float speed, float lerpPercentage)
+    private IEnumerator ColorEffect(Color color, float speed, bool dash)
     {
+        if (dash) timeStarted = Time.time;
+
         fading = true;
         while (fading)
         {
-            ColorLerp(color, speed, lerpPercentage);
+            if (dash && (Time.time - timeStarted) * speed >= 2.15f) StopColorEffect();
+            ColorLerp(color, speed);
             yield return null;
         }
-        for (int i = 0; i < materials.Length; i++)  materials[i].SetColor("_Color", orgColors[i]);
+        for (int i = 0; i < materials.Length; i++)
+        {
+            materials[i].SetColor("_Color", orgColors[i]);
+            //lerpedColors[i] = orgColors[i]; //Kan behövas
+        }
     }
 
-    private void ColorLerp(Color color, float speed, float lerpPercent)
+    private void ColorLerp(Color color, float speed)
     {
         for (int i = 0; i < materials.Length; i++)
         {
-            lerpedColors[i] = Color.Lerp(orgColors[i], color, Mathf.PingPong(Time.time * speed, lerpPercent));
+            lerpedColors[i] = Color.Lerp(orgColors[i], color, Mathf.PingPong((Time.time - timeStarted) * speed, 1));
             materials[i].SetColor("_Color", lerpedColors[i]);
         }
     }
