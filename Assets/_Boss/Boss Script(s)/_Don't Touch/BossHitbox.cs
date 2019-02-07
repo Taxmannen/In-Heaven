@@ -11,9 +11,14 @@ public class BossHitbox : MonoBehaviour
     [SerializeField] [ReadOnly] private float hP;
     [SerializeField] [ReadOnly] private int activePhase;
 
+    //VFXs
+    [SerializeField]
+    private GameObject sparks;
+
     //Private
     private Boss boss;
     private ShaderManager shaderManager;
+
 
     //Main
     private void Start()
@@ -42,6 +47,7 @@ public class BossHitbox : MonoBehaviour
         if (hP - amt <= 0)
         {
             Die();
+            ActivateSparksVFX();
         }
 
         else
@@ -59,6 +65,17 @@ public class BossHitbox : MonoBehaviour
         gameObject.GetComponent<Renderer>().enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
         AudioController.instance.BossDestruction();
+    }
+
+    private void ActivateSparksVFX() {
+        if (sparks != null)
+        {
+            sparks.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("Add sparks VFXs to the destroyed object!");
+        }
     }
 
     private void Hit(float amt)

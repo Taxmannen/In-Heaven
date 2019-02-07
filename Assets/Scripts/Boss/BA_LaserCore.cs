@@ -27,12 +27,6 @@ public class BA_LaserCore : BossAttack
 
     private string startSide;
 
-    //For testing. REMOVE!
-    private void Start()
-    {
-        StartCoroutine("Execute", new Boss());
-    }
-
     protected override IEnumerator Execute(Boss boss)
     {
         SpawnLaser();
