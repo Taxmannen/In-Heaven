@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Made By: Filip Nilsson, Edited By: Jesper Uddefors
@@ -201,9 +199,9 @@ public class PlayerController : Character
     {
         superChargeResource.SuperCharge();
     }
-    public void Invincible(float duration)
+    public void Invincible(float duration, bool isHit)
     {
-        invincible.Invincible(duration);
+        invincible.Invincible(duration, isHit);
     }
     public void Aim()
     {
@@ -252,7 +250,7 @@ public class PlayerController : Character
     internal override void Hit(float amt)
     {
         hP -= amt;
-        Invincible(hitInvincibleDuration);
+        Invincible(hitInvincibleDuration, true);
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
     }
 

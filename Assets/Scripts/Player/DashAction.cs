@@ -22,6 +22,7 @@ public class DashAction : MonoBehaviour
 
     internal float velocity;
     float dir; //Added so you always dash the direction you faced last
+    private ShaderManager shaderManager;
 
     [Header("DEBUG")]
     [SerializeField] [ReadOnly] private float dashes = 0;
@@ -30,6 +31,7 @@ public class DashAction : MonoBehaviour
     void Start()
     {
         player = GetComponent<PlayerController>();
+        shaderManager = GetComponent<ShaderManager>();
     }
 
     private void Update()
@@ -70,7 +72,7 @@ public class DashAction : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
-        player.Invincible(invincibleDuration);
+        player.Invincible(invincibleDuration, false);
     
         velocity = dir * power;
 
@@ -88,6 +90,7 @@ public class DashAction : MonoBehaviour
     {
         yield return new WaitUntil(() => coroutine == null);
         yield return new WaitForSeconds(cooldown);
+        shaderManager.DashEffect();
         cooldownCorutine = null;
         yield break;
     }

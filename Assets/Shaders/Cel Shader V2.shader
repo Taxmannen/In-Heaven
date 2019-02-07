@@ -15,14 +15,14 @@
 		
 		[Header(Specular)]
 		_Specular("Specular Color", Color) = (1,1,1,1)
-		_SpecularSize("Specular Size", Range(0, 1)) = 0.1
+		_SpecularSize("Specular Size", Range(0, 1)) = 0
 		_SpecularFalloff("Specular Falloff", Range(0, 2)) = 1
 
 		[Header(Outline)]
 		[Toggle(SHOW_OUTLINE)]
 		_ShowOutline("Show Outline", Float) = 0
 		_OutlineColor("Outline Color", Color) = (0, 0, 0, 1)
-		_OutlineExtrusion("Outline Extrusion", float) = 0.04
+		_OutlineExtrusion("Outline Extrusion", float) = 0.01
 	}
 
 	SubShader 

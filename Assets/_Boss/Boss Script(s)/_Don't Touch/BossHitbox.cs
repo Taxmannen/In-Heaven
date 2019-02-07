@@ -5,37 +5,28 @@
 /// </summary>
 public class BossHitbox : MonoBehaviour
 {
-
     //Read Only
-
     [SerializeField] [ReadOnly] private bool weakpoint;
     [SerializeField] [ReadOnly] private float maxHP;
     [SerializeField] [ReadOnly] private float hP;
     [SerializeField] [ReadOnly] private int activePhase;
 
-
-
     //Private
-
     private Boss boss;
-
-
+    private ShaderManager shaderManager;
 
     //Main
-
     private void Start()
     {
         boss = GetComponentInParent<Boss>();
-
     }
+
     public bool Damagable()
     {
-
         if (!weakpoint)
         {
             return false;
         }
-
 
         if (activePhase != boss.GetActivePhase())
         {
@@ -56,8 +47,8 @@ public class BossHitbox : MonoBehaviour
         else
         {
             Hit(amt);
+            shaderManager.HitEffect(0.5f);
         }
-
     }
 
     private void Die()
@@ -77,9 +68,7 @@ public class BossHitbox : MonoBehaviour
     }
 
 
-
     //Getters & Setters
-
     public bool GetWeakpoint()
     {
         return weakpoint;
@@ -92,6 +81,7 @@ public class BossHitbox : MonoBehaviour
         if (this.weakpoint)
         {
             GetComponent<Renderer>().material.color = Color.red;
+            shaderManager = gameObject.AddComponent<ShaderManager>();
         }
     }
 
@@ -124,5 +114,4 @@ public class BossHitbox : MonoBehaviour
     {
         this.activePhase = activePhase;
     }
-
 }

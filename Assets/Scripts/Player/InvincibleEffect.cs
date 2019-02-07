@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -9,33 +8,34 @@ using UnityEngine;
 public class InvincibleEffect : MonoBehaviour
 {
     private PlayerController player;
+    private ShaderManager shaderManager;
     internal Coroutine invincibleCoroutine = null;
-    // Start is called before the first frame update
+
     void Start()
     {
         player = GetComponent<PlayerController>();
+        shaderManager = GetComponent<ShaderManager>();
     }
 
     /// <summary>
     /// Applies the Invincible PlayerState to the object for the duration sent as a parameter.
     /// </summary>
     /// <param name="duration"></param>
-    internal void Invincible(float duration)
+    internal void Invincible(float duration, bool isHit)
     {
-
         if (invincibleCoroutine != null)
         {
             StopCoroutine(invincibleCoroutine);
         }
 
-        invincibleCoroutine = StartCoroutine(InvincibleCoroutine(duration));
-
+        invincibleCoroutine = StartCoroutine(InvincibleCoroutine(duration, isHit));
     }
 
-    private IEnumerator InvincibleCoroutine(float duration)
+    private IEnumerator InvincibleCoroutine(float duration, bool isHit)
     {
         player.playerState = Global.PlayerState.Invincible;
         InterfaceController.instance.UpdatePlayerState(player.playerState); //Debug
+        if (isHit) shaderManager.HitEffect(duration);
         yield return new WaitForSeconds(duration);
         player.playerState = Global.PlayerState.Default;
         InterfaceController.instance.UpdatePlayerState(player.playerState); //Debug
@@ -50,5 +50,4 @@ public class InvincibleEffect : MonoBehaviour
             invincibleCoroutine = null;
         }
     }
-       
 }

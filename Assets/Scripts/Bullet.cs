@@ -33,10 +33,9 @@ public class Bullet : MonoBehaviour
 
             if (bhb = other.GetComponent<BossHitbox>())
             {
-
                 if (bhb.Damagable())
                 {
-                    Debug.Log("Did Damage");
+                    //Debug.Log("Did Damage");
                     other.GetComponent<BossHitbox>().Receive(damage);
                     AudioController.instance.BossHitRecieveDamage();
                     Destroy(gameObject);
@@ -47,22 +46,19 @@ public class Bullet : MonoBehaviour
                     AudioController.instance.BossHitRecieveNoDamage();
                     Destroy(gameObject);
                 }
-
             }
-            if(td = other.GetComponent<TargetDummy>())
+
+            if (td = other.GetComponent<TargetDummy>())
             {
                 td.Receive(damage);
                 Destroy(gameObject);
             }
-
-            
         }
+
         if (other.tag == "Player Hitbox" && !fromPlayer)
         {
             other.GetComponentInParent<PlayerController>().Receive(damage);
             Destroy(gameObject);
         }
-
     }
-
 }
