@@ -33,6 +33,11 @@ public class IKcontroller : MonoBehaviour
                 animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
                 animator.SetIKPosition(AvatarIKGoal.RightHand, rightHandObj.position);
                 animator.SetIKRotation(AvatarIKGoal.RightHand, rightHandObj.rotation);
+
+
+
+
+
             }
             else
             {
