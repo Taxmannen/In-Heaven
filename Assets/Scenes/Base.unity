@@ -1210,13 +1210,25 @@ PrefabInstance:
       propertyPath: deaccelerationValue
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 338361051, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
+      propertyPath: baseMovementSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 338361051, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
+      propertyPath: gravity
+      value: 66
+      objectReference: {fileID: 0}
+    - target: {fileID: 338361051, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
+      propertyPath: jumpPower
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 338361054, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
       propertyPath: aim
       value: 
       objectReference: {fileID: 50253025}
     - target: {fileID: 338361054, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
       propertyPath: playerBulletTrajectoryDistance
-      value: 50
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 338361049, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
       propertyPath: cooldown
@@ -1233,6 +1245,10 @@ PrefabInstance:
     - target: {fileID: 338361052, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
       propertyPath: playerBulletDamage
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 338361052, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
+      propertyPath: playerBulletSpeed
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 338361053, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
       propertyPath: superChargeMax
