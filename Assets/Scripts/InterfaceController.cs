@@ -53,6 +53,13 @@ public class InterfaceController : MonoBehaviour
         //slider.maxValue = player.GetSuperChargeMax();
         slider.value = slider.value / slider.maxValue;
     }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            Pause();
+        }
+    }
 
     public void UpdatePlayerHP(float hP, float maxHP)
     {
@@ -82,6 +89,21 @@ public class InterfaceController : MonoBehaviour
     public void Success()
     {
         successPanel.SetActive(true);
+    }
+    public void Pause()
+    { 
+        successPanel.SetActive(!successPanel.active);
+
+        if (successPanel.active)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            
+            Time.timeScale = 1;
+            Debug.Log("Resume: " + Time.timeScale);
+        }
     }
 
     public void BossBulletOverlay(Vector3 point)
