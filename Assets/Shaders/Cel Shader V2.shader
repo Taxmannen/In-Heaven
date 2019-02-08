@@ -1,10 +1,10 @@
 ﻿Shader "Custom/Cel Shader V2" 
 {
-
 	Properties 
 	{
 		[Header(Standard)]
 		_MainTex("Texture", 2D) = "white" {}
+		_NormalTex("Normal Texture", 2D) = "White" {}
 		_Color("Tint", Color) = (1, 1, 1, 1)
 		[HDR] _Emission("Emission", color) = (0 ,0 ,0 , 1)
 
@@ -14,7 +14,7 @@
 		_StepWidth("Step Size", Range(0, 1)) = 0.25
 		
 		[Header(Specular)]
-		_Specular("Specular Color", Color) = (1,1,1,1)
+		_Specular("Specular Color", Color) = (1, 1, 1, 1)
 		_SpecularSize("Specular Size", Range(0, 1)) = 0
 		_SpecularFalloff("Specular Falloff", Range(0, 2)) = 1
 
@@ -51,6 +51,7 @@
 		#pragma target 3.0
 
 		sampler2D _MainTex;
+		sampler2D _NormalTex;
 		fixed4 _Color;
 		half3 _Emission;
 		fixed4 _Specular;
@@ -113,6 +114,7 @@
 		struct Input
 		{
 			float2 uv_MainTex;
+			float2 uv_NormalTex;
 		};
 
 		void surf(Input i, inout ToonSurfaceOutput o) 
@@ -122,6 +124,7 @@
 			o.Alpha = _Color.a;
 			o.Albedo = col.rgb;
 			o.Specular = _Specular;
+			o.Normal = UnpackNormal(tex2D(_NormalTex, i.uv_NormalTex));
 
 			float3 shadowColor = col.rgb * _ShadowTint;
 			o.Emission = _Emission + shadowColor;
