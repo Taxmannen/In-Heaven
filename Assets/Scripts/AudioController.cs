@@ -82,6 +82,15 @@ public class AudioController : MonoBehaviour
     [SerializeField] private string muteMusicSnap;
     FMOD.Studio.EventInstance muteMusicSnapEv;
 
+    [FMODUnity.EventRef]
+    [SerializeField] private string muteSfxDynamic;
+    FMOD.Studio.EventInstance muteSfxDynamicEv;
+    FMOD.Studio.ParameterInstance muteSfxParameter;
+
+    [FMODUnity.EventRef]
+    [SerializeField] private string muteSfxSnap;
+    FMOD.Studio.EventInstance muteSfxSnapEv;
+
 
     private void Start()
     {
@@ -103,9 +112,13 @@ public class AudioController : MonoBehaviour
         muteAllSnapEv = FMODUnity.RuntimeManager.CreateInstance(muteAllSnap);
         muteMusicDynamicEv = FMODUnity.RuntimeManager.CreateInstance(muteMusicDynamic);
         muteMusicSnapEv = FMODUnity.RuntimeManager.CreateInstance(muteMusicSnap);
-        //shootingEvent.getParameter("Stop", out stopShooting);
+        muteSfxDynamicEv = FMODUnity.RuntimeManager.CreateInstance(muteSfxDynamic);
+        muteSfxSnapEv = FMODUnity.RuntimeManager.CreateInstance(muteSfxDynamic);
+        
         muteAllDynamicEv.getParameter("MuteAllParameter", out muteAllParameter);
         muteMusicDynamicEv.getParameter("MuteMusicParameter", out muteMusicParameter);
+        muteSfxDynamicEv.getParameter("MuteSfxParameter", out muteSfxParameter);
+
     }
     private void Awake()
     {
@@ -261,14 +274,36 @@ public class AudioController : MonoBehaviour
         muteMusicDynamicEv.start();
         muteMusicParameter.setValue(value);
     }
-    public void MuteMusic()
+    public void ToggleMusic(Toggle toggle)
     {
-        muteMusicSnapEv.start();
+        if (!toggle.isOn)
+        {
+            muteMusicSnapEv.start();
+        }
+        else
+        {
+            muteMusicSnapEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
     }
-    public void UnmuteMusic()
+
+    public void SetSfx(float value)
     {
-        muteMusicDynamicEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        muteAllDynamicEv.start();
+        muteAllParameter.setValue(value);
     }
+    public void ToggleSfx(Toggle toggle)
+    {
+        if (!toggle.isOn)
+        {
+            muteSfxSnapEv.start();
+        }
+        else
+        {
+            muteSfxSnapEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
+    }
+
+
 
 
 
