@@ -59,6 +59,27 @@ public class AudioController : MonoBehaviour
     [SerializeField] private Queue<FMOD.Studio.EventInstance> bossDestructionQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> playerShootQueue = new Queue<FMOD.Studio.EventInstance>();
 
+    [Header("")]
+    [Header("SOUND OVERRIDES")]
+
+    [FMODUnity.EventRef]
+    [SerializeField] private string muteAllDynamic;
+    FMOD.Studio.EventInstance muteAllDynamicEv;
+    FMOD.Studio.ParameterInstance muteAllParameter;
+
+    [FMODUnity.EventRef]
+    [SerializeField] private string muteAllSnap;
+    FMOD.Studio.EventInstance muteAllSnapEv;
+
+    [FMODUnity.EventRef]
+    [SerializeField] private string muteMusicDynamic;
+    FMOD.Studio.EventInstance muteMusicDynamicEv;
+    FMOD.Studio.ParameterInstance muteMusicParameter;
+
+    [FMODUnity.EventRef]
+    [SerializeField] private string muteMusicSnap;
+    FMOD.Studio.EventInstance muteMusicSnapEv;
+
 
     private void Start()
     {
@@ -76,7 +97,13 @@ public class AudioController : MonoBehaviour
         bossShootEv = FMODUnity.RuntimeManager.CreateInstance(bossShoot);
         bossDestructionEv = FMODUnity.RuntimeManager.CreateInstance(bossDestruction);
 
+        muteAllDynamicEv = FMODUnity.RuntimeManager.CreateInstance(muteAllDynamic);
+        muteAllSnapEv = FMODUnity.RuntimeManager.CreateInstance(muteAllSnap);
+        muteMusicDynamicEv = FMODUnity.RuntimeManager.CreateInstance(muteMusicDynamic);
+        muteMusicSnapEv = FMODUnity.RuntimeManager.CreateInstance(muteMusicSnap);
         //shootingEvent.getParameter("Stop", out stopShooting);
+        muteAllDynamicEv.getParameter("MuteAllParameter", out muteAllParameter);
+        muteMusicDynamicEv.getParameter("MuteMusicParameter", out muteMusicParameter);
     }
     private void Awake()
     {
@@ -120,7 +147,7 @@ public class AudioController : MonoBehaviour
 
     private IEnumerator PlayerShootRoutine()
     {
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.5f);
         FMOD.Studio.EventInstance eventInstance = playerShootQueue.Dequeue();
         eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         yield break;
@@ -207,5 +234,36 @@ public class AudioController : MonoBehaviour
     {
         bossDestructionEv.start();
     }
+
+    //__________Overrides_______
+
+    public void SetMaster(float value)
+    {
+        muteAllDynamicEv.start();
+        muteAllParameter.setValue (value);
+    }
+    public void MuteMaster()
+    {
+        muteAllSnapEv.start();
+    }
+    public void UnmuteMaster()
+    {
+        muteAllSnapEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+    public void SetMusic(float value)
+    {
+        muteMusicDynamicEv.start();
+        muteMusicParameter.setValue(value);
+    }
+    public void MuteMusic()
+    {
+        muteMusicSnapEv.start();
+    }
+    public void UnmuteMusic()
+    {
+        muteMusicDynamicEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+
+
 
 }
