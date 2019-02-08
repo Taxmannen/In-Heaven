@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 /// <summary>
 /// Made by: Vidar M
@@ -242,14 +244,18 @@ public class AudioController : MonoBehaviour
         muteAllDynamicEv.start();
         muteAllParameter.setValue (value);
     }
-    public void MuteMaster()
+    public void ToggleMaster(Toggle toggle)
     {
-        muteAllSnapEv.start();
+        if (!toggle.isOn)
+        {
+            muteAllSnapEv.start();
+        }
+        else
+        {
+            muteAllSnapEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
     }
-    public void UnmuteMaster()
-    {
-        muteAllSnapEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-    }
+
     public void SetMusic(float value)
     {
         muteMusicDynamicEv.start();
