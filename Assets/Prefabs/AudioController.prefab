@@ -43,9 +43,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cfefcf8ac7374b48b0910d3afd23823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShoot: event:/PlayerShoot
-  bossRecieveDamage: event:/BossHitSound
-  bossDeath: event:/BossDeath
-  playerDash: event:/PlayerDash
-  playerJump: event:/PlayerJump
-  playerDoubleJump: event:/PlayerDoubleJump
+  playerShoot: event:/Player/PlayerShoot (2)
+  playerDash: event:/Player/PlayerDash
+  playerJump: event:/Player/PlayerJump
+  playerDoubleJump: event:/Player/PlayerDoubleJump
+  playerGunReverb: event:/Player/PlayerShotReverb
+  playerCommenceShooting: event:/Player/PlayerCommenceShooting
+  playerParryEvent: event:/Player/PlayerParryEvent
+  playerSuccessfulParry: event:/Player/PlayerParrySuccess
+  bossHitRecieveDamage: event:/Boss/BossHitRecieveDamage
+  bossHitRecieveNoDamage: event:/Boss/BossHitRecieveNoDamage
+  bossDeath: event:/Boss/BossDeath
+  bossShoot: event:/Boss/BossShoot
+  bossDestruction: event:/Boss/Boss Destruction
+  muteAllDynamic: event:/Sound Overrides/MuteAllDynamic 0-1
+  muteAllSnap: event:/Sound Overrides/MuteAllSnap
+  muteMusicDynamic: event:/Sound Overrides/MuteMusicDynamic 0-1
+  muteMusicSnap: event:/Sound Overrides/MuteMusicSnap
