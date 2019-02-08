@@ -252,10 +252,10 @@ public class AudioController : MonoBehaviour
 
     //__________Overrides_______
 
-    public void SetMaster(float value)
+    public void SetMaster(Slider slider)
     {
         muteAllDynamicEv.start();
-        muteAllParameter.setValue (value);
+        muteAllParameter.setValue (slider.value);
     }
     public void ToggleMaster(Toggle toggle)
     {
@@ -269,10 +269,10 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    public void SetMusic(float value)
+    public void SetMusic(Slider slider)
     {
         muteMusicDynamicEv.start();
-        muteMusicParameter.setValue(value);
+        muteMusicParameter.setValue(slider.value);
     }
     public void ToggleMusic(Toggle toggle)
     {
@@ -286,10 +286,10 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    public void SetSfx(float value)
+    public void SetSfx(Slider slider)
     {
         muteAllDynamicEv.start();
-        muteAllParameter.setValue(value);
+        muteAllParameter.setValue(slider.value);
     }
     public void ToggleSfx(Toggle toggle)
     {
