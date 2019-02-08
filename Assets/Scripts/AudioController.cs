@@ -288,8 +288,8 @@ public class AudioController : MonoBehaviour
 
     public void SetSfx(Slider slider)
     {
-        muteAllDynamicEv.start();
-        muteAllParameter.setValue(slider.value * 0.01f);
+        muteSfxDynamicEv.start();
+        muteSfxParameter.setValue(slider.value * 0.01f);
     }
     public void ToggleSfx(Toggle toggle)
     {
