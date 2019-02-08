@@ -259,7 +259,7 @@ public class AudioController : MonoBehaviour
     }
     public void ToggleMaster(Toggle toggle)
     {
-        if (!toggle.isOn)
+        if (toggle.isOn)
         {
             muteAllSnapEv.start();
         }
@@ -276,7 +276,7 @@ public class AudioController : MonoBehaviour
     }
     public void ToggleMusic(Toggle toggle)
     {
-        if (!toggle.isOn)
+        if (toggle.isOn)
         {
             muteMusicSnapEv.start();
         }
@@ -293,7 +293,7 @@ public class AudioController : MonoBehaviour
     }
     public void ToggleSfx(Toggle toggle)
     {
-        if (!toggle.isOn)
+        if (toggle.isOn)
         {
             muteSfxSnapEv.start();
         }
