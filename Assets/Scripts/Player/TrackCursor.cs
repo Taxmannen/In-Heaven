@@ -20,6 +20,14 @@ public class TrackCursor : MonoBehaviour
   
     void Update()
     {
+        if (Input.GetMouseButton(0))
+        {
+            distance = cameraBossDistance;
+        }
+        else
+        {
+            distance = transform.position.z - Camera.main.transform.position.z;
+        }
         
 
         cursorPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
