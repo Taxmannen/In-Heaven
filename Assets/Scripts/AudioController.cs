@@ -255,7 +255,7 @@ public class AudioController : MonoBehaviour
     public void SetMaster(Slider slider)
     {
         muteAllDynamicEv.start();
-        muteAllParameter.setValue (slider.value);
+        muteAllParameter.setValue (slider.value * 0.01f);
     }
     public void ToggleMaster(Toggle toggle)
     {
@@ -272,7 +272,7 @@ public class AudioController : MonoBehaviour
     public void SetMusic(Slider slider)
     {
         muteMusicDynamicEv.start();
-        muteMusicParameter.setValue(slider.value);
+        muteMusicParameter.setValue(slider.value * 0.01f);
     }
     public void ToggleMusic(Toggle toggle)
     {
@@ -289,7 +289,7 @@ public class AudioController : MonoBehaviour
     public void SetSfx(Slider slider)
     {
         muteAllDynamicEv.start();
-        muteAllParameter.setValue(slider.value);
+        muteAllParameter.setValue(slider.value * 0.01f);
     }
     public void ToggleSfx(Toggle toggle)
     {
