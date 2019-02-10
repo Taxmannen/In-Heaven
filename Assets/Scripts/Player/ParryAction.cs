@@ -51,7 +51,8 @@ public class ParryAction : MonoBehaviour
         parrybox.enabled = true;
         parryEffect.Play();
         Statistics.instance.numberOfParrys++;
-        player.playerState = Global.PlayerState.Invincible;    
+        player.playerState = Global.PlayerState.Invincible;
+        AudioController.instance.PlayerParryEvent();
 
         for (parryCoroutineCounter = sledgeDuration; parryCoroutineCounter > 0; parryCoroutineCounter -= Time.deltaTime)
         {
