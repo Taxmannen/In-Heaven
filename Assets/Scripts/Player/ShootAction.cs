@@ -2,19 +2,18 @@
 using UnityEngine;
 
 /// <summary>
-/// Made By: Jesper Uddefors and Filip Nilsson
+/// Made By: Jesper Uddefors and Filip Nilsson, Edited By: Daniel Nordahl
 /// </summary>
 [RequireComponent(typeof(PlayerController))]
 public class ShootAction : MonoBehaviour
 {
     private PlayerController player;
-    [SerializeField] private Transform tf;
+    [SerializeField] private Transform shootFrom;
     internal Coroutine shootCoroutine = null;
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject muzzleEfect;
     [SerializeField] private Transform bullets;
-
 
     [SerializeField] [Range(0, 1000)] private int playerBulletDamage = 7;
     [SerializeField] [Range(1, 100)] private float basePlayerBulletsPerSecond = 10f; //Bullets per second during left mouse down
@@ -27,12 +26,13 @@ public class ShootAction : MonoBehaviour
     [SerializeField] internal bool isMuzzleEffect;
 
     internal float playerBulletsPerSecond;
-    // Start is called before the first frame update
+
     void Start()
     {
         player = GetComponent<PlayerController>();
         BulletPerSecondReset();
     }
+
     public void BulletPerSecondReset()
     {
         playerBulletsPerSecond = basePlayerBulletsPerSecond;
@@ -42,13 +42,10 @@ public class ShootAction : MonoBehaviour
     /// </summary>
     public void Shoot()
     {
-
         if ((onlyShootOnGround ? player.grounded : true) && (onlyShootWhenStandingStill? player.standingStill:true))
         {
-
             if (player.GetShootDuringDash())
             {
-
                 if (shootCoroutine == null)
                 {
                     shootCoroutine = StartCoroutine(ShootCoroutine(player.aim.aimPoint));
@@ -66,7 +63,6 @@ public class ShootAction : MonoBehaviour
                 }
             }
         }
-
     }
 
     private IEnumerator ShootCoroutine(Vector3 point)
@@ -80,21 +76,20 @@ public class ShootAction : MonoBehaviour
             Statistics.instance.numberOfBulletsFired++;
         }
 
-        GameObject bullet = ShootingHelper.Shoot(tf.position, point, bulletPrefab, playerBulletSpeed, bullets, 3);
+        GameObject bullet = ShootingHelper.Shoot(shootFrom.position, point, bulletPrefab, playerBulletSpeed, bullets, 3);
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         bulletScript.SetDamage(playerBulletDamage);
         bulletScript.SetPoint(point);
 
         if (isMuzzleEffect)
         {
-            GameObject muzzle = Instantiate(muzzleEfect, tf.position, transform.rotation, bullets);
+            GameObject muzzle = Instantiate(muzzleEfect, shootFrom.position, transform.rotation, bullets);
             Destroy(muzzle, 1);
         }
 
         yield return new WaitForSeconds(1 / playerBulletsPerSecond);
         shootCoroutine = null;
         yield break;
-
     }
 
     public void ShootReverb()

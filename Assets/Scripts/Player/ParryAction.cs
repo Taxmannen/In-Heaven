@@ -2,7 +2,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Made By: Jesper Uddefors and Filip Nilsson
+/// Made By: Jesper Uddefors and Filip Nilsson, Edited By: Daniel Nordahl
 /// </summary>
 [RequireComponent(typeof(PlayerController))]
 public class ParryAction : MonoBehaviour

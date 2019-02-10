@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d32842d15af5e459035c16b763cb4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tf: {fileID: 4354847716225144663}
+  shootFrom: {fileID: 4354847716225144663}
   bulletPrefab: {fileID: 1554178573858449071, guid: d95fc37a3d314d0459621acfe6ae7588,
     type: 3}
   muzzleEfect: {fileID: 4271705615706652713, guid: 422fb2460c81bb440b56e74c0b0f6b0b,
@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 1008925013960216300}
   - component: {fileID: 1008925013960216301}
   m_Layer: 0
-  m_Name: Player HitBox
+  m_Name: Hitbox
   m_TagString: Player Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

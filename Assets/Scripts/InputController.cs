@@ -31,7 +31,6 @@ public class InputController : MonoBehaviour {
 
     private void Awake()
     {
-
         if (instance)
         {
             Destroy(gameObject);
@@ -43,6 +42,10 @@ public class InputController : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
             enabled = true;
         }
+
+        string[] gamepads = Input.GetJoystickNames();
+        if (gamepads.Length > 0) isGamePad = true;
+        else isGamePad = false;
     }
 
     private void Update()
@@ -149,5 +152,4 @@ public class InputController : MonoBehaviour {
     {
         return Input.GetKeyDown(test);
     }
-
 }
