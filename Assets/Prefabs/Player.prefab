@@ -57,9 +57,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa07964d35255547a6fbe4d064b1d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lm:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &1008925013563656531
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +221,7 @@ MonoBehaviour:
   playerParryBulletSpeed: 100
   parryDuration: 1
   parryCooldown: 0
-  sledgeDuration: 1.5
+  sledgeDuration: 1.1
 --- !u!114 &338361052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,10 +448,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MRTY_body_mapped_lowpoly
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 8675ec295da26a04f839c78d8affa270, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8e39d83740068d643be3fb995ae30a47, type: 2}
     - target: {fileID: 400000, guid: 8675ec295da26a04f839c78d8affa270, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -507,6 +500,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 11.753562
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 8675ec295da26a04f839c78d8affa270, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8e39d83740068d643be3fb995ae30a47, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8675ec295da26a04f839c78d8affa270, type: 3}
 --- !u!4 &1706429179190011022 stripped
@@ -1605,10 +1602,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MRTY_jacket_mapped_lowpoly
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 1ee15c489f65d7841b861d6d2bb168b6, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 0f6574162ab350247868ae949286b047, type: 2}
     - target: {fileID: 400000, guid: 1ee15c489f65d7841b861d6d2bb168b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1661,6 +1654,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 11.753562
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 1ee15c489f65d7841b861d6d2bb168b6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0f6574162ab350247868ae949286b047, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ee15c489f65d7841b861d6d2bb168b6, type: 3}
 --- !u!4 &8199559003655812128 stripped

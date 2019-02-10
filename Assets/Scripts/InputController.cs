@@ -4,7 +4,7 @@
 /// Made by: Filip Nilsson, Edited By: Daniel Nordahl and Jesper Uddefors
 /// </summary>
 public class InputController : MonoBehaviour {
-    public bool isGamePad;
+    [HideInInspector] public bool isGamePad;
 
     public static InputController instance;
 
