@@ -7,7 +7,11 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float damage = 1;
     [SerializeField] private bool fromPlayer;
+
+    [Header("Effect")]
     [SerializeField] private GameObject collisionEffect;
+
+    Vector3 hitPoint;
 
     public void SetDamage(float damage)
     {
@@ -23,11 +27,12 @@ public class Bullet : MonoBehaviour
     {
         BossHitbox bhb;
         TargetDummy td;
+
         if (other.tag == "Boss Hitbox" && fromPlayer)
         {
             if (collisionEffect != null)
             {
-                GameObject effect = Instantiate(collisionEffect, new Vector3(transform.position.x, transform.position.y, transform.position.z - 4), collisionEffect.transform.rotation, transform.parent);
+                GameObject effect = Instantiate(collisionEffect, hitPoint, collisionEffect.transform.rotation, transform.parent);
                 Destroy(effect, 1);
             }
 
@@ -60,5 +65,10 @@ public class Bullet : MonoBehaviour
             other.GetComponentInParent<PlayerController>().Receive(damage);
             Destroy(gameObject);
         }
+    }
+
+    public void SetPoint(Vector3 point)
+    {
+        hitPoint = point;
     }
 }

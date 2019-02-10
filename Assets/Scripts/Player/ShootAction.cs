@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -72,21 +71,23 @@ public class ShootAction : MonoBehaviour
 
     private IEnumerator ShootCoroutine(Vector3 point)
     {
-        if(AudioController.instance)
+        if (AudioController.instance)
         {
             AudioController.instance.PlayerShoot();
         }
-        if(Statistics.instance)
+        if (Statistics.instance)
         {
             Statistics.instance.numberOfBulletsFired++;
         }
 
-        GameObject bullet = ShootingHelper.Shoot(transform.position, point, bulletPrefab, playerBulletSpeed, bullets, 3);
-        bullet.GetComponent<Bullet>().SetDamage(playerBulletDamage);
+        GameObject bullet = ShootingHelper.Shoot(tf.position, point, bulletPrefab, playerBulletSpeed, bullets, 3);
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+        bulletScript.SetDamage(playerBulletDamage);
+        bulletScript.SetPoint(point);
 
         if (isMuzzleEffect)
         {
-            GameObject muzzle = Instantiate(muzzleEfect, transform.position, transform.rotation, bullets);
+            GameObject muzzle = Instantiate(muzzleEfect, tf.position, transform.rotation, bullets);
             Destroy(muzzle, 1);
         }
 
