@@ -44,7 +44,7 @@ public class InputController : MonoBehaviour {
         }
 
         string[] gamepads = Input.GetJoystickNames();
-        if (gamepads.Length > 0) isGamePad = true;
+        if (gamepads.Length > 0 && gamepads[0].Length > 0) isGamePad = true;
         else isGamePad = false;
     }
 
