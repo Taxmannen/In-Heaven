@@ -307,11 +307,6 @@ PrefabInstance:
       propertyPath: deaccelerationValue
       value: 150
       objectReference: {fileID: 0}
-    - target: {fileID: 7670586060659001992, guid: 51757afcc1290b14eb37486733ab937f,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 338361054, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
       propertyPath: aim
       value: 
@@ -332,19 +327,24 @@ PrefabInstance:
       propertyPath: superChargeMax
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 7670586060651755734, guid: 51757afcc1290b14eb37486733ab937f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5636784593913015348, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7670586060651755734, guid: 51757afcc1290b14eb37486733ab937f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1994172148216346997, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7670586060659001992, guid: 51757afcc1290b14eb37486733ab937f,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -386,7 +386,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151616770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.38, y: -2.43, z: 0.32}
+  m_LocalPosition: {x: 1.23, y: -2.43, z: -1.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1431769735}
@@ -540,17 +540,7 @@ PrefabInstance:
       propertyPath: bossHitboxElements.Array.data[2].weakpoint
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2760993232885344733, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
-        type: 3}
-      propertyPath: m_TagString
-      value: Boss Hitbox
-      objectReference: {fileID: 0}
     - target: {fileID: 2760993232885344319, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
-        type: 3}
-      propertyPath: m_TagString
-      value: Boss Hitbox
-      objectReference: {fileID: 0}
-    - target: {fileID: 2760993232885344755, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
       propertyPath: m_TagString
       value: Boss Hitbox
@@ -580,10 +570,20 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -1.5140067
       objectReference: {fileID: 0}
+    - target: {fileID: 2760993232885344755, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Boss Hitbox
+      objectReference: {fileID: 0}
     - target: {fileID: 2760993232885344307, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2760993232885344733, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Boss Hitbox
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
@@ -984,11 +984,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6628932169138218700, guid: 9710841d1f80a9f409e0a2606355ee6f,
-        type: 3}
-      propertyPath: m_Name
-      value: BackgroundExampel
-      objectReference: {fileID: 0}
     - target: {fileID: 6628932169138218675, guid: 9710841d1f80a9f409e0a2606355ee6f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1043,6 +1038,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6628932169138218700, guid: 9710841d1f80a9f409e0a2606355ee6f,
+        type: 3}
+      propertyPath: m_Name
+      value: BackgroundExampel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9710841d1f80a9f409e0a2606355ee6f, type: 3}
@@ -2401,7 +2401,7 @@ PrefabInstance:
     - target: {fileID: 8299606411022654272, guid: b7e79456cc807fd4f861f82ddf2164ae,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.894
+      value: 1.46
       objectReference: {fileID: 0}
     - target: {fileID: 8299606411022654272, guid: b7e79456cc807fd4f861f82ddf2164ae,
         type: 3}
@@ -2451,12 +2451,12 @@ PrefabInstance:
     - target: {fileID: 8299606411022654273, guid: b7e79456cc807fd4f861f82ddf2164ae,
         type: 3}
       propertyPath: armMovementMax
-      value: 9
+      value: 3.1
       objectReference: {fileID: 0}
     - target: {fileID: 8299606411022654273, guid: b7e79456cc807fd4f861f82ddf2164ae,
         type: 3}
       propertyPath: armMovementMin
-      value: 15
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7e79456cc807fd4f861f82ddf2164ae, type: 3}

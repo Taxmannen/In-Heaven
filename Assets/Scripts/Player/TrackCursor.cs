@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TrackCursor : MonoBehaviour
 {
-    [Range(9f, 15f)]
+    [Range(0f, 40f)]
     public float armMovementMin;
 
-    [Range(9f, 15f)]
+    [Range(0f, 40f)]
     public float armMovementMax;
 
     private Rigidbody rb;
@@ -30,7 +30,7 @@ public class TrackCursor : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            distance = cameraBossDistance;
+            distance = Mathf.PingPong(Time.time*armMovementMin, armMovementMax);
            // transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.PingPong(Time.time, armMovementMax-armMovementMin));
         }
         else
