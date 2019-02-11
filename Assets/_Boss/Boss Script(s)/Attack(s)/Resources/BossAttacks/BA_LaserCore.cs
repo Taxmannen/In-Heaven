@@ -5,27 +5,12 @@ using UnityEngine;
 public class BA_LaserCore : BossAttack
 {
     //Variables
-    [SerializeField]
-    private GameObject laser;
+    private LaserCoreData data;
 
     [SerializeField]
-    private float attackTime = 5f;
+    internal GameObject laser;
 
-    [SerializeField]
-    private Vector3 speed = new Vector3 (10, 0, 0);
-
-    private List<GameObject> lasers;
-
-    [SerializeField]
-    public Vector3 startPosition = new Vector3(0,0,0);
-
-    [SerializeField]
-    public Vector3 endPosition = new Vector3(0, 0, 0);
-
-    [SerializeField]
-    private float laserStayTime = 5f;
-
-    private string startSide;
+    [SerializeField] [ReadOnly]private string startSide;
 
     protected override IEnumerator Execute(Boss boss)
     {
@@ -35,7 +20,7 @@ public class BA_LaserCore : BossAttack
 
         InvokeRepeating("MoveLaser", 0, 0.01f);
 
-        yield return new WaitForSeconds(attackTime);
+        yield return new WaitForSeconds(data.attackTime);
         CancelInvoke("MoveLaser");
         Destroy(laser);
         executeRoutine = null;
@@ -44,14 +29,14 @@ public class BA_LaserCore : BossAttack
 
     //Code runs
     void SpawnLaser() {
-        laser = Instantiate(laser, new Vector3(startPosition.x, startPosition.y, startPosition.z), Quaternion.identity);
+        laser = Instantiate(data.laserPrefab, new Vector3(data.startPosition.x, data.startPosition.y, data.startPosition.z), Quaternion.identity,transform);
         laser.GetComponent<BossLaser>().SetDamage(1);
     }
 
     void SetStartSide() {
-        if (startPosition.x < endPosition.x)
+        if (data.startPosition.x <= data.endPosition.x)
             startSide = "LEFT";
-        if (startPosition.x > endPosition.x)
+        if (data.startPosition.x > data.endPosition.x)
             startSide = "RIGHT";
     }
 
@@ -64,9 +49,9 @@ public class BA_LaserCore : BossAttack
         {
             if (startDirection)
             {
-                if (laser.transform.position.x <= endPosition.x)
+                if (laser.transform.position.x <= data.endPosition.x)
                 {
-                    laser.GetComponent<Rigidbody>().velocity = speed;
+                    laser.GetComponent<Rigidbody>().velocity = data.speed;
                 }
                 else
                 {
@@ -78,9 +63,9 @@ public class BA_LaserCore : BossAttack
 
             if (!startDirection)
             {
-                if (laser.transform.position.x >= startPosition.x)
+                if (laser.transform.position.x >= data.startPosition.x)
                 {
-                    laser.GetComponent<Rigidbody>().velocity = -speed;
+                    laser.GetComponent<Rigidbody>().velocity = -data.speed;
                 }
                 else
                 {
@@ -93,9 +78,9 @@ public class BA_LaserCore : BossAttack
         {
             if (startDirection)
             {
-                if (laser.transform.position.x >= endPosition.x)
+                if (laser.transform.position.x >= data.endPosition.x)
                 {
-                    laser.GetComponent<Rigidbody>().velocity = -speed;
+                    laser.GetComponent<Rigidbody>().velocity = -data.speed;
                     Debug.Log("Works");
                 }
                 else
@@ -108,9 +93,9 @@ public class BA_LaserCore : BossAttack
 
             if (!startDirection)
             {
-                if (laser.transform.position.x <= startPosition.x)
+                if (laser.transform.position.x <= data.startPosition.x)
                 {
-                    laser.GetComponent<Rigidbody>().velocity = speed;
+                    laser.GetComponent<Rigidbody>().velocity = data.speed;
                 }
                 else
                 {
@@ -124,9 +109,43 @@ public class BA_LaserCore : BossAttack
     IEnumerator StopAndChangeDirection() {
         CancelInvoke("MoveLaser");
         laser.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-        yield return new WaitForSeconds(laserStayTime);
+        yield return new WaitForSeconds(data.laserStayTime);
         InvokeRepeating("MoveLaser", 0, 0.001f);
         startDirection = !startDirection;
     }
+    public override void SetAttackData(AttackData data)
+    {
+        if (this.data = data as LaserCoreData)
+        {
+            Debug.Log("SetAttackData: " + gameObject);
+        }
+        else
+        {
+            Debug.LogError("Wrong Data!!" + gameObject);
+        }
+    }
 
+}
+[CreateAssetMenu(fileName = "PatternShotData", menuName = "Boss/LaserCore")]
+public class LaserCoreData:AttackData
+{
+    [SerializeField]
+    internal GameObject laserPrefab;
+
+    [SerializeField]
+    internal float attackTime = 5f;
+
+    [SerializeField]
+    internal Vector3 speed = new Vector3(10, 0, 0);
+
+    internal List<GameObject> lasers;
+
+    [SerializeField]
+    public Vector3 startPosition = new Vector3(0, 0, 0);
+
+    [SerializeField]
+    public Vector3 endPosition = new Vector3(0, 0, 0);
+
+    [SerializeField]
+    internal float laserStayTime = 5f;
 }

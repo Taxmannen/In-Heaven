@@ -29,7 +29,7 @@ public class BA_PatternShot : BossAttack
         
         // This variable will be used later
         float lastTimeUpdate = Time.time;
-        while (counter < data.duration)
+        while (counter < data.numberOfPatternsToShoot)
         {
             lastTimeUpdate = Time.time;
             float previousTime = 0;
@@ -47,11 +47,12 @@ public class BA_PatternShot : BossAttack
 
                 //Then use the data from the item.
                 Vector3 target = new Vector3(item.x, item.y);
-                GameObject bullet = ShootingHelper.Shoot(data.spawnLocation + transform.position, target, data.bulletPrefab, 10, transform, 10);
+                GameObject bullet = ShootingHelper.Shoot(data.spawnLocation + transform.position, target, data.bulletPrefab, data.bulletSpeed, transform, 10);
 
                 // This line will change, we are going to make a GeneralBullet, that checks what it collides with and
                 // what it can damage. And if the shoot is parrable
                 bullet.GetComponent<Bullet>().SetDamage(1);
+               
                 if (item.parryable)
                 {
                     // Set the bullet to be parriable 
@@ -59,9 +60,9 @@ public class BA_PatternShot : BossAttack
 
                 //Make the appriorite sound
                 InterfaceController.instance.BossBulletOverlay(target);
-                AudioController.instance.BossPatternShot();
+                //AudioController.instance.BossPatternShot();
             }
-            counter += Time.time - lastTimeUpdate;
+            counter++;
             //Debug.Log(counter);
             yield return new WaitForSeconds(data.delayAfterEachPattern);
         }
@@ -88,10 +89,13 @@ public class BA_PatternShot : BossAttack
 [CreateAssetMenu(fileName = "PatternShotData", menuName = "Boss/PatternShot")]
 public class PatternShotData:AttackData
 {
-    [SerializeField] internal float duration;
-    [SerializeField] internal float delayAfterEachPattern;
+    [SerializeField] internal float numberOfPatternsToShoot = 1;
+    [SerializeField] internal float delayAfterEachPattern = 1;
     [SerializeField] internal Vector3 spawnLocation;
     [SerializeField] internal GameObject bulletPrefab;
     [SerializeField] internal GameObject patternPrefab;
-    [SerializeField] internal float delayAfterAttack;
+    [SerializeField] internal float delayAfterAttack = 3;
+    [SerializeField] internal float bulletSpeed = 400;
+
+
 }
