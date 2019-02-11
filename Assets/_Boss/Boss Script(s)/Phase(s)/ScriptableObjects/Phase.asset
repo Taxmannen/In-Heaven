@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attacks:
   - type: 0
-    data: {fileID: 11400000, guid: a31a24b4b9f4aa446a91d210ebc069bc, type: 2}
-  - type: 1
-    data: {fileID: 11400000, guid: b75325ecb563e624ab272c96b428da12, type: 2}
+    data: {fileID: 11400000, guid: 84e47df5ca064304c9bce1efcf989992, type: 2}
   movments:
   - type: 1
     data: {fileID: 0}
