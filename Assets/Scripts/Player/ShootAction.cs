@@ -94,7 +94,7 @@ public class ShootAction : MonoBehaviour
 
     public void ShootReverb()
     {
-        AudioController.instance.PlayerGunReverb();
+        //AudioController.instance.PlayerGunReverb();
     }
 
     public void DestroyAllBullets()
