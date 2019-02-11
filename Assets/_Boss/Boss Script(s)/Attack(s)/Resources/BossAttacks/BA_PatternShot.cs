@@ -5,26 +5,22 @@ using System.Linq;
 
 public class BA_PatternShot : BossAttack
 {
-
-    [SerializeField] private float duration;
-    [SerializeField] private float delayAfterEachPattern;
-    [SerializeField] private Vector3 spawnLocation;
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private GameObject patternPrefab;
+    public PatternShotData data;
+    
     private GameObject pattern;
     private float counter;
     private float deltaTime;
 
-    [SerializeField] private float delayAfterAttack;
+    
     //Variables
 
     protected override IEnumerator Execute(Boss boss)
     {
         counter = 0;
         //Code
-        
+        Debug.Log("Run Pattern Shot");
         // Starting by creating the Pattern to a real GameObject
-        pattern = Instantiate(patternPrefab, transform);
+        pattern = Instantiate(data.patternPrefab, transform);
 
         // Here i get the Data from that object
         List<PatternStruct> targetLocations = pattern.GetComponent<PatternImporter>().patternList;
@@ -33,7 +29,7 @@ public class BA_PatternShot : BossAttack
         
         // This variable will be used later
         float lastTimeUpdate = Time.time;
-        while (counter < duration)
+        while (counter < data.duration)
         {
             lastTimeUpdate = Time.time;
             float previousTime = 0;
@@ -51,7 +47,7 @@ public class BA_PatternShot : BossAttack
 
                 //Then use the data from the item.
                 Vector3 target = new Vector3(item.x, item.y);
-                GameObject bullet = ShootingHelper.Shoot(spawnLocation + transform.position, target, bulletPrefab, 10, transform, 10);
+                GameObject bullet = ShootingHelper.Shoot(data.spawnLocation + transform.position, target, data.bulletPrefab, 10, transform, 10);
 
                 // This line will change, we are going to make a GeneralBullet, that checks what it collides with and
                 // what it can damage. And if the shoot is parrable
@@ -67,13 +63,35 @@ public class BA_PatternShot : BossAttack
             }
             counter += Time.time - lastTimeUpdate;
             //Debug.Log(counter);
-            yield return new WaitForSeconds(delayAfterEachPattern);
+            yield return new WaitForSeconds(data.delayAfterEachPattern);
         }
 
         // Here will be the delay between AttackTypes, if they are after each other.
-        yield return new WaitForSeconds(delayAfterAttack);
+        yield return new WaitForSeconds(data.delayAfterAttack);
         executeRoutine = null;
         yield break;
 
     }
+    public override void SetAttackData(AttackData data)
+    { 
+        if(this.data = data as PatternShotData)
+        {
+            Debug.Log("SetAttackData");
+        }
+        else
+        {
+            Debug.LogError("Wrong Data!!");
+        }
+    }
+
+}
+[CreateAssetMenu(fileName = "PatternShotData", menuName = "Boss/PatternShot")]
+public class PatternShotData:AttackData
+{
+    [SerializeField] internal float duration;
+    [SerializeField] internal float delayAfterEachPattern;
+    [SerializeField] internal Vector3 spawnLocation;
+    [SerializeField] internal GameObject bulletPrefab;
+    [SerializeField] internal GameObject patternPrefab;
+    [SerializeField] internal float delayAfterAttack;
 }

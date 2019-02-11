@@ -11,8 +11,6 @@ public class BossMovement : MonoBehaviour
 
     protected static Coroutine executeRoutine;
 
-
-
     //Main
 
     public void StartExecute(Boss boss)
@@ -35,5 +33,10 @@ public class BossMovement : MonoBehaviour
     {
         return executeRoutine;
     }
+    public virtual void SetMovmentData(MovementData data)
+    {
+
+    }
 
 }
+

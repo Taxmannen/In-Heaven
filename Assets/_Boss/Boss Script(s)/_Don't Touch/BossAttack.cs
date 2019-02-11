@@ -15,13 +15,14 @@ public class BossAttack : MonoBehaviour
 
     //Main
 
-    public void StartExecute(Boss boss)
+    public Coroutine StartExecute(Boss boss)
     {
 
         if (executeRoutine == null)
         {
             executeRoutine = StartCoroutine(Execute(boss));
         }
+        return executeRoutine;
 
     }
 
@@ -35,5 +36,10 @@ public class BossAttack : MonoBehaviour
     {
         return executeRoutine;
     }
+    public virtual void SetAttackData(AttackData data)
+    {
+
+    }
 
 }
+

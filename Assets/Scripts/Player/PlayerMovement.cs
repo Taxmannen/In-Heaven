@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         dash = GetComponent<DashAction>();
     }
 
-
+    public float angle = 90;
     public float HorizontalAcceleration(float direction)
     {
         if (direction == 0 )
@@ -81,9 +81,6 @@ public class PlayerMovement : MonoBehaviour
                     velocityDirection += deaccelerationValue * Time.deltaTime;
                 }
             }
-
-
-
 
 
         } else
@@ -113,8 +110,22 @@ public class PlayerMovement : MonoBehaviour
 
         }
         velocityDirection = Mathf.Clamp(velocityDirection, -baseMovementSpeed, baseMovementSpeed);
-        player.animator.SetFloat("Movement", velocityDirection);
-        player.animator.transform.rotation = Quaternion.AngleAxis(direction * 90, Vector3.up);
+        
+            if (direction > 0)
+            {
+                player.animator.SetBool("MovingLeft", true);
+            }
+            if(direction < 0)
+            {
+                player.animator.SetBool("MovingLeft", false);
+            }
+
+        // Debug.Log("Player Angle: " + angle);
+
+
+        player.animator.transform.rotation = Quaternion.AngleAxis(direction * angle, Vector3.up);
+        player.animator.SetFloat("Movement", Mathf.Abs(velocityDirection));
+        
         return velocityDirection;
     }
 
@@ -132,17 +143,23 @@ public class PlayerMovement : MonoBehaviour
     {
         return HorizontalAcceleration(horizontalDirection) + dash.velocity;
     }
-
+    float time;
     public void Gravity()
     {
 
         if (player.grounded && !player.jumping)
         {
             verticalVelocity = -gravity * Time.deltaTime;
+            time = 0;
         }
 
         else
         {
+            if(time == 0)
+            {
+                time = Time.timeSinceLevelLoad;
+            }
+
             verticalVelocity -= gravity * Time.deltaTime;
         }
 
@@ -174,6 +191,7 @@ public class PlayerMovement : MonoBehaviour
                 verticalVelocity = jumpPower;
                 AudioController.instance.PlayerDoubleJump();
                 Statistics.instance.numberOfDoubleJumps++;
+                player.animator.SetTrigger("DoubleJumping");
             }
 
         }

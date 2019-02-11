@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -11,8 +12,7 @@ public class BossPhase : MonoBehaviour
 
     //Serialized
 
-    [SerializeField] protected List<BossMovement> movementPrefabs;
-    [SerializeField] protected List<BossAttack> attackPrefabs;
+    public PhaseData data;
 
 
 
@@ -72,11 +72,24 @@ public class BossPhase : MonoBehaviour
         {
 
             bossMovements.Clear();
-
-            foreach (BossMovement bossMovement in movementPrefabs)
+            if (data != null)
             {
-                bossMovements.Add(Instantiate(bossMovement, this.movementParent));
+                MonoScript[] scripts;
+                scripts = Resources.LoadAll<MonoScript>("BossMovement/");
+
+
+
+                foreach (BossMovementTypeAndData data in data.movments)
+                {
+
+                    GameObject inst = Instantiate(new GameObject(), this.movementParent);
+
+                    BossMovement movement = inst.AddComponent(scripts[data.type].GetClass()) as BossMovement;
+                    movement.SetMovmentData(data.data);
+                    bossMovements.Add(movement);
+                }
             }
+            
 
         }
 
@@ -109,11 +122,21 @@ public class BossPhase : MonoBehaviour
         if (this.attackParent)
         {
 
-            bossAttacks.Clear();
-
-            foreach (BossAttack attack in attackPrefabs)
+            if (data != null)
             {
-                bossAttacks.Add(Instantiate(attack, this.attackParent));
+                bossAttacks.Clear();
+                MonoScript[] scripts;
+                scripts = Resources.LoadAll<MonoScript>("BossAttacks/");
+
+                foreach (BossAttackTypeAndData data in data.attacks)
+                {
+
+                    GameObject inst = Instantiate(new GameObject(), this.attackParent);
+                    BossAttack attack = inst.AddComponent(scripts[data.type].GetClass()) as BossAttack;
+                    attack.SetAttackData(data.data);
+                    attack.name = attack.GetType().ToString();
+                    bossAttacks.Add(attack);
+                }
             }
 
         }
@@ -133,6 +156,24 @@ public class BossPhase : MonoBehaviour
         {
             StopCoroutine(phaseRoutine);
             phaseRoutine = null;
+        }
+        if (attackRoutine != null)
+        {
+            foreach (var item in bossAttacks)
+            {
+                
+                item.StopCoroutine(item.GetExecuteRoutine());
+            }
+            attackRoutine = null;
+        }
+        if (movementRoutine != null)
+        {
+            foreach (var item in bossAttacks)
+            {
+                item.StopCoroutine(item.GetExecuteRoutine());
+            }
+            
+            movementRoutine = null;
         }
 
     }

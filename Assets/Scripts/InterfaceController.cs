@@ -96,11 +96,12 @@ public class InterfaceController : MonoBehaviour
 
         if (successPanel.active)
         {
+            GameController.instance.SetGameState(Global.GameState.Pause);
             Time.timeScale = 0;
         }
         else
         {
-            
+            GameController.instance.SetGameState(Global.GameState.Game);
             Time.timeScale = 1;
             Debug.Log("Resume: " + Time.timeScale);
         }

@@ -281,7 +281,6 @@ public class Boss : Character
     {
 
         BossSpawn();
-
         yield return new WaitUntil(() => spawn.GetExecuteRoutine() == null);
 
         for (int i = (activePhase - 1); i < phases.Count; i++)
@@ -323,7 +322,7 @@ public class Boss : Character
         BossDeath();
 
         yield return new WaitUntil(() => death.GetExecuteRoutine() == null);
-
+        GameController.instance.SetGameState(Global.GameState.Success);
         bossRoutine = null;
         yield break;
 

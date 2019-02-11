@@ -73,7 +73,7 @@ public class DashAction : MonoBehaviour
     private IEnumerator DashCoroutine()
     {
         player.Invincible(invincibleDuration, false);
-    
+        player.animator.SetTrigger("Dashing");
         velocity = dir * power;
 
         AudioController.instance.PlayerDash();

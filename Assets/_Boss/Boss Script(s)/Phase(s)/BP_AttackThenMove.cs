@@ -20,7 +20,7 @@ public class BP_AttackThenMove : BossPhase
             if (bossAttacks.Count > 0)
             {
 
-                bossAttacks[attackIndex].StartExecute(boss);
+                attackRoutine = bossAttacks[attackIndex].StartExecute(boss);
 
                 yield return new WaitUntil(() => bossAttacks[attackIndex].GetExecuteRoutine() == null);
 
