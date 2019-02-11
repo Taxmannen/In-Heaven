@@ -63,7 +63,7 @@ public class BA_PatternShot : BossAttack
 
                 //Make the appriorite sound
                 InterfaceController.instance.BossBulletOverlay(target);
-                AudioController.instance.BossShoot();
+                AudioController.instance.BossPatternShot();
             }
             counter += Time.time - lastTimeUpdate;
             //Debug.Log(counter);
