@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 /// <summary>
 /// Made by: Filip Nilsson
@@ -12,6 +13,15 @@ public class Bullet : MonoBehaviour
     [SerializeField] private GameObject collisionEffect;
 
     Vector3 hitPoint;
+
+    private float UISpawnTime;
+    [SerializeField]
+    private float UIAnimationTime;
+    private Coroutine coroutine;
+    public void SetBulletOverlay(Vector3 originTemp, Vector3 targetTemp, float speedTemp)
+    {
+        coroutine = StartCoroutine(InstantiateBulletOverlay(originTemp, targetTemp, speedTemp));
+    }
 
     public void SetDamage(float damage)
     {
@@ -71,4 +81,14 @@ public class Bullet : MonoBehaviour
     {
         hitPoint = point;
     }
+
+
+    private IEnumerator InstantiateBulletOverlay(Vector3 originTemp, Vector3 targetTemp, float speedTemp)
+    {
+        UISpawnTime = speedTemp * (Vector3.Distance(originTemp, targetTemp)) - UIAnimationTime;
+        yield return new WaitForSeconds(UISpawnTime);
+        InterfaceController.instance.BossBulletOverlay(targetTemp);
+        yield return null;
+    }
+
 }
