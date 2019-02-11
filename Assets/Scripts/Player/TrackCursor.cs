@@ -28,6 +28,7 @@ public class TrackCursor : MonoBehaviour
   
     void Update()
     {
+
         if (Input.GetMouseButton(0))
         {
             distance = Mathf.PingPong(Time.time*armMovementMin, armMovementMax);
