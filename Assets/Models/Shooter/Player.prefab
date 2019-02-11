@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1132741485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1132741486}
+  m_Layer: 0
+  m_Name: VFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1132741486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132741485}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7511400094921155618}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2126067962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2126067963}
+  m_Layer: 0
+  m_Name: ShootSpawnPoint New
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2126067963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126067962}
+  m_LocalRotation: {x: -0.47932163, y: -0.51224536, z: 0.5320189, w: 0.47414273}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8993708256930692935}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7511400093558221467
 GameObject:
   m_ObjectHideFlags: 0
@@ -4863,7 +4923,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7511400094921155630}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4872,6 +4932,7 @@ Transform:
   - {fileID: 7511400094610741283}
   - {fileID: 7511400093716834567}
   - {fileID: 7511400094231233439}
+  - {fileID: 1132741486}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4908,7 +4969,7 @@ MonoBehaviour:
   rigi: {fileID: 7511400094921155619}
   animator: {fileID: 8993708256921587943}
   groundcheckDistance: 1.15
-  hitInvincibleDuration: 0.1
+  hitInvincibleDuration: 0.5
   grounded: 0
   jumping: 0
   standingStill: 0
@@ -5005,19 +5066,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d32842d15af5e459035c16b763cb4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootFrom: {fileID: 7511400094231233439}
+  shootFrom: {fileID: 2126067963}
   bulletPrefab: {fileID: 1554178573858449071, guid: d95fc37a3d314d0459621acfe6ae7588,
     type: 3}
   muzzleEfect: {fileID: 4271705615706652713, guid: 422fb2460c81bb440b56e74c0b0f6b0b,
     type: 3}
   bullets: {fileID: 0}
+  VFX: {fileID: 1132741486}
   playerBulletDamage: 1000
   basePlayerBulletsPerSecond: 10
   playerBulletSpeed: 200
   playerBulletLifetime: 3
   onlyShootOnGround: 0
   onlyShootWhenStandingStill: 0
-  isMuzzleEffect: 0
+  isMuzzleEffect: 1
 --- !u!114 &7511400094921155626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5075,7 +5137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6ac2bfbf3b8f748b817228f9aaaff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitColor: {r: 0.6792453, g: 0.16340333, b: 0.16340333, a: 1}
+  hitColor: {r: 0.7264151, g: 0.38033998, b: 0.38033998, a: 1}
   hitSpeed: 5
   dashColor: {r: 0.58873266, g: 0.6846415, b: 0.8490566, a: 1}
   dashSpeed: 5
@@ -5461,7 +5523,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c7899f2bda0639b4ea7df39e8dca57a0, type: 3}
+  - {fileID: 2100000, guid: cca07bca1225980409ffc30bc2f69428, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6538,6 +6600,7 @@ Transform:
   - {fileID: 8993708256930692937}
   - {fileID: 8993708256930692947}
   - {fileID: 8993708256930692957}
+  - {fileID: 2126067963}
   m_Father: {fileID: 8993708256930692921}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

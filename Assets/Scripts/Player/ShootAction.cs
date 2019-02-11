@@ -14,6 +14,7 @@ public class ShootAction : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject muzzleEfect;
     [SerializeField] private Transform bullets;
+    [SerializeField] private Transform VFX;
 
     [SerializeField] [Range(0, 1000)] private int playerBulletDamage = 7;
     [SerializeField] [Range(1, 100)] private float basePlayerBulletsPerSecond = 10f; //Bullets per second during left mouse down
@@ -83,7 +84,7 @@ public class ShootAction : MonoBehaviour
 
         if (isMuzzleEffect)
         {
-            GameObject muzzle = Instantiate(muzzleEfect, shootFrom.position, transform.rotation, bullets);
+            GameObject muzzle = Instantiate(muzzleEfect, shootFrom.position, transform.rotation, VFX);
             Destroy(muzzle, 1);
         }
 
