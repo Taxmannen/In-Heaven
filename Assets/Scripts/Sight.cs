@@ -4,19 +4,20 @@ using UnityEngine.UI;
 /* Script made by Daniel */
 public class Sight : MonoBehaviour
 {
-    public RectTransform canvasRect;
+    [SerializeField] private RectTransform canvasRect;
 
-    [Range(300, 1500)]
-    public float sensitivity;
+    [Range(100, 1000)] [Tooltip("The sensitivity when moving cursor")] 
+    [SerializeField] private float sensitivity;
+    [Range(100, 600)] [Tooltip("The sensitivity when shooting and moving cursor")]
+    [SerializeField] private float shootingSensitivity;
 
     Vector2 minBounds;
     Vector2 maxBounds;
     Vector2 size;
-    Image img;
 
     private void Start()
     {
-        img = GetComponent<Image>();
+        Image img = GetComponent<Image>();
 
         Rect rect = GetComponent<RectTransform>().rect;
         size = new Vector2(rect.width, rect.height);
@@ -37,14 +38,21 @@ public class Sight : MonoBehaviour
 
         if (InputController.instance.isGamePad)
         {
-            Vector2 movement = new Vector2(x, y) * sensitivity * Time.deltaTime;
+            float currentSensitivity;
+            if (InputController.instance.GetMouseButtonLeft())
+            {
+                currentSensitivity = shootingSensitivity;
+            }
+            else currentSensitivity = sensitivity;
+
+            Vector2 movement = new Vector2(x, y) * currentSensitivity * Time.deltaTime;
             transform.position = new Vector3(Mathf.Clamp(transform.position.x + movement.x, minBounds.x, maxBounds.x), Mathf.Clamp(transform.position.y + movement.y, minBounds.y, maxBounds.y), 0);
         }
         else transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
     }
 
     //Bör kallas vid resolution byte
-    void SetScreenBounds()
+    public void SetScreenBounds()
     {
         minBounds = new Vector2(size.x/2, size.y/2);
         maxBounds = new Vector2(canvasRect.rect.width - (size.x/2), canvasRect.rect.height - (size.y/2));  

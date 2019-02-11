@@ -4,7 +4,7 @@
 /// Made by: Filip Nilsson, Edited By: Daniel Nordahl and Jesper Uddefors
 /// </summary>
 public class InputController : MonoBehaviour {
-    public bool isGamePad;
+    [HideInInspector] public bool isGamePad;
 
     public static InputController instance;
 
@@ -31,7 +31,6 @@ public class InputController : MonoBehaviour {
 
     private void Awake()
     {
-
         if (instance)
         {
             Destroy(gameObject);
@@ -43,6 +42,10 @@ public class InputController : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
             enabled = true;
         }
+
+        string[] gamepads = Input.GetJoystickNames();
+        if (gamepads.Length > 0 && gamepads[0].Length > 0) isGamePad = true;
+        else isGamePad = false;
     }
 
     private void Update()
@@ -149,5 +152,4 @@ public class InputController : MonoBehaviour {
     {
         return Input.GetKeyDown(test);
     }
-
 }

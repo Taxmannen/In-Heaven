@@ -192,7 +192,7 @@ PrefabInstance:
     - target: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
         type: 3}
@@ -266,7 +266,7 @@ PrefabInstance:
     - target: {fileID: 1008925013563656533, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1008925013563656533, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
@@ -307,11 +307,6 @@ PrefabInstance:
       propertyPath: deaccelerationValue
       value: 150
       objectReference: {fileID: 0}
-    - target: {fileID: 7670586060659001992, guid: 51757afcc1290b14eb37486733ab937f,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 338361054, guid: 51757afcc1290b14eb37486733ab937f, type: 3}
       propertyPath: aim
       value: 
@@ -332,14 +327,24 @@ PrefabInstance:
       propertyPath: superChargeMax
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5636784593913015348, guid: 51757afcc1290b14eb37486733ab937f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7670586060651755734, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5636784593913015348, guid: 51757afcc1290b14eb37486733ab937f,
+    - target: {fileID: 1994172148216346997, guid: 51757afcc1290b14eb37486733ab937f,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7670586060659001992, guid: 51757afcc1290b14eb37486733ab937f,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -381,7 +386,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151616770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.38, y: -2.43, z: 0.32}
+  m_LocalPosition: {x: 1.23, y: -2.43, z: -1.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1431769735}
@@ -399,7 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2797fd5c304f09e4d824956b756d95ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armMovement: 11.44
+  armMovement: 9
 --- !u!1001 &226388161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -535,17 +540,7 @@ PrefabInstance:
       propertyPath: bossHitboxElements.Array.data[2].weakpoint
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2760993232885344733, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
-        type: 3}
-      propertyPath: m_TagString
-      value: Boss Hitbox
-      objectReference: {fileID: 0}
     - target: {fileID: 2760993232885344319, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
-        type: 3}
-      propertyPath: m_TagString
-      value: Boss Hitbox
-      objectReference: {fileID: 0}
-    - target: {fileID: 2760993232885344755, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
       propertyPath: m_TagString
       value: Boss Hitbox
@@ -575,10 +570,20 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -1.5140067
       objectReference: {fileID: 0}
+    - target: {fileID: 2760993232885344755, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Boss Hitbox
+      objectReference: {fileID: 0}
     - target: {fileID: 2760993232885344307, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2760993232885344733, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Boss Hitbox
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
@@ -632,7 +637,7 @@ PrefabInstance:
     - target: {fileID: 8481948331104647036, guid: 90c5b7b7cbe36474a94d9ea8e2d8b4d4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8481948331104647036, guid: 90c5b7b7cbe36474a94d9ea8e2d8b4d4,
         type: 3}
@@ -979,11 +984,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6628932169138218700, guid: 9710841d1f80a9f409e0a2606355ee6f,
-        type: 3}
-      propertyPath: m_Name
-      value: BackgroundExampel
-      objectReference: {fileID: 0}
     - target: {fileID: 6628932169138218675, guid: 9710841d1f80a9f409e0a2606355ee6f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1039,8 +1039,43 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6628932169138218700, guid: 9710841d1f80a9f409e0a2606355ee6f,
+        type: 3}
+      propertyPath: m_Name
+      value: BackgroundExampel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9710841d1f80a9f409e0a2606355ee6f, type: 3}
+--- !u!1 &1131508968
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 979467569}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1131508969}
+  m_Layer: 0
+  m_Name: BackgroundExampel (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1131508969
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 979467569}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131508968}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1280842967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1167,6 +1202,27 @@ PrefabInstance:
       objectReference: {fileID: 2112310759}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60664ea132229c047a920f46c091fed4, type: 3}
+--- !u!1 &1283731381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1994172148216346997, guid: 51757afcc1290b14eb37486733ab937f,
+    type: 3}
+  m_PrefabInstance: {fileID: 109666569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1283731384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283731381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e7b209631188c4c8fdaaf2e5fe347e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ikActive: 1
+  rightHandObj: {fileID: 151616771}
+  lookObj: {fileID: 151616771}
 --- !u!1001 &1290809897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1217,7 +1273,7 @@ PrefabInstance:
     - target: {fileID: 7962501435297223959, guid: 26c8be6dea183b04e9342c8c44b0f96b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7962501435297223959, guid: 26c8be6dea183b04e9342c8c44b0f96b,
         type: 3}
@@ -2345,7 +2401,7 @@ PrefabInstance:
     - target: {fileID: 8299606411022654272, guid: b7e79456cc807fd4f861f82ddf2164ae,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.894
+      value: 1.46
       objectReference: {fileID: 0}
     - target: {fileID: 8299606411022654272, guid: b7e79456cc807fd4f861f82ddf2164ae,
         type: 3}
@@ -2391,6 +2447,16 @@ PrefabInstance:
         type: 3}
       propertyPath: cameraBossDistance
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299606411022654273, guid: b7e79456cc807fd4f861f82ddf2164ae,
+        type: 3}
+      propertyPath: armMovementMax
+      value: 3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299606411022654273, guid: b7e79456cc807fd4f861f82ddf2164ae,
+        type: 3}
+      propertyPath: armMovementMin
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7e79456cc807fd4f861f82ddf2164ae, type: 3}

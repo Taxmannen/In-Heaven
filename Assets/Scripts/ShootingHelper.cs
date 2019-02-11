@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ShootingHelper : MonoBehaviour
 {
@@ -12,9 +10,7 @@ public class ShootingHelper : MonoBehaviour
         Vector3 dir = target - origin;
         dir.Normalize();
         pro.GetComponent<Rigidbody>().velocity = dir * speed;
-
         Destroy(pro, destroyTime);
-
         return pro;
     }
 }

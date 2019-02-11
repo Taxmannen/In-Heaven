@@ -545,7 +545,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasRect: {fileID: 4998537455927835904}
-  sensitivity: 900
+  sensitivity: 700
+  shootingSensitivity: 300
 --- !u!1 &4998537455156275064
 GameObject:
   m_ObjectHideFlags: 0

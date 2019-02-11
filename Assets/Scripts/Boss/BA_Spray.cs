@@ -34,9 +34,18 @@ public class BA_Spray : BossAttack
     [SerializeField] [Tooltip("Player prefab to get the position")]
     private Transform player;
 
+    [Header("DEBUG")]
+    [Tooltip("For testing")] [SerializeField]
+    private bool debugMode = false;
+
     private float startTime;
     private bool prevWasParry;
     #endregion
+
+    private void Start()
+    {
+        if (debugMode) StartCoroutine(Execute(new Boss()));    
+    }
 
     protected override IEnumerator Execute(Boss boss)
     {
