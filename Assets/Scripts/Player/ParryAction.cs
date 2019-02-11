@@ -28,10 +28,8 @@ public class ParryAction : MonoBehaviour
     {
         parrybox = GetComponentInChildren<Parrybox>().GetComponent<BoxCollider>();
         player = GetComponent<PlayerController>();
-
         ParticleSystem.MainModule main = parryEffect.main;
-        main.simulationSpeed = 5.3f/parryDuration;
-        parryEffect.Stop();
+        main.simulationSpeed = 4.25f/parryDuration * 4;
     }
 
     /// <summary>

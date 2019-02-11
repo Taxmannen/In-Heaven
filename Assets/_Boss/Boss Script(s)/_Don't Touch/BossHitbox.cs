@@ -53,7 +53,7 @@ public class BossHitbox : MonoBehaviour
         else
         {
             Hit(amt);
-            shaderManager.HitEffect(0.5f);
+            shaderManager.HitEffect(0.4f, false);
         }
     }
 

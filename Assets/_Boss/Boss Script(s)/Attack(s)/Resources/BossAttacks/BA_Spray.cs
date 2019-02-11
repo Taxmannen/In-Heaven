@@ -37,6 +37,8 @@ public class BA_Spray : BossAttack
     [Header("DEBUG")]
     [Tooltip("For testing")] [SerializeField]
     private bool debugMode = false;
+    [Tooltip("For testing")] [SerializeField]
+    private float invokeDelay = 5;
 
     private float startTime;
     private bool prevWasParry;
@@ -44,7 +46,12 @@ public class BA_Spray : BossAttack
 
     private void Start()
     {
-        if (debugMode) StartCoroutine(Execute(new Boss()));    
+        if (debugMode) InvokeRepeating("Test", 0, attackDuration + invokeDelay); 
+    }
+
+    void Test()
+    {
+        StartCoroutine(Execute(new Boss()));
     }
 
     protected override IEnumerator Execute(Boss boss)

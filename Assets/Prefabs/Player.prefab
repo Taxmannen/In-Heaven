@@ -168,6 +168,7 @@ MonoBehaviour:
   jumpPower: 19
   maxDoubleJumps: 1
   doubleJumps: 0
+  angle: 90
 --- !u!114 &338361054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,6 +585,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3815983487101618675, guid: ac8e414ab92b13b40bdc490b8b6f07f8,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3815983487101618675, guid: ac8e414ab92b13b40bdc490b8b6f07f8,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3815983487101618675, guid: ac8e414ab92b13b40bdc490b8b6f07f8,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac8e414ab92b13b40bdc490b8b6f07f8, type: 3}

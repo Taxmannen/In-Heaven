@@ -35,7 +35,7 @@ public class InvincibleEffect : MonoBehaviour
     {
         player.playerState = Global.PlayerState.Invincible;
         InterfaceController.instance.UpdatePlayerState(player.playerState); //Debug
-        if (isHit) shaderManager.HitEffect(duration);
+        if (isHit) shaderManager.HitEffect(duration, true);
         yield return new WaitForSeconds(duration);
         player.playerState = Global.PlayerState.Default;
         InterfaceController.instance.UpdatePlayerState(player.playerState); //Debug

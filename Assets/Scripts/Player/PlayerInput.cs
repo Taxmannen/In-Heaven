@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -26,17 +25,17 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if(GameController.instance.gameState == Global.GameState.Game)
+        if (GameController.instance.gameState == Global.GameState.Game)
         {
             UpdatePlayer();
         }
 
-
-        if(Input.GetKeyUp(KeyCode.U))
+        if (Input.GetKeyUp(KeyCode.U))
         {
             playerController.shootAction.onlyShootOnGround = !playerController.shootAction.onlyShootOnGround;
             Debug.Log("Only shoot while on Ground: " + playerController.shootAction.onlyShootOnGround);
         }
+
         if (Input.GetKeyUp(KeyCode.I))
         {
             playerController.shootAction.onlyShootWhenStandingStill = !playerController.shootAction.onlyShootWhenStandingStill;
@@ -46,7 +45,6 @@ public class PlayerInput : MonoBehaviour
 
     private void UpdatePlayer()
     {
-
         horizontalDirection = GetHorizontal();
         verticalDirection = GetVerticalDirection();
 
@@ -71,10 +69,8 @@ public class PlayerInput : MonoBehaviour
         //Dash: Double Tap
         if (Global.doubleTapDashing && !InputController.instance.isGamePad)
         {
-
             if (InputController.instance.GetKeyDownLeft())
             {
-
                 if (canDashLeft)
                 {
                     playerController.Dash();
@@ -84,7 +80,6 @@ public class PlayerInput : MonoBehaviour
                 {
                     StartCoroutine(DoubleTapDashCoroutine(-1f));
                 }
-
             }
 
             if (InputController.instance.GetKeyDownRight())
@@ -99,9 +94,7 @@ public class PlayerInput : MonoBehaviour
                 {
                     StartCoroutine(DoubleTapDashCoroutine(1f));
                 }
-
             }
-
         }
 
         //Dash: Shift
@@ -126,19 +119,19 @@ public class PlayerInput : MonoBehaviour
 
         if (ParryButtonOnMouse() && !AbleToShoot())
         {
-            playerController.Parry();
+            playerController.Parry();    
         }
 
         if (InputController.instance.GetKeyDownSupercharge())
         {
             playerController.SuperCharge();
         }
-
     }
+
     float GetHorizontal()
     {
         float direction = 0;
-        if(InputController.instance.GetKeyLeft())
+        if (InputController.instance.GetKeyLeft())
         {
             direction = -1;
         }
@@ -148,10 +141,10 @@ public class PlayerInput : MonoBehaviour
         }
         return direction;
     }
+
     float GetVerticalDirection()
     {
         float direction = 0f;
-
         if (InputController.instance.GetKeyDownDown())
         {
             direction -= 1f;
@@ -161,10 +154,8 @@ public class PlayerInput : MonoBehaviour
 
     private IEnumerator DoubleTapDashCoroutine(float direction)
     {
-
         switch (direction)
         {
-
             case 1:
                 canDashLeft = false;
                 canDashRight = true;
@@ -178,9 +169,7 @@ public class PlayerInput : MonoBehaviour
                 yield return new WaitForSeconds(doubleTapInterval);
                 canDashLeft = false;
                 yield break;
-
         }
-
     }
 
     private bool GetDiffrentDashKey()
@@ -188,8 +177,9 @@ public class PlayerInput : MonoBehaviour
         if (changeDashKeyToMouse)
         {
             return InputController.instance.GetMouseButtonDownRight();
+        }
 
-        } else
+        else
         {
             return InputController.instance.GetKeyDownLeftShift();
         }
@@ -199,9 +189,7 @@ public class PlayerInput : MonoBehaviour
     //Might be done better but works as intended 
     private bool ParryButtonOnMouse()
     {
-
-
-        if(testKeyConfiguration)
+        if (testKeyConfiguration)
         {
             timer += Time.deltaTime;
 
@@ -215,7 +203,6 @@ public class PlayerInput : MonoBehaviour
             {
                 timer = 0;
             }
-
             return false;
         }
         return InputController.instance.GetMouseButtonDownRight();
@@ -225,14 +212,13 @@ public class PlayerInput : MonoBehaviour
     {
         if (testKeyConfiguration)
         {
-            if(timer > timeBeforeStartShooting && InputController.instance.GetMouseButtonLeft())
+            if (timer > timeBeforeStartShooting && InputController.instance.GetMouseButtonLeft())
             {
                 //Debug.Log("Shooting");
                 return true;
              }
             return false;
         }
-
         return InputController.instance.GetMouseButtonLeft();
     }
 }

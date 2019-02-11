@@ -33,32 +33,49 @@ public class ShaderManager : MonoBehaviour {
         Setup();
     }
 
-    public void HitEffect(float duration)
+    public void HitEffect(float duration, bool player)
     {
-        StartCoroutine(ColorEffect(hitColor, hitSpeed, false));
-        Invoke("StopColorEffect", duration);
+        StopCoroutine("ColorEffect");
+        StartCoroutine(ColorEffect(hitColor, hitSpeed, false, duration, player));
+        if (!player) Invoke("StopColorEffect", duration);
     }
 
     public void DashEffect()
     {
-        StartCoroutine(ColorEffect(dashColor, dashSpeed, true));
+        StopCoroutine("ColorEffect");
+        StartCoroutine(ColorEffect(dashColor, dashSpeed, true, 2, true));
     }
 
-    private IEnumerator ColorEffect(Color color, float speed, bool dash)
+    private IEnumerator ColorEffect(Color color, float speed, bool dash, float duration, bool player)
     {
-        if (dash) timeStarted = Time.time;
+        timeStarted = Time.time;
 
         fading = true;
         while (fading)
         {
-            if (dash && (Time.time - timeStarted) * speed >= 2.15f) StopColorEffect();
+            if (player)
+            {
+                if (dash)
+                {
+                    if ((Time.time - timeStarted) * speed >= duration) StopColorEffect();
+                }
+                else
+                {
+                    if (Time.time - timeStarted >= duration)
+                    {
+                        float time = (((Time.time - timeStarted) * speed) - 1f) * 1f;
+                        if (float.Parse(time.ToString("F1")) % 2 == 1) StopColorEffect();
+                    }
+                }
+            }
+    
             ColorLerp(color, speed);
             yield return null;
         }
         for (int i = 0; i < materials.Length; i++)
         {
             materials[i].SetColor("_Color", orgColors[i]);
-            //lerpedColors[i] = orgColors[i]; //Kan behövas
+            lerpedColors[i] = orgColors[i];
         }
     }
 
