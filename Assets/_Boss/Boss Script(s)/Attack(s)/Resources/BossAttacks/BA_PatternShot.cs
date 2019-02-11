@@ -18,7 +18,7 @@ public class BA_PatternShot : BossAttack
     {
         counter = 0;
         //Code
-        Debug.Log("Run Pattern Shot");
+        //Debug.Log("Run Pattern Shot");
         // Starting by creating the Pattern to a real GameObject
         pattern = Instantiate(data.patternPrefab, transform);
 
@@ -77,7 +77,7 @@ public class BA_PatternShot : BossAttack
     { 
         if(this.data = data as PatternShotData)
         {
-            Debug.Log("SetAttackData");
+            //Debug.Log("SetAttackData");
         }
         else
         {

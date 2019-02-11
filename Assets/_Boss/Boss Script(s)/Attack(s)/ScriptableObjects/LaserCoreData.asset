@@ -18,4 +18,4 @@ MonoBehaviour:
   speed: {x: 10, y: 0, z: 0}
   startPosition: {x: 10, y: 0, z: 0}
   endPosition: {x: -10, y: 0, z: 0}
-  laserStayTime: 1
+  laserStayTime: 0.5

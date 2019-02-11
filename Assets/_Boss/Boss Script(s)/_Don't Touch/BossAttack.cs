@@ -9,7 +9,7 @@ public class BossAttack : MonoBehaviour
 
     //Protected Static
 
-    protected static Coroutine executeRoutine;
+    protected Coroutine executeRoutine;
 
 
 

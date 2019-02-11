@@ -154,7 +154,8 @@ public class Boss : Character
         if (!phaseParent)
         {
 
-            GameObject phaseGameObject = Instantiate(new GameObject(), transform);
+            GameObject phaseGameObject = new GameObject();
+            phaseGameObject.transform.parent = transform;
             phaseGameObject.name = "Phase(s)";
             phaseParent = phaseGameObject.transform;
 

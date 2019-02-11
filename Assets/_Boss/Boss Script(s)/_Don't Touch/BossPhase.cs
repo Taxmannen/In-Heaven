@@ -82,8 +82,8 @@ public class BossPhase : MonoBehaviour
                 foreach (BossMovementTypeAndData data in data.movments)
                 {
 
-                    GameObject inst = Instantiate(new GameObject(), this.movementParent);
-
+                    GameObject inst = new GameObject();
+                    inst.transform.parent = this.movementParent;
                     BossMovement movement = inst.AddComponent(scripts[data.type].GetClass()) as BossMovement;
                     movement.SetMovmentData(data.data);
                     bossMovements.Add(movement);
@@ -131,7 +131,8 @@ public class BossPhase : MonoBehaviour
                 foreach (BossAttackTypeAndData data in data.attacks)
                 {
 
-                    GameObject inst = Instantiate(new GameObject(), this.attackParent);
+                    GameObject inst = new GameObject();
+                    inst.transform.parent = this.attackParent;
                     BossAttack attack = inst.AddComponent(scripts[data.type].GetClass()) as BossAttack;
                     attack.SetAttackData(data.data);
                     attack.name = attack.GetType().ToString();
