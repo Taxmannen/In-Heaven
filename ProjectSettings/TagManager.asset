@@ -11,6 +11,8 @@ TagManager:
   - Movement Parent
   - Attack Parent
   - Boss Damage Hitbox
+  - Boss Parryable Bullet
+  - Ground
   layers:
   - Default
   - TransparentFX

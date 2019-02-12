@@ -74,7 +74,7 @@ public class Bullet : MonoBehaviour
         {
             if (collisionEffect != null)
             {
-                GameObject effect = Instantiate(collisionEffect, other.transform.position, collisionEffect.transform.rotation, transform.parent); // FEL SPAWN POSITION!
+                GameObject effect = Instantiate(collisionEffect, transform.position, collisionEffect.transform.rotation, transform.parent); // FEL SPAWN POSITION!
                 Destroy(effect, 3);
             }
             other.GetComponentInParent<PlayerController>().Receive(damage);
