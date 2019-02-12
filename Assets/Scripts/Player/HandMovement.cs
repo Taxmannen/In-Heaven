@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HandMovement : MonoBehaviour
 {
@@ -20,8 +18,9 @@ public class HandMovement : MonoBehaviour
     float positionY;
     float positionZ;
 
+    Vector3 cursorPosition; //GLÖM EJ!
 
-   [Range(0.1f, 4f)]
+    [Range(0.1f, 4f)]
     public float recoilRate;
 
     void Start()
@@ -48,9 +47,6 @@ public class HandMovement : MonoBehaviour
                 transform.position = Vector3.MoveTowards(handPosition, cursorPosition, recoilRate);
                 Timer = 0;
             }
-
         }
-
-        
     }
 }
