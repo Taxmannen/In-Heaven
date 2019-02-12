@@ -13,7 +13,9 @@ public class LimbReferenceLocation : MonoBehaviour
         positionY = transform.position.y;
         positionZ = transform.position.z;
 
-        return LimbReferencePosition(positionX, positionY, positionZ);
+        Vector3 limbPosition = new Vector3(positionX, positionY, positionZ);
+
+        return limbPosition;
     }
 
 }

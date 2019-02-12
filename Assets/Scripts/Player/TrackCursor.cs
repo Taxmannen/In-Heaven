@@ -4,48 +4,39 @@ using UnityEngine;
 
 public class TrackCursor : MonoBehaviour
 {
-    [Range(0f, 40f)]
-    public float armMovementMin;
-
-    [Range(0f, 40f)]
-    public float armMovementMax;
-
-    private Rigidbody rb;
+    [Range(0f, 120f)]   
     public float cameraBossDistance;
-    Vector3 cursorPosition;
-    float distance;
 
-
+    Vector3 positionOfCursor;
+   
     void Start()
     {
-        cursorPosition = transform.position;
-        distance = transform.position.z - Camera.main.transform.position.z;
-
-        armMovementMax = transform.position.z;
-        armMovementMin = transform.position.z;
+        positionOfCursor = Input.mousePosition;
+        positionOfCursor.z = cameraBossDistance;
+        
     }
 
   
     void Update()
     {
+        positionOfCursor.x = Input.mousePosition.x;
+        positionOfCursor.y = Input.mousePosition.y;
 
-        if (Input.GetMouseButton(0))
-        {
-            distance = Mathf.PingPong(Time.time*armMovementMin, armMovementMax);
-           // transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.PingPong(Time.time, armMovementMax-armMovementMin));
-        }
-        else
-        {
-            distance = transform.position.z - Camera.main.transform.position.z;
-        }
+        Vector3 mouseLocation = Camera.main.ScreenToWorldPoint(positionOfCursor);
 
-        
-
-        cursorPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
-        cursorPosition = Camera.main.ScreenToWorldPoint(cursorPosition);
-
-        transform.position = Vector3.MoveTowards(transform.position, cursorPosition, 10);
-
-       
+        transform.position = mouseLocation;
     }
+
+    public Vector3 CursorLocation(float cursorLocationX, float cursorLocationY, float cursorLocationZ)
+    {
+
+        cursorLocationX = transform.position.x;
+        cursorLocationY = transform.position.y;
+        cursorLocationZ = transform.position.z;
+
+        Vector3 mousePosition = new Vector3(cursorLocationX, cursorLocationY, cursorLocationZ);
+
+        return mousePosition;
+    }
+
 }
