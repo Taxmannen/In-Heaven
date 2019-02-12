@@ -15,4 +15,6 @@ MonoBehaviour:
   attacks:
   - type: 0
     data: {fileID: 11400000, guid: aad43b5ab4797c24cbf8b27162ec2ae7, type: 2}
+  - type: 2
+    data: {fileID: 11400000, guid: e9370ec7700dc4845a9c258378c4c155, type: 2}
   movments: []
