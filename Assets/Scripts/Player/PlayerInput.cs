@@ -61,7 +61,7 @@ public class PlayerInput : MonoBehaviour
 
         playerController.Aim();
 
-        if (AbleToShoot())
+        if (AbleToShoot() && playerController.parryAction.checkParryActive())
         {
             playerController.Shoot();
         }

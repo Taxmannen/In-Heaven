@@ -75,4 +75,10 @@ public class ParryAction : MonoBehaviour
         parryCooldownCoroutine = null;
         yield break;
     }
+
+    //By Tåqvist
+    public bool checkParryActive() {
+        return parrybox.enabled;
+    }
+
 }
