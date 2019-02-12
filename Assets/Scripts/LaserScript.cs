@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class LaserScript : MonoBehaviour
 {
-
     [SerializeField]
     internal Material material;
-
-    [SerializeField]
-    internal ParticleSystem vfx;
 
     [SerializeField]
     internal float horizontalScrollSpeedMultiplier = 0;
@@ -22,8 +18,6 @@ public class LaserScript : MonoBehaviour
     private void Start()
     {
         material = GetComponent<Renderer>().material;
-        vfx = GetComponentInChildren<ParticleSystem>();
-        vfx.Play();
     }
 
     private void Update()

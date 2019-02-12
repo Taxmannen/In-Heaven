@@ -11,8 +11,15 @@ public class BossLaser : MonoBehaviour
 
     private void Start()
     {
-        vfx = GetComponentInChildren<ParticleSystem>();
-        vfx.Play();
+        if (vfx == null)
+        {
+            vfx = GetComponentInChildren<ParticleSystem>();
+        }
+
+        if (vfx != null)
+        {
+            vfx.Play();
+        }
     }
 
     public void SetDamage(float damage)
