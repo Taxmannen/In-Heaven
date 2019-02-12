@@ -14,6 +14,8 @@ public class BossHitbox : MonoBehaviour
     //VFXs
     [SerializeField]
     private GameObject sparks;
+    [SerializeField]
+    private ParticleSystem explosion;
 
     //Private
     private Boss boss;
@@ -48,6 +50,7 @@ public class BossHitbox : MonoBehaviour
         {
             Die();
             ActivateSparksVFX();
+            ActivateExplosionVFX();
         }
 
         else
@@ -75,6 +78,17 @@ public class BossHitbox : MonoBehaviour
         else
         {
             Debug.Log("Add sparks VFXs to the destroyed object!");
+        }
+    }
+
+    private void ActivateExplosionVFX() {
+        if (explosion != null)
+        {
+            explosion.Play();
+        }
+        else
+        {
+            Debug.Log("Add explosion VFXs to the destroyed object!");
         }
     }
 

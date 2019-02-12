@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HandMovement : MonoBehaviour
 {
@@ -70,9 +68,6 @@ public class HandMovement : MonoBehaviour
 
                 Timer = 0;
             }
-
         }
-
-        
     }
 }
