@@ -72,6 +72,11 @@ public class Bullet : MonoBehaviour
 
         if (other.tag == "Player Hitbox" && !fromPlayer)
         {
+            if (collisionEffect != null)
+            {
+                GameObject effect = Instantiate(collisionEffect, other.transform.position, collisionEffect.transform.rotation, transform.parent); // FEL SPAWN POSITION!
+                Destroy(effect, 3);
+            }
             other.GetComponentInParent<PlayerController>().Receive(damage);
             Destroy(gameObject);
         }
