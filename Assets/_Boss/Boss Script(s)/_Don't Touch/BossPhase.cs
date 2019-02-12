@@ -84,6 +84,7 @@ public class BossPhase : MonoBehaviour
 
                     GameObject inst = new GameObject();
                     inst.transform.parent = this.movementParent;
+                    inst.transform.position = transform.position;
                     BossMovement movement = inst.AddComponent(scripts[data.type].GetClass()) as BossMovement;
                     movement.SetMovmentData(data.data);
                     bossMovements.Add(movement);
@@ -133,6 +134,7 @@ public class BossPhase : MonoBehaviour
 
                     GameObject inst = new GameObject();
                     inst.transform.parent = this.attackParent;
+                    inst.transform.position = transform.position;
                     BossAttack attack = inst.AddComponent(scripts[data.type].GetClass()) as BossAttack;
                     attack.SetAttackData(data.data);
                     attack.name = attack.GetType().ToString();

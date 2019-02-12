@@ -156,6 +156,7 @@ public class Boss : Character
 
             GameObject phaseGameObject = new GameObject();
             phaseGameObject.transform.parent = transform;
+            phaseGameObject.transform.position = transform.position;
             phaseGameObject.name = "Phase(s)";
             phaseParent = phaseGameObject.transform;
 

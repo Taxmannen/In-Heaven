@@ -9,6 +9,7 @@ public class BA_PatternPatternShot : BossAttack
     {
         GameObject inst = new GameObject("BA_PatternShot for BA_PatternPatternShot");
         inst.transform.parent = transform;
+        inst.transform.position = transform.position;
         BA_PatternShot attack = inst.AddComponent(typeof(BA_PatternShot)) as BA_PatternShot;
         yield return null;
         foreach (var item in data.patternShotDatas)
