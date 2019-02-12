@@ -221,6 +221,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4998537456697538083}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &779727202 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7962501435297223959, guid: 26c8be6dea183b04e9342c8c44b0f96b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1742673353}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &805349538
 GameObject:
   m_ObjectHideFlags: 0
@@ -2007,6 +2013,11 @@ PrefabInstance:
       propertyPath: aim
       value: 
       objectReference: {fileID: 50253025}
+    - target: {fileID: 649821551608408576, guid: b1fe1cca72118694ca68552ad1bb08c8,
+        type: 3}
+      propertyPath: bullets
+      value: 
+      objectReference: {fileID: 779727202}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1fe1cca72118694ca68552ad1bb08c8, type: 3}
 --- !u!1001 &7249236267029179646
