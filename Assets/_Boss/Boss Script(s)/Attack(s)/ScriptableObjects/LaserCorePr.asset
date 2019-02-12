@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: LaserCorePr
   m_EditorClassIdentifier: Assembly-CSharp::LaserCoreData
-  laserPrefab: {fileID: 8481948331104647024, guid: 90c5b7b7cbe36474a94d9ea8e2d8b4d4,
+  laserPrefab: {fileID: 4312739832132531567, guid: 57404117f06b3b849bc214bb01d03482,
     type: 3}
   attackTime: 5
   speed: {x: 10, y: 0, z: 0}

@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4179434b97777ed47ac273aa73b566f8, type: 3}
   m_Name: Phase
   m_EditorClassIdentifier: 
-  attacks: []
+  attacks:
+  - type: 0
+    data: {fileID: 11400000, guid: 84e47df5ca064304c9bce1efcf989992, type: 2}
   movments: []
