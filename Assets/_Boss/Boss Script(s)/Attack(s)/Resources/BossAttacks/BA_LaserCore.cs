@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BA_LaserCore : BossAttack
@@ -28,12 +27,14 @@ public class BA_LaserCore : BossAttack
     }
 
     //Code runs
-    void SpawnLaser() {
+    void SpawnLaser()
+    {
         laser = Instantiate(data.laserPrefab, new Vector3(data.startPosition.x, data.startPosition.y, data.startPosition.z), Quaternion.identity,transform);
         laser.GetComponent<BossLaser>().SetDamage(1);
     }
 
-    void SetStartSide() {
+    void SetStartSide()
+    {
         if (data.startPosition.x <= data.endPosition.x)
             startSide = "LEFT";
         if (data.startPosition.x > data.endPosition.x)
@@ -43,76 +44,76 @@ public class BA_LaserCore : BossAttack
 
     private bool startDirection = true;
 
-    void MoveLaser() {
-
-        if(startSide == "LEFT")
+    void MoveLaser()
+    {
+        if (laser != null)
         {
-            if (startDirection)
+            if (startSide == "LEFT")
             {
-                if (laser.transform.position.x <= data.endPosition.x)
+                if (startDirection)
                 {
-                    laser.GetComponent<Rigidbody>().velocity = data.speed;
-                }
-                else
-                {
-                    StartCoroutine("StopAndChangeDirection");
+                    if (laser.transform.position.x <= data.endPosition.x)
+                    {
+                        laser.GetComponent<Rigidbody>().velocity = data.speed;
+                    }
+                    else
+                    {
+                        StartCoroutine("StopAndChangeDirection");
+                    }
                 }
 
-
+                if (!startDirection)
+                {
+                    if (laser.transform.position.x >= data.startPosition.x)
+                    {
+                        laser.GetComponent<Rigidbody>().velocity = -data.speed;
+                    }
+                    else
+                    {
+                        StartCoroutine("StopAndChangeDirection");
+                    }
+                }
             }
 
-            if (!startDirection)
+            if (startSide == "RIGHT")
             {
-                if (laser.transform.position.x >= data.startPosition.x)
+                if (startDirection)
                 {
-                    laser.GetComponent<Rigidbody>().velocity = -data.speed;
+                    if (laser.transform.position.x >= data.endPosition.x)
+                    {
+                        laser.GetComponent<Rigidbody>().velocity = -data.speed;
+                        Debug.Log("Works");
+                    }
+                    else
+                    {
+                        StartCoroutine("StopAndChangeDirection");
+                    }
                 }
-                else
+
+                if (!startDirection)
                 {
-                    StartCoroutine("StopAndChangeDirection");
+                    if (laser.transform.position.x <= data.startPosition.x)
+                    {
+                        laser.GetComponent<Rigidbody>().velocity = data.speed;
+                    }
+                    else
+                    {
+                        StartCoroutine("StopAndChangeDirection");
+                    }
                 }
             }
         }
-        
-        if(startSide == "RIGHT")
-        {
-            if (startDirection)
-            {
-                if (laser.transform.position.x >= data.endPosition.x)
-                {
-                    laser.GetComponent<Rigidbody>().velocity = -data.speed;
-                    Debug.Log("Works");
-                }
-                else
-                {
-                    StartCoroutine("StopAndChangeDirection");
-                }
-
-
-            }
-
-            if (!startDirection)
-            {
-                if (laser.transform.position.x <= data.startPosition.x)
-                {
-                    laser.GetComponent<Rigidbody>().velocity = data.speed;
-                }
-                else
-                {
-                    StartCoroutine("StopAndChangeDirection");
-                }
-            }
-        }
-        
     }
 
-    IEnumerator StopAndChangeDirection() {
+    IEnumerator StopAndChangeDirection()
+    {
         CancelInvoke("MoveLaser");
         laser.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(data.laserStayTime);
         InvokeRepeating("MoveLaser", 0, 0.001f);
         startDirection = !startDirection;
     }
+
     public override void SetAttackData(AttackData data)
     {
         if (this.data = data as LaserCoreData)
@@ -124,5 +125,4 @@ public class BA_LaserCore : BossAttack
             Debug.LogError("Wrong Data!!" + gameObject);
         }
     }
-
 }
