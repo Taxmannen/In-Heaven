@@ -117,7 +117,7 @@ public class PlayerInput : MonoBehaviour
             AudioController.instance.PlayerCommenceShooting();
         }
 
-        if (ParryButtonOnMouse() && !AbleToShoot())
+        if (ParryButtonOnMouse())
         {
             playerController.Parry();    
         }
