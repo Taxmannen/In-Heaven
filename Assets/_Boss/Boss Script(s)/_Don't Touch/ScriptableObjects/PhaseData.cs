@@ -4,8 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Phase", menuName = "Boss/Phase")]
 public class PhaseData : ScriptableObject
 {
-    public List<BossAttackTypeAndData> attacks;
-    public List<BossMovementTypeAndData> movments;
+    public List<BossAttackTypeAndData> attacks = new List<BossAttackTypeAndData>();
+    public List<BossMovementTypeAndData> movments = new List<BossMovementTypeAndData>();
 }
 [System.Serializable]
 public class BossAttackTypeAndData
