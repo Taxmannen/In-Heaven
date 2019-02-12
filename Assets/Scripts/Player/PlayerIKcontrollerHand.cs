@@ -24,14 +24,14 @@ public class PlayerIKcontrollerHand : MonoBehaviour
 
         if(Input.GetMouseButton(0))
         {
-            //if (lookObj != null)
-            //{
-            //    animator.SetLookAtWeight(1);
-            //    animator.SetLookAtPosition(lookObj.position);
-            //}
+            if (lookObj != null)
+            {
+                animator.SetLookAtWeight(1);
+                animator.SetLookAtPosition(lookObj.position);
+            }
 
-            //if (rightHandObj != null)
-            //{
+            if (rightHandObj != null)
+            {
                 animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
                 animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
                 animator.SetIKPosition(AvatarIKGoal.RightHand, rightHandObj.position);
@@ -41,13 +41,13 @@ public class PlayerIKcontrollerHand : MonoBehaviour
 
 
 
-          //  }
-            //else
-            //{
-            //    animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
-            //    animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
-            //    animator.SetLookAtWeight(0);
-            //}
+            }
+            else
+            {
+                animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
+                animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
+                animator.SetLookAtWeight(0);
+            }
         }
 
     }
