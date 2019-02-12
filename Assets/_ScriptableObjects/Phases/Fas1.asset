@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: PatternPatternShotData
-  m_EditorClassIdentifier: Assembly-CSharp::PatternPatternShotData
-  patternShotDatas:
-  - {fileID: 11400000}
-  - {fileID: 11400000}
+  m_Script: {fileID: 11500000, guid: 4179434b97777ed47ac273aa73b566f8, type: 3}
+  m_Name: Fas1
+  m_EditorClassIdentifier: 
+  attacks:
+  - type: 0
+    data: {fileID: 11400000, guid: aad43b5ab4797c24cbf8b27162ec2ae7, type: 2}
+  movments: []
