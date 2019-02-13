@@ -5,12 +5,18 @@ using UnityEngine;
 public class BA_PatternPatternShot : BossAttack
 {
     public PatternPatternShotData data;
+    private GameObject inst;
+    BA_PatternShot attack;
     protected override IEnumerator Execute(Boss boss)
     {
-        GameObject inst = new GameObject("BA_PatternShot for BA_PatternPatternShot");
-        inst.transform.parent = transform;
-        inst.transform.position = transform.position;
-        BA_PatternShot attack = inst.AddComponent(typeof(BA_PatternShot)) as BA_PatternShot;
+        if(inst == null)
+        {
+            
+            inst = Instantiate(boss.attackScriptTransfromList.GetComponentInChildren(typeof(BA_PatternShot)).gameObject, transform);
+            inst.transform.position = transform.position;
+            attack = inst.GetComponent<BA_PatternShot>();
+            
+        }
         yield return null;
         foreach (var item in data.patternShotDatas)
         {
@@ -19,7 +25,8 @@ public class BA_PatternPatternShot : BossAttack
             attack.StartExecute(boss);
             yield return new WaitUntil(() => attack.GetExecuteRoutine() == null);
         }
-        
+
+        yield return new WaitForSeconds(data.sencondsAfterFinishAttack);
 
         executeRoutine = null;
         yield break;

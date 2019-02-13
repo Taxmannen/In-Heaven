@@ -26,13 +26,15 @@ public class BossPhase : MonoBehaviour
     protected List<BossMovement> bossMovements = new List<BossMovement>();
     protected List<BossAttack> bossAttacks = new List<BossAttack>();
 
-
+    private BossAttack[] attackList;
+    private BossMovement[] movementsList;
 
     //Main
 
     public void StartPhase(Boss boss, Transform movementParent, Transform attackParent)
     {
-
+        movementsList = boss.movementScriptTransfromList.GetComponentsInChildren<BossMovement>();
+        attackList = boss.attackScriptTransfromList.GetComponentsInChildren<BossAttack>();
         SetupMovements(movementParent);
 
         SetupAttacks(attackParent);
@@ -74,18 +76,12 @@ public class BossPhase : MonoBehaviour
             bossMovements.Clear();
             if (data != null)
             {
-                MonoScript[] scripts;
-                scripts = Resources.LoadAll<MonoScript>("BossMovement/");
-
-
-
                 foreach (BossMovementTypeAndData data in data.movments)
                 {
 
-                    GameObject inst = new GameObject();
-                    inst.transform.parent = this.movementParent;
+                    GameObject inst = Instantiate(movementsList[data.type].gameObject, this.movementParent);
                     inst.transform.position = transform.position;
-                    BossMovement movement = inst.AddComponent(scripts[data.type].GetClass()) as BossMovement;
+                    BossMovement movement = inst.GetComponent(movementsList[data.type].GetType()) as BossMovement;
                     movement.SetMovmentData(data.data);
                     bossMovements.Add(movement);
                 }
@@ -126,16 +122,13 @@ public class BossPhase : MonoBehaviour
             if (data != null)
             {
                 bossAttacks.Clear();
-                MonoScript[] scripts;
-                scripts = Resources.LoadAll<MonoScript>("BossAttacks/");
 
                 foreach (BossAttackTypeAndData data in data.attacks)
                 {
 
-                    GameObject inst = new GameObject();
-                    inst.transform.parent = this.attackParent;
+                    GameObject inst = Instantiate(attackList[data.type].gameObject, this.attackParent);
                     inst.transform.position = transform.position;
-                    BossAttack attack = inst.AddComponent(scripts[data.type].GetClass()) as BossAttack;
+                    BossAttack attack = inst.GetComponent(attackList[data.type].GetType()) as BossAttack;
                     attack.SetAttackData(data.data);
                     attack.name = attack.GetType().ToString();
                     bossAttacks.Add(attack);
@@ -164,7 +157,7 @@ public class BossPhase : MonoBehaviour
         {
             foreach (var item in bossAttacks)
             {
-                
+                if(item.GetExecuteRoutine() != null)
                 item.StopCoroutine(item.GetExecuteRoutine());
             }
             attackRoutine = null;
@@ -173,7 +166,8 @@ public class BossPhase : MonoBehaviour
         {
             foreach (var item in bossAttacks)
             {
-                item.StopCoroutine(item.GetExecuteRoutine());
+                if (item.GetExecuteRoutine() != null)
+                    item.StopCoroutine(item.GetExecuteRoutine());
             }
             
             movementRoutine = null;

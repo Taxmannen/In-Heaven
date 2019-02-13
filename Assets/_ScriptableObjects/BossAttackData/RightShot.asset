@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0ca45832b8c9774aac71e286165f010, type: 3}
+  m_Name: RightShot
+  m_EditorClassIdentifier: 
+  numberOfPatternsToShoot: 1
+  delayAfterEachPattern: 1
+  spawnLocation: {x: 0, y: 0, z: 0}
+  bulletPrefab: {fileID: 8510596696031209735, guid: e803a36995464fc44a8399e1e340f3fe,
+    type: 3}
+  patternPrefab: {fileID: 1602523771038794880, guid: 186c61b7e00bbd846a044dfc41bd75b7,
+    type: 3}
+  delayAfterAttack: 0
+  bulletSpeed: 50

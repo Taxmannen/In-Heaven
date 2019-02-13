@@ -6,7 +6,10 @@ using System.Linq;
 public class BA_PatternShot : BossAttack
 {
     public PatternShotData data;
-    
+
+    public GameObject bulletPrefab;
+    public GameObject parryableBulletPrefab;
+
     private GameObject pattern;
     private float counter;
     private float deltaTime;
@@ -46,22 +49,28 @@ public class BA_PatternShot : BossAttack
 
 
                 //Then use the data from the item.
-                Vector3 target = new Vector3(item.x, item.y);
-                GameObject bullet = ShootingHelper.Shoot(data.spawnLocation + transform.position, target, data.bulletPrefab, data.bulletSpeed, transform, 10);
+                Vector3 target = new Vector3(item.x, item.y + 4);
+                GameObject bullet;
+                if (item.parryable)
+                {
+                    bullet = ShootingHelper.Shoot(data.spawnLocation + transform.position, target, parryableBulletPrefab, data.bulletSpeed, transform, 10);// Set the bullet to be parriable 
+                }
+                else
+                {
+                    bullet = ShootingHelper.Shoot(data.spawnLocation + transform.position, target, bulletPrefab, data.bulletSpeed, transform, 10);
+                }
+
 
                 // This line will change, we are going to make a GeneralBullet, that checks what it collides with and
                 // what it can damage. And if the shoot is parrable
                 bullet.GetComponent<Bullet>().SetDamage(1);
                 bullet.GetComponent<Bullet>().SetBulletOverlay(data.spawnLocation + transform.position, target, data.bulletSpeed);
 
-                if (item.parryable)
-                {
-                    // Set the bullet to be parriable 
-                }
+                
 
                 //Make the appriorite sound
                 //InterfaceController.instance.BossBulletOverlay(target);
-                //AudioController.instance.BossPatternShot();
+                AudioController.instance.BossPatternShot();
             }
             counter++;
             //Debug.Log(counter);

@@ -14,8 +14,8 @@ public class PhaseDataEditor : Editor
     //References from other Sources
     List<BossAttackTypeAndData> attacks;
     List<BossMovementTypeAndData> movements;
-    MonoScript[] attackScripts;
-    MonoScript[] movementScripts;
+    BossAttack[] attackScripts;
+    BossMovement[] movementScripts;
     PhaseData phaseData;
 
     //GUI
@@ -37,8 +37,9 @@ public class PhaseDataEditor : Editor
     private void OnEnable()
     {
         phaseData = target as PhaseData;
-        attackScripts = Resources.LoadAll<MonoScript>("BossAttacks/");
-        movementScripts = Resources.LoadAll<MonoScript>("BossMovement/");
+
+        attackScripts = GameObject.Find("AttackScriptsList").GetComponentsInChildren<BossAttack>();
+        movementScripts = GameObject.Find("MovementScriptList").GetComponentsInChildren<BossMovement>();
         attacks = phaseData.attacks;
         movements = phaseData.movments;
 
@@ -47,7 +48,7 @@ public class PhaseDataEditor : Editor
 
         for (int i = 0; i < attackStrings.Length; i++)
         {
-            attackStrings[i] = attackScripts[i].GetClass().ToString();
+            attackStrings[i] = attackScripts[i].GetType().ToString();
         }
 
 
@@ -56,7 +57,7 @@ public class PhaseDataEditor : Editor
 
         for (int i = 0; i < movementStrings.Length; i++)
         {
-            movementStrings[i] = movementScripts[i].GetClass().ToString();
+            movementStrings[i] = movementScripts[i].GetType().ToString();
         }
 
 
@@ -138,7 +139,7 @@ public class PhaseDataEditor : Editor
 
         for (int i = 0; i < vs.Length; i++)
         {
-            vs[i] = attackScripts[i].GetClass().ToString(); 
+            vs[i] = attackScripts[i].GetType().ToString(); 
         }
         //List of Attacks
         showAttacks = EditorGUILayout.Foldout(showAttacks, "Attacks");
@@ -204,7 +205,7 @@ public class PhaseDataEditor : Editor
 
         for (int i = 0; i < vs.Length; i++)
         {
-            vs[i] = movementScripts[i].GetClass().ToString();
+            vs[i] = movementScripts[i].GetType().ToString();
         }
 
 
@@ -224,7 +225,7 @@ public class PhaseDataEditor : Editor
             {
                 if (GUILayout.Button("Remove Movment"))
                 {
-                    movements.RemoveAt(attacks.Count - 1);
+                    movements.RemoveAt(movements.Count - 1);
                 }
             }
             GUILayout.EndHorizontal();

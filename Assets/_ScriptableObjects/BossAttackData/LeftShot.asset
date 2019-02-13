@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0ca45832b8c9774aac71e286165f010, type: 3}
-  m_Name: PatternShotData
+  m_Name: LeftShot
   m_EditorClassIdentifier: 
-  numberOfPatternsToShoot: 5
+  numberOfPatternsToShoot: 1
   delayAfterEachPattern: 1
   spawnLocation: {x: 0, y: 0, z: 0}
-  bulletPrefab: {fileID: 4048045993160232565, guid: 813d07bd9374f0344b3c4a1f2095e277,
+  bulletPrefab: {fileID: 8510596696031209735, guid: e803a36995464fc44a8399e1e340f3fe,
     type: 3}
-  patternPrefab: {fileID: 1602523771038794880, guid: 186c61b7e00bbd846a044dfc41bd75b7,
+  patternPrefab: {fileID: 4937104375839870001, guid: aa985a5d83983e448804073d3f524c48,
     type: 3}
-  delayAfterAttack: 3
+  delayAfterAttack: 0
   bulletSpeed: 50
