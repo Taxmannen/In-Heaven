@@ -47,7 +47,6 @@ MonoBehaviour:
   playerDash: event:/Player/PlayerDash
   playerJump: event:/Player/PlayerJump
   playerDoubleJump: event:/Player/PlayerDoubleJump
-  playerGunReverb: event:/Player/PlayerShotReverb
   playerCommenceShooting: event:/Player/PlayerCommenceShooting
   playerParryEvent: event:/Player/PlayerParryEvent
   playerSuccessfulParry: event:/Player/PlayerParrySuccess
@@ -56,7 +55,14 @@ MonoBehaviour:
   bossDeath: event:/Boss/BossDeath
   bossShoot: event:/Boss/BossShoot
   bossDestruction: event:/Boss/Boss Destruction
+  bossPatternShot: event:/Boss/BossShoot
   muteAllDynamic: event:/Sound Overrides/MuteAllDynamic 0-1
   muteAllSnap: event:/Sound Overrides/MuteAllSnap
   muteMusicDynamic: event:/Sound Overrides/MuteMusicDynamic 0-1
   muteMusicSnap: event:/Sound Overrides/MuteMusicSnap
+  muteSfxDynamic: event:/Sound Overrides/MuteSfxDynamic 0-1
+  muteSfxSnap: event:/Sound Overrides/MuteSfxSnap
+  menuClick: event:/NonDiegetic/MenuClick
+  menuClickBack: event:/NonDiegetic/MenuClickBack
+  menuHover: event:/NonDiegetic/MenuHover
+  menuPopup: event:/NonDiegetic/Popup
