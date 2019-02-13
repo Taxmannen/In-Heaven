@@ -22,6 +22,7 @@ public class BA_LaserCore : BossAttack
         yield return new WaitForSeconds(data.attackTime);
         CancelInvoke("MoveLaser");
         Destroy(laser);
+        AudioController.instance.StopBossLaserLoop();
         executeRoutine = null;
         yield break;
     }
@@ -31,6 +32,8 @@ public class BA_LaserCore : BossAttack
     {
         laser = Instantiate(data.laserPrefab, new Vector3(data.startPosition.x, data.startPosition.y, data.startPosition.z), Quaternion.identity,transform);
         laser.GetComponent<BossLaser>().SetDamage(1);
+
+        
     }
 
     void SetStartSide()

@@ -78,6 +78,7 @@ public class Bullet : MonoBehaviour
                 Destroy(effect, 3);
             }
             other.GetComponentInParent<PlayerController>().Receive(damage);
+            AudioController.instance.PlayerTakingDamage();
             Destroy(gameObject);
         }
     }
