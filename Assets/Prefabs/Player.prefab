@@ -7598,6 +7598,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7056983358888196328}
     m_Modifications:
+    - target: {fileID: 100000, guid: 4742cac031bda754db11508efc4bd24f, type: 3}
+      propertyPath: m_Name
+      value: gun_lowpoly
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4742cac031bda754db11508efc4bd24f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.04809998
@@ -7653,10 +7657,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 4742cac031bda754db11508efc4bd24f, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 4742cac031bda754db11508efc4bd24f, type: 3}
-      propertyPath: m_Name
-      value: gun_lowpoly
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 4742cac031bda754db11508efc4bd24f, type: 3}
       propertyPath: m_Materials.Array.data[0]
