@@ -111,7 +111,7 @@ public class InterfaceController : MonoBehaviour
     {
 
         Vector3 cameraPoint = point;
-        GameObject testClone = Instantiate(targetOverlay, cameraPoint, Quaternion.identity, FindObjectOfType<Canvas>().gameObject.transform);
+        GameObject testClone = Instantiate(targetOverlay, cameraPoint, Quaternion.identity, transform);
         Destroy(testClone, 1f);
 
     }

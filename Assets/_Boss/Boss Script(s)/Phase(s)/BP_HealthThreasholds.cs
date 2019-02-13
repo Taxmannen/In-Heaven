@@ -32,7 +32,15 @@ public class BP_HealthThreasholds : BossPhase
     }
     void SetupPhases()
     {
+        foreach (var item in bossPhases)
+        {
+            if(item.phase != null)
+            {
+                item.phase = Instantiate(item.phase, transform);
 
+            }
+            
+        }
     }
       
 
