@@ -99,6 +99,7 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     [SerializeField] public string failMenuDuck;
     FMOD.Studio.EventInstance failMenuDuckEv;
+    FMOD.Studio.ParameterInstance fadeOutParameter;
     #endregion
     [Header("")]
     [Header("NON Diegetic")]
@@ -155,6 +156,8 @@ public class AudioController : MonoBehaviour
         muteSfxDynamicEv = FMODUnity.RuntimeManager.CreateInstance(muteSfxDynamic);
         muteSfxSnapEv = FMODUnity.RuntimeManager.CreateInstance(muteSfxDynamic);
         failMenuDuckEv = FMODUnity.RuntimeManager.CreateInstance(failMenuDuck);
+
+        failMenuDuckEv.getParameter("FadeOut", out fadeOutParameter);
 
         muteAllDynamicEv.getParameter("MuteAllParameter", out muteAllParameter);
         muteMusicDynamicEv.getParameter("MuteMusicParameter", out muteMusicParameter);
@@ -388,11 +391,19 @@ public class AudioController : MonoBehaviour
     }
     public void FailMenuDuck()
     {
+        fadeOutParameter.setValue(0);
         failMenuDuckEv.start();
     }
     public void StopFailMenuDuck()
     {
+        fadeOutParameter.setValue(1);
+        StartCoroutine(BeginFadeOut());
+    }
+    private IEnumerator BeginFadeOut()
+    {
+        yield return new WaitForSeconds(1f);
         failMenuDuckEv.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        yield break;
     }
     #endregion
 
