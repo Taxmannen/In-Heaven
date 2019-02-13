@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float damage = 1;
     [SerializeField] private bool fromPlayer;
-    [SerializeField] private float UIAnimationTime;
+    [SerializeField] private float UIAnimationTime = 2;
 
     [Header("Effect")]
     [SerializeField] private GameObject collisionEffect;
