@@ -13,7 +13,7 @@ public class AudioController : MonoBehaviour
 
     [Header("")]
     [Header("PLAYER SOUNDS")]
-
+    #region PlayerSounds
     [FMODUnity.EventRef]
     [SerializeField] private string playerShoot;
     FMOD.Studio.EventInstance playerShootEv;
@@ -38,10 +38,10 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     [SerializeField] private string playerSuccessfulParry;
     FMOD.Studio.EventInstance playerSuccessfulParryEv;
-
+    #endregion
     [Header("")]
     [Header("BOSS SOUNDS")]
-
+    #region BossSounds
     [FMODUnity.EventRef]
     [SerializeField] private string bossHitRecieveDamage;
     FMOD.Studio.EventInstance bossHitRecieveDamageEv;
@@ -60,10 +60,10 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     [SerializeField] private string bossPatternShot;
     FMOD.Studio.EventInstance bossPatternshotEv;
-
+    #endregion
     [Header("")]
     [Header("SOUND OVERRIDES")]
-
+    #region SoundOverrides
     [FMODUnity.EventRef]
     [SerializeField] private string muteAllDynamic;
     FMOD.Studio.EventInstance muteAllDynamicEv;
@@ -85,10 +85,10 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     [SerializeField] private string muteSfxSnap;
     FMOD.Studio.EventInstance muteSfxSnapEv;
-
+    #endregion
     [Header("")]
     [Header("NON Diegetic")]
-
+    #region NonDiegetic
     [FMODUnity.EventRef]
     [SerializeField] private string menuClick;
     FMOD.Studio.EventInstance menuClickEv;
@@ -101,6 +101,8 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     [SerializeField] private string menuPopup;
     FMOD.Studio.EventInstance menuPopupEv;
+    #endregion
+
 
     [SerializeField] private Queue<FMOD.Studio.EventInstance> bossDestructionQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> playerShootQueue = new Queue<FMOD.Studio.EventInstance>();
@@ -110,9 +112,10 @@ public class AudioController : MonoBehaviour
     [SerializeField] private Queue<FMOD.Studio.EventInstance> menuPopupQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> bossPatternShotQueue = new Queue<FMOD.Studio.EventInstance>();
 
+
     private void Start()
     {
-        
+
         playerDashEv = FMODUnity.RuntimeManager.CreateInstance(playerDash);
         playerJumpEv = FMODUnity.RuntimeManager.CreateInstance(playerJump);
         playerDoubleJumpEv = FMODUnity.RuntimeManager.CreateInstance(playerDoubleJump);
@@ -120,7 +123,7 @@ public class AudioController : MonoBehaviour
         playerCommenceShootingEv = FMODUnity.RuntimeManager.CreateInstance(playerCommenceShooting);
         playerParryEventEv = FMODUnity.RuntimeManager.CreateInstance(playerParryEvent);
         playerSuccessfulParryEv = FMODUnity.RuntimeManager.CreateInstance(playerSuccessfulParry);
-        
+
         bossHitRecieveNoDamageEv = FMODUnity.RuntimeManager.CreateInstance(bossHitRecieveNoDamage);
         bossDeathEv = FMODUnity.RuntimeManager.CreateInstance(bossDeath);
         bossShootEv = FMODUnity.RuntimeManager.CreateInstance(bossShoot);
@@ -132,7 +135,7 @@ public class AudioController : MonoBehaviour
         muteMusicSnapEv = FMODUnity.RuntimeManager.CreateInstance(muteMusicSnap);
         muteSfxDynamicEv = FMODUnity.RuntimeManager.CreateInstance(muteSfxDynamic);
         muteSfxSnapEv = FMODUnity.RuntimeManager.CreateInstance(muteSfxDynamic);
-        
+
         muteAllDynamicEv.getParameter("MuteAllParameter", out muteAllParameter);
         muteMusicDynamicEv.getParameter("MuteMusicParameter", out muteMusicParameter);
         muteSfxDynamicEv.getParameter("MuteSfxParameter", out muteSfxParameter);
@@ -153,10 +156,11 @@ public class AudioController : MonoBehaviour
     }
 
     //_______PLAYER________
+    #region PlayerSounds
 
     public void Walk()
     {
-        
+
     }
     public void PlayerJump()
     {
@@ -204,9 +208,9 @@ public class AudioController : MonoBehaviour
     {
         playerParryEventEv.start();
     }
-
+    #endregion
     //_________ENEMY_________
-
+    #region EnemySounds
     public void EnemyShoot()
     {
 
@@ -237,7 +241,7 @@ public class AudioController : MonoBehaviour
     }
     private IEnumerator BossDestructionRoutine()
     {
-        
+
         yield return new WaitForSeconds(1.5f);
         FMOD.Studio.EventInstance eventInstance = bossDestructionQueue.Dequeue();
         eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
@@ -277,13 +281,13 @@ public class AudioController : MonoBehaviour
         eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         yield break;
     }
-
+    #endregion
     //__________Overrides_______
-
+    #region Overrides
     public void SetMaster(Slider slider)
     {
         muteAllDynamicEv.start();
-        muteAllParameter.setValue (slider.value * 0.01f);
+        muteAllParameter.setValue(slider.value * 0.01f);
     }
     public void ToggleMaster(Toggle toggle)
     {
@@ -328,9 +332,9 @@ public class AudioController : MonoBehaviour
             muteSfxSnapEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         }
     }
-
+    #endregion
     //_________NON DIEGETIC_______
-
+    #region Non Diegetic
     public void MenuHover()
     {
         FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(menuHover);
@@ -387,7 +391,7 @@ public class AudioController : MonoBehaviour
         eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         yield break;
     }
-
+    #endregion
 
 
 
