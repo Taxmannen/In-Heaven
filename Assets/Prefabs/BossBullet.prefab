@@ -123,3 +123,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   fromPlayer: 0
+  collisionEffect: {fileID: 0}
+  UIAnimationTime: 1
