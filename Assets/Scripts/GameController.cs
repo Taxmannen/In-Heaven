@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     public static GameController instance;
 
     //Serialized
-    [SerializeField] private PlayerController playerController;
+    [SerializeField] internal PlayerController playerController;
     [SerializeField] private BossController bossController;
     [SerializeField] private SpreadShot spreadShot;
 
