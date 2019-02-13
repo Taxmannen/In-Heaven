@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfPatternsToShoot: 1
   delayAfterEachPattern: 1
-  spawnLocation: {x: 0, y: 0, z: 0}
+  spawnLocation: {x: 0, y: 5, z: 0}
   bulletPrefab: {fileID: 8510596696031209735, guid: e803a36995464fc44a8399e1e340f3fe,
     type: 3}
   patternPrefab: {fileID: 1794444747699795432, guid: 8988ce4d51a3a4c4295e8e208c89b710,
