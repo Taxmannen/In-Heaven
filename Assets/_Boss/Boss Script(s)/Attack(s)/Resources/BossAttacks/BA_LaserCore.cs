@@ -85,7 +85,6 @@ public class BA_LaserCore : BossAttack
                     if (laser.transform.position.x >= data.endPosition.x)
                     {
                         laser.GetComponent<Rigidbody>().velocity = -data.speed;
-                        Debug.Log("Works");
                     }
                     else
                     {
@@ -121,7 +120,7 @@ public class BA_LaserCore : BossAttack
     {
         if (this.data = data as LaserCoreData)
         {
-            Debug.Log("SetAttackData: " + gameObject);
+            //Debug.Log("SetAttackData: " + gameObject);
         }
         else
         {
