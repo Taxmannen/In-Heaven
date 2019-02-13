@@ -11,6 +11,7 @@ public class AudioController : MonoBehaviour
 {
     public static AudioController instance;
 
+    #region Declarations
     [Header("")]
     [Header("PLAYER SOUNDS")]
     #region PlayerSounds
@@ -60,6 +61,10 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     [SerializeField] private string bossPatternShot;
     FMOD.Studio.EventInstance bossPatternshotEv;
+    [FMODUnity.EventRef]
+    [SerializeField] private string bossLaserLoop;
+    FMOD.Studio.EventInstance bossLaserLoopEv;
+    FMOD.Studio.ParameterInstance bossLaserLoopParameter;
     #endregion
     [Header("")]
     [Header("SOUND OVERRIDES")]
@@ -111,11 +116,11 @@ public class AudioController : MonoBehaviour
     [SerializeField] private Queue<FMOD.Studio.EventInstance> menuHoverQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> menuPopupQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> bossPatternShotQueue = new Queue<FMOD.Studio.EventInstance>();
-
+    #endregion
 
     private void Start()
     {
-
+        #region Instance Creations
         playerDashEv = FMODUnity.RuntimeManager.CreateInstance(playerDash);
         playerJumpEv = FMODUnity.RuntimeManager.CreateInstance(playerJump);
         playerDoubleJumpEv = FMODUnity.RuntimeManager.CreateInstance(playerDoubleJump);
@@ -128,6 +133,8 @@ public class AudioController : MonoBehaviour
         bossDeathEv = FMODUnity.RuntimeManager.CreateInstance(bossDeath);
         bossShootEv = FMODUnity.RuntimeManager.CreateInstance(bossShoot);
         bossDestructionEv = FMODUnity.RuntimeManager.CreateInstance(bossDestruction);
+        bossLaserLoopEv = FMODUnity.RuntimeManager.CreateInstance(bossLaserLoop);
+        bossLaserLoopEv.getParameter("StopLoop", out bossLaserLoopParameter);
 
         muteAllDynamicEv = FMODUnity.RuntimeManager.CreateInstance(muteAllDynamic);
         muteAllSnapEv = FMODUnity.RuntimeManager.CreateInstance(muteAllSnap);
@@ -139,7 +146,7 @@ public class AudioController : MonoBehaviour
         muteAllDynamicEv.getParameter("MuteAllParameter", out muteAllParameter);
         muteMusicDynamicEv.getParameter("MuteMusicParameter", out muteMusicParameter);
         muteSfxDynamicEv.getParameter("MuteSfxParameter", out muteSfxParameter);
-
+        #endregion
     }
     private void Awake()
     {
@@ -155,7 +162,7 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    //_______PLAYER________
+
     #region PlayerSounds
 
     public void Walk()
@@ -209,15 +216,20 @@ public class AudioController : MonoBehaviour
         playerParryEventEv.start();
     }
     #endregion
-    //_________ENEMY_________
+
     #region EnemySounds
     public void EnemyShoot()
     {
 
     }
-    public void Attack1()
+    public void BossLaserLoop()
     {
-
+        bossLaserLoopParameter.setValue(0);
+        bossLaserLoopEv.start();
+    }
+    public void StopBossLaserLoop()
+    {
+        bossLaserLoopEv.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
     public void Attack2()
     {
@@ -282,7 +294,7 @@ public class AudioController : MonoBehaviour
         yield break;
     }
     #endregion
-    //__________Overrides_______
+
     #region Overrides
     public void SetMaster(Slider slider)
     {
@@ -333,7 +345,7 @@ public class AudioController : MonoBehaviour
         }
     }
     #endregion
-    //_________NON DIEGETIC_______
+
     #region Non Diegetic
     public void MenuHover()
     {
