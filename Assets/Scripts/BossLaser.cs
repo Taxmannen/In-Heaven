@@ -20,6 +20,8 @@ public class BossLaser : MonoBehaviour
         {
             vfx.Play();
         }
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(AudioController.instance.GetEventInstance(), GetComponent<Transform>(), GetComponent<Rigidbody>());
+        AudioController.instance.BossLaserLoop();
     }
 
     public void SetDamage(float damage)

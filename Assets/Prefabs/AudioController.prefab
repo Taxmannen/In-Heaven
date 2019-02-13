@@ -50,6 +50,7 @@ MonoBehaviour:
   playerCommenceShooting: event:/Player/PlayerCommenceShooting
   playerParryEvent: event:/Player/PlayerParryEvent
   playerSuccessfulParry: event:/Player/PlayerParrySuccess
+  playerTakesDamage: event:/Player/PlayerTakingDamage
   bossHitRecieveDamage: event:/Boss/BossHitRecieveDamage
   bossHitRecieveNoDamage: event:/Boss/BossHitRecieveNoDamage
   bossDeath: event:/Boss/BossDeath

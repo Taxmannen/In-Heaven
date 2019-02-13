@@ -39,6 +39,9 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     [SerializeField] private string playerSuccessfulParry;
     FMOD.Studio.EventInstance playerSuccessfulParryEv;
+    [FMODUnity.EventRef]
+    [SerializeField] private string playerTakesDamage;
+    FMOD.Studio.EventInstance playerTakesDamageEv;
     #endregion
     [Header("")]
     [Header("BOSS SOUNDS")]
@@ -116,6 +119,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] private Queue<FMOD.Studio.EventInstance> menuHoverQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> menuPopupQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> bossPatternShotQueue = new Queue<FMOD.Studio.EventInstance>();
+    [SerializeField] private Queue<FMOD.Studio.EventInstance> playerTakesDamageQueue = new Queue<FMOD.Studio.EventInstance>();
     #endregion
 
     private void Start()
@@ -215,6 +219,20 @@ public class AudioController : MonoBehaviour
     {
         playerParryEventEv.start();
     }
+    public void PlayerTakingDamage()
+    {
+        FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(playerTakesDamage);
+        eventInstance.start();
+        playerTakesDamageQueue.Enqueue(eventInstance);
+        StartCoroutine(PlayerTakingDamageRoutine());
+    }
+    private IEnumerator PlayerTakingDamageRoutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        FMOD.Studio.EventInstance eventInstance = playerTakesDamageQueue.Dequeue();
+        eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+      yield break;
+    }
     #endregion
 
     #region EnemySounds
@@ -229,6 +247,7 @@ public class AudioController : MonoBehaviour
     }
     public void StopBossLaserLoop()
     {
+        bossLaserLoopParameter.setValue(1f);
         bossLaserLoopEv.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
     public void Attack2()
@@ -293,6 +312,9 @@ public class AudioController : MonoBehaviour
         eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         yield break;
     }
+
+
+
     #endregion
 
     #region Overrides
@@ -405,6 +427,8 @@ public class AudioController : MonoBehaviour
     }
     #endregion
 
-
-
+    public FMOD.Studio.EventInstance GetEventInstance()
+    {
+        return bossLaserLoopEv;
+    }
 }

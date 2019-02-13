@@ -20,6 +20,7 @@ public class Bullet : MonoBehaviour
     private Coroutine coroutine;
     public void SetBulletOverlay(Vector3 originTemp, Vector3 targetTemp, float speedTemp)
     {
+        
         coroutine = StartCoroutine(InstantiateBulletOverlay(originTemp, targetTemp, speedTemp));
     }
 
@@ -78,6 +79,7 @@ public class Bullet : MonoBehaviour
                 Destroy(effect, 3);
             }
             other.GetComponentInParent<PlayerController>().Receive(damage);
+            AudioController.instance.PlayerTakingDamage();
             Destroy(gameObject);
         }
     }
@@ -90,8 +92,10 @@ public class Bullet : MonoBehaviour
 
     private IEnumerator InstantiateBulletOverlay(Vector3 originTemp, Vector3 targetTemp, float speedTemp)
     {
-        UISpawnTime = speedTemp * (Vector3.Distance(originTemp, targetTemp)) - UIAnimationTime;
+        UISpawnTime = (Vector3.Distance(originTemp, targetTemp)) / speedTemp - UIAnimationTime;
+        Debug.Log(UISpawnTime);
         yield return new WaitForSeconds(UISpawnTime);
+        Debug.Log("Plays");
         InterfaceController.instance.BossBulletOverlay(targetTemp);
         yield return null;
     }

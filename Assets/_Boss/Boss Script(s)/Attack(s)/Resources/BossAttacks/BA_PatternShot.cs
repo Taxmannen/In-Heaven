@@ -60,7 +60,7 @@ public class BA_PatternShot : BossAttack
                 }
 
                 //Make the appriorite sound
-                InterfaceController.instance.BossBulletOverlay(target);
+                //InterfaceController.instance.BossBulletOverlay(target);
                 //AudioController.instance.BossPatternShot();
             }
             counter++;

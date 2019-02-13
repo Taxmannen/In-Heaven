@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         // Debug.Log("Player Angle: " + angle);
 
 
-        player.animator.transform.rotation = Quaternion.AngleAxis(direction * angle, Vector3.up);
+        //player.animator.transform.rotation = Quaternion.AngleAxis(direction * angle, Vector3.up);
         player.animator.SetFloat("Movement", Mathf.Abs(velocityDirection));
         
         return velocityDirection;

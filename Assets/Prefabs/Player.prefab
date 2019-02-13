@@ -108,7 +108,6 @@ GameObject:
   - component: {fileID: 649821551608408578}
   - component: {fileID: 649821551608408581}
   - component: {fileID: 649821551608408580}
-  - component: {fileID: 3039488395368434476}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -123,7 +122,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649821551608408583}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -343,21 +342,6 @@ MonoBehaviour:
   renderers:
   - {fileID: 649821552483662199}
   - {fileID: 649821552483662197}
---- !u!114 &3039488395368434476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649821551608408583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64e7b209631188c4c8fdaaf2e5fe347e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ikActive: 1
-  rightHandObj: {fileID: 0}
-  lookObj: {fileID: 0}
 --- !u!1 &649821552284313379
 GameObject:
   m_ObjectHideFlags: 0
@@ -6353,6 +6337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 649821552496961617}
   - component: {fileID: 649821552487925687}
+  - component: {fileID: 766876576}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -6396,6 +6381,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &766876576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649821552497325169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e7b209631188c4c8fdaaf2e5fe347e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ikActive: 1
+  rightHandObj: {fileID: 0}
+  leftHandObj: {fileID: 0}
+  lookObj: {fileID: 0}
 --- !u!1 &649821552497325171
 GameObject:
   m_ObjectHideFlags: 0
@@ -7645,18 +7646,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 4742cac031bda754db11508efc4bd24f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 94.603004
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 4742cac031bda754db11508efc4bd24f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 4742cac031bda754db11508efc4bd24f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 4742cac031bda754db11508efc4bd24f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 4742cac031bda754db11508efc4bd24f, type: 3}
       propertyPath: m_Materials.Array.data[0]
