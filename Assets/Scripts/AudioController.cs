@@ -42,6 +42,9 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     [SerializeField] private string playerTakesDamage;
     FMOD.Studio.EventInstance playerTakesDamageEv;
+    [FMODUnity.EventRef]
+    [SerializeField] private string playerDeath;
+    FMOD.Studio.EventInstance playerDeathEv;
     #endregion
     [Header("")]
     [Header("BOSS SOUNDS")]
@@ -93,6 +96,9 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     [SerializeField] private string muteSfxSnap;
     FMOD.Studio.EventInstance muteSfxSnapEv;
+    [FMODUnity.EventRef]
+    [SerializeField] public string failMenuDuck;
+    FMOD.Studio.EventInstance failMenuDuckEv;
     #endregion
     [Header("")]
     [Header("NON Diegetic")]
@@ -120,6 +126,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] private Queue<FMOD.Studio.EventInstance> menuPopupQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> bossPatternShotQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> playerTakesDamageQueue = new Queue<FMOD.Studio.EventInstance>();
+
     #endregion
 
     private void Start()
@@ -132,6 +139,7 @@ public class AudioController : MonoBehaviour
         playerCommenceShootingEv = FMODUnity.RuntimeManager.CreateInstance(playerCommenceShooting);
         playerParryEventEv = FMODUnity.RuntimeManager.CreateInstance(playerParryEvent);
         playerSuccessfulParryEv = FMODUnity.RuntimeManager.CreateInstance(playerSuccessfulParry);
+        playerDeathEv = FMODUnity.RuntimeManager.CreateInstance(playerDeath);
 
         bossHitRecieveNoDamageEv = FMODUnity.RuntimeManager.CreateInstance(bossHitRecieveNoDamage);
         bossDeathEv = FMODUnity.RuntimeManager.CreateInstance(bossDeath);
@@ -146,6 +154,7 @@ public class AudioController : MonoBehaviour
         muteMusicSnapEv = FMODUnity.RuntimeManager.CreateInstance(muteMusicSnap);
         muteSfxDynamicEv = FMODUnity.RuntimeManager.CreateInstance(muteSfxDynamic);
         muteSfxSnapEv = FMODUnity.RuntimeManager.CreateInstance(muteSfxDynamic);
+        failMenuDuckEv = FMODUnity.RuntimeManager.CreateInstance(failMenuDuck);
 
         muteAllDynamicEv.getParameter("MuteAllParameter", out muteAllParameter);
         muteMusicDynamicEv.getParameter("MuteMusicParameter", out muteMusicParameter);
@@ -232,6 +241,17 @@ public class AudioController : MonoBehaviour
         FMOD.Studio.EventInstance eventInstance = playerTakesDamageQueue.Dequeue();
         eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
       yield break;
+    }
+    public void PlayerDeath()
+    {
+        playerDeathEv.start();
+        StartCoroutine(StopDeathRoutine());
+    }
+    private IEnumerator StopDeathRoutine()
+    {
+        yield return new WaitForSeconds(6f);
+        playerDeathEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        yield break;
     }
     #endregion
 
@@ -365,6 +385,14 @@ public class AudioController : MonoBehaviour
         {
             muteSfxSnapEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         }
+    }
+    public void FailMenuDuck()
+    {
+        failMenuDuckEv.start();
+    }
+    public void StopFailMenuDuck()
+    {
+        failMenuDuckEv.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
     #endregion
 

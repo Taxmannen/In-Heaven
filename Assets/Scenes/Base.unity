@@ -118,6 +118,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4998537456697538083}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &97646381 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
+    type: 3}
+  m_PrefabInstance: {fileID: 4423901870042218546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cfefcf8ac7374b48b0910d3afd23823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &131653652 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4172390271047549574, guid: fc7f379fe5b5ff844a8e3caa2ee8d982,
@@ -130,6 +142,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fb6b1f758a16c458250e8caa5e93f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &179234264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 179234266}
+  - component: {fileID: 179234265}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &179234265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179234264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/Music/Music
+  PlayEvent: 1
+  StopEvent: 2
+  CollisionTag: 
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
+--- !u!4 &179234266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179234264}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.2510495, y: 4.213869, z: -3.3602886}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &210793953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1245,11 +1311,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioController
       objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885536, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4423901869403885542, guid: b7dc732299b93914eaca66e3f1ba3a85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1304,86 +1365,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: gunReverb
-      value: event:/Player/PlayerShotReverb
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: commenceShooting
-      value: event:/Player/PlayerCommenceShooting
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerShoot
-      value: event:/Player/PlayerShoot (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: bossRecieveDamage
-      value: event:/Boss/BossHitRecieveDamage
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: bossDeath
-      value: event:/Boss/BossDeath
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerDash
-      value: event:/Player/PlayerDash
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerJump
-      value: event:/Player/PlayerJump
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerDoubleJump
-      value: event:/Player/PlayerDoubleJump
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerGunReverb
-      value: event:/Player/PlayerShotReverb
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerCommenceShooting
-      value: event:/Player/PlayerCommenceShooting
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerSuccessfulParry
-      value: event:/Player/PlayerParrySuccess
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: bossHitRecieveDamage
-      value: event:/Boss/BossHitRecieveDamage
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: bossHitRecieveNoDamage
-      value: event:/Boss/BossHitRecieveNoDamage
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerParryEvent
-      value: event:/Player/PlayerParryEvent
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: bossShoot
-      value: event:/Boss/BossShoot
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: bossDestruction
-      value: event:/Boss/Boss Destruction
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7dc732299b93914eaca66e3f1ba3a85, type: 3}
@@ -1839,9 +1820,39 @@ PrefabInstance:
       objectReference: {fileID: 1989255086}
     - target: {fileID: 4998537457146521233, guid: ff3809ce05ec13140831cf6e93f92a88,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998537457146521233, guid: ff3809ce05ec13140831cf6e93f92a88,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1989255086}
+    - target: {fileID: 4998537457146521233, guid: ff3809ce05ec13140831cf6e93f92a88,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998537457146521233, guid: ff3809ce05ec13140831cf6e93f92a88,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998537457146521233, guid: ff3809ce05ec13140831cf6e93f92a88,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: StopFailMenuDuck
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998537457146521233, guid: ff3809ce05ec13140831cf6e93f92a88,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998537457146521233, guid: ff3809ce05ec13140831cf6e93f92a88,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 97646381}
     - target: {fileID: 84054028, guid: ff3809ce05ec13140831cf6e93f92a88, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

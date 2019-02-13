@@ -51,6 +51,7 @@ MonoBehaviour:
   playerParryEvent: event:/Player/PlayerParryEvent
   playerSuccessfulParry: event:/Player/PlayerParrySuccess
   playerTakesDamage: event:/Player/PlayerTakingDamage
+  playerDeath: event:/Player/PlayerDeath
   bossHitRecieveDamage: event:/Boss/BossHitRecieveDamage
   bossHitRecieveNoDamage: event:/Boss/BossHitRecieveNoDamage
   bossDeath: event:/Boss/BossDeath
@@ -64,6 +65,7 @@ MonoBehaviour:
   muteMusicSnap: event:/Sound Overrides/MuteMusicSnap
   muteSfxDynamic: event:/Sound Overrides/MuteSfxDynamic 0-1
   muteSfxSnap: event:/Sound Overrides/MuteSfxSnap
+  failMenuDuck: event:/Sound Overrides/FailMenuDuck
   menuClick: event:/NonDiegetic/MenuClick
   menuClickBack: event:/NonDiegetic/MenuClickBack
   menuHover: event:/NonDiegetic/MenuHover

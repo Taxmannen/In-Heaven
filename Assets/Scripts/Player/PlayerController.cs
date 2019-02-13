@@ -227,17 +227,19 @@ public class PlayerController : Character
 
     }
     /// <summary>
-    /// Kills the player.
+    /// Kills the player.uuuuuu
     /// </summary>
     internal override void Die()
     {
 
         Freeze();
+        AudioController.instance.PlayerDeath();
         GameController.instance.FreezeBoss();
         animator.SetBool("Dead", true);
         hP = 0;
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
         playerState = Global.PlayerState.Dead;
+        AudioController.instance.FailMenuDuck();
         GameController.instance.SetGameState(Global.GameState.Fail);
         InterfaceController.instance.Fail();
 
