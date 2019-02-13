@@ -31,8 +31,6 @@ public class BA_Spray : BossAttack
     private Transform spawnPoint;
     [SerializeField] [Tooltip("The parent object")]
     private Transform parent;
-    [SerializeField] [Tooltip("Player prefab to get the position")]
-    private Transform player;
 
     [Header("DEBUG")]
     [Tooltip("For testing")] [SerializeField]
@@ -84,7 +82,7 @@ public class BA_Spray : BossAttack
             prevWasParry = false;
         }
 
-        ShootingHelper.Shoot(spawnPoint.position, player.transform.position, bullet, speed, parent, destroyTime);
+        ShootingHelper.Shoot(spawnPoint.position, GameController.instance.playerController.transform.position, bullet, speed, parent, destroyTime);
 
         //Play sound here
         //Add UI element for bullet here (if needed)
