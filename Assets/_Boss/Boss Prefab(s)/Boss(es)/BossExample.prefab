@@ -19573,6 +19573,22 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Boss Hitbox
       objectReference: {fileID: 0}
+    - target: {fileID: 100066, guid: 01e7d64f2d9e4744ab702ee31806d77b, type: 3}
+      propertyPath: m_Name
+      value: RightChest
+      objectReference: {fileID: 0}
+    - target: {fileID: 100066, guid: 01e7d64f2d9e4744ab702ee31806d77b, type: 3}
+      propertyPath: m_TagString
+      value: Boss Hitbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 100044, guid: 01e7d64f2d9e4744ab702ee31806d77b, type: 3}
+      propertyPath: m_Name
+      value: LeftChest
+      objectReference: {fileID: 0}
+    - target: {fileID: 100044, guid: 01e7d64f2d9e4744ab702ee31806d77b, type: 3}
+      propertyPath: m_TagString
+      value: Boss Hitbox
+      objectReference: {fileID: 0}
     - target: {fileID: 400112, guid: 01e7d64f2d9e4744ab702ee31806d77b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
