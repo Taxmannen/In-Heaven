@@ -54,7 +54,7 @@ public class PlayerInput : MonoBehaviour
 
         playerController.Gravity();
 
-        if (InputController.instance.GetKeyDownJump() || InputController.instance.GetKeyDownUp())
+        if (InputController.instance.GetKeyDownJump())
         {
             playerController.Jump();
         }
@@ -106,12 +106,12 @@ public class PlayerInput : MonoBehaviour
             }
         }
 
-        if (InputController.instance.GetMouseButtonUpLeft())
+        if (InputController.instance.GetKeyUpShoot())
         {
             playerController.shootAction.ShootReverb();
         }
 
-        if (InputController.instance.GetMouseButtonDownLeft())
+        if (InputController.instance.GetKeyDownShoot())
         {
             // AudioController.instance.PlayerShootStart();
             AudioController.instance.PlayerCommenceShooting();
@@ -122,10 +122,6 @@ public class PlayerInput : MonoBehaviour
             playerController.Parry();    
         }
 
-        if (playerController.superChargeResource.superCharge >= playerController.superChargeResource.superChargeMax)
-        {
-            playerController.SuperCharge();
-        }
     }
 
     float GetHorizontal()
@@ -176,12 +172,12 @@ public class PlayerInput : MonoBehaviour
     {
         if (changeDashKeyToMouse)
         {
-            return InputController.instance.GetMouseButtonDownRight();
+            return InputController.instance.GetKeyDownParry();
         }
 
         else
         {
-            return InputController.instance.GetKeyDownLeftShift();
+            return InputController.instance.GetKeyDownDash();
         }
 
     }
@@ -193,32 +189,32 @@ public class PlayerInput : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            if (InputController.instance.GetMouseButtonUpLeft() && timer < timeBeforeStartShooting)
+            if (InputController.instance.GetKeyUpShoot() && timer < timeBeforeStartShooting)
             {
                 Debug.Log("Parry");
                 return true;
             }
 
-            if (!InputController.instance.GetMouseButtonLeft())
+            if (!InputController.instance.GetKeyShoot())
             {
                 timer = 0;
             }
             return false;
         }
-        return InputController.instance.GetMouseButtonDownRight();
+        return InputController.instance.GetKeyDownParry();
     }
 
     private bool AbleToShoot()
     {
         if (testKeyConfiguration)
         {
-            if (timer > timeBeforeStartShooting && InputController.instance.GetMouseButtonLeft())
+            if (timer > timeBeforeStartShooting && InputController.instance.GetKeyShoot())
             {
                 //Debug.Log("Shooting");
                 return true;
              }
             return false;
         }
-        return InputController.instance.GetMouseButtonLeft();
+        return InputController.instance.GetKeyShoot();
     }
 }

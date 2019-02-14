@@ -39,7 +39,7 @@ public class Sight : MonoBehaviour
         if (InputController.instance.isGamePad)
         {
             float currentSensitivity;
-            if (InputController.instance.GetMouseButtonLeft())
+            if (InputController.instance.GetKeyShoot())
             {
                 currentSensitivity = shootingSensitivity;
             }

@@ -8,7 +8,7 @@ public class MenuController : MonoBehaviour
 
     public void NextScene()
     {
-        SceneManager.SetActiveScene(SceneManager.GetSceneAt(SceneManager.GetActiveScene().buildIndex + 1));
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }
