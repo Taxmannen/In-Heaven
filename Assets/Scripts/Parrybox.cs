@@ -7,6 +7,9 @@ public class Parrybox : MonoBehaviour
 {
     private PlayerController playerController;
 
+    [SerializeField] private ParticleSystem parryActivation;
+    [SerializeField] private ParticleSystem parryEffect;
+
     private void Start()
     {
         playerController = transform.parent.GetComponent<PlayerController>();
@@ -18,6 +21,9 @@ public class Parrybox : MonoBehaviour
         {
             Statistics.instance.numberOfSuccessfulParrys++;
             AudioController.instance.PlayerSuccessfulParry();
+            parryActivation.Stop();
+            parryActivation.gameObject.SetActive(false);
+            parryEffect.Play();
             Destroy(other.gameObject);
             playerController.superChargeResource.IncreaseSuperCharge();
             GetComponent<Collider>().enabled = false;
