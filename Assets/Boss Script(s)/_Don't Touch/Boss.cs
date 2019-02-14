@@ -18,7 +18,7 @@ public class Boss : Character
     [SerializeField] private Transform deathParent;
     [SerializeField] internal Transform attackScriptTransfromList;
     [SerializeField] internal Transform movementScriptTransfromList;
-
+    [SerializeField] public Transform bulletParent;
 
 
     [Header("HITBOXES")]

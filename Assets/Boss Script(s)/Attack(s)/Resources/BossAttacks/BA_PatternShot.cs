@@ -53,7 +53,7 @@ public class BA_PatternShot : BossAttack
                 GameObject bullet;
                 if (item.parryable)
                 {
-                    bullet = ShootingHelper.Shoot(data.spawnLocation + transform.position, target, parryableBulletPrefab, data.bulletSpeed, transform, 10);// Set the bullet to be parriable 
+                    bullet = ShootingHelper.Shoot(data.spawnLocation + transform.position, target, parryableBulletPrefab, data.bulletSpeed, boss.bulletParent, 10);// Set the bullet to be parriable 
                 }
                 else
                 {
