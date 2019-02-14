@@ -173,11 +173,13 @@ public class Boss : Character
             {
                 
                 phases.Clear();
-
+                int i = 0;
                 foreach (BossPhase phasePrefab in phasePrefabs)
                 {
+                    i++;
                     BossPhase inst = Instantiate(phasePrefab, phaseParent);
                     inst.transform.localPosition = new Vector3(0,0,0);
+                    inst.name = "Phase: " + i;
                     phases.Add(inst);
                     
                 }

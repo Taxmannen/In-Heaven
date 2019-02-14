@@ -26,6 +26,7 @@ public class BP_HealthThreasholds : BossPhase
             //Stop Phase
             bossPhases[c].phase.StopPhase();
             c++;
+            Debug.Log("Run Phase" + gameObject.name);
             yield return null;
         }
 

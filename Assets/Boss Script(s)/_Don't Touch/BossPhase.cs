@@ -172,6 +172,7 @@ public class BossPhase : MonoBehaviour
             
             movementRoutine = null;
         }
+        gameObject.SetActive(false);
 
     }
 
