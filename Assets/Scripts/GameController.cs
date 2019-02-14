@@ -65,6 +65,7 @@ public class GameController : MonoBehaviour
         playerController.Start();
         //bossController.Start();
         gameState = Global.GameState.Game;
+        AudioController.instance.StopFailMenuDuck();
 
     }
     /// <summary>

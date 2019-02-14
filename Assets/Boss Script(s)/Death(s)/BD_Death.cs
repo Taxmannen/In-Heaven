@@ -9,8 +9,8 @@ public class BD_Death : BossDeath
     {
         //Destroy(boss.gameObject);
         AudioController.instance.BossDeath();
-        executeRoutine = null;
         Debug.Log("Dead");
+        executeRoutine = null;
         yield break;
     }
 
