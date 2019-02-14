@@ -16,6 +16,7 @@ public class DashAction : MonoBehaviour
     [SerializeField] [Range(0, 100)] private float maxDashesInAir = 1; //Number of dashes possible in air
     [SerializeField] [Range(0, 10)] private float cooldown = 1f; //Cooldown for dash, ground and air
     [SerializeField] internal bool shootDuringDash = true; //Allow player to shoot during dash?
+    [SerializeField] private ParticleSystem dashVFX;
 
     internal Coroutine coroutine = null;
     internal Coroutine cooldownCorutine = null;
@@ -79,7 +80,9 @@ public class DashAction : MonoBehaviour
         AudioController.instance.PlayerDash();
         Statistics.instance.numberOfDashes++;
         actualVerticalReductionDuringDash = verticalReduction;
+        dashVFX.Play();
         yield return new WaitForSeconds(duration);
+        dashVFX.Stop();
         actualVerticalReductionDuringDash = 1f;
         velocity = 0f;
         coroutine = null;

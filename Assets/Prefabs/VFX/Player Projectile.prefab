@@ -214,8 +214,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   fromPlayer: 1
-  collisionEffect: {fileID: 7001046074597780902, guid: a9736350f5dc43547b7384b93bda2b4e,
+  UIAnimationTime: 2
+  impactEffect: {fileID: 7001046074597780902, guid: a9736350f5dc43547b7384b93bda2b4e,
     type: 3}
+  rayFrom: {fileID: 0}
+  layermask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1554178574885624122
 GameObject:
   m_ObjectHideFlags: 0

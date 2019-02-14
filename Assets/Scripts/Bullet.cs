@@ -11,19 +11,16 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float UIAnimationTime = 2;
 
     [Header("Effect")]
-    [SerializeField] private GameObject collisionEffect;
-    [SerializeField] private GameObject collisionEffect2; //Skall byta namn
+    [SerializeField] private GameObject impactEffect;
     [SerializeField] private Transform rayFrom;
     [SerializeField] private LayerMask layermask;
 
     private Vector3 hitPoint;
     private float UISpawnTime;
     private Coroutine coroutine;
-    private Vector3 effectPoint;
 
     public void SetBulletOverlay(Vector3 originTemp, Vector3 targetTemp, float speedTemp)
-    {
-        
+    {   
         coroutine = StartCoroutine(InstantiateBulletOverlay(originTemp, targetTemp, speedTemp));
     }
 
@@ -44,9 +41,9 @@ public class Bullet : MonoBehaviour
 
         if (other.tag == "Boss Hitbox" && fromPlayer)
         {
-            if (collisionEffect != null)
+            if (impactEffect != null)
             {
-                GameObject effect = Instantiate(collisionEffect, hitPoint, collisionEffect.transform.rotation, transform.parent);
+                GameObject effect = Instantiate(impactEffect, hitPoint, impactEffect.transform.rotation, transform.parent);
                 Destroy(effect, 1);
             }
 
@@ -105,20 +102,12 @@ public class Bullet : MonoBehaviour
 
             if (Physics.Raycast(rayFrom.position, fwd, out RaycastHit hit, 50, layermask))
             {
-                if (collisionEffect != null)
+                if (impactEffect != null)
                 {
-                    effectPoint = hit.point;
-                    GameObject effect = Instantiate(collisionEffect, hit.point, collisionEffect.transform.rotation, transform.parent);
+                    GameObject effect = Instantiate(impactEffect, hit.point, impactEffect.transform.rotation, transform.parent);
                     Destroy(effect, 3);
-                    if (collisionEffect2 != null) Invoke("SpawnNextEffect", 0.2f);
                 }
             }
         }
-    }
-
-    private void SpawnNextEffect()
-    {
-        GameObject effect2 = Instantiate(collisionEffect2, effectPoint, collisionEffect.transform.rotation, transform.parent);
-        Destroy(effect2, 3);
     }
 }
