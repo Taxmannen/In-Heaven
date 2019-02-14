@@ -122,7 +122,7 @@ public class PlayerInput : MonoBehaviour
             playerController.Parry();    
         }
 
-        if (InputController.instance.GetKeyDownSupercharge())
+        if (playerController.superChargeResource.superCharge >= playerController.superChargeResource.superChargeMax)
         {
             playerController.SuperCharge();
         }

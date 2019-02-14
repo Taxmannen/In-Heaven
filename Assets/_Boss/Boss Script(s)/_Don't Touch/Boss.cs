@@ -16,6 +16,10 @@ public class Boss : Character
     [SerializeField] private Transform movementParent;
     [SerializeField] private Transform attackParent;
     [SerializeField] private Transform deathParent;
+    [SerializeField] internal Transform attackScriptTransfromList;
+    [SerializeField] internal Transform movementScriptTransfromList;
+
+
 
     [Header("HITBOXES")]
     [SerializeField] private List<BossHitboxElement> bossHitboxElements = new List<BossHitboxElement>();
@@ -172,7 +176,10 @@ public class Boss : Character
 
                 foreach (BossPhase phasePrefab in phasePrefabs)
                 {
-                    phases.Add(Instantiate(phasePrefab, phaseParent));
+                    BossPhase inst = Instantiate(phasePrefab, phaseParent);
+                    inst.transform.localPosition = new Vector3(0,0,0);
+                    phases.Add(inst);
+                    
                 }
 
             }

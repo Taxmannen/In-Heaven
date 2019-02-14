@@ -6,5 +6,7 @@ using UnityEngine;
 public class PatternPatternShotData : AttackData
 {
     [SerializeField] internal List<AttackData> patternShotDatas = new List<AttackData>();
+    [SerializeField] internal float sencondsAfterFinishAttack = 0;
+
 
 }

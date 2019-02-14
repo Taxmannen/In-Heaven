@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float damage = 1;
     [SerializeField] private bool fromPlayer;
-    [SerializeField] private float UIAnimationTime;
+    [SerializeField] private float UIAnimationTime = 2;
 
     [Header("Effect")]
     [SerializeField] private GameObject collisionEffect;
@@ -91,9 +91,7 @@ public class Bullet : MonoBehaviour
     private IEnumerator InstantiateBulletOverlay(Vector3 originTemp, Vector3 targetTemp, float speedTemp)
     {
         UISpawnTime = (Vector3.Distance(originTemp, targetTemp)) / speedTemp - UIAnimationTime;
-        Debug.Log(UISpawnTime);
         yield return new WaitForSeconds(UISpawnTime);
-        Debug.Log("Plays");
         InterfaceController.instance.BossBulletOverlay(targetTemp);
         yield return null;
     }

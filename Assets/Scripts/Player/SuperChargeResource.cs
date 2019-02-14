@@ -11,8 +11,11 @@ public class SuperChargeResource : MonoBehaviour
     private PlayerController player;
 
     [SerializeField] [Range(0, 100)] internal float superChargeMax = 1f;
+    
     [SerializeField] [Range(0, 100)] private float superChargeIncrease = 1f;
     private Coroutine superChargeCoroutine = null;
+    [SerializeField] internal float durationOfFireRateIncrease = 1f;
+    [SerializeField] internal float fireRateMultiplier = 2f;
 
     [Header("DEBUG")]
     [SerializeField] [ReadOnly] internal float superCharge;
@@ -42,8 +45,8 @@ public class SuperChargeResource : MonoBehaviour
     {
         superCharge = 0;
         Statistics.instance.numberOfSuperChargesUnleashed++;
-        player.shootAction.playerBulletsPerSecond *= 2f; //Hardcoded
-        yield return new WaitForSeconds(1f); //Hardcoded
+        player.shootAction.playerBulletsPerSecond *= fireRateMultiplier;
+        yield return new WaitForSeconds(durationOfFireRateIncrease);
         player.shootAction.BulletPerSecondReset();
         superChargeCoroutine = null;
         yield break;
