@@ -4,27 +4,33 @@ using UnityEngine;
 
 public class BM_Teleport : BossMovement
 {
-
-    public float delayUntilStart = 0f;
-    public List<TeleportData> teleportDataList = new List<TeleportData>();
+    public TeleportData data;
 
     protected override IEnumerator Execute(Boss boss)
     {
 
-        yield return new WaitForSeconds(delayUntilStart);
+        yield return new WaitForSeconds(data.delayUntilStart);
+        boss.transform.position = data.teleportPosition;
 
-        foreach (TeleportData teleportData in teleportDataList)
-        {
+        yield return new WaitForSeconds(data.delayAfterTeleport);
 
-            transform.position = teleportData.GetTeleportData().Key;
-
-            yield return new WaitForSeconds(teleportData.GetTeleportData().Value);
-
-        }
+        
 
         executeRoutine = null;
         yield break;
 
+    }
+
+    public override void SetMovmentData(MovementData data)
+    {
+        if (this.data = data as TeleportData)
+        {
+            //Debug.Log("SetAttackData");
+        }
+        else
+        {
+            Debug.LogError("Wrong Data!!");
+        }
     }
 
 }

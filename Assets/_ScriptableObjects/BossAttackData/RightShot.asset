@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RightShot
   m_EditorClassIdentifier: 
   numberOfPatternsToShoot: 1
-  delayAfterEachPattern: 1
+  delayAfterEachPattern: 0
   spawnLocation: {x: 0, y: 5, z: 0}
   bulletPrefab: {fileID: 8510596696031209735, guid: e803a36995464fc44a8399e1e340f3fe,
     type: 3}

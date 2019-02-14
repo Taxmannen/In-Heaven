@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PatternPatternShotData", menuName = "Boss/PatternPatternShotData")]
 public class PatternPatternShotData : AttackData
 {
-    [SerializeField] internal List<AttackData> patternShotDatas = new List<AttackData>();
+    [SerializeField] public List<AttackData> patternShotDatas = new List<AttackData>();
     [SerializeField] internal float sencondsAfterFinishAttack = 0;
 
 
