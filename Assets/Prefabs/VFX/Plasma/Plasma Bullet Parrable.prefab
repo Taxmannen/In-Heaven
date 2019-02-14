@@ -23632,8 +23632,7 @@ MonoBehaviour:
   damage: 1
   fromPlayer: 0
   UIAnimationTime: 1
-  collisionEffect: {fileID: 0}
-  collisionEffect2: {fileID: 5490722415098487082, guid: bae02f9feb245b24abbfa9a48a370404,
+  impactEffect: {fileID: 4450293947842433459, guid: a2200b0499797854f91d9231f0b5b533,
     type: 3}
   rayFrom: {fileID: 9195354570162934271}
   layermask:
