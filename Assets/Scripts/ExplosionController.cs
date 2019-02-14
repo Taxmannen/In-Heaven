@@ -23,12 +23,13 @@ public class ExplosionController : MonoBehaviour
     private ParticleSystem[] explosions;
 
     //Used for testing
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space)) {
-    //        StartExplosions();
-    //    }
-    //}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartExplosions();
+        }
+    }
 
     private void StartExplosions()
     {
