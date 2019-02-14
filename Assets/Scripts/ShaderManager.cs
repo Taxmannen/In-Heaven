@@ -7,7 +7,7 @@ public class ShaderManager : MonoBehaviour {
     #region Variables
     [Header("Invincibility")]
     [Tooltip("Color when invincible/boss getting hit")]
-    [SerializeField] private Color hitColor = new Color(0.5f, 0.5f, 0.5f);
+    [SerializeField] private Color hitColor = new Color(0.75f, 0.75f, 0.75f);
     [Range(0, 15)] [Tooltip("The speed of lerp between the colors when invincible/boss getting hit")]
     [SerializeField] private float hitSpeed = 5;
 

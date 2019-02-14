@@ -20,3 +20,11 @@ MonoBehaviour:
   movments:
   - type: 2
     data: {fileID: 11400000, guid: eee0f531c107b0546990611b74a70090, type: 2}
+  - type: 2
+    data: {fileID: 11400000, guid: fc711252bf2931142b5be983a30c48a8, type: 2}
+  - type: 2
+    data: {fileID: 11400000, guid: cc1b3466b1b344f418926a3c8fcea78e, type: 2}
+  - type: 2
+    data: {fileID: 11400000, guid: 2778b08205df4f247b5a477f287034a0, type: 2}
+  - type: 2
+    data: {fileID: 11400000, guid: a53774468de678640b8567c784e45c22, type: 2}

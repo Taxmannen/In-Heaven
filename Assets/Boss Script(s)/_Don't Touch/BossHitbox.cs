@@ -108,12 +108,7 @@ public class BossHitbox : MonoBehaviour
     public void SetWeakpoint(bool weakpoint)
     {
         this.weakpoint = weakpoint;
-
-        if (this.weakpoint)
-        {
-            GetComponent<Renderer>().material.color = Color.red;
-            shaderManager = gameObject.AddComponent<ShaderManager>();
-        }
+        if (this.weakpoint) shaderManager = gameObject.AddComponent<ShaderManager>();
     }
 
     public float GetMaxHP()

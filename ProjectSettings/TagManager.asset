@@ -13,6 +13,7 @@ TagManager:
   - Boss Damage Hitbox
   - Boss Parryable Bullet
   - Ground
+  - Player Bullet
   layers:
   - Default
   - TransparentFX

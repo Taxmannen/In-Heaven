@@ -23,6 +23,15 @@ public class Bullet : MonoBehaviour
     private Vector3 patternPos;
     private bool pattern;
 
+
+    private void Update()
+    {
+        if(transform.position.z < -20)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void SetBulletOverlay(Vector3 originTemp, Vector3 targetTemp, float speedTemp)
     {   
         coroutine = StartCoroutine(InstantiateBulletOverlay(originTemp, targetTemp, speedTemp));
