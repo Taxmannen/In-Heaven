@@ -127,6 +127,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] private Queue<FMOD.Studio.EventInstance> menuPopupQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> bossPatternShotQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> playerTakesDamageQueue = new Queue<FMOD.Studio.EventInstance>();
+    [SerializeField] private Queue<FMOD.Studio.EventInstance> bossTakesNoDamageQueue = new Queue<FMOD.Studio.EventInstance>();
 
     #endregion
 
@@ -212,7 +213,7 @@ public class AudioController : MonoBehaviour
         yield break;
     }
     public void PlayerCommenceShooting()
-    {
+    {  
         playerCommenceShootingEv.start();
     }
     //public void PlayerGunReverb()
@@ -304,8 +305,17 @@ public class AudioController : MonoBehaviour
     }
     public void BossHitRecieveNoDamage()
     {
-        bossHitRecieveDamageEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        bossHitRecieveDamageEv.start();
+        FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(bossHitRecieveNoDamage);
+        eventInstance.start();
+        bossTakesNoDamageQueue.Enqueue(eventInstance);
+        StartCoroutine(BossHitRecieveNoDamageRoutine());
+    }
+    private IEnumerator BossHitRecieveNoDamageRoutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        FMOD.Studio.EventInstance eventInstance = bossTakesNoDamageQueue.Dequeue();
+        eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        yield break;
     }
     public void BossDeath()
     {
@@ -322,11 +332,13 @@ public class AudioController : MonoBehaviour
     }
     public void BossPatternShot()
     {
-        FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(bossPatternShot);
-        eventInstance.start();
-        bossPatternShotQueue.Enqueue(eventInstance);
-        StartCoroutine(BossPatternShotRoutine());
-
+        if (bossPatternShotQueue.Count < 15)
+        {
+            FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(bossPatternShot);
+            eventInstance.start();
+            bossPatternShotQueue.Enqueue(eventInstance);
+            StartCoroutine(BossPatternShotRoutine());
+        }
     }
     private IEnumerator BossPatternShotRoutine()
     {

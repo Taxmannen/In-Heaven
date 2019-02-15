@@ -66,7 +66,7 @@ MonoBehaviour:
   muteSfxDynamic: event:/Sound Overrides/MuteSfxDynamic 0-1
   muteSfxSnap: event:/Sound Overrides/MuteSfxSnap
   failMenuDuck: event:/Sound Overrides/FailMenuDuck
-  menuClick: event:/NonDiegetic/MenuClick
-  menuClickBack: event:/NonDiegetic/MenuClickBack
-  menuHover: event:/NonDiegetic/MenuHover
+  menuClick: event:/NonDiegetic/MenuClickBack
+  menuClickBack: event:/NonDiegetic/MenuHover
+  menuHover: event:/NonDiegetic/MenuClick
   menuPopup: event:/NonDiegetic/Popup

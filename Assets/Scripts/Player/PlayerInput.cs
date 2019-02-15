@@ -114,7 +114,7 @@ public class PlayerInput : MonoBehaviour
         if (InputController.instance.GetKeyDownShoot())
         {
             // AudioController.instance.PlayerShootStart();
-            AudioController.instance.PlayerCommenceShooting();
+           // AudioController.instance.PlayerCommenceShooting();
         }
 
         if (ParryButtonOnMouse())

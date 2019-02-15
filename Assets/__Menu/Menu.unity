@@ -1673,7 +1673,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -1690,7 +1690,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -2722,7 +2733,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -2739,7 +2750,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -5291,7 +5313,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -5308,7 +5330,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -6046,7 +6079,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -6063,7 +6096,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -7235,7 +7279,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -7252,7 +7296,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -9959,7 +10014,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -9976,7 +10031,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -10083,121 +10149,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AudioController
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: muteAllDynamic
-      value: event:/Sound Overrides/MuteAllDynamic 0-1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: muteAllSnap
-      value: event:/Sound Overrides/MuteAllSnap
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: muteMusicDynamic
-      value: event:/Sound Overrides/MuteMusicDynamic 0-1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: muteMusicSnap
-      value: event:/Sound Overrides/MuteMusicSnap
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerShoot
-      value: event:/Player/PlayerShoot (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerDash
-      value: event:/Player/PlayerDash
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerJump
-      value: event:/Player/PlayerJump
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerDoubleJump
-      value: event:/Player/PlayerDoubleJump
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerGunReverb
-      value: event:/Player/PlayerShotReverb
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerCommenceShooting
-      value: event:/Player/PlayerCommenceShooting
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerParryEvent
-      value: event:/Player/PlayerParryEvent
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: playerSuccessfulParry
-      value: event:/Player/PlayerParrySuccess
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: bossHitRecieveDamage
-      value: event:/Boss/BossHitRecieveDamage
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: bossHitRecieveNoDamage
-      value: event:/Boss/BossHitRecieveNoDamage
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: bossDeath
-      value: event:/Boss/BossDeath
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: bossShoot
-      value: event:/Boss/BossShoot
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: bossDestruction
-      value: event:/Boss/Boss Destruction
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: muteSfxDynamic
-      value: event:/Sound Overrides/MuteSfxDynamic 0-1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: muteSfxSnap
-      value: event:/Sound Overrides/MuteSfxSnap
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: menuClick
-      value: event:/NonDiegetic/MenuClick
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: menuClickBack
-      value: event:/NonDiegetic/MenuClickBack
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: menuHover
-      value: event:/NonDiegetic/MenuHover
-      objectReference: {fileID: 0}
-    - target: {fileID: 4423901869403885537, guid: b7dc732299b93914eaca66e3f1ba3a85,
-        type: 3}
-      propertyPath: menuPopup
-      value: event:/NonDiegetic/Popup
       objectReference: {fileID: 0}
     - target: {fileID: 4423901869403885542, guid: b7dc732299b93914eaca66e3f1ba3a85,
         type: 3}
@@ -10989,7 +10940,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -11006,7 +10957,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -11934,7 +11896,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -11951,7 +11913,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -14017,7 +13990,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -14034,7 +14007,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -14389,7 +14373,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -14406,7 +14390,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -16673,7 +16668,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -16690,7 +16685,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -18420,7 +18426,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -18437,7 +18443,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -19896,7 +19913,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -19913,7 +19930,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -21446,7 +21474,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -21463,7 +21491,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -22622,7 +22661,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
@@ -22639,7 +22678,18 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -24051,13 +24101,24 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 852500571}
+          m_MethodName: MenuPopup
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 852500571}
           m_MethodName: MenuClick
           m_Mode: 1
@@ -24068,7 +24129,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 1
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
