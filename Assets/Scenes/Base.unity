@@ -584,7 +584,9 @@ PrefabInstance:
       propertyPath: phasePrefabs.Array.data[1]
       value: 
       objectReference: {fileID: 1000583797}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7909508731725491911, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
+    - {fileID: 8351462792701075515, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
 --- !u!114 &955244664 stripped
 MonoBehaviour:
@@ -609,11 +611,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BossBullets
-      objectReference: {fileID: 0}
-    - target: {fileID: 5587489486063978863, guid: a6d7f4b1eca57424ab2bf5525360361d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5587489486063978862, guid: a6d7f4b1eca57424ab2bf5525360361d,
         type: 3}
@@ -1023,6 +1020,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 63198536421017583, guid: b052a328318ba964380d0e475169aca4,
+        type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 63198536421017568, guid: b052a328318ba964380d0e475169aca4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1076,11 +1078,6 @@ PrefabInstance:
     - target: {fileID: 63198536421017568, guid: b052a328318ba964380d0e475169aca4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 63198536421017583, guid: b052a328318ba964380d0e475169aca4,
-        type: 3}
-      propertyPath: m_DrawHalo
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -9934,6 +9934,7 @@ MonoBehaviour:
   explosion: {fileID: 4461829203976809817, guid: 0f5ab87078aec9646b19e6ee86e36bdf,
     type: 3}
   explosionTransform: {fileID: 0}
+  whiteFlash: {fileID: 0}
 --- !u!135 &5679044205549609321
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9980,6 +9981,7 @@ MonoBehaviour:
   explosion: {fileID: 4461829203976809817, guid: 0f5ab87078aec9646b19e6ee86e36bdf,
     type: 3}
   explosionTransform: {fileID: 0}
+  whiteFlash: {fileID: 0}
 --- !u!135 &7909508731725491909
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10026,6 +10028,7 @@ MonoBehaviour:
   explosion: {fileID: 4461829203976809817, guid: 0f5ab87078aec9646b19e6ee86e36bdf,
     type: 3}
   explosionTransform: {fileID: 6980668709119206823}
+  whiteFlash: {fileID: 0}
 --- !u!114 &7909508731725491911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10041,11 +10044,29 @@ MonoBehaviour:
   weakpoint: 1
   maxHP: 10000
   hP: 10000
-  activePhase: 0
+  activePhase: 2
   sparks: {fileID: 4872491696765785823, guid: 0664d8446e5b6ea4ca646c0f51b8ecfa, type: 3}
   explosion: {fileID: 4461829203976809817, guid: 0f5ab87078aec9646b19e6ee86e36bdf,
     type: 3}
   explosionTransform: {fileID: 0}
+  whiteFlash: {fileID: 0}
+--- !u!114 &114699787503598540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7909508731725491908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6ac2bfbf3b8f748b817228f9aaaff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
+  hitSpeed: 5
+  dashColor: {r: 0, g: 0, b: 0, a: 0}
+  dashSpeed: 3
+  renderers: []
 --- !u!135 &893380218878904028
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10079,6 +10100,7 @@ MonoBehaviour:
   explosion: {fileID: 4461829203976809817, guid: 0f5ab87078aec9646b19e6ee86e36bdf,
     type: 3}
   explosionTransform: {fileID: 0}
+  whiteFlash: {fileID: 0}
 --- !u!135 &1067386083210271442
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10112,6 +10134,7 @@ MonoBehaviour:
   explosion: {fileID: 4461829203976809817, guid: 0f5ab87078aec9646b19e6ee86e36bdf,
     type: 3}
   explosionTransform: {fileID: 0}
+  whiteFlash: {fileID: 0}
 --- !u!114 &7909508731725491969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19832,6 +19855,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: boss_idle_textured_new_material
       objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 32ee005322ab565438cfe49606bc2e6b, type: 3}
+      propertyPath: m_TagString
+      value: Boss Hitbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 32ee005322ab565438cfe49606bc2e6b, type: 3}
+      propertyPath: m_TagString
+      value: Boss Hitbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 100062, guid: 32ee005322ab565438cfe49606bc2e6b, type: 3}
+      propertyPath: m_TagString
+      value: Boss Hitbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 100044, guid: 32ee005322ab565438cfe49606bc2e6b, type: 3}
+      propertyPath: m_TagString
+      value: Boss Hitbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 100032, guid: 32ee005322ab565438cfe49606bc2e6b, type: 3}
+      propertyPath: m_TagString
+      value: Boss Hitbox
+      objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 32ee005322ab565438cfe49606bc2e6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -19951,26 +19994,6 @@ PrefabInstance:
     - target: {fileID: 400068, guid: 32ee005322ab565438cfe49606bc2e6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 179.99312
-      objectReference: {fileID: 0}
-    - target: {fileID: 100018, guid: 32ee005322ab565438cfe49606bc2e6b, type: 3}
-      propertyPath: m_TagString
-      value: Boss Hitbox
-      objectReference: {fileID: 0}
-    - target: {fileID: 100020, guid: 32ee005322ab565438cfe49606bc2e6b, type: 3}
-      propertyPath: m_TagString
-      value: Boss Hitbox
-      objectReference: {fileID: 0}
-    - target: {fileID: 100062, guid: 32ee005322ab565438cfe49606bc2e6b, type: 3}
-      propertyPath: m_TagString
-      value: Boss Hitbox
-      objectReference: {fileID: 0}
-    - target: {fileID: 100044, guid: 32ee005322ab565438cfe49606bc2e6b, type: 3}
-      propertyPath: m_TagString
-      value: Boss Hitbox
-      objectReference: {fileID: 0}
-    - target: {fileID: 100032, guid: 32ee005322ab565438cfe49606bc2e6b, type: 3}
-      propertyPath: m_TagString
-      value: Boss Hitbox
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 32ee005322ab565438cfe49606bc2e6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

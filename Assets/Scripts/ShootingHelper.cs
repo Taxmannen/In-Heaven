@@ -6,11 +6,14 @@ public class ShootingHelper : MonoBehaviour
     {
         float xangle = Mathf.Atan2(target.z - origin.z, target.y - origin.y) * 180 / Mathf.PI;
         float yangle = Mathf.Atan2(target.x - origin.x, target.z - origin.z) * 180 / Mathf.PI;
-        GameObject pro = Instantiate(projectile, origin, Quaternion.Euler(xangle, yangle, 0), parent);
+        GameObject pro = projectile;
+        pro.transform.position = origin;
+        pro.transform.rotation = Quaternion.Euler(xangle, yangle, 0);
+        pro.transform.SetParent(parent);
         Vector3 dir = target - origin;
         dir.Normalize();
         pro.GetComponent<Rigidbody>().velocity = dir * speed;
-        Destroy(pro, destroyTime);
+        //Destroy(pro, destroyTime);
         return pro;
     }
 }

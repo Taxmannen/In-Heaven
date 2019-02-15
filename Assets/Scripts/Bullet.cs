@@ -28,7 +28,8 @@ public class Bullet : MonoBehaviour
     {
         if(transform.position.z < -20)
         {
-            Destroy(gameObject);
+            transform.position = new Vector3(100, 0, 0);
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 
@@ -65,20 +66,23 @@ public class Bullet : MonoBehaviour
                     //Debug.Log("Did Damage");
                     other.GetComponent<BossHitbox>().Receive(damage);
                     AudioController.instance.BossHitRecieveDamage();
-                    Destroy(gameObject);
+                    transform.position = new Vector3(100, 0, 0);
+                    GetComponent<Rigidbody>().velocity = Vector3.zero;
                 }
 
                 else
                 {
                     AudioController.instance.BossHitRecieveNoDamage();
-                    Destroy(gameObject);
+                    transform.position = new Vector3(100, 0, 0);
+                    GetComponent<Rigidbody>().velocity = Vector3.zero;
                 }
             }
 
             if (td = other.GetComponent<TargetDummy>())
             {
                 td.Receive(damage);
-                Destroy(gameObject);
+                transform.position = new Vector3(100, 0, 0);
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
         }
         if (other.tag == "Ground" || other.tag == "Player Hitbox") CheckVFXPosition();
@@ -86,7 +90,8 @@ public class Bullet : MonoBehaviour
         {
             other.GetComponentInParent<PlayerController>().Receive(damage);
             AudioController.instance.PlayerTakingDamage();
-            Destroy(gameObject);
+            transform.position = new Vector3(100, 0, 0);
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 
