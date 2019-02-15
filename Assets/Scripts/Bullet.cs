@@ -28,17 +28,20 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        savedLocalScale = transform.localScale;
         particleSystem = GetComponent<ParticleSystem>();
         particleSystem.Pause();
-        transform.localScale = Vector3.zero;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if(transform.position.z < -20)
+        if(transform.position.z < -20 || transform.position.y < -10)
         {
             ResetBullet();
+        }
+        if(fromPlayer && transform.position.z > 1000)
+        {
+            ResetBullet();
+            fromPlayer = false;
         }
     }
 
@@ -138,8 +141,7 @@ public class Bullet : MonoBehaviour
     public void ResetBullet()
     {
         particleSystem.Pause();
-        transform.position = new Vector3(0, 0, 1000);
-        transform.localScale = Vector3.zero;
+        transform.position = new Vector3(0, -20, 0);
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         
     }

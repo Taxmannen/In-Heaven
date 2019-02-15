@@ -79,8 +79,10 @@ public class ShootAction : MonoBehaviour
 
         GameObject bullet = ShootingHelper.Shoot(shootFrom.position, point, PlayerBulletPool.current.GetPlayerBullets(), playerBulletSpeed, bullets, 3);
         Bullet bulletScript = bullet.GetComponent<Bullet>();
+
         bulletScript.SetDamage(playerBulletDamage);
         bulletScript.SetPoint(point);
+        bulletScript.SetFromPlayer(true);
 
         if (isMuzzleEffect)
         {
@@ -102,7 +104,7 @@ public class ShootAction : MonoBehaviour
     {
         foreach (Transform bullet in bullets)
         {
-            Destroy(bullet.gameObject);
+            bullet.GetComponent<Bullet>().ResetBullet();
         }
     }
 

@@ -28,7 +28,7 @@ public class PlayerBulletPool : MonoBehaviour
         for (int i = 0; i < poolAmount; i++)
         {
             GameObject obj = (GameObject)Instantiate(playerBulletPrefab, transform);
-            obj.transform.position = new Vector3(0, 0, 1000);
+            obj.transform.position = new Vector3(0, -20, 0);
             playerBullets.Add(obj);
 
         }
@@ -38,7 +38,7 @@ public class PlayerBulletPool : MonoBehaviour
     {
         for (int i = 0; i < poolAmount; i++)
         {
-            if (playerBullets[i].transform.position.z >= 100)
+            if (playerBullets[i].transform.position.y <= -20)
             {
                 return playerBullets[i];
             }

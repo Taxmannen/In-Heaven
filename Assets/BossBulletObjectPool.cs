@@ -35,7 +35,7 @@ public class BossBulletObjectPool : MonoBehaviour
         for (int i = 0; i < poolAmount; i++)
         {
             GameObject obj = (GameObject)Instantiate(plasmaBulletPrefab, transform);
-            obj.transform.position = new Vector3(0, 0, 1000);
+            obj.transform.position = new Vector3(0, -20, 0);
             obj.GetComponent<ParticleSystem>().Pause();
             plasmaBullets.Add(obj);
 
@@ -43,7 +43,7 @@ public class BossBulletObjectPool : MonoBehaviour
         for (int i = 0; i < poolAmount; i++)
         {
             GameObject obj = (GameObject)Instantiate(plasmaBulletParrablePrefab, transform);
-            obj.transform.position = new Vector3(0, 0, 1000);
+            obj.transform.position = new Vector3(0, -20, 0);
             plasmaBulletParrables.Add(obj);
         }
     }
@@ -51,7 +51,7 @@ public class BossBulletObjectPool : MonoBehaviour
     {
         for (int i = 0; i < poolAmount; i++)
         {
-            if(plasmaBullets[i].transform.position.z >= 900)
+            if(plasmaBullets[i].transform.position.y <= -20)
             {
                 return plasmaBullets[i];
             }
@@ -65,7 +65,7 @@ public class BossBulletObjectPool : MonoBehaviour
         {
             if(plasmaBulletParrables[i] != null)
             {
-                if (plasmaBulletParrables[i].transform.position.z >= 900)
+                if (plasmaBulletParrables[i].transform.position.y <= -20)
                 {
                     return plasmaBulletParrables[i];
                 }
