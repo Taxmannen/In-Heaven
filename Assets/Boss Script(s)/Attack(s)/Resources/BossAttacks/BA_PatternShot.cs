@@ -24,12 +24,12 @@ public class BA_PatternShot : BossAttack
         //Debug.Log("Run Pattern Shot");
         // Starting by creating the Pattern to a real GameObject
         pattern = Instantiate(data.patternPrefab, transform);
-
+        Transform[] listOfSpawnPoints = GameObject.Find("PatternShotList").GetComponentsInChildren<Transform>();
         // Here i get the Data from that object
         List<PatternStruct> targetLocations = pattern.GetComponent<PatternImporter>().patternList;
         targetLocations = targetLocations.OrderBy(x => x.timeDelay).ToList();
         //Debug.Log(targetLocations.ToString());
-        
+        int i = 0;
         // This variable will be used later
         float lastTimeUpdate = Time.time;
         while (counter < data.numberOfPatternsToShoot)
@@ -53,17 +53,19 @@ public class BA_PatternShot : BossAttack
                 GameObject bullet;
                 if (item.parryable)
                 {
-                    bullet = ShootingHelper.Shoot(data.spawnLocation + transform.position, target, parryableBulletPrefab, data.bulletSpeed, boss.bulletParent, 10);// Set the bullet to be parriable 
+                    bullet = ShootingHelper.Shoot(listOfSpawnPoints[i++ % listOfSpawnPoints.Length].position, target, parryableBulletPrefab, data.bulletSpeed, boss.bulletParent, 10);// Set the bullet to be parriable 
+                    
                 }
                 else
                 {
-                    bullet = ShootingHelper.Shoot(data.spawnLocation + transform.position, target, bulletPrefab, data.bulletSpeed, transform, 10);
+                    bullet = ShootingHelper.Shoot(listOfSpawnPoints[i++ % listOfSpawnPoints.Length].position, target, bulletPrefab, data.bulletSpeed, transform, 10);
                 }
 
 
                 // This line will change, we are going to make a GeneralBullet, that checks what it collides with and
                 // what it can damage. And if the shoot is parrable
                 bullet.GetComponent<Bullet>().SetDamage(1);
+                bullet.GetComponent<Bullet>().isParrayable = item.parryable;
                 bullet.GetComponent<Bullet>().SetBulletOverlay(data.spawnLocation + transform.position, target, data.bulletSpeed);
 
                 

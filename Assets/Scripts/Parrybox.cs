@@ -25,7 +25,11 @@ public class Parrybox : MonoBehaviour
             parryActivation.gameObject.SetActive(false);
             parryEffect.Play();
             Destroy(other.gameObject);
-            playerController.superChargeResource.IncreaseSuperCharge();
+            if(other.GetComponent<Bullet>().isParrayable)
+            {
+                playerController.superChargeResource.IncreaseSuperCharge();
+            }
+            
             GetComponent<Collider>().enabled = false;
         }
 

@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float damage = 1;
     [SerializeField] private bool fromPlayer;
     [SerializeField] private float UIAnimationTime = 2;
-
+    public bool isParrayable;
     [Header("Impact Effect")]
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private Transform rayFrom;

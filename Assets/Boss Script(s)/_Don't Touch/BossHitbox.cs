@@ -16,6 +16,7 @@ public class BossHitbox : MonoBehaviour
     private GameObject sparks;
     [SerializeField]
     private ParticleSystem explosion;
+    public Transform explosionTransform;
 
     //Private
     private Boss boss;
@@ -65,7 +66,7 @@ public class BossHitbox : MonoBehaviour
         boss.Receive(hP);
         hP = 0;
         weakpoint = false;
-        gameObject.GetComponent<Renderer>().enabled = false;
+        //gameObject.GetComponent<Renderer>().enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
         AudioController.instance.BossDestruction();
     }
@@ -73,6 +74,7 @@ public class BossHitbox : MonoBehaviour
     private void ActivateSparksVFX() {
         if (sparks != null)
         {
+            sparks = Instantiate(sparks, transform.position, transform.rotation, transform);
             sparks.SetActive(true);
         }
         else
@@ -84,7 +86,15 @@ public class BossHitbox : MonoBehaviour
     private void ActivateExplosionVFX() {
         if (explosion != null)
         {
+            explosion = Instantiate(explosion, (explosionTransform? explosionTransform.position:transform.position) + (Vector3.back * 2),Quaternion.AngleAxis(90,Vector3.right),transform);
+            //explosion.transform.rotation.SetLookRotation(GameController.instance.playerController.transform.position);
+            explosion.transform.localScale = new Vector3(3, 3, 3);
+            foreach (var item in explosion.transform.GetComponentsInChildren<Transform>())
+            {
+                item.localScale = new Vector3(3, 3, 3);
+            }
             explosion.Play();
+            
         }
         else
         {

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TeleportData 2
   m_EditorClassIdentifier: 
   delayUntilStart: 1
-  teleportPosition: {x: 30, y: 20, z: 80}
-  delayAfterTeleport: 0
+  teleportPosition: {x: 30, y: 40, z: 80}
+  delayAfterTeleport: 1
