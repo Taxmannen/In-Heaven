@@ -3883,7 +3883,7 @@ ParticleSystem:
     textureMode: 1
     ribbonCount: 1
     shadowBias: 0
-    worldSpace: 1
+    worldSpace: 0
     dieWithParticles: 1
     sizeAffectsWidth: 0
     sizeAffectsLifetime: 0
@@ -23632,6 +23632,7 @@ MonoBehaviour:
   damage: 1
   fromPlayer: 0
   UIAnimationTime: 1
+  isParrayable: 0
   impactEffect: {fileID: 4450293947842433459, guid: 0cec7a18fccd05b4783cd6665b74f5cf,
     type: 3}
   rayFrom: {fileID: 2662332200679526165}

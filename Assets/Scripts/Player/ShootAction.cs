@@ -77,7 +77,7 @@ public class ShootAction : MonoBehaviour
             Statistics.instance.numberOfBulletsFired++;
         }
 
-        GameObject bullet = ShootingHelper.Shoot(shootFrom.position, point, bulletPrefab, playerBulletSpeed, bullets, 3);
+        GameObject bullet = ShootingHelper.Shoot(shootFrom.position, point, PlayerBulletPool.current.GetPlayerBullets(), playerBulletSpeed, bullets, 3);
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         bulletScript.SetDamage(playerBulletDamage);
         bulletScript.SetPoint(point);

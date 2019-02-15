@@ -23,13 +23,22 @@ public class Bullet : MonoBehaviour
     private Vector3 patternPos;
     private bool pattern;
 
+    internal ParticleSystem particleSystem;
+    internal Vector3 savedLocalScale;
+
+    private void Start()
+    {
+        savedLocalScale = transform.localScale;
+        particleSystem = GetComponent<ParticleSystem>();
+        particleSystem.Pause();
+        transform.localScale = Vector3.zero;
+    }
 
     private void Update()
     {
         if(transform.position.z < -20)
         {
-            transform.position = new Vector3(100, 0, 0);
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            ResetBullet();
         }
     }
 
@@ -66,23 +75,20 @@ public class Bullet : MonoBehaviour
                     //Debug.Log("Did Damage");
                     other.GetComponent<BossHitbox>().Receive(damage);
                     AudioController.instance.BossHitRecieveDamage();
-                    transform.position = new Vector3(100, 0, 0);
-                    GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    ResetBullet();
                 }
 
                 else
                 {
                     AudioController.instance.BossHitRecieveNoDamage();
-                    transform.position = new Vector3(100, 0, 0);
-                    GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    ResetBullet();
                 }
             }
 
             if (td = other.GetComponent<TargetDummy>())
             {
                 td.Receive(damage);
-                transform.position = new Vector3(100, 0, 0);
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
+                
             }
         }
         if (other.tag == "Ground" || other.tag == "Player Hitbox") CheckVFXPosition();
@@ -90,8 +96,7 @@ public class Bullet : MonoBehaviour
         {
             other.GetComponentInParent<PlayerController>().Receive(damage);
             AudioController.instance.PlayerTakingDamage();
-            transform.position = new Vector3(100, 0, 0);
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            ResetBullet();
         }
     }
 
@@ -129,5 +134,13 @@ public class Bullet : MonoBehaviour
     {
         GameObject effect = Instantiate(impactEffect, pos, impactEffect.transform.rotation, transform.parent);
         Destroy(effect, destroyTime);
+    }
+    public void ResetBullet()
+    {
+        particleSystem.Pause();
+        transform.position = new Vector3(0, 0, 1000);
+        transform.localScale = Vector3.zero;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        
     }
 }

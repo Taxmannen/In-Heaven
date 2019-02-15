@@ -10,8 +10,10 @@ public class ShootingHelper : MonoBehaviour
         pro.transform.position = origin;
         pro.transform.rotation = Quaternion.Euler(xangle, yangle, 0);
         pro.transform.SetParent(parent);
+        pro.transform.localScale = pro.GetComponent<Bullet>().savedLocalScale;
         Vector3 dir = target - origin;
         dir.Normalize();
+        pro.GetComponent<Bullet>().particleSystem.Play();
         pro.GetComponent<Rigidbody>().velocity = dir * speed;
         //Destroy(pro, destroyTime);
         return pro;
