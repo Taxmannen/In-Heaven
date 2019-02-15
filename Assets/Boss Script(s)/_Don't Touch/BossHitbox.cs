@@ -18,6 +18,9 @@ public class BossHitbox : MonoBehaviour
     private ParticleSystem explosion;
     public Transform explosionTransform;
 
+    [SerializeField]
+    private UIWhiteFadeAndFlash whiteFlash;
+
     //Private
     private Boss boss;
     private ShaderManager shaderManager;
@@ -52,6 +55,7 @@ public class BossHitbox : MonoBehaviour
             Die();
             ActivateSparksVFX();
             ActivateExplosionVFX();
+            ActivateScreenflashVFX();
         }
 
         else
@@ -99,6 +103,18 @@ public class BossHitbox : MonoBehaviour
         else
         {
             Debug.Log("Add explosion VFXs to the destroyed object!");
+        }
+    }
+
+    private void ActivateScreenflashVFX()
+    {
+        if (whiteFlash != null)
+        {
+            whiteFlash.StartWhiteFlash();
+        }
+        else
+        {
+            Debug.Log("Add screenflash-reference!");
         }
     }
 
