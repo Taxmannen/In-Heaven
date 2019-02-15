@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d286282db2668499e347170c5d06cc, type: 3}
+  m_Name: PP_JumpRope02
+  m_EditorClassIdentifier: 
+  patternShotDatas:
+  - {fileID: 11400000, guid: 72e1cffac7d66b44f90ed5a8ab3186ce, type: 2}
+  - {fileID: 11400000, guid: 3e2495fa43827e649a07e4b8ec0537ce, type: 2}
+  - {fileID: 11400000, guid: 72e1cffac7d66b44f90ed5a8ab3186ce, type: 2}
+  - {fileID: 11400000, guid: 3e2495fa43827e649a07e4b8ec0537ce, type: 2}
+  - {fileID: 11400000, guid: f8b5af9dc77b9fc4297ffb5e135d3132, type: 2}
+  - {fileID: 11400000, guid: a576938dff592ff43b9a4521ecad4191, type: 2}
+  - {fileID: 11400000, guid: f8b5af9dc77b9fc4297ffb5e135d3132, type: 2}
+  - {fileID: 11400000, guid: a576938dff592ff43b9a4521ecad4191, type: 2}
+  - {fileID: 11400000, guid: 0d8ecc686966d2d4fb82cd6b962fd359, type: 2}
+  sencondsAfterFinishAttack: 3
