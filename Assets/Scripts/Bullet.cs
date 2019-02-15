@@ -10,18 +10,33 @@ public class Bullet : MonoBehaviour
     [SerializeField] private bool fromPlayer;
     [SerializeField] private float UIAnimationTime = 2;
 
-    [Header("Effect")]
+    [Header("Impact Effect")]
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private Transform rayFrom;
     [SerializeField] private LayerMask layermask;
 
     private Vector3 hitPoint;
-    private float UISpawnTime;
     private Coroutine coroutine;
+    private float UISpawnTime;
+
+    //Temp fix
+    private Vector3 patternPos;
+    private bool pattern;
+
+
+    private void Update()
+    {
+        if(transform.position.z < -20)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void SetBulletOverlay(Vector3 originTemp, Vector3 targetTemp, float speedTemp)
     {   
         coroutine = StartCoroutine(InstantiateBulletOverlay(originTemp, targetTemp, speedTemp));
+        patternPos = targetTemp;
+        pattern = true;
     }
 
     public void SetDamage(float damage)
@@ -41,11 +56,7 @@ public class Bullet : MonoBehaviour
 
         if (other.tag == "Boss Hitbox" && fromPlayer)
         {
-            if (impactEffect != null)
-            {
-                GameObject effect = Instantiate(impactEffect, hitPoint, impactEffect.transform.rotation, transform.parent);
-                Destroy(effect, 1);
-            }
+            if (impactEffect != null) SpawnEffect(hitPoint, 1);
 
             if (bhb = other.GetComponent<BossHitbox>())
             {
@@ -70,7 +81,7 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        if (other.tag == "Ground" || other.tag == "Player Hitbox") SpawnEffect();
+        if (other.tag == "Ground" || other.tag == "Player Hitbox") CheckVFXPosition();
         if (other.tag == "Player Hitbox" && !fromPlayer)
         {
             other.GetComponentInParent<PlayerController>().Receive(damage);
@@ -84,7 +95,6 @@ public class Bullet : MonoBehaviour
         hitPoint = point;
     }
 
-
     private IEnumerator InstantiateBulletOverlay(Vector3 originTemp, Vector3 targetTemp, float speedTemp)
     {
         UISpawnTime = (Vector3.Distance(originTemp, targetTemp)) / speedTemp - UIAnimationTime;
@@ -93,21 +103,26 @@ public class Bullet : MonoBehaviour
         yield return null;
     }
 
-    private void SpawnEffect()
+    private void CheckVFXPosition()
     {
-        if (rayFrom != null)
+        if (pattern && impactEffect != null) SpawnEffect(patternPos, 3);
+        else
         {
-            Vector3 fwd = rayFrom.TransformDirection(Vector3.back);
-            Debug.DrawRay(rayFrom.position, fwd * 10, Color.green, 5);
-
-            if (Physics.Raycast(rayFrom.position, fwd, out RaycastHit hit, 50, layermask))
+            if (rayFrom != null)
             {
-                if (impactEffect != null)
+                Vector3 fwd = rayFrom.TransformDirection(Vector3.back);
+                //Debug.DrawRay(rayFrom.position, fwd * 10, Color.green, 5);
+                if (Physics.Raycast(rayFrom.position, fwd, out RaycastHit hit, 50, layermask) && impactEffect != null)
                 {
-                    GameObject effect = Instantiate(impactEffect, hit.point, impactEffect.transform.rotation, transform.parent);
-                    Destroy(effect, 3);
+                    SpawnEffect(hit.point, 3);
                 }
             }
         }
+    }
+
+    private void SpawnEffect(Vector3 pos, float destroyTime)
+    {
+        GameObject effect = Instantiate(impactEffect, pos, impactEffect.transform.rotation, transform.parent);
+        Destroy(effect, destroyTime);
     }
 }

@@ -10,7 +10,7 @@ public class ParryAction : MonoBehaviour
     private PlayerController player;
 
     [SerializeField] private BoxCollider parrybox;
-    [SerializeField] private ParticleSystem parryEffect;
+    [SerializeField] private ParticleSystem parryActivation;
 
     [SerializeField] [Range(0, 100000)] private float playerParryBulletDamage = 10f;
     [SerializeField] [Range(0, 1000)] private float playerParryBulletSpeed = 100f;
@@ -28,8 +28,8 @@ public class ParryAction : MonoBehaviour
     {
         parrybox = GetComponentInChildren<Parrybox>().GetComponent<BoxCollider>();
         player = GetComponent<PlayerController>();
-        ParticleSystem.MainModule main = parryEffect.main;
-        main.simulationSpeed = 4.25f/parryDuration * 4;
+        ParticleSystem.MainModule main = parryActivation.main;
+        //main.simulationSpeed = 4.25f/parryDuration * 4;
     }
 
     /// <summary>
@@ -47,7 +47,8 @@ public class ParryAction : MonoBehaviour
     private IEnumerator ParryCoroutine()
     {
         parrybox.enabled = true;
-        parryEffect.Play();
+        parryActivation.gameObject.SetActive(true);
+        parryActivation.Play();
         Statistics.instance.numberOfParrys++;
         player.playerState = Global.PlayerState.Invincible;
         AudioController.instance.PlayerParryEvent();

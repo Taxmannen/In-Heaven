@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 player.animator.SetBool("MovingLeft", true);
             }
-            if(direction < 0)
+            if(direction <= 0  )
             {
                 player.animator.SetBool("MovingLeft", false);
             }
