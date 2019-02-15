@@ -7844,11 +7844,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 520624626613279750}
     m_Modifications:
-    - target: {fileID: 2341461086725890536, guid: 6d070e6b76950b7428cac468c60eb946,
-        type: 3}
-      propertyPath: m_Name
-      value: Dash VFX
-      objectReference: {fileID: 0}
     - target: {fileID: 2341461086725890537, guid: 6d070e6b76950b7428cac468c60eb946,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7903,6 +7898,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2341461086725890536, guid: 6d070e6b76950b7428cac468c60eb946,
+        type: 3}
+      propertyPath: m_Name
+      value: Dash VFX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d070e6b76950b7428cac468c60eb946, type: 3}
@@ -7994,7 +7994,8 @@ PrefabInstance:
       propertyPath: recoilRate
       value: 0.65
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8114989246198555778, guid: bc69dd24b7bb7b842aad9c8c81cb6980, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bc69dd24b7bb7b842aad9c8c81cb6980, type: 3}
 --- !u!4 &5230278232897387772 stripped
 Transform:
@@ -8009,11 +8010,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 520624626613279750}
     m_Modifications:
-    - target: {fileID: 6918174727135393953, guid: 9b9c4eeb191655c4fa04bf9beda35c39,
-        type: 3}
-      propertyPath: m_Name
-      value: VFX_ShieldActivation
-      objectReference: {fileID: 0}
     - target: {fileID: 8875096103126976154, guid: 9b9c4eeb191655c4fa04bf9beda35c39,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8068,6 +8064,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918174727135393953, guid: 9b9c4eeb191655c4fa04bf9beda35c39,
+        type: 3}
+      propertyPath: m_Name
+      value: VFX_ShieldActivation
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b9c4eeb191655c4fa04bf9beda35c39, type: 3}
