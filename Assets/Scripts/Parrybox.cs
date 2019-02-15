@@ -24,8 +24,8 @@ public class Parrybox : MonoBehaviour
             parryActivation.Stop();
             parryActivation.gameObject.SetActive(false);
             parryEffect.Play();
-            Destroy(other.gameObject);
-            if(other.GetComponent<Bullet>().isParrayable)
+            other.GetComponent<Bullet>().ResetBullet();
+            if (other.GetComponent<Bullet>().isParrayable)
             {
                 playerController.superChargeResource.IncreaseSuperCharge();
             }
@@ -37,7 +37,7 @@ public class Parrybox : MonoBehaviour
         {
             Statistics.instance.numberOfSuccessfulParrys++;
             AudioController.instance.PlayerSuccessfulParry();
-            Destroy(other.gameObject);   
+            other.GetComponent<Bullet>().ResetBullet();
             playerController.superChargeResource.IncreaseSuperCharge(3);
             GetComponent<Collider>().enabled = false;
             TutorialController.instance.CheckParryGoal();

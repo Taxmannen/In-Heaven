@@ -63,10 +63,14 @@ public class BossBulletObjectPool : MonoBehaviour
     {
         for (int i = 0; i < poolAmount; i++)
         {
-            if (plasmaBulletParrables[i].transform.position.z >= 900)
+            if(plasmaBulletParrables[i] != null)
             {
-                return plasmaBulletParrables[i];
+                if (plasmaBulletParrables[i].transform.position.z >= 900)
+                {
+                    return plasmaBulletParrables[i];
+                }
             }
+            
         }
         return null;
     }
