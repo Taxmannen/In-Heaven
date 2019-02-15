@@ -32,12 +32,12 @@ public class PatternImporter : MonoBehaviour
         {
             if (pix[i].r < 129 && pix[i].g < 75)
             {
-                var hej = i / textureWidth - (textureWidth / 2);
-                var toInt = (int)(hej + 0.5f);
+                var hej = (i / textureWidth + (1 - (i % textureWidth * (1 / textureWidth))) - (textureWidth / 2));
+                //var toInt = (int)(hej + 0.5f);
 
                 //patternList.Add(new PatternStruct(i % textureWidth - (textureWidth / 2), i / textureWidth - (textureWidth / 2), pix[i].r, false));
                 // OBS! Fulkod för att fixa en weird offset av Y-axeln på importerade mönster. -Anton
-                patternList.Add(new PatternStruct(i % textureWidth - (textureWidth / 2), toInt, pix[i].r, false));
+                patternList.Add(new PatternStruct(i % textureWidth - (textureWidth / 2), hej, pix[i].r, false));
             }
         }
         Debug.Log(importedTexture.width);

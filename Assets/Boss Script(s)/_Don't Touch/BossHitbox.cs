@@ -21,6 +21,9 @@ public class BossHitbox : MonoBehaviour
     [SerializeField]
     private UIWhiteFadeAndFlash whiteFlash;
 
+    [SerializeField]
+    private ShaderManager shaderFlash;
+
     //Private
     private Boss boss;
     private ShaderManager shaderManager;
@@ -56,12 +59,13 @@ public class BossHitbox : MonoBehaviour
             ActivateSparksVFX();
             ActivateExplosionVFX();
             ActivateScreenflashVFX();
+            DeactivateShaderFlash();
         }
 
         else
         {
             Hit(amt);
-            shaderManager.HitEffect(0.4f, false);
+            //shaderManager.HitEffect(0.4f, false);
         }
     }
 
@@ -115,6 +119,16 @@ public class BossHitbox : MonoBehaviour
         else
         {
             Debug.Log("Add screenflash-reference!");
+        }
+    }
+
+    private void DeactivateShaderFlash() {
+        if (shaderFlash != null)
+        {
+            shaderFlash.StopColorEffect();
+        }
+        else {
+            Debug.Log("Add Shaderflash reference to the weakpoint");
         }
     }
 

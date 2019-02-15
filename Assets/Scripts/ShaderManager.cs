@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 /* Script made by Daniel */
@@ -28,9 +28,15 @@ public class ShaderManager : MonoBehaviour {
     float timeStarted;
     #endregion
 
+    [SerializeField]
+    private bool bossHitPoint = false;
+
     private void Start()
     {
         Setup();
+        if (bossHitPoint) {
+            ConstantFlashEffect();
+        }
     }
 
     public void HitEffect(float duration, bool player)
@@ -38,6 +44,10 @@ public class ShaderManager : MonoBehaviour {
         StopCoroutine("ColorEffect");
         StartCoroutine(ColorEffect(hitColor, hitSpeed, false, duration, player));
         if (!player) Invoke("StopColorEffect", duration);
+    }
+
+    public void ConstantFlashEffect() {
+        StartCoroutine(ColorEffect(hitColor, hitSpeed, false, 0f, false));
     }
 
     public void DashEffect()
@@ -88,10 +98,11 @@ public class ShaderManager : MonoBehaviour {
         }
     }
 
-    private void StopColorEffect()
+    public void StopColorEffect()
     {
         fading = false;
         StopCoroutine("ColorEffect");
+        
     }
 
     private void Setup()
