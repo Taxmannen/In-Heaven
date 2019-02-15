@@ -10,12 +10,19 @@ public class BA_PatternShot : BossAttack
     public GameObject bulletPrefab;
     public GameObject parryableBulletPrefab;
 
+    public ParticleSystem muzzleFlash;
+
     private GameObject pattern;
     private float counter;
     private float deltaTime;
 
-    
+
     //Variables
+
+    private void Start()
+    {
+        muzzleFlash = GameObject.Find("PS_BossMuzzleFlashSlow").GetComponent<ParticleSystem>();
+    }
 
     protected override IEnumerator Execute(Boss boss)
     {
@@ -73,6 +80,7 @@ public class BA_PatternShot : BossAttack
                 //Make the appriorite sound
                 //InterfaceController.instance.BossBulletOverlay(target);
                 AudioController.instance.BossPatternShot();
+                muzzleFlash.Play();
             }
             counter++;
             //Debug.Log(counter);
