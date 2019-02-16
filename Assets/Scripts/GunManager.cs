@@ -3,20 +3,16 @@
 /* Script made by Daniel */
 public class GunManager : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
-    [SerializeField] private Rigidbody rb;
     [SerializeField] private Transform gun;
     [SerializeField] private Transform LeftParent;
     [SerializeField] private Transform rightParent;
 
-    bool shifted = true;
-    bool leftHand = false;
-    bool rightHand = false;
-    bool standingStill = true;
+    private Animator anim;
+    private bool shifted = true;
 
-    private void Update()
+    private void Start()
     {
-        HandleGun();
+        anim = GetComponent<Animator>();
     }
 
     void SetGunHand(bool rightHand)
@@ -29,32 +25,14 @@ public class GunManager : MonoBehaviour
         shifted = true;
     }
 
-    private void HandleGun()
+    void OnAnimatorIK()
     {
-        if (rb.velocity.x > 0 && !rightHand || rb.velocity.x < 0 && !leftHand || rb.velocity.x == 0 && !standingStill) shifted = false;
+        bool movLeft = anim.GetBool("MovingLeft");
+        if (movLeft && gun.parent != LeftParent || !movLeft && gun.parent != rightParent) shifted = false;
         if (!shifted)
         {
-            if (rb.velocity.x > 0)
-            {
-                SetGunHand(false);
-                rightHand = true;
-                leftHand = false;
-                standingStill = false;
-            }
-            else if (rb.velocity.x < 0)
-            {
-                SetGunHand(true);
-                leftHand = true;
-                rightHand = false;
-                standingStill = false;
-            }
-            else if (rb.velocity.x == 0)
-            {
-                SetGunHand(true);
-                rightHand = false;
-                leftHand = false;
-                standingStill = true;
-            }
+            if (movLeft) SetGunHand(false);
+            else         SetGunHand(true);
         }
     }
 }
