@@ -2,7 +2,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Made by: Filip Nilsson
+/// Made by: Filip Nilsson, Edited by Daniel
 /// </summary>
 public class Bullet : MonoBehaviour
 {
@@ -10,35 +10,33 @@ public class Bullet : MonoBehaviour
     [SerializeField] private bool fromPlayer;
     [SerializeField] private float UIAnimationTime = 2;
     public bool isParrayable;
+
     [Header("Impact Effect")]
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private Transform rayFrom;
     [SerializeField] private LayerMask layermask;
 
+    private Vector3 direction;
     private Vector3 hitPoint;
     private Coroutine coroutine;
     private float UISpawnTime;
 
-    //Temp fix
-    private Vector3 patternPos;
-    private bool pattern;
-
-    internal ParticleSystem particleSystem;
+    internal ParticleSystem particleEffect;
     internal Vector3 savedLocalScale;
 
     private void Start()
     {
-        particleSystem = GetComponent<ParticleSystem>();
-        particleSystem.Pause();
+        particleEffect = GetComponent<ParticleSystem>();
+        particleEffect.Pause();
     }
 
     private void FixedUpdate()
     {
-        if(transform.position.z < -20 || transform.position.y < -10)
+        if (transform.position.z < -20 || transform.position.y < -10)
         {
             ResetBullet();
         }
-        if(fromPlayer && transform.position.z > 1000)
+        if (fromPlayer && transform.position.z > 1000)
         {
             ResetBullet();
             fromPlayer = false;
@@ -46,10 +44,8 @@ public class Bullet : MonoBehaviour
     }
 
     public void SetBulletOverlay(Vector3 originTemp, Vector3 targetTemp, float speedTemp)
-    {   
+    {
         coroutine = StartCoroutine(InstantiateBulletOverlay(originTemp, targetTemp, speedTemp));
-        patternPos = targetTemp;
-        pattern = true;
     }
 
     public void SetDamage(float damage)
@@ -91,7 +87,7 @@ public class Bullet : MonoBehaviour
             if (td = other.GetComponent<TargetDummy>())
             {
                 td.Receive(damage);
-                
+
             }
         }
         if (other.tag == "Ground" || other.tag == "Player Hitbox") CheckVFXPosition();
@@ -101,11 +97,6 @@ public class Bullet : MonoBehaviour
             AudioController.instance.PlayerTakingDamage();
             ResetBullet();
         }
-    }
-
-    public void SetPoint(Vector3 point)
-    {
-        hitPoint = point;
     }
 
     private IEnumerator InstantiateBulletOverlay(Vector3 originTemp, Vector3 targetTemp, float speedTemp)
@@ -118,17 +109,13 @@ public class Bullet : MonoBehaviour
 
     private void CheckVFXPosition()
     {
-        if (pattern && impactEffect != null) SpawnEffect(patternPos, 3);
-        else
+        if (rayFrom != null)
         {
-            if (rayFrom != null)
+            Vector3 startPos = transform.position + (direction * -10);
+            Debug.DrawRay(startPos, direction * 10, Color.red, 2);
+            if (Physics.Raycast(startPos, direction, out RaycastHit hit, 20, layermask) && impactEffect != null)
             {
-                Vector3 fwd = rayFrom.TransformDirection(Vector3.back);
-                //Debug.DrawRay(rayFrom.position, fwd * 10, Color.green, 5);
-                if (Physics.Raycast(rayFrom.position, fwd, out RaycastHit hit, 50, layermask) && impactEffect != null)
-                {
-                    SpawnEffect(hit.point, 3);
-                }
+                SpawnEffect(hit.point, 3);
             }
         }
     }
@@ -138,11 +125,21 @@ public class Bullet : MonoBehaviour
         GameObject effect = Instantiate(impactEffect, pos, impactEffect.transform.rotation, transform.parent);
         Destroy(effect, destroyTime);
     }
+
     public void ResetBullet()
     {
-        particleSystem.Pause();
+        particleEffect.Pause();
         transform.position = new Vector3(0, -20, 0);
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        
+    }
+
+    public void SetPoint(Vector3 point)
+    {
+        hitPoint = point;
+    }
+
+    public void SetDirection(Vector3 direction)
+    {
+        this.direction = direction;
     }
 }
