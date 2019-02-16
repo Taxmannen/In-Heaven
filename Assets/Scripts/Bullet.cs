@@ -13,7 +13,6 @@ public class Bullet : MonoBehaviour
 
     [Header("Impact Effect")]
     [SerializeField] private GameObject impactEffect;
-    [SerializeField] private Transform rayFrom;
     [SerializeField] private LayerMask layermask;
 
     private Vector3 direction;
@@ -109,11 +108,11 @@ public class Bullet : MonoBehaviour
 
     private void CheckVFXPosition()
     {
-        if (rayFrom != null)
+        if (impactEffect != null)
         {
             Vector3 startPos = transform.position + (direction * -10);
             Debug.DrawRay(startPos, direction * 10, Color.red, 2);
-            if (Physics.Raycast(startPos, direction, out RaycastHit hit, 20, layermask) && impactEffect != null)
+            if (Physics.Raycast(startPos, direction, out RaycastHit hit, 20, layermask))
             {
                 SpawnEffect(hit.point, 3);
             }

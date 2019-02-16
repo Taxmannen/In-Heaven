@@ -6,7 +6,6 @@ public class ShootingHelper : MonoBehaviour
     {
         float xangle = Mathf.Atan2(target.z - origin.z, target.y - origin.y) * 180 / Mathf.PI;
         float yangle = Mathf.Atan2(target.x - origin.x, target.z - origin.z) * 180 / Mathf.PI;
-        //Debug.Log("!: " + "[x angle] " + xangle + ". [y angle] " + yangle + ". [target] " + target + ". [direction]: " + (target - origin));
         GameObject pro = projectile;
         pro.transform.position = origin;
         pro.transform.rotation = Quaternion.Euler(xangle, yangle, 0);
