@@ -457,6 +457,12 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a0858e0c15c62344f8af599095514e7c, type: 2}
   - {fileID: 2100000, guid: 27d28c83a5e4f5a40b7b1af4fa091080, type: 2}
   - {fileID: 2100000, guid: add5223a7e1471a4dad544c399cb77d3, type: 2}
+  staticMats:
+  - {fileID: 2100000, guid: ad0555c7862955f4cb7a51ceefe57875, type: 2}
+  - {fileID: 2100000, guid: ae45ce2ca6a35764aa63d948f45b7d00, type: 2}
+  - {fileID: 2100000, guid: b484f6f456c491e438d076be5220bc87, type: 2}
+  - {fileID: 2100000, guid: 67efc144df2542e45b9b103638aa8f9d, type: 2}
+  staticDuration: 1
 --- !u!1 &689379659 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4998537457116376936, guid: ff3809ce05ec13140831cf6e93f92a88,
