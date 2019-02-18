@@ -16,7 +16,7 @@ public class ShootAction : MonoBehaviour
     [SerializeField] private Transform bullets;
     [SerializeField] private Transform VFX;
 
-    [SerializeField] [Range(0, 1000)] private int playerBulletDamage = 7;
+    [SerializeField] [Range(0, 1000)] public int playerBulletDamage = 7;
     [SerializeField] [Range(1, 100)] private float basePlayerBulletsPerSecond = 10f; //Bullets per second during left mouse down
     [SerializeField] [Range(0, 1000)] private float playerBulletSpeed = 25f; //The speed of the bullets
     [SerializeField] [Range(0, 10)] private float playerBulletLifetime = 3f; //The duration the bullets last until they are destroyed, low number reduces potential lag

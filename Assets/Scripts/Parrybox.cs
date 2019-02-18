@@ -5,6 +5,12 @@
 /// </summary>
 public class Parrybox : MonoBehaviour
 {
+    public bool bulletParried = false;
+
+    [Range(1f, 100f)] public float bulletRapidFireCooldown;
+
+    private float rapidFireCooldownTimer;
+
     private PlayerController playerController;
 
     [SerializeField] private ParticleSystem parryActivation;
@@ -15,10 +21,23 @@ public class Parrybox : MonoBehaviour
         playerController = transform.parent.GetComponent<PlayerController>();
     }
 
+    //private void Update()
+    //{
+    //    rapidFireCooldownTimer += Time.deltaTime;
+
+    //    if (rapidFireCooldownTimer >= bulletRapidFireCooldown)
+    //    {
+    //        bulletParried = false;
+    //    }
+    //}
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Boss Parryable Bullet")
         {
+            Debug.Log("ParryBox activated");
+           // bulletParried = true;
+
             Statistics.instance.numberOfSuccessfulParrys++;
             AudioController.instance.PlayerSuccessfulParry();
             parryActivation.Stop();
@@ -31,6 +50,8 @@ public class Parrybox : MonoBehaviour
             }
             
             GetComponent<Collider>().enabled = false;
+
+         //   rapidFireCooldownTimer = 0;
         }
 
         else if (other.tag == "TutorialBullet")

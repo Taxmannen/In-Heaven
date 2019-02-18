@@ -23,7 +23,7 @@ public class BossFaceController : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        Debug.Log(timer);
+        
         if (timer>=4 && timer<=8)
         {
             newFace.sharedMaterial = screenMats[1];
@@ -36,9 +36,21 @@ public class BossFaceController : MonoBehaviour
         {
             newFace.sharedMaterial = screenMats[3];
         }
-        else if (timer >=16)
+        else if (timer >= 16 && timer <= 20)
         {
             newFace.sharedMaterial = screenMats[4];
+        }
+        else if (timer >= 20 && timer <= 24)
+        {
+            newFace.sharedMaterial = screenMats[5];
+        }
+        else if (timer >= 24 && timer <= 28)
+        {
+            newFace.sharedMaterial = screenMats[6];
+        }
+        else if (timer >= 28)
+        {
+            newFace.sharedMaterial = screenMats[7];
         }
 
     }
