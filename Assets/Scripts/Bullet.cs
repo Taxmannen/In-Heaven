@@ -111,7 +111,7 @@ public class Bullet : MonoBehaviour
         if (impactEffect != null)
         {
             Vector3 startPos = transform.position + (direction * -10);
-            Debug.DrawRay(startPos, direction * 10, Color.red, 2);
+            //Debug.DrawRay(startPos, direction * 10, Color.red, 2);
             if (Physics.Raycast(startPos, direction, out RaycastHit hit, 20, layermask))
             {
                 SpawnEffect(hit.point, 3);

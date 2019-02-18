@@ -16,6 +16,7 @@ public class ShaderManager : MonoBehaviour {
     [SerializeField] private Color dashColor;
     [Range(0, 10)] [Tooltip("The speed of lerp beween the colors when dash is recharged")]
     [SerializeField] private float dashSpeed = 3;
+    [SerializeField] private ParticleSystem effect;
 
     [Header("Meshes")]
     [Tooltip("Add all the renderers that the mesh contain")]
@@ -54,6 +55,7 @@ public class ShaderManager : MonoBehaviour {
     {
         StopCoroutine("ColorEffect");
         StartCoroutine(ColorEffect(dashColor, dashSpeed, true, 2, true));
+        if (effect != null) effect.Play();
     }
 
     private IEnumerator ColorEffect(Color color, float speed, bool dash, float duration, bool player)
