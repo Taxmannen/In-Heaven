@@ -121,7 +121,7 @@ public class Bullet : MonoBehaviour
 
     public void ResetBullet()
     {
-        transform.position = new Vector3(0, -20, 0);
+        transform.position = new Vector3(0, -1000, 0);
         GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
