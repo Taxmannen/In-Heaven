@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5474499424537172098}
   - component: {fileID: 8498693466868434205}
   - component: {fileID: 1943737294425135952}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4718,7 +4718,7 @@ GameObject:
   - component: {fileID: 2036239718982273026}
   - component: {fileID: 4123206043964418344}
   - component: {fileID: 3429714996212481207}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9416,7 +9416,7 @@ GameObject:
   - component: {fileID: 5867899867494076775}
   - component: {fileID: 5526452260737634848}
   - component: {fileID: 6565494082163486968}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14132,7 +14132,7 @@ GameObject:
   - component: {fileID: 2435615008989222127}
   - component: {fileID: 8499063455342215311}
   - component: {fileID: 756139104873249742}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18833,7 +18833,7 @@ GameObject:
   - component: {fileID: 105288586410258638}
   - component: {fileID: 6013023480495059904}
   - component: {fileID: 8449299846600657815}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Plasma Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
