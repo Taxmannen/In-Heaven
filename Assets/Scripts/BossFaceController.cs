@@ -5,9 +5,16 @@ using UnityEngine;
 public class BossFaceController : MonoBehaviour
 {
     public Material[] screenMats;
-    Renderer newFace;
+    public Material[] staticMats;
 
+    Renderer newFace;
+    Renderer rendStatic;
+
+    public int staticDuration;
     private float timer=0;
+    int screenController;
+
+
 
     void Start()
     {
@@ -17,41 +24,41 @@ public class BossFaceController : MonoBehaviour
         newFace = GetComponent<Renderer>();
         newFace.enabled = true;
         newFace.sharedMaterial = screenMats[0];
+
+        rendStatic = GetComponent<Renderer>();
+        rendStatic.enabled = true;
     }
 
-   
-    void Update()
+    public void updateScreen(int screenController)
     {
-        timer += Time.deltaTime;
-        
-        if (timer>=4 && timer<=8)
+        StartCoroutine(staticScreen(screenController));
+    }
+
+
+
+    IEnumerator staticScreen(int screenController)
+    {
+        for (int i = 0; i < staticDuration; i++)
+      
         {
-            newFace.sharedMaterial = screenMats[1];
-        }
-        else if (timer >=8 && timer <=12)
-        {
-            newFace.sharedMaterial = screenMats[2];
-        }
-        else if (timer >= 12 && timer <= 16)
-        {
-            newFace.sharedMaterial = screenMats[3];
-        }
-        else if (timer >= 16 && timer <= 20)
-        {
-            newFace.sharedMaterial = screenMats[4];
-        }
-        else if (timer >= 20 && timer <= 24)
-        {
-            newFace.sharedMaterial = screenMats[5];
-        }
-        else if (timer >= 24 && timer <= 28)
-        {
-            newFace.sharedMaterial = screenMats[6];
-        }
-        else if (timer >= 28)
-        {
-            newFace.sharedMaterial = screenMats[7];
+            rendStatic.sharedMaterial = staticMats[0];
+            yield return new WaitForSeconds(0.1f);
+           
+
+            rendStatic.sharedMaterial = staticMats[1];
+            yield return new WaitForSeconds(0.1f);
+
+            
+            rendStatic.sharedMaterial = staticMats[2];
+            yield return new WaitForSeconds(0.1f);
+           
+
+            rendStatic.sharedMaterial = staticMats[3];
+            yield return new WaitForSeconds(0.1f);
+
         }
 
+        newFace.sharedMaterial = screenMats[screenController];
+        yield break;
     }
 }

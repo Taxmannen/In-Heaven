@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Fas1
   m_EditorClassIdentifier: 
   attacks:
-  - type: 1
-    data: {fileID: 11400000, guid: 53138bb59afed034093fafec32cdd760, type: 2}
   - type: 2
-    data: {fileID: 11400000, guid: 0a572240a5508bd438f3627e9e366e39, type: 2}
+    data: {fileID: 11400000, guid: 72e1cffac7d66b44f90ed5a8ab3186ce, type: 2}
+  - type: 2
+    data: {fileID: 11400000, guid: 3e2495fa43827e649a07e4b8ec0537ce, type: 2}
   movments:
   - type: 2
     data: {fileID: 11400000, guid: eee0f531c107b0546990611b74a70090, type: 2}

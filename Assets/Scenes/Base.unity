@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenMats:
-  - {fileID: 2100000, guid: 23b052b3a9d4c134b89203705f73a289, type: 2}
+  - {fileID: 2100000, guid: 0e3c3b307cb245f4b9dcb110bb719cfd, type: 2}
   - {fileID: 2100000, guid: bd6e8df6270fb0c4d84b2208ea27bb59, type: 2}
   - {fileID: 2100000, guid: e3b500fe53fd23941aa852c729cc88b9, type: 2}
   - {fileID: 2100000, guid: 6640e3fe55b1fe047bf30b97fa44d6e0, type: 2}
@@ -457,6 +457,12 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a0858e0c15c62344f8af599095514e7c, type: 2}
   - {fileID: 2100000, guid: 27d28c83a5e4f5a40b7b1af4fa091080, type: 2}
   - {fileID: 2100000, guid: add5223a7e1471a4dad544c399cb77d3, type: 2}
+  staticMats:
+  - {fileID: 2100000, guid: ad0555c7862955f4cb7a51ceefe57875, type: 2}
+  - {fileID: 2100000, guid: ae45ce2ca6a35764aa63d948f45b7d00, type: 2}
+  - {fileID: 2100000, guid: b484f6f456c491e438d076be5220bc87, type: 2}
+  - {fileID: 2100000, guid: 67efc144df2542e45b9b103638aa8f9d, type: 2}
+  staticDuration: 1
 --- !u!1 &689379659 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4998537457116376936, guid: ff3809ce05ec13140831cf6e93f92a88,
@@ -611,6 +617,16 @@ PrefabInstance:
       propertyPath: phasePrefabs.Array.data[1]
       value: 
       objectReference: {fileID: 1000583797}
+    - target: {fileID: 786254963506694969, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: bossFaceController
+      value: 
+      objectReference: {fileID: 593781117}
+    - target: {fileID: 2503664475337775601, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7909508731725491911, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
     - {fileID: 8351462792701075515, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
@@ -1047,6 +1063,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 63198536421017583, guid: b052a328318ba964380d0e475169aca4,
+        type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 63198536421017568, guid: b052a328318ba964380d0e475169aca4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1100,11 +1121,6 @@ PrefabInstance:
     - target: {fileID: 63198536421017568, guid: b052a328318ba964380d0e475169aca4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 63198536421017583, guid: b052a328318ba964380d0e475169aca4,
-        type: 3}
-      propertyPath: m_DrawHalo
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
