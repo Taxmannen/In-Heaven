@@ -16,6 +16,6 @@ MonoBehaviour:
     type: 3}
   attackTime: 5
   speed: {x: 10, y: 0, z: 0}
-  startPosition: {x: 12, y: 0, z: 0}
-  endPosition: {x: -12, y: 0, z: 0}
+  startPosition: {x: 12, y: 12, z: 0}
+  endPosition: {x: -12, y: 12, z: 0}
   laserStayTime: 5

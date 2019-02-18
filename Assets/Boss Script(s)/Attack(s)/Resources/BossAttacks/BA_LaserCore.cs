@@ -7,12 +7,43 @@ public class BA_LaserCore : BossAttack
     private LaserCoreData data;
 
     [SerializeField]
+    internal ParticleSystem vfx_Laser_Start;
+
+    [SerializeField]
+    internal ParticleSystem vfx_Laser_Shoot;
+
+    [SerializeField]
+    internal GameObject vfx_Laser;
+
+    [SerializeField]
     internal GameObject laser;
+
+    [SerializeField]
+    internal Animator animator;
 
     [SerializeField] [ReadOnly]private string startSide;
 
     protected override IEnumerator Execute(Boss boss)
     {
+        //Laser_Start
+        animator.SetTrigger("LaserTrigger");
+        vfx_Laser_Start.Play();
+
+        yield return new WaitForSeconds(1.65f);
+
+        //Laser_Shoot
+        animator.SetBool("Laser", true);
+        vfx_Laser.SetActive(true);
+        vfx_Laser_Shoot.Play();
+
+        yield return new WaitForSeconds(2f);
+
+        //Laser_End
+        animator.SetBool("Laser", false);
+        vfx_Laser.SetActive(false);
+
+        yield return new WaitForSeconds(1f);
+
         SpawnLaser();
 
         SetStartSide();
