@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public class Boss : Character
 {
+    public GameObject bossHead;
+    private BossFaceController bossFaceController;
+
 
     //Serialized
 
@@ -98,7 +101,9 @@ public class Boss : Character
 
     private new void Start()
     {
-
+        bossHead = GameObject.Find("Head");
+        bossFaceController = (BossFaceController) bossHead.GetComponent(typeof(BossFaceController));
+       
         SetupSpawn();
 
         SetupPhases();
@@ -363,6 +368,8 @@ public class Boss : Character
 
     internal override void Receive(float amt)
     {
+        //bossFaceController = GetComponent<BossFaceController>();
+        bossFaceController.updateScreen(0);
 
         base.Receive(amt);
         InterfaceController.instance.UpdateBossHPBar(hP, maxHP);
