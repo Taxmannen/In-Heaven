@@ -9524,7 +9524,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1482959369860915772}
-  - component: {fileID: 1482959369860915771}
   - component: {fileID: 1482959369860915773}
   - component: {fileID: 1482959369860915774}
   m_Layer: 0
@@ -9551,25 +9550,6 @@ Transform:
   m_Father: {fileID: 5956172507436231169}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1482959369860915771
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482959369860915775}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!198 &1482959369860915773
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -10138,7 +10118,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 0
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -14836,7 +14816,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 150
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -29113,7 +29093,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 100
     size3D: 0
     rotation3D: 0
     gravityModifier:
