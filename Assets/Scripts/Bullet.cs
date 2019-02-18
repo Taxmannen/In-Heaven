@@ -23,12 +23,6 @@ public class Bullet : MonoBehaviour
     internal ParticleSystem particleEffect;
     internal Vector3 savedLocalScale;
 
-    private void Start()
-    {
-        particleEffect = GetComponent<ParticleSystem>();
-        particleEffect.Pause();
-    }
-
     private void FixedUpdate()
     {
         if (transform.position.z < -20 || transform.position.y < -10)
@@ -127,7 +121,6 @@ public class Bullet : MonoBehaviour
 
     public void ResetBullet()
     {
-        particleEffect.Pause();
         transform.position = new Vector3(0, -20, 0);
         GetComponent<Rigidbody>().velocity = Vector3.zero;
     }

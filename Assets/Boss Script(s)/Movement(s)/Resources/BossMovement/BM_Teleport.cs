@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class BM_Teleport : BossMovement
 {
+    [SerializeField] private Animator anim;
+    [SerializeField] private ParticleSystem teleportStart;
+    [SerializeField] private ParticleSystem teleportEnd;
+
     public TeleportData data;
 
     protected override IEnumerator Execute(Boss boss)
     {
-
-        yield return new WaitForSeconds(data.delayUntilStart);
+        anim.SetTrigger("Teleport");
+        anim.SetBool("TeleportGoing", true);
+        teleportStart.Play();
+    
+        yield return new WaitForSeconds(data.delayUntilStart + 0.15f);
+   
         boss.transform.position = data.teleportPosition;
+      
+        yield return new WaitForSeconds(1);
 
-        yield return new WaitForSeconds(data.delayAfterTeleport);
+        anim.SetBool("TeleportGoing", false);
+        teleportEnd.Play();
 
-        
+        yield return new WaitForSeconds(data.delayAfterTeleport + 0.15f);
 
         executeRoutine = null;
         yield break;
@@ -32,5 +43,4 @@ public class BM_Teleport : BossMovement
             Debug.LogError("Wrong Data!!");
         }
     }
-
 }
