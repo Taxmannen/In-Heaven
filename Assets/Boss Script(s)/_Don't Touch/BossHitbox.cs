@@ -91,18 +91,18 @@ public class BossHitbox : MonoBehaviour
         }
     }
 
-    private void ActivateExplosionVFX() {
+    private void ActivateExplosionVFX()
+    {
         if (explosion != null)
         {
-            explosion = Instantiate(explosion, (explosionTransform? explosionTransform.position:transform.position) + (Vector3.back * 2),Quaternion.AngleAxis(90,Vector3.right),transform);
-            //explosion.transform.rotation.SetLookRotation(GameController.instance.playerController.transform.position);
-            explosion.transform.localScale = new Vector3(3, 3, 3);
-            foreach (var item in explosion.transform.GetComponentsInChildren<Transform>())
+            ParticleSystem newExplosion = Instantiate(explosion, (explosionTransform? explosionTransform.position:transform.position) + (Vector3.back * 2), Quaternion.AngleAxis(90,Vector3.right));
+            newExplosion.transform.localScale = new Vector3(3, 3, 3);
+            foreach (var item in newExplosion.transform.GetComponentsInChildren<Transform>())
             {
                 item.localScale = new Vector3(3, 3, 3);
             }
-            explosion.Play();
-            
+            newExplosion.Play();
+            Destroy(newExplosion.gameObject, 3);
         }
         else
         {
