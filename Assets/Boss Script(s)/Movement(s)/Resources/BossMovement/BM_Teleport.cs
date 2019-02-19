@@ -19,7 +19,9 @@ public class BM_Teleport : BossMovement
         yield return new WaitForSeconds(data.delayUntilStart + 0.15f);
    
         boss.transform.position = data.teleportPosition;
-      
+        Vector3 bossPos = FindObjectOfType<Boss>().transform.position;
+        FindObjectOfType<AimMechanic>().playerBulletTrajectoryDistance = Vector3.Distance(bossPos, new Vector3(bossPos.x, bossPos.y, Camera.main.transform.position.z));
+
         yield return new WaitForSeconds(1);
 
         anim.SetBool("TeleportGoing", false);
