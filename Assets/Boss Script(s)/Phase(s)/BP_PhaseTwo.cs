@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-
+/* Script Made by Daniel */
 public class BP_PhaseTwo : BossPhase
 {
     [SerializeField] private GameObject explosion;
-    [SerializeField] private GameObject sparks;
     [SerializeField] private ParticleSystem core;
     [SerializeField] private Collider col;
     [SerializeField] private Renderer[] rend;
@@ -27,7 +26,8 @@ public class BP_PhaseTwo : BossPhase
             col.enabled = true;
             core.gameObject.SetActive(true);
             core.GetComponent<ParticleSystem>().Play();
-            Destroy(sparks);
+            GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Sparks");
+            foreach (GameObject g in gameObjects) Destroy(g);
         }
     }
 }
