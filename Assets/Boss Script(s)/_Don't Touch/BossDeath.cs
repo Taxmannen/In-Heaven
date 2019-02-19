@@ -4,11 +4,22 @@ using UnityEngine;
 
 public class BossDeath : MonoBehaviour
 {
+    private BossFaceController bossFaceController;
+    private GameObject bossHead;
 
     protected Coroutine executeRoutine = null;
 
-    public void StartDeath(Boss boss)
+    private void Start()
     {
+        bossHead = GameObject.Find("Head");
+        bossFaceController = (BossFaceController)bossHead.GetComponent(typeof(BossFaceController));
+
+        //Copy paste to relevent part of script, intended to display a death face for the boss
+        //bossFaceController.StartCoroutine(bossFaceController.warOfTheAnts(1));
+    }
+
+    public void StartDeath(Boss boss)
+    {        
         executeRoutine = StartCoroutine(Execute(boss));
     }
 

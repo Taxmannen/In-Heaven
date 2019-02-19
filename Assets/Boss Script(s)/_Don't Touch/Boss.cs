@@ -7,10 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Boss : Character
 {
-    public GameObject bossHead;
-    private BossFaceController bossFaceController;
-
-
+    
     //Serialized
 
     [Header("TRANSFORMS")]
@@ -43,8 +40,9 @@ public class Boss : Character
     private List<BossPhase> phases = new List<BossPhase>();
     protected BossDeath death;
     protected BossSpawn spawn;
-
-
+    private BossFaceController bossFaceController;
+    private ScreenStartUp screenStartUp;
+    private GameObject bossHead;
 
     //Main
 
@@ -101,9 +99,8 @@ public class Boss : Character
 
     private new void Start()
     {
-        bossHead = GameObject.Find("Head");
-        bossFaceController = (BossFaceController) bossHead.GetComponent(typeof(BossFaceController));
-       
+        SetUpCalls();
+        
         SetupSpawn();
 
         SetupPhases();
@@ -118,8 +115,7 @@ public class Boss : Character
 
     }
 
-
-
+   
     private void SetupSpawn()
     {
 
@@ -240,6 +236,14 @@ public class Boss : Character
 
     }
 
+    //Allows the use of a pair of juice functions for the face of the boss
+    private void SetUpCalls()
+    {
+        bossHead = GameObject.Find("Head");
+        screenStartUp = (ScreenStartUp)bossHead.GetComponent(typeof(ScreenStartUp));
+        bossFaceController = (BossFaceController)bossHead.GetComponent(typeof(BossFaceController));
+    }
+
     private void SetupHitboxes()
     {
 
@@ -278,7 +282,7 @@ public class Boss : Character
 
     private void StartBoss()
     {
-        bossRoutine = StartCoroutine(BossRoutine());
+        bossRoutine = StartCoroutine(BossRoutine());        
     }
 
     private void FreezeBoss()
@@ -298,6 +302,8 @@ public class Boss : Character
 
         BossSpawn();
         yield return new WaitUntil(() => spawn.GetExecuteRoutine() == null);
+        //Will give the the effect of the face of the boss "booting up"
+        //screenStartUp.StartCoroutine(screenStartUp.startUp());
 
         for (int i = (activePhase - 1); i < phases.Count; i++)
         {
@@ -359,6 +365,7 @@ public class Boss : Character
 
         if (death)
         {
+            bossFaceController.StartCoroutine(bossFaceController.warOfTheAnts(1));
             death.StartDeath(this);
         }
 
@@ -368,9 +375,8 @@ public class Boss : Character
 
     internal override void Receive(float amt)
     {
-        //bossFaceController = GetComponent<BossFaceController>();
-        bossFaceController.updateScreen(0);
-
+        
+        bossFaceController.StartCoroutine(bossFaceController.warOfTheAnts(0));
         base.Receive(amt);
         InterfaceController.instance.UpdateBossHPBar(hP, maxHP);
 
