@@ -15,6 +15,7 @@ public class BP_PhaseTwo : BossPhase
         explosion.GetComponent<ParticleSystem>().Play();
         Destroy(explosion, 5);
         Invoke("EnableCore", 0.15f);
+        boss.Die();
         yield break;
     }
 
@@ -25,6 +26,7 @@ public class BP_PhaseTwo : BossPhase
             rend[i].enabled = false;
             col.enabled = true;
             core.gameObject.SetActive(true);
+            core.GetComponent<ParticleSystem>().Play();
             Destroy(sparks);
         }
     }
