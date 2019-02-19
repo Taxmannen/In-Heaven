@@ -32,6 +32,7 @@ public class BA_LaserCore : BossAttack
         animator.SetTrigger("LaserTrigger");
         vfx_Laser_Start01.Play();
         vfx_Laser_Start02.Play();
+        AudioController.instance.BossLaserShoot();
 
         yield return new WaitForSeconds(1.65f);
 
@@ -44,6 +45,7 @@ public class BA_LaserCore : BossAttack
         yield return new WaitForSeconds(2f);
 
         //Laser_End
+        AudioController.instance.BossLaserCharge();
         animator.SetBool("Laser", false);
         animator.SetLayerWeight(2, 0);
         vfx_Laser.SetActive(false);

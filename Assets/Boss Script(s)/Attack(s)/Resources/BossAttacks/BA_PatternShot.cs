@@ -39,6 +39,7 @@ public class BA_PatternShot : BossAttack
         int i = 0;
         // This variable will be used later
         float lastTimeUpdate = Time.time;
+        AudioController.instance.PlayerCommenceShooting();
         while (counter < data.numberOfPatternsToShoot)
         {
             lastTimeUpdate = Time.time;
