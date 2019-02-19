@@ -284,7 +284,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 200
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -982,25 +982,34 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
+          value: 0.009170532
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-          weightedMode: 0
+          weightedMode: 2
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0.31859753
         - serializedVersion: 3
-          time: 0.33239338
-          value: 0.85323805
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
+          time: 0.5023478
+          value: 0.80969983
+          inSlope: 62.578426
+          outSlope: 3.5213425
+          tangentMode: 1
+          weightedMode: 3
+          inWeight: 0.0145219425
+          outWeight: 0.40555027
+        - serializedVersion: 3
+          time: 0.5610154
+          value: 0.8532343
+          inSlope: -0.54903686
+          outSlope: -1.0228112
+          tangentMode: 1
+          weightedMode: 1
+          inWeight: 0.568921
+          outWeight: 0.2796177
         - serializedVersion: 3
           time: 1
-          value: 0
+          value: 0.009170532
           inSlope: -0.22922231
           outSlope: -0.22922231
           tangentMode: 0
@@ -19812,7 +19821,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
+          value: 0.85
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -19820,14 +19829,32 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
+          time: 0.45251253
+          value: 0.9050459
+          inSlope: 0.6110018
+          outSlope: 0.6110018
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 1
+        - serializedVersion: 3
+          time: 0.55
+          value: 1
+          inSlope: 0.2401406
+          outSlope: 0.2401406
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
           time: 1
-          value: 0.33774814
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
-          outWeight: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -19873,8 +19900,17 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
+          time: 0.45
+          value: 0.1
+          inSlope: -1.3227919
+          outSlope: -0.30363253
+          tangentMode: 1
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.21425311
+        - serializedVersion: 3
           time: 1
-          value: 0.115112305
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -23484,7 +23520,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4b5336c1bf311f14ab7637112fee8383, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -28238,7 +28274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9131916534209595222}
   m_Layer: 0
-  m_Name: Teleport
+  m_Name: Teleport VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
