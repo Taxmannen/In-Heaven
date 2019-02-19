@@ -567,6 +567,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 593781117, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
+      propertyPath: screenMats.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e3c3b307cb245f4b9dcb110bb719cfd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
 --- !u!114 &955244664 stripped

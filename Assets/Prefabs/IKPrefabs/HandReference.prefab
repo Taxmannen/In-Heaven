@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4347017316806973662}
-  - component: {fileID: 8114989246198555778}
   - component: {fileID: 3997451158380232201}
   m_Layer: 0
   m_Name: HandReference
@@ -32,20 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8114989246198555778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8710013870983058660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aea406f9854130e4389f2845c83e1f95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerRef: 0
-  recoilRate: 0.1
 --- !u!114 &3997451158380232201
 MonoBehaviour:
   m_ObjectHideFlags: 0
