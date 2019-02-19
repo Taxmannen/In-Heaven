@@ -82,9 +82,9 @@ public class BossHitbox : MonoBehaviour
     private void ActivateSparksVFX() {
         if (sparks != null)
         {
-            //sparks = Instantiate(sparks, transform.position, transform.rotation, transform);
+            sparks = Instantiate(sparks, transform.position, transform.rotation, transform);
             sparks.SetActive(true);
-            sparks.transform.position = transform.position;
+            //sparks.transform.position = transform.position;
         }
         else
         {
