@@ -82,8 +82,9 @@ public class BossHitbox : MonoBehaviour
     private void ActivateSparksVFX() {
         if (sparks != null)
         {
-            sparks = Instantiate(sparks, transform.position, transform.rotation, transform);
+            //sparks = Instantiate(sparks, transform.position, transform.rotation, transform);
             sparks.SetActive(true);
+            sparks.transform.position = transform.position;
         }
         else
         {
@@ -96,10 +97,10 @@ public class BossHitbox : MonoBehaviour
         if (explosion != null)
         {
             ParticleSystem newExplosion = Instantiate(explosion, (explosionTransform? explosionTransform.position:transform.position) + (Vector3.back * 2), Quaternion.AngleAxis(90,Vector3.right));
-            newExplosion.transform.localScale = new Vector3(3, 3, 3);
+            newExplosion.transform.localScale = new Vector3(1, 1, 1);
             foreach (var item in newExplosion.transform.GetComponentsInChildren<Transform>())
             {
-                item.localScale = new Vector3(3, 3, 3);
+                item.localScale = new Vector3(1, 1, 1);
             }
             newExplosion.Play();
             Destroy(newExplosion.gameObject, 3);

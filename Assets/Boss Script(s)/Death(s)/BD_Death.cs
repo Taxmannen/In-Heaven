@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BD_Death : BossDeath
 {
-
     protected override IEnumerator Execute(Boss boss)
     {
         //Destroy(boss.gameObject);
@@ -13,5 +12,4 @@ public class BD_Death : BossDeath
         executeRoutine = null;
         yield break;
     }
-
 }
