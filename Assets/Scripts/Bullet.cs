@@ -66,9 +66,9 @@ public class Bullet : MonoBehaviour
                     //Debug.Log("Did Damage");
                     other.GetComponent<BossHitbox>().Receive(damage);
                     AudioController.instance.BossHitRecieveDamage();
+                    Debug.Log("DamageSound");
                     ResetBullet();
                 }
-
                 else
                 {
                     AudioController.instance.BossHitRecieveNoDamage();
@@ -86,7 +86,10 @@ public class Bullet : MonoBehaviour
         if (other.tag == "Player Hitbox" && !fromPlayer)
         {
             other.GetComponentInParent<PlayerController>().Receive(damage);
+            if (other.GetComponentInParent<PlayerController>().playerState == Global.PlayerState.Default)
+            {
             AudioController.instance.PlayerTakingDamage();
+            }
             ResetBullet();
         }
     }

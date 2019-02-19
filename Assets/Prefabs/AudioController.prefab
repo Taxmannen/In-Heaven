@@ -46,7 +46,7 @@ MonoBehaviour:
   playerDash: event:/Player/PlayerDash
   playerJump: event:/Player/PlayerJump
   playerDoubleJump: event:/Player/PlayerDoubleJump
-  playerCommenceShooting: event:/Player/PlayerCommenceShooting
+  playerCommenceShooting: event:/Boss/BossCommenceShooting
   playerParryEvent: event:/Player/PlayerParryEvent
   playerSuccessfulParry: event:/Player/PlayerParrySuccess
   playerTakesDamage: event:/Player/PlayerTakingDamage

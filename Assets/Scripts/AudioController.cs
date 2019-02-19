@@ -258,7 +258,7 @@ public class AudioController : MonoBehaviour
     }
     private IEnumerator PlayerTakingDamageRoutine()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
         FMOD.Studio.EventInstance eventInstance = playerTakesDamageQueue.Dequeue();
         eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
       yield break;
@@ -347,19 +347,24 @@ public class AudioController : MonoBehaviour
     {
         bossDestructionEv.start();
     }
+    private bool play = true;
     public void BossPatternShot()
+        
     {
-        if (bossPatternShotQueue.Count < 15)
+        if (play)
         {
             FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(bossPatternShot);
             eventInstance.start();
             bossPatternShotQueue.Enqueue(eventInstance);
+            play = false;
             StartCoroutine(BossPatternShotRoutine());
         }
     }
     private IEnumerator BossPatternShotRoutine()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.1f);
+        play = true;
+        yield return new WaitForSeconds(10f);
         FMOD.Studio.EventInstance eventInstance = bossPatternShotQueue.Dequeue();
         eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         yield break;
