@@ -578,6 +578,16 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2984725001273237731, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: vfx_Laser_Start
+      value: 
+      objectReference: {fileID: 485643011}
+    - target: {fileID: 2984725001273237731, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: vfx_Laser_Shoot
+      value: 
+      objectReference: {fileID: 1623852195}
     - target: {fileID: 2684590989666220154, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
       propertyPath: screenMats.Array.data[0]
