@@ -19,7 +19,6 @@ public class Bullet : MonoBehaviour
     private Vector3 hitPoint;
     private Coroutine coroutine;
     private float UISpawnTime;
-
     internal ParticleSystem particleEffect;
     internal Vector3 savedLocalScale;
 
@@ -36,9 +35,9 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void SetBulletOverlay(Vector3 originTemp, Vector3 targetTemp, float speedTemp)
+    public void SetBulletOverlay(Vector3 originTemp, Vector3 targetTemp)
     {
-        coroutine = StartCoroutine(InstantiateBulletOverlay(originTemp, targetTemp, speedTemp));
+        coroutine = StartCoroutine(InstantiateBulletOverlay(originTemp, targetTemp));
     }
 
     public void SetDamage(float damage)
@@ -92,8 +91,9 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private IEnumerator InstantiateBulletOverlay(Vector3 originTemp, Vector3 targetTemp, float speedTemp)
+    private IEnumerator InstantiateBulletOverlay(Vector3 originTemp, Vector3 targetTemp)
     {
+        float speedTemp = GetComponent<Rigidbody>().velocity.magnitude; 
         UISpawnTime = (Vector3.Distance(originTemp, targetTemp)) / speedTemp - UIAnimationTime;
         yield return new WaitForSeconds(UISpawnTime);
         InterfaceController.instance.BossBulletOverlay(targetTemp);

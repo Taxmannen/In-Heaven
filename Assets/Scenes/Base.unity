@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenMats:
-  - {fileID: 2100000, guid: 0e3c3b307cb245f4b9dcb110bb719cfd, type: 2}
+  - {fileID: 2100000, guid: 073c6c30a18f88d4bbe1770214a59481, type: 2}
   - {fileID: 2100000, guid: bd6e8df6270fb0c4d84b2208ea27bb59, type: 2}
   - {fileID: 2100000, guid: e3b500fe53fd23941aa852c729cc88b9, type: 2}
   - {fileID: 2100000, guid: 6640e3fe55b1fe047bf30b97fa44d6e0, type: 2}
@@ -578,16 +578,16 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2984725001273237731, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+    - target: {fileID: 2684590989666220154, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
-      propertyPath: vfx_Laser_Start
+      propertyPath: screenMats.Array.data[0]
       value: 
-      objectReference: {fileID: 485643011}
-    - target: {fileID: 2984725001273237731, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+      objectReference: {fileID: 2100000, guid: 073c6c30a18f88d4bbe1770214a59481, type: 2}
+    - target: {fileID: 2684590989666220154, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
-      propertyPath: vfx_Laser_Shoot
-      value: 
-      objectReference: {fileID: 1623852195}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
 --- !u!114 &869062788 stripped

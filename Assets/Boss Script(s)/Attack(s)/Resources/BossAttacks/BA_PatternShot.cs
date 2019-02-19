@@ -73,7 +73,7 @@ public class BA_PatternShot : BossAttack
                 // what it can damage. And if the shoot is parrable
                 bullet.GetComponent<Bullet>().SetDamage(1);
                 bullet.GetComponent<Bullet>().isParrayable = item.parryable;
-                bullet.GetComponent<Bullet>().SetBulletOverlay(data.spawnLocation + transform.position, target, data.bulletSpeed);
+                bullet.GetComponent<Bullet>().SetBulletOverlay(data.spawnLocation + transform.position, target);
 
                 
 
