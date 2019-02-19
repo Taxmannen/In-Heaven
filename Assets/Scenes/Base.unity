@@ -350,6 +350,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2797a5e5485a5f488eb46a0b68ef8f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &485643011 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2850518715984340959, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+    type: 3}
+  m_PrefabInstance: {fileID: 859182740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &593781113 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7909508731725491980, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
@@ -572,6 +578,16 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2984725001273237731, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: vfx_Laser_Start
+      value: 
+      objectReference: {fileID: 485643011}
+    - target: {fileID: 2984725001273237731, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: vfx_Laser_Shoot
+      value: 
+      objectReference: {fileID: 1623852195}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
 --- !u!114 &869062788 stripped
@@ -915,6 +931,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7846307425818459763d58595dca98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &1623852195 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5587709685527454287, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+    type: 3}
+  m_PrefabInstance: {fileID: 859182740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!108 &1677946694 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 63198536421017583, guid: b052a328318ba964380d0e475169aca4,
