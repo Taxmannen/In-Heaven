@@ -9,6 +9,7 @@ public class Boss : Character
 {
     public GameObject bossHead;
     private BossFaceController bossFaceController;
+    private ScreenStartUp screenStartUp;
 
 
     //Serialized
@@ -102,7 +103,9 @@ public class Boss : Character
     private new void Start()
     {
         bossHead = GameObject.Find("Head");
+        screenStartUp = (ScreenStartUp)bossHead.GetComponent(typeof(ScreenStartUp));
         bossFaceController = (BossFaceController) bossHead.GetComponent(typeof(BossFaceController));
+
        
         SetupSpawn();
 
@@ -279,6 +282,7 @@ public class Boss : Character
     private void StartBoss()
     {
         bossRoutine = StartCoroutine(BossRoutine());
+        screenStartUp.StartCoroutine(screenStartUp.startUp());
     }
 
     private void FreezeBoss()
@@ -359,6 +363,7 @@ public class Boss : Character
 
         if (death)
         {
+            bossFaceController.StartCoroutine(bossFaceController.warOfTheAnts(1));
             death.StartDeath(this);
         }
 
@@ -368,9 +373,8 @@ public class Boss : Character
 
     internal override void Receive(float amt)
     {
-        //bossFaceController = GetComponent<BossFaceController>();
-        bossFaceController.updateScreen(0);
-
+        
+        bossFaceController.StartCoroutine(bossFaceController.warOfTheAnts(0));
         base.Receive(amt);
         InterfaceController.instance.UpdateBossHPBar(hP, maxHP);
 
