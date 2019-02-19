@@ -7,7 +7,10 @@ public class BA_LaserCore : BossAttack
     private LaserCoreData data;
 
     [SerializeField]
-    internal ParticleSystem vfx_Laser_Start;
+    internal ParticleSystem vfx_Laser_Start01;
+
+    [SerializeField]
+    internal ParticleSystem vfx_Laser_Start02;
 
     [SerializeField]
     internal ParticleSystem vfx_Laser_Shoot;
@@ -27,12 +30,14 @@ public class BA_LaserCore : BossAttack
     {
         //Laser_Start
         animator.SetTrigger("LaserTrigger");
-        vfx_Laser_Start.Play();
+        vfx_Laser_Start01.Play();
+        vfx_Laser_Start02.Play();
 
         yield return new WaitForSeconds(1.65f);
 
         //Laser_Shoot
         animator.SetBool("Laser", true);
+        animator.SetLayerWeight(2, 1);
         vfx_Laser.SetActive(true);
         vfx_Laser_Shoot.Play();
 
@@ -40,6 +45,7 @@ public class BA_LaserCore : BossAttack
 
         //Laser_End
         animator.SetBool("Laser", false);
+        animator.SetLayerWeight(2, 0);
         vfx_Laser.SetActive(false);
 
         yield return new WaitForSeconds(1f);
