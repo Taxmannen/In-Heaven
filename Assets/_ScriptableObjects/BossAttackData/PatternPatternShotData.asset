@@ -14,8 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patternShotDatas:
   - {fileID: 11400000, guid: e9370ec7700dc4845a9c258378c4c155, type: 2}
-  - {fileID: 11400000, guid: 03d730dd43084d24ab96a3c36de26af0, type: 2}
-  - {fileID: 11400000, guid: e9370ec7700dc4845a9c258378c4c155, type: 2}
-  - {fileID: 11400000, guid: 03d730dd43084d24ab96a3c36de26af0, type: 2}
-  - {fileID: 11400000, guid: e9370ec7700dc4845a9c258378c4c155, type: 2}
-  - {fileID: 11400000, guid: 03d730dd43084d24ab96a3c36de26af0, type: 2}
+  sencondsAfterFinishAttack: 3

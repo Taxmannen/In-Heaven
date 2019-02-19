@@ -30,7 +30,6 @@ public class BP_AttackThenMove : BossPhase
                 }
 
             }
-            Debug.Log(gameObject.transform.parent.name);
 
             if (bossMovements.Count > 0)
             {

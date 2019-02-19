@@ -27,6 +27,36 @@ public class PatternImporter : MonoBehaviour
         patternList = new List<PatternStruct>();
         var pix = importedTexture.GetPixels32();
         float textureWidth = importedTexture.width;
+        /*
+        for (int i = 0; i < pix.Length; i++)
+        {
+            if (pix[i].r < 129 && pix[i].g < 75)
+            {
+                var hej = (i / textureWidth) - (textureWidth / 2);
+                var toInt = Mathf.CeilToInt(hej);//(int)(hej + 0.5f);
+
+                //patternList.Add(new PatternStruct(i % textureWidth - (textureWidth / 2), i / textureWidth - (textureWidth / 2), pix[i].r, false));
+                // OBS! Fulkod för att fixa en weird offset av Y-axeln på importerade mönster. -Anton
+                //Debug.Log("x: " + (i % textureWidth - (textureWidth / 2)) + " y: " + hej);
+                //patternList.Add(new PatternStruct(i % textureWidth - (textureWidth / 2), hej, pix[i].r, false));
+            }
+        }
+        */
+        /*
+        for (int i = 0; i < 32; i++)
+        {
+            for (int j = 0; j < 32; j++)
+            {
+                if (pix[i*j + j].r < 129)
+                {
+                    float x = i - (textureWidth / 2);
+                    float y = (j*i%32) - (textureWidth / 2);
+                    patternList.Add(new PatternStruct(x, y, pix[i*j+j].r, false));
+                }
+                    
+            }
+        }
+        */
 
         for (int i = 0; i < pix.Length; i++)
         {
@@ -40,6 +70,7 @@ public class PatternImporter : MonoBehaviour
                 patternList.Add(new PatternStruct(i % textureWidth - (textureWidth / 2), hej, pix[i].r, false));
             }
         }
+
         Debug.Log(importedTexture.width);
         Debug.Log(patternList.Count);
         Debug.Log(pix.Length);
