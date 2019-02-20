@@ -149,23 +149,33 @@ public class PlayerController : Character
 
         }
 
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + GetComponentInChildren<Collider>().bounds.extents.y, transform.position.z), Vector3.right);
+
+        
+
         if (movement.velocityDirection == 0)
         {
             standingStill = true;
         }
+
         else
         {
             standingStill = false;
         }
 
+        //if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + GetComponentInChildren<Collider>().bounds.extents.y, transform.position.z), Vector3.right, 1) || Physics.Raycast(new Vector3(transform.position.x, transform.position.y + GetComponentInChildren<Collider>().bounds.extents.y, transform.position.z), -Vector3.right, 1))
+        //{
+        //    standingStill = true;
+        //}
         animator.SetBool("Jumping", jumping);
-        if(rigi.velocity.x == 0)
-        {
-            animator.SetBool("NotMoving", true);
-        } else
-        {
-            animator.SetBool("NotMoving", false);
-        }
+        //if(rigi.velocity.x == 0)
+        //{
+        //    animator.SetBool("NotMoving", true);
+        //} else
+        //{
+        //    animator.SetBool("NotMoving", false);
+        //}
+        animator.SetBool("NotMoving", standingStill);
     }
     /// <summary>
     /// Applies velocity to the player.
