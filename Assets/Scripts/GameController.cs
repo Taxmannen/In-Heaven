@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             enabled = true;
         }
 
@@ -65,6 +65,7 @@ public class GameController : MonoBehaviour
     {
         AudioController.instance.StopFailMenuDuck();
         gameState = Global.GameState.Game;
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     /// <summary>
