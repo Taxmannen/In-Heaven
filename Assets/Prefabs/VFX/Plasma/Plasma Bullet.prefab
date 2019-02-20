@@ -18901,7 +18901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   fromPlayer: 0
-  UIAnimationTime: 1
+  UIAnimationTime: 0
   isParrayable: 0
   impactEffect: {fileID: 4450293947842433459, guid: 0cec7a18fccd05b4783cd6665b74f5cf,
     type: 3}

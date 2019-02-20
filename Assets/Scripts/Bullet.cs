@@ -99,11 +99,18 @@ public class Bullet : MonoBehaviour
 
     private IEnumerator InstantiateBulletOverlay(Vector3 originTemp, Vector3 targetTemp)
     {
-        float speedTemp = GetComponent<Rigidbody>().velocity.magnitude; 
-        UISpawnTime = (Vector3.Distance(originTemp, targetTemp)) / speedTemp - UIAnimationTime;
+
+
+        float speedTemp = GetComponent<Rigidbody>().velocity.magnitude;
+
+        UISpawnTime = (Vector3.Distance(originTemp, targetTemp)) / speedTemp - InterfaceController.instance.targetOverlay.GetComponent<ParticleSystem>().main.startLifetime.constant;
+
         yield return new WaitForSeconds(UISpawnTime);
+
         InterfaceController.instance.BossBulletOverlay(targetTemp);
+
         yield return null;
+
     }
 
     private void CheckVFXPosition()
