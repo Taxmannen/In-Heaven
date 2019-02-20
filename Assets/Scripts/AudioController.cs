@@ -75,6 +75,10 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     [SerializeField] private string bossLaserCharge;
     FMOD.Studio.EventInstance bossLaserChargeEv;
+    [FMODUnity.EventRef]
+    [SerializeField] private string bossTeleportIn;
+    [FMODUnity.EventRef]
+    [SerializeField] private string bossTeleportOut;
 
     #endregion
     [Header("")]
@@ -133,7 +137,8 @@ public class AudioController : MonoBehaviour
     [SerializeField] private Queue<FMOD.Studio.EventInstance> bossPatternShotQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> playerTakesDamageQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> bossTakesNoDamageQueue = new Queue<FMOD.Studio.EventInstance>();
-
+    [SerializeField] private Queue<FMOD.Studio.EventInstance> bossTeleportInQueue = new Queue<FMOD.Studio.EventInstance>();
+    [SerializeField] private Queue<FMOD.Studio.EventInstance> bossTeleportOutQueue = new Queue<FMOD.Studio.EventInstance>();
     #endregion
 
     private void Start()
@@ -142,7 +147,6 @@ public class AudioController : MonoBehaviour
         playerDashEv = FMODUnity.RuntimeManager.CreateInstance(playerDash);
         playerJumpEv = FMODUnity.RuntimeManager.CreateInstance(playerJump);
         playerDoubleJumpEv = FMODUnity.RuntimeManager.CreateInstance(playerDoubleJump);
-        //playerGunReverbEv = FMODUnity.RuntimeManager.CreateInstance(playerGunReverb);
         playerCommenceShootingEv = FMODUnity.RuntimeManager.CreateInstance(playerCommenceShooting);
         playerParryEventEv = FMODUnity.RuntimeManager.CreateInstance(playerParryEvent);
         playerSuccessfulParryEv = FMODUnity.RuntimeManager.CreateInstance(playerSuccessfulParry);
@@ -153,7 +157,6 @@ public class AudioController : MonoBehaviour
         bossShootEv = FMODUnity.RuntimeManager.CreateInstance(bossShoot);
         bossDestructionEv = FMODUnity.RuntimeManager.CreateInstance(bossDestruction);
         bossLaserLoopEv = FMODUnity.RuntimeManager.CreateInstance(bossLaserLoop);
-        bossLaserLoopEv.getParameter("StopLoop", out bossLaserLoopParameter);
         bossLaserShootEv = FMODUnity.RuntimeManager.CreateInstance(bossLaserShoot);
         bossLaserChargeEv = FMODUnity.RuntimeManager.CreateInstance(bossLaserCharge);
 
@@ -166,7 +169,7 @@ public class AudioController : MonoBehaviour
         failMenuDuckEv = FMODUnity.RuntimeManager.CreateInstance(failMenuDuck);
 
         failMenuDuckEv.getParameter("FadeOut", out fadeOutParameter);
-
+        bossLaserLoopEv.getParameter("StopLoop", out bossLaserLoopParameter);
         muteAllDynamicEv.getParameter("MuteAllParameter", out muteAllParameter);
         muteMusicDynamicEv.getParameter("MuteMusicParameter", out muteMusicParameter);
         muteSfxDynamicEv.getParameter("MuteSfxParameter", out muteSfxParameter);
@@ -343,7 +346,34 @@ public class AudioController : MonoBehaviour
     {
         bossLaserChargeEv.start();
     }
-
+    public void BossTeleportIn()
+    {
+        FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(bossTeleportIn);
+        eventInstance.start();
+        bossTeleportInQueue.Enqueue(eventInstance);
+        StartCoroutine(BossTeleportInRoutine());
+    }
+    private IEnumerator BossTeleportInRoutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        FMOD.Studio.EventInstance eventInstance = bossTeleportInQueue.Dequeue();
+        eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        yield break;
+    }
+    public void BossTeleportOut()
+    {
+        FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(bossTeleportOut);
+        eventInstance.start();
+        bossTeleportOutQueue.Enqueue(eventInstance);
+        StartCoroutine(BossTeleportOutRoutine());
+    }
+    private IEnumerator BossTeleportOutRoutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        FMOD.Studio.EventInstance eventInstance = bossTeleportOutQueue.Dequeue();
+        eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        yield break;
+    }
 
 
     #endregion

@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cfefcf8ac7374b48b0910d3afd23823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerShoot: event:/Player/PlayerShoot (2)
   playerDash: event:/Player/PlayerDash
   playerJump: event:/Player/PlayerJump
   playerDoubleJump: event:/Player/PlayerDoubleJump
@@ -60,6 +61,8 @@ MonoBehaviour:
   bossLaserLoop: event:/Boss/BossLaserHitsGroundAndLoops
   bossLaserShoot: event:/Boss/BossLaserFire
   bossLaserCharge: event:/Boss/BossLaserChargeUp
+  bossTeleportIn: event:/Boss/TeleportIn
+  bossTeleportOut: event:/Boss/TeleportOut
   muteAllDynamic: event:/Sound Overrides/MuteAllDynamic 0-1
   muteAllSnap: event:/Sound Overrides/MuteAllSnap
   muteMusicDynamic: event:/Sound Overrides/MuteMusicDynamic 0-1
@@ -71,5 +74,4 @@ MonoBehaviour:
   menuClickBack: event:/NonDiegetic/MenuHover
   menuHover: event:/NonDiegetic/MenuClick
   menuPopup: event:/NonDiegetic/Popup
-  playerShoot: event:/Player/PlayerShoot (2)
   playerShootSoundDuration: 0.5
