@@ -18,7 +18,7 @@ public class BM_Teleport : BossMovement
         teleportStart.Play();
         coreCollider.enabled = false;
 
-        yield return new WaitForSeconds(data.delayUntilStart + 1.55f);
+        yield return new WaitForSeconds(data.delayUntilStart + 0.35f);
     
         boss.transform.position = data.teleportPosition;
         Vector3 bossPos = FindObjectOfType<Boss>().transform.position;
@@ -29,7 +29,7 @@ public class BM_Teleport : BossMovement
         anim.SetBool("TeleportGoing", false);
         AudioController.instance.BossTeleportOut();
         teleportEnd.Play();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.35f);
 
         coreCollider.enabled = true;
         executeRoutine = null;
