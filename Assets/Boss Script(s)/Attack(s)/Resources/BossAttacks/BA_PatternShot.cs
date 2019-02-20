@@ -60,17 +60,36 @@ public class BA_PatternShot : BossAttack
                 previousTime = item.timeDelay;
 
 
-                //Then use the data from the item.
+
+
+
+                float speed = data.bulletSpeed;
+
+                Vector3 origo = Vector3.zero;
+
+                Vector3 spawn = listOfSpawnPoints[i++ % listOfSpawnPoints.Length].position;
+
                 Vector3 target = new Vector3(item.x, item.y + 4);
+
+                Vector3 offset = target - origo;
+
+                Vector3 newDirection = (target - spawn) + offset;
+
+                speed = (newDirection.magnitude / (target - spawn).magnitude) * speed;
+                
+
+
+
+
                 GameObject bullet;
                 if (item.parryable)
                 {
-                    bullet = ShootingHelper.Shoot(listOfSpawnPoints[i++ % listOfSpawnPoints.Length].position, target, BossBulletObjectPool.current.GetPooledPlasmaBulletParrable(), data.bulletSpeed, boss.bulletParent, 10);// Set the bullet to be parriable 
+                    bullet = ShootingHelper.Shoot(spawn, target, BossBulletObjectPool.current.GetPooledPlasmaBulletParrable(), speed, boss.bulletParent, 10);
                     
                 }
                 else
                 {
-                    bullet = ShootingHelper.Shoot(listOfSpawnPoints[i++ % listOfSpawnPoints.Length].position, target, BossBulletObjectPool.current.GetPooledPlasmaBullet(), data.bulletSpeed, transform, 10);
+                    bullet = ShootingHelper.Shoot(spawn, target, BossBulletObjectPool.current.GetPooledPlasmaBullet(), speed, transform, 10);
                 }
 
 
