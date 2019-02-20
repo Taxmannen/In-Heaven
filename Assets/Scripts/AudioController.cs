@@ -16,6 +16,8 @@ public class AudioController : MonoBehaviour
     [Header("PLAYER SOUNDS")]
     #region PlayerSounds
 
+    [FMODUnity.EventRef]
+    [SerializeField] private string playerShoot;
     FMOD.Studio.EventInstance playerShootEv;
     [FMODUnity.EventRef]
     [SerializeField] private string playerDash;
@@ -26,9 +28,6 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     [SerializeField] private string playerDoubleJump;
     FMOD.Studio.EventInstance playerDoubleJumpEv;
-    //[FMODUnity.EventRef]
-    //[SerializeField] private string playerGunReverb;
-    //FMOD.Studio.EventInstance playerGunReverbEv;
     [FMODUnity.EventRef]
     [SerializeField] private string playerCommenceShooting;
     FMOD.Studio.EventInstance playerCommenceShootingEv;
@@ -124,9 +123,9 @@ public class AudioController : MonoBehaviour
     FMOD.Studio.EventInstance menuPopupEv;
     #endregion
 
-
+    [SerializeField] private float playerShootSoundDuration = 0.5f;
     [SerializeField] private Queue<FMOD.Studio.EventInstance> bossDestructionQueue = new Queue<FMOD.Studio.EventInstance>();
-
+    [SerializeField] private Queue<FMOD.Studio.EventInstance> playerShootQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> menuClickQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> menuClickBackQueue = new Queue<FMOD.Studio.EventInstance>();
     [SerializeField] private Queue<FMOD.Studio.EventInstance> menuHoverQueue = new Queue<FMOD.Studio.EventInstance>();
@@ -190,10 +189,6 @@ public class AudioController : MonoBehaviour
 
     #region PlayerSounds
 
-    public void Walk()
-    {
-
-    }
     public void PlayerJump()
     {
         playerJumpEv.start();
@@ -206,13 +201,6 @@ public class AudioController : MonoBehaviour
     {
         playerDashEv.start();
     }
-
-
-    [FMODUnity.EventRef]
-    [SerializeField] private string playerShoot;
-    [SerializeField] private Queue<FMOD.Studio.EventInstance> playerShootQueue = new Queue<FMOD.Studio.EventInstance>();
-    [SerializeField] private float playerShootSoundDuration = 0.5f;
-
     public void PlayerShoot()
     {
         FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(playerShoot);
@@ -220,7 +208,6 @@ public class AudioController : MonoBehaviour
         playerShootQueue.Enqueue(eventInstance);
         StartCoroutine(PlayerShootRoutine());
     }
-
     private IEnumerator PlayerShootRoutine()
     {
         yield return new WaitForSeconds(playerShootSoundDuration);
@@ -228,15 +215,10 @@ public class AudioController : MonoBehaviour
         eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         yield break;
     }
-
     public void PlayerCommenceShooting()
     {  
         playerCommenceShootingEv.start();
     }
-    //public void PlayerGunReverb()
-    //{
-    //    playerGunReverbEv.start();
-    //}
     public void PlayerSuccessfulParry()
     {
         playerSuccessfulParryEv.start();
@@ -277,10 +259,6 @@ public class AudioController : MonoBehaviour
     #endregion
 
     #region EnemySounds
-    public void EnemyShoot()
-    {
-
-    }
     public void BossLaserLoop()
     {
         bossLaserLoopParameter.setValue(0);
@@ -290,18 +268,6 @@ public class AudioController : MonoBehaviour
     {
         bossLaserLoopParameter.setValue(1f);
         bossLaserLoopEv.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-    }
-    public void Attack2()
-    {
-
-    }
-    public void Attack3()
-    {
-
-    }
-    public void Move()
-    {
-
     }
     public void BossHitRecieveDamage()
     {
