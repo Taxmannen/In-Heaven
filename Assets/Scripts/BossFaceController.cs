@@ -34,9 +34,12 @@ public class BossFaceController : MonoBehaviour
         StartCoroutine(warOfTheAnts(screenController));
     }
 
-   
+    private void Update()
+    {
+        //StartCoroutine(warOfTheAnts(0));
+    }
 
-    public IEnumerator warOfTheAnts(int screenController)
+    public IEnumerator warOfTheAnts(int staticScreenDuration)
     {
         for (int i = 0; i < staticDuration; i++)
       
