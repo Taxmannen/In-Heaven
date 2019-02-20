@@ -35,9 +35,7 @@ public class ShaderManager : MonoBehaviour {
     private void Start()
     {
         Setup();
-        if (bossHitPoint) {
-            ConstantFlashEffect();
-        }
+        if (bossHitPoint) ConstantFlashEffect();
     }
 
     public void HitEffect(float duration, bool player)
