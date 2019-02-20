@@ -18,6 +18,7 @@ public class DashDummy : MonoBehaviour
         {
             gameObject.SetActive(false);
             TutorialController.instance.CheckDashingGoal();
+            AudioController.instance.StopBossLaserLoop();
             
         }
     }

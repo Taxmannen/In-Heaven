@@ -10,13 +10,13 @@ PrefabInstance:
     - target: {fileID: 4172390271047549569, guid: fc7f379fe5b5ff844a8e3caa2ee8d982,
         type: 3}
       propertyPath: m_Name
-      value: BP_AttackThenMove
+      value: BP_AttackThenMove Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4172390271047549574, guid: fc7f379fe5b5ff844a8e3caa2ee8d982,
         type: 3}
       propertyPath: data
       value: 
-      objectReference: {fileID: 11400000, guid: 54cb11a2845b9fc4e919d2dd57fd1f46,
+      objectReference: {fileID: 11400000, guid: 65eb656ef73db994b84c99efad2d7765,
         type: 2}
     - target: {fileID: 4172390271047549575, guid: fc7f379fe5b5ff844a8e3caa2ee8d982,
         type: 3}
