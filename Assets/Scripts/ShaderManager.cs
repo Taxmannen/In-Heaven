@@ -113,7 +113,13 @@ public class ShaderManager : MonoBehaviour {
         if (renderers == null || renderers.Length == 0)
         {
             renderers = new Renderer[1];
-            renderers[0] = GetComponent<Renderer>();
+            Renderer existingRenderer = GetComponent<Renderer>();
+            if(!existingRenderer)
+            {
+                enabled = false;
+                return;
+            }
+            renderers[0] = existingRenderer ? existingRenderer: new Renderer();
         }
 
         materials = new Material[renderers.Length];
