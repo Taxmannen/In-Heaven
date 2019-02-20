@@ -30,7 +30,7 @@ public class TutorialCannon : MonoBehaviour
         speedBox.StopCoroutines();
         tutorialBulletClone = Instantiate(tutorialBulletPrefab, tutorialBulletOriginpos.position, tutorialBulletOriginpos.rotation, bulletParent);
         Destroy(tutorialBulletClone, bulletLifeTime);
-        
+        tutorialBulletClone.tag = "TutorialBullet";
         rigi = tutorialBulletClone.GetComponent<Rigidbody>();
         ResetSpeed();
         rigi.velocity = direction.normalized * bulletSpeed;
