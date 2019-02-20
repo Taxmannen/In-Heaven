@@ -24,7 +24,13 @@ public class JumpDummy : MonoBehaviour
 
     public void HideGameobject()
     {
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+        foreach (Transform chi in transform)
+        {
+            chi.GetComponent<MeshRenderer>().enabled = false;
+        }
+
         gameObject.GetComponent<BoxCollider>().enabled = false;
+        
     }
 }
