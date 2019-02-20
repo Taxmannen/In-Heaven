@@ -41,8 +41,8 @@ TrailRenderer:
   m_GameObject: {fileID: 66974340820716956}
   m_Enabled: 0
   m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -69,7 +69,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.5
+  m_Time: 0.2
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.3
@@ -218,9 +218,9 @@ MonoBehaviour:
   fromPlayer: 1
   UIAnimationTime: 2
   isParrayable: 0
+  trail: {fileID: 1719736924509685589}
   impactEffect: {fileID: 7001046074597780902, guid: a9736350f5dc43547b7384b93bda2b4e,
     type: 3}
-  rayFrom: {fileID: 0}
   layermask:
     serializedVersion: 2
     m_Bits: 0

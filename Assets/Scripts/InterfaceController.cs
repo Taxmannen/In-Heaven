@@ -21,7 +21,7 @@ public class InterfaceController : MonoBehaviour
     [SerializeField] private GameObject failPanel;
     [SerializeField] private GameObject successPanel;
 
-    [SerializeField] private GameObject targetOverlay;
+    [SerializeField] public GameObject targetOverlay;
 
     [SerializeField] private GameObject sliderPanel;
     [SerializeField] private Slider slider;

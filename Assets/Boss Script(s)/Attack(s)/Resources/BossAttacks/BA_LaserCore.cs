@@ -21,6 +21,8 @@ public class BA_LaserCore : BossAttack
     [SerializeField]
     internal GameObject laser;
 
+    private Transform scorchMarkTransform;
+
     [SerializeField]
     internal Animator animator;
 
@@ -60,6 +62,12 @@ public class BA_LaserCore : BossAttack
 
         yield return new WaitForSeconds(data.attackTime);
         CancelInvoke("MoveLaser");
+
+        // getComponent.getComponent.GetThing.GetAnotherThing.GetSword.SlayBoss.Camera.Main
+        scorchMarkTransform = laser.transform.GetChild(1).GetChild(3);
+        scorchMarkTransform.SetParent(null);
+        Destroy(scorchMarkTransform.gameObject, 5);
+
         Destroy(laser);
         AudioController.instance.StopBossLaserLoop();
         executeRoutine = null;
