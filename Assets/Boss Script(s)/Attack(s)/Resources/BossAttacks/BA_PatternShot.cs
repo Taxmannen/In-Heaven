@@ -89,7 +89,7 @@ public class BA_PatternShot : BossAttack
                 }
                 else
                 {
-                    bullet = ShootingHelper.Shoot(spawn, target, BossBulletObjectPool.current.GetPooledPlasmaBullet(), speed, transform, 10);
+                    bullet = ShootingHelper.Shoot(spawn, target, BossBulletObjectPool.current.GetPooledPlasmaBullet(), speed, boss.bulletParent, 10);
                 }
 
 
