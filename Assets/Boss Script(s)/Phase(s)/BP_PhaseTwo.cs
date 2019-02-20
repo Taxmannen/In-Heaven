@@ -14,6 +14,7 @@ public class BP_PhaseTwo : BossPhase
         explosion.GetComponent<ParticleSystem>().Play();
         Destroy(explosion, 5);
         Invoke("EnableCore", 0.15f);
+        yield return new WaitForSeconds(5.0f);
         boss.Die();
         yield break;
     }

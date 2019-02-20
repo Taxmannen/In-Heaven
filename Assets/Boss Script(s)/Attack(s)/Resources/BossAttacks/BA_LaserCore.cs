@@ -87,6 +87,7 @@ public class BA_LaserCore : BossAttack
         animator.SetLayerWeight(2, 0);
         vfx_Laser.SetActive(false);
 
+        yield return new WaitForSeconds(2.5f);
 
         Destroy(laserGO);
         AudioController.instance.StopBossLaserLoop();
