@@ -12,6 +12,6 @@ public class PatternShotData : AttackData
     [SerializeField] public GameObject patternPrefab;
     [SerializeField] internal float delayAfterAttack = 3;
     [SerializeField] internal float bulletSpeed = 400;
-
+    [SerializeField] public Vector3 offset = Vector3.zero;
 
 }

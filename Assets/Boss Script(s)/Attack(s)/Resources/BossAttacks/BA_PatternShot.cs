@@ -71,6 +71,8 @@ public class BA_PatternShot : BossAttack
 
                 Vector3 target = new Vector3(item.x, item.y + 4);
 
+                target += data.offset;
+
                 Vector3 offset = target - origo;
 
                 Vector3 newDirection = (target - spawn) + offset;
