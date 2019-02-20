@@ -1,0 +1,538 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7037280560932659147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7037280560932659145}
+  - component: {fileID: 7037280560932659146}
+  m_Layer: 0
+  m_Name: P_WallFollow02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7037280560932659145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7037280560932659147}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7037280560932659146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7037280560932659147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b14afae8d3b4a24b8f44c76d826a8e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  importedTexture: {fileID: 2800000, guid: 6cd7799b8e9a8b041821ba0c8ce6181d, type: 3}
+  patternList:
+  - x: -8
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: -7
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: -6
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: -5
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: -4
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: -3
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: -2
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: -1
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: 0
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: 1
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: 2
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: 3
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: 4
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: 5
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: 6
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: 7
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: 8
+    y: -3
+    timeDelay: 0
+    parryable: 0
+  - x: -8
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: -7
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: -6
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: -5
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: -4
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: -3
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: -2
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: -1
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: 0
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: 1
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: 2
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: 3
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: 4
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: 5
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: 6
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: 7
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: 8
+    y: -2
+    timeDelay: 0
+    parryable: 0
+  - x: -8
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: -7
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: -6
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: -5
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: -4
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: -3
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: -2
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: -1
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: 0
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: 1
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: 2
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: 3
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: 4
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: 5
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: 6
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: 7
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: 8
+    y: -1
+    timeDelay: 0
+    parryable: 0
+  - x: -8
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: -7
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: -6
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: -5
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: -4
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: -3
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: -2
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: -1
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: 0
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: 1
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: 2
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: 3
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: 4
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: 5
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: 6
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: 7
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: 8
+    y: 0
+    timeDelay: 0
+    parryable: 0
+  - x: -8
+    y: 1
+    timeDelay: 0
+    parryable: 0
+  - x: -7
+    y: 1
+    timeDelay: 0
+    parryable: 0
+  - x: -6
+    y: 1
+    timeDelay: 0
+    parryable: 0
+  - x: -5
+    y: 1
+    timeDelay: 0
+    parryable: 0
+  - x: -4
+    y: 1
+    timeDelay: 0
+    parryable: 0
+  - x: 5
+    y: 1
+    timeDelay: 0
+    parryable: 0
+  - x: 6
+    y: 1
+    timeDelay: 0
+    parryable: 0
+  - x: 7
+    y: 1
+    timeDelay: 0
+    parryable: 0
+  - x: 8
+    y: 1
+    timeDelay: 0
+    parryable: 0
+  - x: -8
+    y: 2
+    timeDelay: 0
+    parryable: 0
+  - x: -7
+    y: 2
+    timeDelay: 0
+    parryable: 0
+  - x: -6
+    y: 2
+    timeDelay: 0
+    parryable: 0
+  - x: -5
+    y: 2
+    timeDelay: 0
+    parryable: 0
+  - x: -4
+    y: 2
+    timeDelay: 0
+    parryable: 0
+  - x: 5
+    y: 2
+    timeDelay: 0
+    parryable: 0
+  - x: 6
+    y: 2
+    timeDelay: 0
+    parryable: 0
+  - x: 7
+    y: 2
+    timeDelay: 0
+    parryable: 0
+  - x: 8
+    y: 2
+    timeDelay: 0
+    parryable: 0
+  - x: -8
+    y: 3
+    timeDelay: 0
+    parryable: 0
+  - x: -7
+    y: 3
+    timeDelay: 0
+    parryable: 0
+  - x: -6
+    y: 3
+    timeDelay: 0
+    parryable: 0
+  - x: -5
+    y: 3
+    timeDelay: 0
+    parryable: 0
+  - x: -4
+    y: 3
+    timeDelay: 0
+    parryable: 0
+  - x: 5
+    y: 3
+    timeDelay: 0
+    parryable: 0
+  - x: 6
+    y: 3
+    timeDelay: 0
+    parryable: 0
+  - x: 7
+    y: 3
+    timeDelay: 0
+    parryable: 0
+  - x: 8
+    y: 3
+    timeDelay: 0
+    parryable: 0
+  - x: -8
+    y: 4
+    timeDelay: 0
+    parryable: 0
+  - x: -7
+    y: 4
+    timeDelay: 0
+    parryable: 0
+  - x: -6
+    y: 4
+    timeDelay: 0
+    parryable: 0
+  - x: -5
+    y: 4
+    timeDelay: 0
+    parryable: 0
+  - x: -4
+    y: 4
+    timeDelay: 0
+    parryable: 0
+  - x: 5
+    y: 4
+    timeDelay: 0
+    parryable: 0
+  - x: 6
+    y: 4
+    timeDelay: 0
+    parryable: 0
+  - x: 7
+    y: 4
+    timeDelay: 0
+    parryable: 0
+  - x: 8
+    y: 4
+    timeDelay: 0
+    parryable: 0
+  - x: -8
+    y: 5
+    timeDelay: 0
+    parryable: 0
+  - x: -7
+    y: 5
+    timeDelay: 0
+    parryable: 0
+  - x: -6
+    y: 5
+    timeDelay: 0
+    parryable: 0
+  - x: -5
+    y: 5
+    timeDelay: 0
+    parryable: 0
+  - x: -4
+    y: 5
+    timeDelay: 0
+    parryable: 0
+  - x: 5
+    y: 5
+    timeDelay: 0
+    parryable: 0
+  - x: 6
+    y: 5
+    timeDelay: 0
+    parryable: 0
+  - x: 7
+    y: 5
+    timeDelay: 0
+    parryable: 0
+  - x: 8
+    y: 5
+    timeDelay: 0
+    parryable: 0
+  - x: -8
+    y: 6
+    timeDelay: 0
+    parryable: 0
+  - x: -7
+    y: 6
+    timeDelay: 0
+    parryable: 0
+  - x: -6
+    y: 6
+    timeDelay: 0
+    parryable: 0
+  - x: -5
+    y: 6
+    timeDelay: 0
+    parryable: 0
+  - x: -4
+    y: 6
+    timeDelay: 0
+    parryable: 0
+  - x: 5
+    y: 6
+    timeDelay: 0
+    parryable: 0
+  - x: 6
+    y: 6
+    timeDelay: 0
+    parryable: 0
+  - x: 7
+    y: 6
+    timeDelay: 0
+    parryable: 0
+  - x: 8
+    y: 6
+    timeDelay: 0
+    parryable: 0
+  xOffset: 1
+  yOffset: 1
+  timeDelayMultiplier: 1

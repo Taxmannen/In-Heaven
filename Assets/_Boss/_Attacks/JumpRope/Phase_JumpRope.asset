@@ -15,9 +15,13 @@ MonoBehaviour:
   attacks:
   - type: 1
     data: {fileID: 11400000, guid: b348fb2b55cda074895b89e80c085a98, type: 2}
+  - type: 0
+    data: {fileID: 11400000, guid: 280b47fca056a6744b330b27a9d5e5cb, type: 2}
+  - type: 0
+    data: {fileID: 11400000, guid: 8a851dafbeaa5894eb1d8c16dc185eba, type: 2}
   movments:
   - type: 2
-    data: {fileID: 11400000, guid: b69972b790bf0a04cb47db0a9ea928ef, type: 2}
+    data: {fileID: 11400000, guid: 82afabf6650245e4e9769a9cef8ca1b1, type: 2}
   - type: 2
     data: {fileID: 11400000, guid: 50132fd65bda8a3479b5fbc701ef8353, type: 2}
   - type: 2
