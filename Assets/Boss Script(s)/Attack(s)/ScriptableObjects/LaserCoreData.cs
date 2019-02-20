@@ -9,12 +9,7 @@ public class LaserCoreData : AttackData
     internal GameObject laserPrefab;
 
     [SerializeField]
-    internal float attackTime = 5f;
-
-    [SerializeField]
-    internal Vector3 speed = new Vector3(10, 0, 0);
-
-    internal List<GameObject> lasers;
+    internal float speed = 10;
 
     [SerializeField]
     public Vector3 startPosition = new Vector3(0, 0, 0);
@@ -22,6 +17,4 @@ public class LaserCoreData : AttackData
     [SerializeField]
     public Vector3 endPosition = new Vector3(0, 0, 0);
 
-    [SerializeField]
-    internal float laserStayTime = 5f;
 }

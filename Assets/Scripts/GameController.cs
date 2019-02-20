@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
+
 /// <summary>
 /// Made by: Filip Nilsson, Edited By: Jesper Uddefors
 /// </summary>
@@ -36,7 +38,7 @@ public class GameController : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             enabled = true;
         }
 
@@ -61,12 +63,10 @@ public class GameController : MonoBehaviour
     /// </summary>
     public void Restart()
     {
-
-        playerController.Start();
-        //bossController.Start();
-        gameState = Global.GameState.Game;
         AudioController.instance.StopFailMenuDuck();
-
+        gameState = Global.GameState.Game;
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     /// <summary>
     /// Calls on the boss to freeze.

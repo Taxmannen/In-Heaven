@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "SprayData", menuName = "Boss/SprayData")]
+[CreateAssetMenu(fileName = "SprayData", menuName = "Boss/Spray")]
 public class SprayData : AttackData
 {
     [SerializeField] internal bool anyParrableShots;

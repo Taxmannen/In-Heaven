@@ -4,6 +4,7 @@ using UnityEngine;
 /* Script made by Daniel */
 public class BA_Spray : BossAttack
 {
+    [SerializeField] private ParticleSystem muzzleFlash;
     public SprayData data;
     private float startTime;
     private bool prevWasParry;
@@ -24,6 +25,7 @@ public class BA_Spray : BossAttack
     //This code runs every time a bullet spawns
     void FireBullet()
     {
+        muzzleFlash.Play();
         if (Time.time - startTime >= data.attackDuration) CancelInvoke("FireBullet");
 
         if (data.anyParrableShots && !prevWasParry)
