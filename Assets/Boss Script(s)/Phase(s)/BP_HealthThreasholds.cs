@@ -23,8 +23,29 @@ public class BP_HealthThreasholds : BossPhase
 
             yield return new WaitUntil(() => boss.hP <= boss.maxHP * bossPhases[c].threashhold);
 
+
+
+            foreach (BossAttack attack in bossPhases[c].phase.bossAttacks)
+            {
+                if (attack.GetExecuteRoutine() != null)
+                {
+                    yield return new WaitUntil(() => attack.GetExecuteRoutine() == null);
+                    continue;
+                }
+            }
+
+            foreach (BossMovement movement in bossPhases[c].phase.bossMovements)
+            {
+                if (movement.GetExecuteRoutine() != null)
+                {
+                    yield return new WaitUntil(() => movement.GetExecuteRoutine() == null);
+                    continue;
+                }
+            }
+
             //Stop Phase
             bossPhases[c].phase.StopPhase();
+
             c++;
             Debug.Log("Run Phase" + gameObject.name);
             yield return null;

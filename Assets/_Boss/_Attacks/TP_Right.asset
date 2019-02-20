@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a97ca2e38b7bac4484261dcef7ba0b4, type: 3}
-  m_Name: LaserCoreData
+  m_Script: {fileID: 11500000, guid: 8c3901efcb9878748807897abce12b22, type: 3}
+  m_Name: TP_Right
   m_EditorClassIdentifier: 
-  laserPrefab: {fileID: 4312739832132531567, guid: 57404117f06b3b849bc214bb01d03482,
-    type: 3}
-  speed: 10
-  startPosition: {x: -12, y: 12, z: 0}
-  endPosition: {x: 12, y: 12, z: 0}
+  delayUntilStart: 0
+  teleportPosition: {x: 100, y: 17, z: 200}
+  delayAfterTeleport: 0.1

@@ -30,6 +30,69 @@ public class BA_LaserCore : BossAttack
 
     protected override IEnumerator Execute(Boss boss)
     {
+
+        GameObject laserGO = Instantiate(data.laserPrefab, null);
+
+        laserGO.transform.position = data.startPosition;
+
+        Vector3 direction = data.endPosition - data.startPosition;
+
+        direction.Normalize();
+
+        laserGO.GetComponent<Rigidbody>().velocity = direction * data.speed;
+
+        if (data.speed > 0)
+        {
+
+            if (direction.x > 0)
+            {
+                yield return new WaitUntil(() => laserGO.transform.position.x > data.endPosition.x);
+            }
+
+            else if (direction.x < 0)
+            {
+                yield return new WaitUntil(() => laserGO.transform.position.x < data.endPosition.x);
+            }
+
+            else
+            {
+                Debug.LogError("You fucked up, start and end positions are the same on laser noob.");
+                yield break;
+            }
+
+            
+        }
+
+        else
+        {
+            Debug.LogError("You fucked up, speed is 0 or less than 0 on laser noob.");
+            yield break;
+        }
+
+        
+
+        Destroy(laserGO);
+
+        executeRoutine = null;
+        yield break;
+    }
+
+    public override void SetAttackData(AttackData data)
+    {
+        if (this.data = data as LaserCoreData)
+        {
+            //Debug.Log("SetAttackData: " + gameObject);
+        }
+        else
+        {
+            Debug.LogError("Wrong Data!!" + gameObject);
+        }
+    }
+
+    #region Legacy
+    /*
+    protected override IEnumerator Execute(Boss boss)
+    {
         //Laser_Start
         animator.SetTrigger("LaserTrigger");
         vfx_Laser_Start01.Play();
@@ -157,7 +220,7 @@ public class BA_LaserCore : BossAttack
     IEnumerator StopAndChangeDirection()
     {
         CancelInvoke("MoveLaser");
-        laser.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        //laser.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(data.laserStayTime);
         InvokeRepeating("MoveLaser", 0, 0.001f);
         startDirection = !startDirection;
@@ -174,4 +237,7 @@ public class BA_LaserCore : BossAttack
             Debug.LogError("Wrong Data!!" + gameObject);
         }
     }
+    */
+    #endregion
+
 }

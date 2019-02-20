@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
+
 /// <summary>
 /// Made by: Filip Nilsson, Edited By: Jesper Uddefors
 /// </summary>
@@ -61,12 +63,9 @@ public class GameController : MonoBehaviour
     /// </summary>
     public void Restart()
     {
-
-        playerController.Start();
-        //bossController.Start();
-        gameState = Global.GameState.Game;
         AudioController.instance.StopFailMenuDuck();
-
+        gameState = Global.GameState.Game;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     /// <summary>
     /// Calls on the boss to freeze.
