@@ -22,7 +22,7 @@ public class DashAction : MonoBehaviour
     internal Coroutine cooldownCorutine = null;
 
     internal float velocity;
-    float dir; //Added so you always dash the direction you faced last
+    float dir = 1; //Added so you always dash the direction you faced last
     private ShaderManager shaderManager;
 
     [Header("DEBUG")]
