@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BM_Teleport : BossMovement
@@ -7,6 +6,7 @@ public class BM_Teleport : BossMovement
     [SerializeField] private Animator anim;
     [SerializeField] private ParticleSystem teleportStart;
     [SerializeField] private ParticleSystem teleportEnd;
+    [SerializeField] private Collider coreCollider;
 
     public TeleportData data;
 
@@ -16,9 +16,10 @@ public class BM_Teleport : BossMovement
         anim.SetBool("TeleportGoing", true);
         AudioController.instance.BossTeleportIn();
         teleportStart.Play();
-    
+        coreCollider.enabled = false;
+
         yield return new WaitForSeconds(data.delayUntilStart + 1.55f);
-   
+    
         boss.transform.position = data.teleportPosition;
         Vector3 bossPos = FindObjectOfType<Boss>().transform.position;
         FindObjectOfType<AimMechanic>().playerBulletTrajectoryDistance = Vector3.Distance(bossPos, new Vector3(bossPos.x, bossPos.y, Camera.main.transform.position.z));
@@ -30,6 +31,7 @@ public class BM_Teleport : BossMovement
         teleportEnd.Play();
         yield return new WaitForSeconds(0.5f);
 
+        coreCollider.enabled = true;
         executeRoutine = null;
         yield break;
 
