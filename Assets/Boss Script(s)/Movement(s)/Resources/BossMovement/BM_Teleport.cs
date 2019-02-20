@@ -14,6 +14,7 @@ public class BM_Teleport : BossMovement
     {
         anim.SetTrigger("Teleport");
         anim.SetBool("TeleportGoing", true);
+        AudioController.instance.BossTeleportIn();
         teleportStart.Play();
     
         yield return new WaitForSeconds(data.delayUntilStart + 0.15f);
@@ -25,8 +26,8 @@ public class BM_Teleport : BossMovement
         yield return new WaitForSeconds(1);
 
         anim.SetBool("TeleportGoing", false);
+        AudioController.instance.BossTeleportOut();
         teleportEnd.Play();
-
         yield return new WaitForSeconds(data.delayAfterTeleport + 0.15f);
 
         executeRoutine = null;
