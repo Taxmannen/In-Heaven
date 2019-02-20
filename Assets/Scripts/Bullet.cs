@@ -10,10 +10,12 @@ public class Bullet : MonoBehaviour
     [SerializeField] private bool fromPlayer;
     [SerializeField] private float UIAnimationTime = 2;
     public bool isParrayable;
+    [SerializeField] private TrailRenderer trail;
 
     [Header("Impact Effect")]
     [SerializeField] private GameObject impactEffect;
     [SerializeField] private LayerMask layermask;
+
 
     private Vector3 direction;
     private Vector3 hitPoint;
@@ -28,7 +30,8 @@ public class Bullet : MonoBehaviour
         {
             ResetBullet();
         }
-        if (fromPlayer && transform.position.z > 1000)
+
+        if (fromPlayer && transform.position.z > 500)
         {
             ResetBullet();
             fromPlayer = false;
@@ -124,6 +127,7 @@ public class Bullet : MonoBehaviour
 
     public void ResetBullet()
     {
+        SetTrailRenderer(false);
         transform.position = new Vector3(0, -1000, 0);
         GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
@@ -136,5 +140,14 @@ public class Bullet : MonoBehaviour
     public void SetDirection(Vector3 direction)
     {
         this.direction = direction;
+    }
+
+    public void SetTrailRenderer(bool state)
+    {
+        if (trail != null)
+        {
+            trail.Clear();
+            trail.enabled = state;
+        }
     }
 }
