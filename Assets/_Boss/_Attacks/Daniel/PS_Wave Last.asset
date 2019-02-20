@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0ca45832b8c9774aac71e286165f010, type: 3}
+  m_Name: PS_Wave Last
+  m_EditorClassIdentifier: 
+  numberOfPatternsToShoot: 1
+  delayAfterEachPattern: 0.25
+  spawnLocation: {x: 0, y: 0, z: 0}
+  bulletPrefab: {fileID: 0}
+  patternPrefab: {fileID: 5696590917865661381, guid: cd238c205135a8544af3a4f001b36b77,
+    type: 3}
+  delayAfterAttack: 0
+  bulletSpeed: 50
+  offset: {x: 0, y: 0, z: 0}
