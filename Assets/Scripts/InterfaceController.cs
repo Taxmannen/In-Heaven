@@ -40,7 +40,7 @@ public class InterfaceController : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             enabled = true;
         }
 
@@ -68,17 +68,17 @@ public class InterfaceController : MonoBehaviour
 
     public void UpdatePlayerState(Global.PlayerState playerState)
     {
-        playerStateText.text = "PlayerState: " + playerState;
+        //playerStateText.text = "PlayerState: " + playerState;
     }
 
     public void UpdateBossHP(float hP, float maxHP)
     {
-        bossHpText.text = "HP: " + hP + "/" + maxHP;
+        //bossHpText.text = "HP: " + hP + "/" + maxHP;
     }
 
     public void UpdateBossState(Global.BossState bossState)
     {
-        bossStateText.text = "BossState: " + bossState;
+        //bossStateText.text = "BossState: " + bossState;
     }
 
     public void Fail()
