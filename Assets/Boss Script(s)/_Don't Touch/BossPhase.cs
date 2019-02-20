@@ -23,11 +23,11 @@ public class BossPhase : MonoBehaviour
     protected Coroutine phaseRoutine = null;
     protected Coroutine movementRoutine = null;
     protected Coroutine attackRoutine = null;
-    protected List<BossMovement> bossMovements = new List<BossMovement>();
-    protected List<BossAttack> bossAttacks = new List<BossAttack>();
+    public List<BossMovement> bossMovements = new List<BossMovement>();
+    public List<BossAttack> bossAttacks = new List<BossAttack>();
 
-    private BossAttack[] attackList;
-    private BossMovement[] movementsList;
+    public BossAttack[] attackList;
+    public BossMovement[] movementsList;
 
     //Main
 
