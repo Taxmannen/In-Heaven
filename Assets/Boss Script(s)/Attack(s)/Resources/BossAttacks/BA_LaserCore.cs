@@ -30,6 +30,19 @@ public class BA_LaserCore : BossAttack
 
     protected override IEnumerator Execute(Boss boss)
     {
+        //Laser_Start
+        animator.SetTrigger("LaserTrigger");
+        vfx_Laser_Start01.Play();
+        vfx_Laser_Start02.Play();
+        AudioController.instance.BossLaserShoot();
+
+        yield return new WaitForSeconds(1.65f);
+
+        //Laser_Shoot
+        animator.SetBool("Laser", true);
+        animator.SetLayerWeight(2, 1);
+        vfx_Laser.SetActive(true);
+        vfx_Laser_Shoot.Play();
 
         GameObject laserGO = Instantiate(data.laserPrefab, null);
 
@@ -68,11 +81,15 @@ public class BA_LaserCore : BossAttack
             Debug.LogError("You fucked up, speed is 0 or less than 0 on laser noob.");
             yield break;
         }
+        //Laser_End
+        AudioController.instance.BossLaserCharge();
+        animator.SetBool("Laser", false);
+        animator.SetLayerWeight(2, 0);
+        vfx_Laser.SetActive(false);
 
-        
 
         Destroy(laserGO);
-
+        AudioController.instance.StopBossLaserLoop();
         executeRoutine = null;
         yield break;
     }
@@ -93,27 +110,13 @@ public class BA_LaserCore : BossAttack
     /*
     protected override IEnumerator Execute(Boss boss)
     {
-        //Laser_Start
-        animator.SetTrigger("LaserTrigger");
-        vfx_Laser_Start01.Play();
-        vfx_Laser_Start02.Play();
-        AudioController.instance.BossLaserShoot();
+        
 
-        yield return new WaitForSeconds(1.65f);
-
-        //Laser_Shoot
-        animator.SetBool("Laser", true);
-        animator.SetLayerWeight(2, 1);
-        vfx_Laser.SetActive(true);
-        vfx_Laser_Shoot.Play();
+        
 
         yield return new WaitForSeconds(2f);
 
-        //Laser_End
-        AudioController.instance.BossLaserCharge();
-        animator.SetBool("Laser", false);
-        animator.SetLayerWeight(2, 0);
-        vfx_Laser.SetActive(false);
+        
 
         yield return new WaitForSeconds(1f);
 
@@ -132,7 +135,7 @@ public class BA_LaserCore : BossAttack
         Destroy(scorchMarkTransform.gameObject, 5);
 
         Destroy(laser);
-        AudioController.instance.StopBossLaserLoop();
+        
         executeRoutine = null;
         yield break;
     }

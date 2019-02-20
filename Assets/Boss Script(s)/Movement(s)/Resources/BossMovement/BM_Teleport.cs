@@ -17,18 +17,18 @@ public class BM_Teleport : BossMovement
         AudioController.instance.BossTeleportIn();
         teleportStart.Play();
     
-        yield return new WaitForSeconds(data.delayUntilStart + 0.15f);
+        yield return new WaitForSeconds(data.delayUntilStart + 1.55f);
    
         boss.transform.position = data.teleportPosition;
         Vector3 bossPos = FindObjectOfType<Boss>().transform.position;
         FindObjectOfType<AimMechanic>().playerBulletTrajectoryDistance = Vector3.Distance(bossPos, new Vector3(bossPos.x, bossPos.y, Camera.main.transform.position.z));
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(data.delayAfterTeleport);
 
         anim.SetBool("TeleportGoing", false);
         AudioController.instance.BossTeleportOut();
         teleportEnd.Play();
-        yield return new WaitForSeconds(data.delayAfterTeleport + 0.15f);
+        yield return new WaitForSeconds(0.5f);
 
         executeRoutine = null;
         yield break;
