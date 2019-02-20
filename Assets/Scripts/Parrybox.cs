@@ -35,7 +35,6 @@ public class Parrybox : MonoBehaviour
     {
         if (other.tag == "Boss Parryable Bullet")
         {
-            Debug.Log("ParryBox activated");
            // bulletParried = true;
 
             Statistics.instance.numberOfSuccessfulParrys++;

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -16,10 +15,11 @@ public class SuperChargeResource : MonoBehaviour
     private Coroutine superChargeCoroutine = null;
     [SerializeField] internal float durationOfFireRateIncrease = 1f;
     [SerializeField] internal float fireRateMultiplier = 2f;
+    [SerializeField] private ParticleSystem effect;
 
     [Header("DEBUG")]
     [SerializeField] [ReadOnly] internal float superCharge;
-    // Start is called before the first frame update
+
     void Start()
     {
         player = GetComponent<PlayerController>();
@@ -28,17 +28,13 @@ public class SuperChargeResource : MonoBehaviour
 
     public void SuperCharge()
     {
-
         if (superCharge == superChargeMax)
         {
-
             if (superChargeCoroutine == null)
             {
                 superChargeCoroutine = StartCoroutine(SuperChargeCoroutine());
             }
-
         }
-
     }
 
     private IEnumerator SuperChargeCoroutine()
@@ -46,7 +42,9 @@ public class SuperChargeResource : MonoBehaviour
         superCharge = 0;
         Statistics.instance.numberOfSuperChargesUnleashed++;
         player.shootAction.playerBulletsPerSecond *= fireRateMultiplier;
+        effect.Play();
         yield return new WaitForSeconds(durationOfFireRateIncrease);
+        effect.Stop();
         player.shootAction.BulletPerSecondReset();
         superChargeCoroutine = null;
         yield break;
@@ -54,7 +52,6 @@ public class SuperChargeResource : MonoBehaviour
 
     public void IncreaseSuperCharge()
     {
-
         if (superCharge + superChargeIncrease >= superChargeMax)
         {
             superCharge = superChargeMax;
@@ -64,12 +61,10 @@ public class SuperChargeResource : MonoBehaviour
         {
             superCharge += superChargeIncrease;
         }
-
-
     }
+
     public void IncreaseSuperCharge(float incres)
     {
-
         if (superCharge + superChargeMax/incres >= superChargeMax)
         {
             superCharge = superChargeMax;
@@ -79,7 +74,5 @@ public class SuperChargeResource : MonoBehaviour
         {
             superCharge += superChargeMax / incres;
         }
-
     }
-
 }

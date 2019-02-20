@@ -33,6 +33,7 @@ public class TargetDummy : Character
         if (index < TutorialController.instance.shootDummyParent.childCount)
         {
             gameObject.SetActive(false);
+            AudioController.instance.BossDestruction();
             if (index + 1 < TutorialController.instance.shootDummyParent.childCount)
             {
                 TutorialController.instance.shootDummyParent.GetChild(index + 1).gameObject.SetActive(true);
