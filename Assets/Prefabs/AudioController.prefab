@@ -61,8 +61,8 @@ MonoBehaviour:
   bossLaserLoop: event:/Boss/BossLaserHitsGroundAndLoops
   bossLaserShoot: event:/Boss/BossLaserFire
   bossLaserCharge: event:/Boss/BossLaserChargeUp
-  bossTeleportIn: event:/Boss/TeleportIn
-  bossTeleportOut: event:/Boss/TeleportOut
+  bossTeleportIn: event:/Boss/TeleportOut
+  bossTeleportOut: event:/Boss/TeleportIn
   muteAllDynamic: event:/Sound Overrides/MuteAllDynamic 0-1
   muteAllSnap: event:/Sound Overrides/MuteAllSnap
   muteMusicDynamic: event:/Sound Overrides/MuteMusicDynamic 0-1
