@@ -39,4 +39,8 @@ public class AimMechanic : MonoBehaviour
         }
 
     }
+    private void Update()
+    {
+        playerBulletTrajectoryDistance = FindObjectOfType<Boss>().transform.position.z;
+    }
 }
