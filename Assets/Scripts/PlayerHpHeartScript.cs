@@ -7,34 +7,50 @@ public class PlayerHpHeartScript : MonoBehaviour
 {
     private PlayerController playerController;
 
-    public int health;
-    public int numberofhearts;
+    float health;
+    float numberOfHearts;
 
     public Image[] heartImage;
-
     public Sprite heartSprite;
 
     private float bossHealthMax;
     public float healthBarBaseSize;
 
+    int healthPoints;
 
     void Start()
     {
+        healthPoints = heartImage.Length;
         //heartImage = GetComponent<Image>();
 
         playerController = gameObject.GetComponent<PlayerController>();
-        bossHealthMax = playerController.maxHP;
+
+        numberOfHearts = playerController.maxHP;
         
     }
+          
 
-    void UpdateHealthbar(float dmgTaken)
-    {
 
-    }
-
-    
     void Update()
     {
-        Debug.Log("PlayerHp shite "+bossHealthMax);
+        health = playerController.hP;
+
+        if(health> numberOfHearts)
+        {
+            health = numberOfHearts;
+        }
+
+        for(int i = 0; i<heartImage.Length; i++)
+        {
+            if (i<numberOfHearts)
+            {
+                heartImage[i].enabled = true;
+            }
+            else
+            {
+                heartImage[i].enabled = false;
+            }
+        }
+        
     }
 }
