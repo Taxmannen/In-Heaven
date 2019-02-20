@@ -121,6 +121,10 @@ public class PlayerInput : MonoBehaviour
         {
             playerController.Parry();    
         }
+        if(playerController.superChargeResource.superCharge >= playerController.superChargeResource.superChargeMax)
+        {
+            playerController.SuperCharge();
+        }
 
     }
 
