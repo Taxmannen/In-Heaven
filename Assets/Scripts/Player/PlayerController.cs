@@ -19,6 +19,7 @@ public class PlayerController : Character
 
     [Header("HIT")]
     [SerializeField] [Range(0, 10)] private float hitInvincibleDuration = 0.1f; //Duration of invincibility state after being hit, necessary to avoid getting hit rapidly multiple times.    
+    [SerializeField] internal ParticleSystem vfx;
 
     //Private
     internal float horizontalDirection;
@@ -262,6 +263,7 @@ public class PlayerController : Character
     internal override void Hit(float amt)
     {
         hP -= amt;
+        vfx.Play();
         Invincible(hitInvincibleDuration, true);
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
     }
