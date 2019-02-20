@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0ca45832b8c9774aac71e286165f010, type: 3}
-  m_Name: JumpRopeLowEZ
+  m_Name: PS_Easy
   m_EditorClassIdentifier: 
   numberOfPatternsToShoot: 1
-  delayAfterEachPattern: 0
+  delayAfterEachPattern: 1
   spawnLocation: {x: 0, y: 0, z: 0}
-  bulletPrefab: {fileID: 4048045993160232565, guid: 813d07bd9374f0344b3c4a1f2095e277,
+  bulletPrefab: {fileID: 0}
+  patternPrefab: {fileID: 6841842091586900892, guid: 05f2cc4f19b77824cb1a169510190b46,
     type: 3}
-  patternPrefab: {fileID: 6245650631336054461, guid: 777b9bf7a17795f45a1e82d23f3a7b94,
-    type: 3}
-  delayAfterAttack: 1
+  delayAfterAttack: 2
   bulletSpeed: 50
   offset: {x: 0, y: 0, z: 0}

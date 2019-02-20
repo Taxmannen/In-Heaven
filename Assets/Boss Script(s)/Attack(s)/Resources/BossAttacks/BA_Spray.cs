@@ -12,7 +12,6 @@ public class BA_Spray : BossAttack
 
     protected override IEnumerator Execute(Boss boss)
     {
-        Debug.Log("nu?");
         yield return new WaitForSeconds(data.delayBetweenAttacks);
         spawnPoint = GameObject.Find("PatternShotList").GetComponentInChildren<Transform>();
         startTime = Time.time;

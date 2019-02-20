@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1d286282db2668499e347170c5d06cc, type: 3}
-  m_Name: PP_JumpRopeEasy
+  m_Name: PP_SnakeEasy
   m_EditorClassIdentifier: 
   patternShotDatas:
-  - {fileID: 11400000, guid: 0d32d6a22f673c44f96970af25af743f, type: 2}
-  - {fileID: 11400000, guid: 360025c71d6d61c4185b3021f2668c1d, type: 2}
-  - {fileID: 11400000, guid: 0d32d6a22f673c44f96970af25af743f, type: 2}
-  - {fileID: 11400000, guid: 360025c71d6d61c4185b3021f2668c1d, type: 2}
-  - {fileID: 11400000, guid: 1cdeccfac81230946815cf1f616c656a, type: 2}
+  - {fileID: 11400000, guid: aeb65e8c9361f1642ad0352291f89040, type: 2}
+  - {fileID: 11400000, guid: 7e1ffc324b26ce347bbd460dc0d27a4f, type: 2}
+  - {fileID: 11400000, guid: aeb65e8c9361f1642ad0352291f89040, type: 2}
+  - {fileID: 11400000, guid: 7e1ffc324b26ce347bbd460dc0d27a4f, type: 2}
   sencondsAfterFinishAttack: 3
