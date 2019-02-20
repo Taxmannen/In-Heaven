@@ -104,6 +104,7 @@ public class BossHitbox : MonoBehaviour
             }
             newExplosion.Play();
             Destroy(newExplosion.gameObject, 3);
+            GetComponent<Renderer>().enabled = false;
         }
         else
         {
