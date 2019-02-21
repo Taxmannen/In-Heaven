@@ -23,21 +23,20 @@ public class ExplosionController : MonoBehaviour
     private ParticleSystem[] explosions;
 
     //Used for testing
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartExplosions();
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        StartExplosions();
+    //    }
+    //}
 
-    private void StartExplosions()
+    public void StartExplosions()
     {
         coroutine1 = StartCoroutine(ActivateExplosionVFX());
         coroutine2 = StartCoroutine(Timer());
     }
 
-    // Start is called before the first frame update
     private IEnumerator ActivateExplosionVFX()
     {
         for (int i = 0; i < explosions.Length; i++) {

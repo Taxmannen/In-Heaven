@@ -40,7 +40,6 @@ public class UIWhiteFadeAndFlash : MonoBehaviour
         {
             StartWhiteFadeOut();
         }
-        
     }
 
     // Used for testing
@@ -105,30 +104,18 @@ public class UIWhiteFadeAndFlash : MonoBehaviour
     private Coroutine scriptStopperCoroutine;
 
     private void WhiteFade() {
-        if (!stopScript) {
-            if (whiteImage.color.a <= maxAlphaFade && fadeUp)
-            {
-                color.a += fadeStep;
-                whiteImage.color = color;
-            }
-            if (whiteImage.color.a >= maxAlphaFade)
-            {
-                fadeUp = false;
-                scriptStopperCoroutine = StartCoroutine("ScriptStopper");
-            }
-
-            if (whiteImage.color.a >= minAlphaFade && !fadeUp)
-            {
-                color.a -= fadeStep;
-                whiteImage.color = color;
-            }
-            if (whiteImage.color.a <= minAlphaFade)
-            {
-                fadeUp = true;
-                stopScript = true;
-            }
+        if (whiteImage.color.a <= maxAlphaFade && fadeUp)
+        {
+            color.a += fadeStep;
+            whiteImage.color = color;
+        }
+        if (whiteImage.color.a >= maxAlphaFade)
+        {
+            fadeUp = false;
         }
     }
+
+
 
     [SerializeField]
     private bool fadeOut = false;
@@ -140,18 +127,20 @@ public class UIWhiteFadeAndFlash : MonoBehaviour
             {
                 color.a -= fadeStep;
                 whiteImage.color = color;
+                Debug.Log("Fades");
             }
             else
             {
-                scriptStopperCoroutine = StartCoroutine("ScriptStopper");
+                stopScript = true;
             }
         }
     }
 
     [SerializeField]
     private float whiteStayTime = 0;
-    private IEnumerator ScriptStopper() {
+    private IEnumerator ScriptPauser() {
         stopScript = true;
+        
         yield return new WaitForSeconds(whiteStayTime);
         stopScript = false;
         yield return null;
