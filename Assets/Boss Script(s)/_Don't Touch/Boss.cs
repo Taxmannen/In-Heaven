@@ -361,7 +361,7 @@ public class Boss : Character
         }
 
         BossDeath();
-
+        bossFaceController.StartCoroutine(bossFaceController.ded());
         yield return new WaitUntil(() => death.GetExecuteRoutine() == null);
         GameController.instance.SetGameState(Global.GameState.Success);
         bossRoutine = null;
@@ -383,8 +383,7 @@ public class Boss : Character
     {
 
         if (death)
-        {
-            bossFaceController.StartCoroutine(bossFaceController.warOfTheAnts(1));
+        {           
             death.StartDeath(this);
         }
 
@@ -394,8 +393,9 @@ public class Boss : Character
 
     internal override void Receive(float amt)
     {
-        
+
         bossFaceController.StartCoroutine(bossFaceController.warOfTheAnts(0));
+        
         base.Receive(amt);
         InterfaceController.instance.UpdateBossHPBar(hP, maxHP);
 

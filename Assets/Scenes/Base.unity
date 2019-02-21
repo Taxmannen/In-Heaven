@@ -741,6 +741,10 @@ PrefabInstance:
       propertyPath: staticDuration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 593781117, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
+      propertyPath: screenMats.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe324f78a21b4b74f913ac655fb10a3d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
 --- !u!1001 &970883458
