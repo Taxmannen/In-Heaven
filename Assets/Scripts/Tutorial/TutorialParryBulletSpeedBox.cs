@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TutorialParryBulletSpeedBox : MonoBehaviour
 {
     public static TutorialParryBulletSpeedBox instance;
     internal Coroutine lowerBulletSpeedRoutine = null;
     internal Coroutine increaseBulletSpeedRoutine = null;
-    internal Coroutine instantiateBulletRoutine = null;
+    public Coroutine instantiateBulletRoutine = null;
     internal Coroutine resetBulletRoutine = null;
     [SerializeField] TutorialCannon tutorialCannon;
+
 
 
     private void Awake()
@@ -37,8 +39,10 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
                 Debug.Log("Exited");
                 StopCoroutine(lowerBulletSpeedRoutine);
                 increaseBulletSpeedRoutine = StartCoroutine(IncreaseBulletSpeed());
-            }            
+            }
+            StartShoot();
             lowerBulletSpeedRoutine = null;
+           
         }
     }
 
@@ -91,17 +95,26 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
     }
     public void StartShoot()
     {
-        if(instantiateBulletRoutine == null)
+
+        if (TutorialController.instance.superChargeResource.superCharge >= TutorialController.instance.superChargeResource.superChargeMax)
+        {
+            StopAllCoroutines();
+            return;
+        }
+
+            Debug.Log("kollakolla");
+        if (instantiateBulletRoutine == null)
         {
             instantiateBulletRoutine = StartCoroutine(InstantiateBulletRoutine());
         }
         
     }
-    private IEnumerator InstantiateBulletRoutine()
+    public IEnumerator InstantiateBulletRoutine()
     {
         StopCoroutines();
         tutorialCannon.bulletSpeed = tutorialCannon.originalBulletSpeed;
         tutorialCannon.SpawnBullet();
+        Debug.Log("BulletSpawn");
         yield return new WaitForSeconds(1f);
         instantiateBulletRoutine = null;        
         yield break;

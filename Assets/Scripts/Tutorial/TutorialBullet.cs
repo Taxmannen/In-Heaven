@@ -9,8 +9,7 @@ public class TutorialBullet : Bullet
     {
         if(TutorialParryBulletSpeedBox.instance != null)
         {
-            TutorialParryBulletSpeedBox.instance.StartShoot();
+            //TutorialParryBulletSpeedBox.instance.StartShoot();   
         }
-        
     }
 }

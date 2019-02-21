@@ -27,10 +27,12 @@ public class TutorialCannon : MonoBehaviour
 
     public void SpawnBullet()
     {
+        Debug.Log("SPAWNEEEEEED");
         speedBox.StopCoroutines();
         tutorialBulletClone = Instantiate(tutorialBulletPrefab, tutorialBulletOriginpos.position, tutorialBulletOriginpos.rotation, bulletParent);
         Destroy(tutorialBulletClone, bulletLifeTime);
         tutorialBulletClone.tag = "TutorialBullet";
+        tutorialBulletClone.AddComponent<TutorialBullet>();
         rigi = tutorialBulletClone.GetComponent<Rigidbody>();
         ResetSpeed();
         rigi.velocity = direction.normalized * bulletSpeed;
@@ -48,7 +50,6 @@ public class TutorialCannon : MonoBehaviour
     public void IncreaseSpeed()
     {
         //rigi = tutorialBulletClone.GetComponent<Rigidbody>();
-        Debug.Log(rigi);
         if (rigi != null)
         {
             rigi.velocity = direction.normalized * bulletSpeed++;
