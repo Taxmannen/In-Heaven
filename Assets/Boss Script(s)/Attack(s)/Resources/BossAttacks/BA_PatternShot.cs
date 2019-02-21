@@ -30,7 +30,7 @@ public class BA_PatternShot : BossAttack
     protected override IEnumerator Execute(Boss boss)
     {
         counter = 0;
-        animator.SetLayerWeight(3, 1);
+        //animator.SetLayerWeight(3, 1);
         //Code
         //Debug.Log("Run Pattern Shot");
         // Starting by creating the Pattern to a real GameObject
@@ -113,7 +113,7 @@ public class BA_PatternShot : BossAttack
             yield return new WaitForSeconds(data.delayAfterEachPattern);
         }
 
-        animator.SetLayerWeight(3, 0);
+        //animator.SetLayerWeight(3, 0);
         // Here will be the delay between AttackTypes, if they are after each other.
         yield return new WaitForSeconds(data.delayAfterAttack);
         executeRoutine = null;
