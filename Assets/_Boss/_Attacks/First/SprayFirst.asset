@@ -15,6 +15,6 @@ MonoBehaviour:
   anyParrableShots: 0
   percentageOfShootsParrable: 0
   attackDuration: 4
-  speed: 80
-  fireRate: 0.2
+  speed: 70
+  fireRate: 0.1
   delayBetweenAttacks: 0
