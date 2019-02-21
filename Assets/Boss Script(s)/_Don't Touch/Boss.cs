@@ -368,6 +368,7 @@ public class Boss : Character
         bossFaceController.StartCoroutine(bossFaceController.ded());
         yield return new WaitUntil(() => death.GetExecuteRoutine() == null);
         GameController.instance.SetGameState(Global.GameState.Success);
+        InterfaceController.instance.Success();
         bossRoutine = null;
         yield break;
 
@@ -433,9 +434,6 @@ public class Boss : Character
             activePhase++;
             base.Die();
             InterfaceController.instance.HideBossHPBar();
-            GameController.instance.gameState = Global.GameState.Success;
-            InterfaceController.instance.Success();
-
         }
 
     }
