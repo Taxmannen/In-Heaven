@@ -60,9 +60,13 @@ public class Boss : Character
 
     private void Update()
     {
-        time += Time.deltaTime * speed;
-        sine = Mathf.Sin(time);
-        this.transform.position = startPosition + (Vector3.up * sine * magnitude);
+        if(GameController.instance.gameState == Global.GameState.Game)
+        {
+            time += Time.deltaTime * speed;
+            sine = Mathf.Sin(time);
+            this.transform.position += (Vector3.up * sine * magnitude);
+        }
+        
     }
 
     private void OnValidate()

@@ -333,7 +333,7 @@ public class AudioController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.01f);
         play = true;
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(0.2f);
         FMOD.Studio.EventInstance eventInstance = bossPatternShotQueue.Dequeue();
         eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         yield break;
