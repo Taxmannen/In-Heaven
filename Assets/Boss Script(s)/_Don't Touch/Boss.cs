@@ -32,6 +32,14 @@ public class Boss : Character
     [Header("ACTIVE PHASE")]
     [SerializeField] private int activePhase = 0;
 
+    [Header("Sine Wave Animationen")]
+    [SerializeField] private float sineWaveOffset;
+    [SerializeField] public float speed;
+    [SerializeField] public float time;
+    [SerializeField] public float sine;
+    [SerializeField] public float magnitude;
+    [SerializeField] public Vector3 startPosition;
+
 
 
     //Private
@@ -45,6 +53,18 @@ public class Boss : Character
     private GameObject bossHead;
 
     //Main
+
+    private void Awake()
+    {
+        startPosition = this.transform.position;
+    }
+
+    private void Update()
+    {
+        time += Time.deltaTime * speed;
+        sine = Mathf.Sin(time);
+        this.transform.position = startPosition + (Vector3.up * sine * magnitude);
+    }
 
     private void OnValidate()
     {
