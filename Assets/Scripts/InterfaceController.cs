@@ -23,6 +23,7 @@ public class InterfaceController : MonoBehaviour
     [SerializeField] private GameObject successPanel;
 
     [SerializeField] public GameObject targetOverlay;
+    [SerializeField] public GameObject heartContainer;
 
     [SerializeField] private GameObject sliderPanel;
     [SerializeField] private Slider slider;
@@ -88,7 +89,17 @@ public class InterfaceController : MonoBehaviour
     }
     public void Success()
     {
+        HidePlayerHealth();
         successPanel.SetActive(true);
+
+    }
+    public void HidePlayerHealth()
+    {
+        heartContainer.SetActive(false);
+    }
+    public void ShowPlayerHealth()
+    {
+        heartContainer.SetActive(true);
     }
     public void Pause()
     { 

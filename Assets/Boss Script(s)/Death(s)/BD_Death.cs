@@ -14,13 +14,13 @@ public class BD_Death : BossDeath
     {
         //Destroy(boss.gameObject);
         AudioController.instance.BossDeath();
-        Debug.Log("Dead");
-
         explosion.GetComponent<ParticleSystem>().Play();
+        InterfaceController.instance.HidePlayerHealth();
+        InterfaceController.instance.HideBossHPBar();
         whiteFade.StartWhiteFade();
 
         yield return new WaitForSeconds(2);
-
+        boss.Die();
         executeRoutine = null;
 
         yield break;

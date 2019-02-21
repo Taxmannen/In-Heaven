@@ -12,9 +12,11 @@ public class BP_PhaseTwo : BossPhase
     protected override IEnumerator PhaseRoutine(Boss boss)
     {
         explosion.GetComponent<ParticleSystem>().Play();
-        Destroy(explosion, 5);
+        InterfaceController.instance.HideBossHPBar();
+        //Destroy(explosion, 5);
         Invoke("EnableCore", 0.15f);
         yield return new WaitForSeconds(5.0f);
+        explosion.GetComponent<ParticleSystem>().Stop();
         boss.Die();
         yield break;
     }

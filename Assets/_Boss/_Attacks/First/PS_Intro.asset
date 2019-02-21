@@ -18,6 +18,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   patternPrefab: {fileID: 7037280560932659147, guid: a0ff3f6c1333f9449850ce495833df6d,
     type: 3}
-  delayAfterAttack: 8
+  delayAfterAttack: 1
   bulletSpeed: 50
   offset: {x: 0, y: 0, z: 0}

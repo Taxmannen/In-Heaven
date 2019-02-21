@@ -127,7 +127,7 @@ public class UIWhiteFadeAndFlash : MonoBehaviour
             {
                 color.a -= fadeStep;
                 whiteImage.color = color;
-                Debug.Log("Fades");
+                //Debug.Log("Fades");
             }
             else
             {
