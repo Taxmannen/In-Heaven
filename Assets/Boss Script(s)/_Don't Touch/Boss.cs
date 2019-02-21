@@ -62,7 +62,7 @@ public class Boss : Character
     {
         time += Time.deltaTime * speed;
         sine = Mathf.Sin(time);
-        this.transform.position = startPosition + (Vector3.up * sine * magnitude);
+        this.transform.position += (Vector3.up * sine * magnitude);
     }
 
     private void OnValidate()
