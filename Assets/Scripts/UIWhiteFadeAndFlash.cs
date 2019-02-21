@@ -34,7 +34,14 @@ public class UIWhiteFadeAndFlash : MonoBehaviour
     //    }
     //}
 
-
+    private void Start()
+    {
+        if(fadeOut)
+        {
+            StartWhiteFadeOut();
+        }
+        
+    }
 
     // Used for testing
     public void StartWhiteFlash() {
@@ -86,6 +93,14 @@ public class UIWhiteFadeAndFlash : MonoBehaviour
         InvokeRepeating("WhiteFade", 0.1f, fadeRate);
     }
 
+    public void StartWhiteFadeOut()
+    {
+        whiteImage.color = maxColor;
+        stopScript = false;
+        SetColors(maxAlphaFade, minAlphaFade);
+        InvokeRepeating("WhiteFadeOut", 0.1f, fadeRate);
+    }
+
     private bool fadeUp = true;
     private Coroutine scriptStopperCoroutine;
 
@@ -111,6 +126,24 @@ public class UIWhiteFadeAndFlash : MonoBehaviour
             {
                 fadeUp = true;
                 stopScript = true;
+            }
+        }
+    }
+
+    [SerializeField]
+    private bool fadeOut = false;
+    private void WhiteFadeOut()
+    {
+        if (!stopScript)
+        {
+            if (whiteImage.color.a > 0)
+            {
+                color.a -= fadeStep;
+                whiteImage.color = color;
+            }
+            else
+            {
+                scriptStopperCoroutine = StartCoroutine("ScriptStopper");
             }
         }
     }
