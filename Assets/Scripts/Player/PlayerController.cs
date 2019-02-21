@@ -6,6 +6,8 @@
 public class PlayerController : Character
 {
 
+    [SerializeField] private float playerMaxHP;
+
     //Serialized
     [Header("SERIALIZED")]
     [SerializeField] internal Rigidbody rigi;
@@ -51,6 +53,7 @@ public class PlayerController : Character
     [ExecuteInEditMode]
     private void OnValidate()
     {
+        maxHP = playerMaxHP;
         hP = maxHP;
         dashAction = dashAction == null ? GetComponent<DashAction>() : dashAction;
         parryAction = parryAction == null ? GetComponent<ParryAction>() : parryAction;
@@ -76,6 +79,7 @@ public class PlayerController : Character
             rigi.position = spawnPoint;
         }
 
+        maxHP = playerMaxHP;
         hP = maxHP;
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
         animator.SetBool("Dead", false);
