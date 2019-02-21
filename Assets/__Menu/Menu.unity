@@ -3929,7 +3929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Music/Music
+  Event: event:/Music/MenuMusic
   PlayEvent: 1
   StopEvent: 2
   CollisionTag: 
@@ -5601,7 +5601,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &435332141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8187,7 +8187,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &671393044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12744,7 +12744,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &1080480389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22121,11 +22121,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 649821551608408589, guid: b1fe1cca72118694ca68552ad1bb08c8,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 649821551608408587, guid: b1fe1cca72118694ca68552ad1bb08c8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22182,6 +22177,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 766876576, guid: b1fe1cca72118694ca68552ad1bb08c8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649821551608408589, guid: b1fe1cca72118694ca68552ad1bb08c8,
+        type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
