@@ -1409,13 +1409,13 @@ MonoBehaviour:
   attackList: []
   movementsList: []
   bossPhases:
-  - phase: {fileID: 5592930796771960011, guid: 74d5e87b5e24a944aae2a070bddfa04b, type: 3}
+  - phase: {fileID: 8764213787050371692, guid: 15fdd7ff0751d9242a72986d58be4502, type: 3}
     threashhold: 0.75
   - phase: {fileID: 5592930796771960011, guid: 74d5e87b5e24a944aae2a070bddfa04b, type: 3}
     threashhold: 0.5
   - phase: {fileID: 8160059089307751909, guid: 4de4caf90a9a8ef4e84744af22371a84, type: 3}
     threashhold: 0.25
-  - phase: {fileID: 5592930796771960011, guid: 74d5e87b5e24a944aae2a070bddfa04b, type: 3}
+  - phase: {fileID: 5697302827855890755, guid: 08b944fd4644f184f9787e3c65d0997b, type: 3}
     threashhold: 0
 --- !u!4 &1801162628
 Transform:
@@ -1690,8 +1690,6 @@ MonoBehaviour:
     threashhold: 0.75
   - phase: {fileID: 782605431849328741, guid: 77aad92333bf76c409f1ab669824c0b1, type: 3}
     threashhold: 0.5
-  - phase: {fileID: 7263978967612456103, guid: 54ecd7b424cc6b44ab17574c773a2406, type: 3}
-    threashhold: 0.25
   - phase: {fileID: 7263978967612456103, guid: 54ecd7b424cc6b44ab17574c773a2406, type: 3}
     threashhold: 0
 --- !u!4 &1964062295

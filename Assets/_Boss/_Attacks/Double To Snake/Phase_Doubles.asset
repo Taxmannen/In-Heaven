@@ -19,10 +19,22 @@ MonoBehaviour:
     data: {fileID: 11400000, guid: bdf333fc4e507044a8c674193bd96505, type: 2}
   - type: 1
     data: {fileID: 11400000, guid: 44b6acc9fc8ad454f8ec22397c0f1d14, type: 2}
+  - type: 0
+    data: {fileID: 11400000, guid: cf906610fcdbd3b428eaa59fb7b53a95, type: 2}
+  - type: 0
+    data: {fileID: 11400000, guid: 483f17dc58ec299409b6e11172175809, type: 2}
+  - type: 2
+    data: {fileID: 11400000, guid: 4416552f92e152e4983d1dfb4a1956a4, type: 2}
   movments:
   - type: 2
     data: {fileID: 11400000, guid: 17db7bfc30d0aec4396994054b4e4454, type: 2}
   - type: 2
     data: {fileID: 11400000, guid: 71f4012b31c2dff47b5c1aee4be18b10, type: 2}
+  - type: 2
+    data: {fileID: 11400000, guid: b69972b790bf0a04cb47db0a9ea928ef, type: 2}
+  - type: 2
+    data: {fileID: 11400000, guid: 78d23877c2be04f40b3cb35882f90a55, type: 2}
+  - type: 2
+    data: {fileID: 11400000, guid: 3f0b57ccce65d2543a740022ead65b4c, type: 2}
   - type: 2
     data: {fileID: 11400000, guid: b69972b790bf0a04cb47db0a9ea928ef, type: 2}

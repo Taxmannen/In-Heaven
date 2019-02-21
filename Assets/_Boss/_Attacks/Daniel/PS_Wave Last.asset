@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PS_Wave Last
   m_EditorClassIdentifier: 
   numberOfPatternsToShoot: 1
-  delayAfterEachPattern: 0.25
+  delayAfterEachPattern: 0
   spawnLocation: {x: 0, y: 0, z: 0}
   bulletPrefab: {fileID: 0}
   patternPrefab: {fileID: 5696590917865661381, guid: cd238c205135a8544af3a4f001b36b77,

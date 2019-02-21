@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4179434b97777ed47ac273aa73b566f8, type: 3}
+  m_Name: Phase_FirstFinal
+  m_EditorClassIdentifier: 
+  attacks:
+  - type: 1
+    data: {fileID: 11400000, guid: 8172d0bfe4a8ca8458ac94a382f5be3f, type: 2}
+  - type: 2
+    data: {fileID: 11400000, guid: 6bb1c7f46de9ec74cbcb4bd8520340d8, type: 2}
+  - type: 1
+    data: {fileID: 11400000, guid: dc677c6cf5a163047be668505aff1ca1, type: 2}
+  - type: 0
+    data: {fileID: 11400000, guid: 74547375f1edbd843974870fa8d597c3, type: 2}
+  movments:
+  - type: 2
+    data: {fileID: 11400000, guid: 17db7bfc30d0aec4396994054b4e4454, type: 2}
+  - type: 2
+    data: {fileID: 11400000, guid: b69972b790bf0a04cb47db0a9ea928ef, type: 2}

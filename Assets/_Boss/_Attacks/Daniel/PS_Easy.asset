@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PS_Easy
   m_EditorClassIdentifier: 
   numberOfPatternsToShoot: 1
-  delayAfterEachPattern: 1
+  delayAfterEachPattern: 0
   spawnLocation: {x: 0, y: 0, z: 0}
   bulletPrefab: {fileID: 0}
   patternPrefab: {fileID: 6841842091586900892, guid: 05f2cc4f19b77824cb1a169510190b46,

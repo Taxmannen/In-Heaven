@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0ca45832b8c9774aac71e286165f010, type: 3}
-  m_Name: PS_Wave First
+  m_Name: PS_Chess1
   m_EditorClassIdentifier: 
   numberOfPatternsToShoot: 1
   delayAfterEachPattern: 0
   spawnLocation: {x: 0, y: 0, z: 0}
   bulletPrefab: {fileID: 0}
-  patternPrefab: {fileID: 1405415656951281047, guid: 571638c283d42074b9112bba7f7858ce,
+  patternPrefab: {fileID: 7440706990129116042, guid: 306316548863b68429d9b2f75281fb0a,
     type: 3}
-  delayAfterAttack: 0
+  delayAfterAttack: 1
   bulletSpeed: 50
   offset: {x: 0, y: 0, z: 0}

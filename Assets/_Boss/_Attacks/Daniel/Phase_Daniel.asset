@@ -10,19 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4179434b97777ed47ac273aa73b566f8, type: 3}
-  m_Name: Phase_JumpRope
+  m_Name: Phase_Daniel
   m_EditorClassIdentifier: 
   attacks:
   - type: 1
-    data: {fileID: 11400000, guid: b348fb2b55cda074895b89e80c085a98, type: 2}
-  - type: 0
-    data: {fileID: 11400000, guid: 280b47fca056a6744b330b27a9d5e5cb, type: 2}
-  - type: 0
-    data: {fileID: 11400000, guid: 8a851dafbeaa5894eb1d8c16dc185eba, type: 2}
+    data: {fileID: 11400000, guid: dc677c6cf5a163047be668505aff1ca1, type: 2}
   movments:
   - type: 2
     data: {fileID: 11400000, guid: 82afabf6650245e4e9769a9cef8ca1b1, type: 2}
   - type: 2
-    data: {fileID: 11400000, guid: 78d23877c2be04f40b3cb35882f90a55, type: 2}
+    data: {fileID: 11400000, guid: f147c1049fdf55048a82d7dfba01fba5, type: 2}
   - type: 2
-    data: {fileID: 11400000, guid: 3f0b57ccce65d2543a740022ead65b4c, type: 2}
+    data: {fileID: 11400000, guid: 82afabf6650245e4e9769a9cef8ca1b1, type: 2}
+  - type: 2
+    data: {fileID: 11400000, guid: 78d23877c2be04f40b3cb35882f90a55, type: 2}
