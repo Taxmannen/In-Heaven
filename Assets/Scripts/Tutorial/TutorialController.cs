@@ -126,7 +126,7 @@ public class TutorialController : MonoBehaviour
     }
     public void CheckParryGoal()
     {
-        if (superChargeResource.superCharge == superChargeResource.superChargeMax)
+        if (superChargeResource.superCharge == 1/*superChargeResource.superChargeMax*/)
         {
             parryCanvas.enabled = false;
             superChargeCanvas.enabled = true;

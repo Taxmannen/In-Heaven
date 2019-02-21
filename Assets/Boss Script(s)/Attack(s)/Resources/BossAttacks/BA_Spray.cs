@@ -43,6 +43,7 @@ public class BA_Spray : BossAttack
         }
 
         //Play sound here
+        AudioController.instance.PlayerShoot();
         //Add UI element for bullet here (if needed)
     }
 
