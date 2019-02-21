@@ -394,8 +394,8 @@ public class Boss : Character
 
     internal override void Receive(float amt)
     {
-        
-        bossFaceController.StartCoroutine(bossFaceController.warOfTheAnts(0));
+        int screenController = Random.Range(0, 8);
+        bossFaceController.StartCoroutine(bossFaceController.warOfTheAnts(screenController));
         base.Receive(amt);
         InterfaceController.instance.UpdateBossHPBar(hP, maxHP);
 
