@@ -5,6 +5,7 @@ using UnityEngine;
 public class BA_Spray : BossAttack
 {
     [SerializeField] private ParticleSystem muzzleFlash;
+    [SerializeField] private ParticleSystem hitIndicator;
     public SprayData data;
     private float startTime;
     private bool prevWasParry;
@@ -15,10 +16,12 @@ public class BA_Spray : BossAttack
     protected override IEnumerator Execute(Boss boss)
     {
         yield return new WaitForSeconds(data.delayBetweenAttacks);
+        hitIndicator.Play();
         spawnPoint = GameObject.Find("PatternShotList").GetComponentInChildren<Transform>();
         startTime = Time.time;
         InvokeRepeating("FireBullet", 0, data.fireRate);
         yield return new WaitForSeconds(data.attackDuration);
+        hitIndicator.Stop();
         executeRoutine = null;
         yield break;
     }
