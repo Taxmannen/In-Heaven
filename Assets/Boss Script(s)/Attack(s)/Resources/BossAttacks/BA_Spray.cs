@@ -10,6 +10,8 @@ public class BA_Spray : BossAttack
     private bool prevWasParry;
     private Transform spawnPoint;
 
+    private Vector3 offset = new Vector3(0, 1, 0);
+
     protected override IEnumerator Execute(Boss boss)
     {
         yield return new WaitForSeconds(data.delayBetweenAttacks);
@@ -31,14 +33,14 @@ public class BA_Spray : BossAttack
         {
             if (Random.Range(0, 100) < data.percentageOfShootsParrable)
             {
-                ShootingHelper.Shoot(spawnPoint.position, GameController.instance.playerController.transform.position, BossBulletObjectPool.current.GetPooledPlasmaBulletParrable(), data.speed);
+                ShootingHelper.Shoot(spawnPoint.position, GameController.instance.playerController.transform.position + offset, BossBulletObjectPool.current.GetPooledPlasmaBulletParrable(), data.speed);
                 prevWasParry = true;
             }
-            else ShootingHelper.Shoot(spawnPoint.position, GameController.instance.playerController.transform.position, BossBulletObjectPool.current.GetPooledPlasmaBullet(), data.speed);
+            else ShootingHelper.Shoot(spawnPoint.position, GameController.instance.playerController.transform.position + offset, BossBulletObjectPool.current.GetPooledPlasmaBullet(), data.speed);
         }
         else
         {
-            ShootingHelper.Shoot(spawnPoint.position, GameController.instance.playerController.transform.position, BossBulletObjectPool.current.GetPooledPlasmaBullet(), data.speed);
+            ShootingHelper.Shoot(spawnPoint.position, GameController.instance.playerController.transform.position + offset, BossBulletObjectPool.current.GetPooledPlasmaBullet(), data.speed);
             prevWasParry = false;
         }
 
