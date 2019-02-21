@@ -29,6 +29,7 @@ public class PlayerInput : MonoBehaviour
         {
             UpdatePlayer();
         }
+        playerController.Move();
         playerController.Gravity();
         if (Input.GetKeyUp(KeyCode.U))
         {
@@ -50,7 +51,7 @@ public class PlayerInput : MonoBehaviour
 
         playerController.Upd8(horizontalDirection, verticalDirection);
 
-        playerController.Move();
+        
 
         
 
