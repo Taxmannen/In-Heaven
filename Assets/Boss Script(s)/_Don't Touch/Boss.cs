@@ -433,6 +433,8 @@ public class Boss : Character
             activePhase++;
             base.Die();
             InterfaceController.instance.HideBossHPBar();
+            GameController.instance.gameState = Global.GameState.Success;
+            InterfaceController.instance.Success();
 
         }
 
