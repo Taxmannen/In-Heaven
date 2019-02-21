@@ -69,7 +69,6 @@ public class Bullet : MonoBehaviour
                     //Debug.Log("Did Damage");
                     other.GetComponent<BossHitbox>().Receive(damage);
                     AudioController.instance.BossHitRecieveDamage();
-                    Debug.Log("DamageSound");
                     ResetBullet();
                 }
                 else
