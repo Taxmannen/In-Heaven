@@ -32,7 +32,7 @@ public class Boss : Character
     [Header("ACTIVE PHASE")]
     [SerializeField] private int activePhase = 0;
 
-    [Header("Sine Wave Animationen")]
+    [Header("Sine Wave Animation")]
     [SerializeField] public float speed = 1;
     [SerializeField] public float magnitude = 3;
     private float time;
@@ -64,7 +64,12 @@ public class Boss : Character
         {
             time += Time.deltaTime * speed;
             sine = Mathf.Sin(time);
-            this.transform.position += (Vector3.up * sine * magnitude);
+            float secondMagnitude = magnitude;
+            if (activePhase == 3)
+            {
+                secondMagnitude *= 2;
+            }
+            this.transform.position += (Vector3.up * sine * secondMagnitude);
         }
         
     }
