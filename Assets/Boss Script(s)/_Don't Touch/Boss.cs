@@ -67,7 +67,7 @@ public class Boss : Character
             float secondMagnitude = magnitude;
             if (activePhase == 3)
             {
-                secondMagnitude *= 2;
+                secondMagnitude *= 1.5f;
             }
             this.transform.position += (Vector3.up * sine * secondMagnitude);
         }
