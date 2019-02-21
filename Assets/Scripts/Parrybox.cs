@@ -35,21 +35,18 @@ public class Parrybox : MonoBehaviour
     {
         if (other.tag == "Boss Parryable Bullet")
         {
-           // bulletParried = true;
-
-            Statistics.instance.numberOfSuccessfulParrys++;
-            AudioController.instance.PlayerSuccessfulParry();
-            parryActivation.Stop();
-            parryActivation.gameObject.SetActive(false);
-            parryEffect.Play();
-            other.GetComponent<Bullet>().ResetBullet();
+            // bulletParried = true;
             if (other.GetComponent<Bullet>().isParrayable)
             {
+                Statistics.instance.numberOfSuccessfulParrys++;
+                AudioController.instance.PlayerSuccessfulParry();
+                parryActivation.Stop();
+                parryActivation.gameObject.SetActive(false);
+                parryEffect.Play();
+                other.GetComponent<Bullet>().ResetBullet();
                 playerController.superChargeResource.IncreaseSuperCharge();
+                GetComponent<Collider>().enabled = false;
             }
-            
-            GetComponent<Collider>().enabled = false;
-
          //   rapidFireCooldownTimer = 0;
         }
 
