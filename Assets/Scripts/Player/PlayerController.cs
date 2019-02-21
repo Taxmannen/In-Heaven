@@ -249,7 +249,7 @@ public class PlayerController : Character
     /// </summary>
     internal override void Die()
     {
-
+        Destroy(heartImage[0]);
         Freeze();
         AudioController.instance.PlayerDeath();
         GameController.instance.FreezeBoss();
