@@ -152,7 +152,7 @@ public class TutorialController : MonoBehaviour
         superChargeCanvas.enabled = false;
         tutorialFinishedCanvas.enabled = true;
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         yield break;
     }
     public void CheckSuperChargeGoal()
