@@ -36,14 +36,14 @@ public class BA_Spray : BossAttack
         {
             if (Random.Range(0, 100) < data.percentageOfShootsParrable)
             {
-                ShootingHelper.Shoot(spawnPoint.position, GameController.instance.playerController.transform.position + offset, BossBulletObjectPool.current.GetPooledPlasmaBulletParrable(), data.speed);
+                ShootingHelper.Shoot(spawnPoint.position, GameController.instance.playerController.transform.position + offset, BossBulletObjectPool.current.GetPooledPlasmaBulletParrable(), data.speed, BossBulletObjectPool.current.transform);
                 prevWasParry = true;
             }
-            else ShootingHelper.Shoot(spawnPoint.position, GameController.instance.playerController.transform.position + offset, BossBulletObjectPool.current.GetPooledPlasmaBullet(), data.speed);
+            else ShootingHelper.Shoot(spawnPoint.position, GameController.instance.playerController.transform.position + offset, BossBulletObjectPool.current.GetPooledPlasmaBullet(), data.speed, BossBulletObjectPool.current.transform);
         }
         else
         {
-            ShootingHelper.Shoot(spawnPoint.position, GameController.instance.playerController.transform.position + offset, BossBulletObjectPool.current.GetPooledPlasmaBullet(), data.speed);
+            ShootingHelper.Shoot(spawnPoint.position, GameController.instance.playerController.transform.position + offset, BossBulletObjectPool.current.GetPooledPlasmaBullet(), data.speed,BossBulletObjectPool.current.transform);
             prevWasParry = false;
         }
 

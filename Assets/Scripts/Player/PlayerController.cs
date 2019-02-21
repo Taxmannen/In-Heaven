@@ -23,7 +23,7 @@ public class PlayerController : Character
     [SerializeField] [Range(0, 10)] private float hitInvincibleDuration = 0.1f; //Duration of invincibility state after being hit, necessary to avoid getting hit rapidly multiple times.    
     [SerializeField] internal ParticleSystem vfx;
 
-    public Image heartUI;
+    public GameObject heartUI;
     public Image[] heartImage;
     
     //Private
@@ -76,11 +76,12 @@ public class PlayerController : Character
             spawnPoint = rigi.position;
             spawned = true;
         }
-
         else
         {
             rigi.position = spawnPoint;
         }
+
+        heartImage = heartUI.GetComponentsInChildren<Image>();
 
         maxHP = playerMaxHP;
         hP = maxHP;
@@ -249,7 +250,7 @@ public class PlayerController : Character
     /// </summary>
     internal override void Die()
     {
-        Destroy(heartImage[0]);
+        heartImage[0].gameObject.SetActive(false);
         Freeze();
         AudioController.instance.PlayerDeath();
         GameController.instance.FreezeBoss();
@@ -270,7 +271,7 @@ public class PlayerController : Character
     internal override void Hit(float amt)
     {
         hP -= amt;
-        Destroy(heartImage[Mathf.RoundToInt(hP)]);
+        heartImage[Mathf.RoundToInt(hP)].gameObject.SetActive(false);
         vfx.Play();
         Invincible(hitInvincibleDuration, true);
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
