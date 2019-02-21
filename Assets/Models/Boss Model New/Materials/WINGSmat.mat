@@ -74,11 +74,11 @@ Material:
     - _Parallax: 0.02
     - _ShowOutline: 0
     - _SmoothnessTextureChannel: 0
-    - _SpecularFalloff: 1
+    - _SpecularFalloff: 1.236
     - _SpecularHighlights: 1
     - _SpecularSize: 0
     - _SrcBlend: 1
-    - _StepAmount: 2
+    - _StepAmount: 8
     - _StepWidth: 0.25
     - _UVSec: 0
     - _ZWrite: 1
