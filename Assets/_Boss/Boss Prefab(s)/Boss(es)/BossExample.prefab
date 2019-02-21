@@ -204,27 +204,27 @@ MonoBehaviour:
   - name: Group31601
     bossHitbox: {fileID: 1697681839}
     weakpoint: 1
-    maxHP: 100000
+    maxHP: 700000
     activePhase: 3
   - name: down_right
     bossHitbox: {fileID: 7909508731725491893}
     weakpoint: 1
-    maxHP: 10000
+    maxHP: 150000
     activePhase: 1
   - name: Group1527
     bossHitbox: {fileID: 4107562524177610114}
     weakpoint: 1
-    maxHP: 10000
+    maxHP: 150000
     activePhase: 1
   - name: down_left
     bossHitbox: {fileID: 1832289339}
     weakpoint: 1
-    maxHP: 10000
+    maxHP: 150000
     activePhase: 1
   - name: Group18403
     bossHitbox: {fileID: 1767562088}
     weakpoint: 1
-    maxHP: 10000
+    maxHP: 150000
     activePhase: 1
   spawnPrefab: {fileID: 1576910191, guid: c62164c12e205b641a5939808cc4a74d, type: 3}
   phasePrefabs:
@@ -235,7 +235,7 @@ MonoBehaviour:
     type: 3}
   activePhase: 1
   speed: 1
-  magnitude: 3
+  magnitude: 0.05
 --- !u!1 &786254964261383176
 GameObject:
   m_ObjectHideFlags: 0
