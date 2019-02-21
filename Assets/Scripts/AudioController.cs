@@ -56,6 +56,7 @@ public class AudioController : MonoBehaviour
     [FMODUnity.EventRef]
     [SerializeField] private string bossDeath;
     FMOD.Studio.EventInstance bossDeathEv;
+   // FMOD.Studio.ParameterInstance bossDeathParameter;
     [FMODUnity.EventRef]
     [SerializeField] private string bossShoot;
     FMOD.Studio.EventInstance bossShootEv;
@@ -173,6 +174,7 @@ public class AudioController : MonoBehaviour
         muteAllDynamicEv.getParameter("MuteAllParameter", out muteAllParameter);
         muteMusicDynamicEv.getParameter("MuteMusicParameter", out muteMusicParameter);
         muteSfxDynamicEv.getParameter("MuteSfxParameter", out muteSfxParameter);
+      //  bossDeathEv.getParameter("StopDeath", out bossDeathParameter);
         #endregion
     }
     private void Awake()
@@ -306,6 +308,10 @@ public class AudioController : MonoBehaviour
     public void BossDeath()
     {
         bossDeathEv.start();
+    }
+    public void StopBossDeath()
+    {
+        bossDeathEv.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
     public void BossShoot()
     {
