@@ -19,5 +19,5 @@ MonoBehaviour:
   patternPrefab: {fileID: 7440706990129116042, guid: 306316548863b68429d9b2f75281fb0a,
     type: 3}
   delayAfterAttack: 0.5
-  bulletSpeed: 50
+  bulletSpeed: 75
   offset: {x: 0, y: 0, z: 0}

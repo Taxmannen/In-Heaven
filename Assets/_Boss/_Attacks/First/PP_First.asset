@@ -10,9 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1d286282db2668499e347170c5d06cc, type: 3}
-  m_Name: PP_Chess
+  m_Name: PP_First
   m_EditorClassIdentifier: 
-  patternShotDatas:
-  - {fileID: 11400000, guid: 95094ec340ccb174b87f2060d9ea0a4e, type: 2}
-  - {fileID: 11400000, guid: 166506da87336a34d86e753dcd6d44f9, type: 2}
-  sencondsAfterFinishAttack: 3
+  patternShotDatas: []
+  sencondsAfterFinishAttack: 0
