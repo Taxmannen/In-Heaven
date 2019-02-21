@@ -15,6 +15,7 @@ public class Parrybox : MonoBehaviour
 
     [SerializeField] private ParticleSystem parryActivation;
     [SerializeField] private ParticleSystem parryEffect;
+    [SerializeField] private ParticleSystem parryBreakEffect;
 
     private void Start()
     {
@@ -42,9 +43,24 @@ public class Parrybox : MonoBehaviour
                 AudioController.instance.PlayerSuccessfulParry();
                 parryActivation.Stop();
                 parryActivation.gameObject.SetActive(false);
-                parryEffect.Play();
+                if (parryEffect)
+                {
+                    parryEffect.Play();
+                }
                 other.GetComponent<Bullet>().ResetBullet();
                 playerController.superChargeResource.IncreaseSuperCharge();
+                GetComponent<Collider>().enabled = false;
+            }
+            else
+            {
+                parryActivation.Stop();
+                parryActivation.gameObject.SetActive(false);
+                if(parryBreakEffect)
+                {
+                    parryBreakEffect.Play();
+
+                }                
+                playerController.playerState = Global.PlayerState.Default;
                 GetComponent<Collider>().enabled = false;
             }
          //   rapidFireCooldownTimer = 0;
