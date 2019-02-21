@@ -439,6 +439,7 @@ public class Boss : Character
             activePhase++;
             base.Die();
             InterfaceController.instance.HideBossHPBar();
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
 
     }
