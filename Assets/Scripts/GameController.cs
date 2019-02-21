@@ -68,6 +68,19 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void MainMenu()
+    {
+        AudioController.instance.StopFailMenuDuck();
+        gameState = Global.GameState.Game;
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Menu");
+    }
+    public void QuitApp()
+    {
+        AudioController.instance.StopFailMenuDuck();
+        Application.Quit();
+    }
     /// <summary>
     /// Calls on the boss to freeze.
     /// </summary>

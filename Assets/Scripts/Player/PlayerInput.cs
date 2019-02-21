@@ -29,7 +29,7 @@ public class PlayerInput : MonoBehaviour
         {
             UpdatePlayer();
         }
-
+        playerController.Gravity();
         if (Input.GetKeyUp(KeyCode.U))
         {
             playerController.shootAction.onlyShootOnGround = !playerController.shootAction.onlyShootOnGround;
@@ -52,7 +52,7 @@ public class PlayerInput : MonoBehaviour
 
         playerController.Move();
 
-        playerController.Gravity();
+        
 
         if (InputController.instance.GetKeyDownJump())
         {

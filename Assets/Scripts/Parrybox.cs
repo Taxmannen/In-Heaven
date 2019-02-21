@@ -58,7 +58,7 @@ public class Parrybox : MonoBehaviour
             Statistics.instance.numberOfSuccessfulParrys++;
             AudioController.instance.PlayerSuccessfulParry();
             other.GetComponent<Bullet>().ResetBullet();
-            playerController.superChargeResource.IncreaseSuperCharge(3);
+            playerController.superChargeResource.IncreaseSuperCharge(1);
             GetComponent<Collider>().enabled = false;
             TutorialController.instance.CheckParryGoal();
         }

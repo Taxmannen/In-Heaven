@@ -331,7 +331,7 @@ public class AudioController : MonoBehaviour
     }
     private IEnumerator BossPatternShotRoutine()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.01f);
         play = true;
         yield return new WaitForSeconds(10f);
         FMOD.Studio.EventInstance eventInstance = bossPatternShotQueue.Dequeue();

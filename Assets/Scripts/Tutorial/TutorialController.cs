@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Made By: Vidar M
@@ -10,8 +11,8 @@ public class TutorialController : MonoBehaviour
 
     public static TutorialController instance;
     [SerializeField] TutorialCannon tutorialCannon;
-    private SuperChargeResource superChargeResource;
-    private Coroutine checkSuperChargeRoutine;
+    public SuperChargeResource superChargeResource;
+    public Coroutine checkSuperChargeRoutine;
     [SerializeField] private TutorialParryBulletSpeedBox speedBox;
 
     [SerializeField] private Canvas moveCanvas;
@@ -20,6 +21,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private Canvas shootCanvas;
     [SerializeField] private Canvas parryCanvas;
     [SerializeField] private Canvas superChargeCanvas;
+    [SerializeField] private Canvas tutorialFinishedCanvas;
 
 
     public int movementTargetsDestroyed;
@@ -124,31 +126,55 @@ public class TutorialController : MonoBehaviour
             ResetShootDummies();
         }
     }
+
     public void CheckParryGoal()
     {
-        if (superChargeResource.superCharge == 1/*superChargeResource.superChargeMax*/)
+        if (superChargeResource.superCharge == superChargeResource.superChargeMax)
         {
+            Debug.Log("ldkjfgijsrigrskfjsdjfihoklsedhvfjkshiogrshgjkrsdfbngjkdrhgjkrdbgjkdrbgjkrbgvjkrsngjkerhguin");
+            StopAllCoroutines();
             parryCanvas.enabled = false;
             superChargeCanvas.enabled = true;
             state = TutorialState.SuperCharge;
             Statistics.instance.UpdateTimeCompleteParry(Time.timeSinceLevelLoad);
             speedBox.StopCoroutines();
-            checkSuperChargeRoutine = StartCoroutine(CheckSuperchargeRoutine());
-            
+            StartCoroutine(LoadScene());
         }
         else
         {
             TutorialParryBulletSpeedBox.instance.StartShoot();
         }
     }
+    private IEnumerator LoadScene()
+    {
+        yield return new WaitForSeconds(5f);
+        Debug.Log("tutorial finished");
+        superChargeCanvas.enabled = false;
+        tutorialFinishedCanvas.enabled = true;
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(0);
+        yield break;
+    }
     public void CheckSuperChargeGoal()
     {
-        if (checkSuperChargeRoutine == null)
+        if (Statistics.instance.numberOfSuperChargesUnleashed >= 1)
         {
-            checkSuperChargeRoutine = StartCoroutine(CheckSuperchargeRoutine());
+            Debug.Log("TUTORIAL FINISHED");
+            Statistics.instance.UpdateTimeCompleteSuperCharge(Time.timeSinceLevelLoad);
+            Statistics.instance.UpdateTimeCompleteTutorial(Time.timeSinceLevelLoad);
+            superChargeCanvas.enabled = false;
 
         }
+        if (checkSuperChargeRoutine == null)
+        {
+            StopCoroutine(TutorialParryBulletSpeedBox.instance.instantiateBulletRoutine);
+           // checkSuperChargeRoutine = StartCoroutine(CheckSuperchargeRoutine());
+
+
+        }
+        
     }
+
 
     public void ResetMovementDummies()
     {
@@ -182,19 +208,20 @@ public class TutorialController : MonoBehaviour
     {
         tutorialCannon.SpawnBullet();
     }
-    private IEnumerator CheckSuperchargeRoutine()
-    {
-        while (true)
-        {
-            if (Statistics.instance.numberOfSuperChargesUnleashed == 1)
-            {
-                Debug.Log("TUTORIAL FINISHED");
-                Statistics.instance.UpdateTimeCompleteSuperCharge(Time.timeSinceLevelLoad);
-                Statistics.instance.UpdateTimeCompleteTutorial(Time.timeSinceLevelLoad);
-                superChargeCanvas.enabled = false;
-                yield break;
-            }
-            yield return null;
-        }
-    }
+    //private IEnumerator CheckSuperchargeRoutine()
+    //{
+    //    while (true)
+    //    {
+    //        Debug.Log("TUTORIAL FINISHED");
+    //        if (Statistics.instance.numberOfSuperChargesUnleashed >= 1)
+    //        {
+    //            Debug.Log("TUTORIAL FINISHED");
+    //            Statistics.instance.UpdateTimeCompleteSuperCharge(Time.timeSinceLevelLoad);
+    //            Statistics.instance.UpdateTimeCompleteTutorial(Time.timeSinceLevelLoad);
+    //            superChargeCanvas.enabled = false;
+    //            yield break;
+    //        }
+    //        yield return null;
+    //    }
+    //}
 }

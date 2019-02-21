@@ -15,6 +15,7 @@ TagManager:
   - Ground
   - Player Bullet
   - Sparks
+  - TutorialBullet
   layers:
   - Default
   - TransparentFX
