@@ -37,7 +37,12 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
             if (increaseBulletSpeedRoutine == null)
             {
                 Debug.Log("Exited");
-                StopCoroutine(lowerBulletSpeedRoutine);
+
+                if(lowerBulletSpeedRoutine != null)
+                {
+                    StopCoroutine(lowerBulletSpeedRoutine);
+                }
+                
                 increaseBulletSpeedRoutine = StartCoroutine(IncreaseBulletSpeed());
             }
             StartShoot();
