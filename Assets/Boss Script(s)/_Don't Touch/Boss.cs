@@ -33,12 +33,11 @@ public class Boss : Character
     [SerializeField] private int activePhase = 0;
 
     [Header("Sine Wave Animationen")]
-    [SerializeField] private float sineWaveOffset;
-    [SerializeField] public float speed;
-    [SerializeField] public float time;
-    [SerializeField] public float sine;
-    [SerializeField] public float magnitude;
-    [SerializeField] public Vector3 startPosition;
+    [SerializeField] public float speed = 1;
+    [SerializeField] public float magnitude = 3;
+    private float time;
+    private float sine;
+    private Vector3 startPosition;
 
 
 

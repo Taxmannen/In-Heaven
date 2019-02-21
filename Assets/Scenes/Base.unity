@@ -677,6 +677,16 @@ PrefabInstance:
       propertyPath: bossHitboxElements.Array.data[0].maxHP
       value: 700000
       objectReference: {fileID: 0}
+    - target: {fileID: 786254963506694969, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 786254963506694969, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
+        type: 3}
+      propertyPath: magnitude
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7909508731725491893, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
       propertyPath: whiteFlash
@@ -2066,12 +2076,12 @@ PrefabInstance:
     - target: {fileID: 4998537456311367832, guid: ff3809ce05ec13140831cf6e93f92a88,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 120.1
+      value: 120.1001
       objectReference: {fileID: 0}
     - target: {fileID: 4998537456311367832, guid: ff3809ce05ec13140831cf6e93f92a88,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -155.4
+      value: -155.40002
       objectReference: {fileID: 0}
     - target: {fileID: 4998537455502805481, guid: ff3809ce05ec13140831cf6e93f92a88,
         type: 3}
@@ -2472,6 +2482,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ReferenceResolution.y
       value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 211220063, guid: ff3809ce05ec13140831cf6e93f92a88, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff3809ce05ec13140831cf6e93f92a88, type: 3}
