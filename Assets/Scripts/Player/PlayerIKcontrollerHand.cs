@@ -20,7 +20,10 @@ public class PlayerIKcontrollerHand : MonoBehaviour
     public Transform lookObj = null;
     private Quaternion handRotation;
     private Quaternion leftHandRotation;
-    
+    private Vector3 lookObjPosition;
+    private Vector3 rightHandObjPosition;
+    private Vector3 leftHandObjPosition;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -30,28 +33,45 @@ public class PlayerIKcontrollerHand : MonoBehaviour
         leftHandRotation = Quaternion.LookRotation(leftHandObj.position - transform.position);
 
     }
-
+    private void Update()
+    {
+        if(GameController.instance.gameState == Global.GameState.Game)
+        {
+            ikActive = true;
+        }
+        else
+        {
+            ikActive = false;
+        }
+    }
 
     void OnAnimatorIK()
     {
         if (playerController.playerState != Global.PlayerState.Dead)
         {
+            if (ikActive)
+            {
+                lookObjPosition = lookObj.position;
+                rightHandObjPosition = rightHandObj.position;
+                leftHandObjPosition = leftHandObj.position;
+            }
 
 
+            if (lookObj != null)
+            {
+                animator.SetLookAtWeight(1);
+                animator.SetLookAtPosition(lookObjPosition);
+            }
 
             if (animator.GetBool("MovingLeft") == false)
             {
-                if (lookObj != null)
-                {
-                    animator.SetLookAtWeight(1);
-                    animator.SetLookAtPosition(lookObj.position);
-                }
+                
 
                 if (rightHandObj != null)
                 {
                     animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
                     animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
-                    animator.SetIKPosition(AvatarIKGoal.RightHand, rightHandObj.position);
+                    animator.SetIKPosition(AvatarIKGoal.RightHand, rightHandObjPosition);
                     animator.SetIKRotation(AvatarIKGoal.RightHand, handRotation);
                 }
                 else
@@ -66,17 +86,11 @@ public class PlayerIKcontrollerHand : MonoBehaviour
 
             else if (animator.GetBool("MovingLeft") == true)
             {
-                if (lookObj != null)
-                {
-                    animator.SetLookAtWeight(1);
-                    animator.SetLookAtPosition(lookObj.position);
-                }
-
                 if (leftHandObj != null)
                 {
                     animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
                     animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0);
-                    animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHandObj.position);
+                    animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHandObjPosition);
                     animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHandRotation);
                 }
                 else
