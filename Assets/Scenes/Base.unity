@@ -928,54 +928,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 593781117, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
-      propertyPath: screenMats.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 593781117, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
-      propertyPath: staticDurationLoops
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 593781117, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
-      propertyPath: statucDuration
-      value: 0.1063
-      objectReference: {fileID: 0}
-    - target: {fileID: 593781117, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
-      propertyPath: screenMats.Array.data[1]
-      value: 
-      objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 593781117, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
-      propertyPath: screenMats.Array.data[2]
-      value: 
-      objectReference: {fileID: 2100000, guid: bd6e8df6270fb0c4d84b2208ea27bb59, type: 2}
-    - target: {fileID: 593781117, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
-      propertyPath: screenMats.Array.data[3]
-      value: 
-      objectReference: {fileID: 2100000, guid: e3b500fe53fd23941aa852c729cc88b9, type: 2}
-    - target: {fileID: 593781117, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
-      propertyPath: screenMats.Array.data[4]
-      value: 
-      objectReference: {fileID: 2100000, guid: 6640e3fe55b1fe047bf30b97fa44d6e0, type: 2}
-    - target: {fileID: 593781117, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
-      propertyPath: screenMats.Array.data[5]
-      value: 
-      objectReference: {fileID: 2100000, guid: 0b9ba76ea07277a4c9ba4960adcc5fdc, type: 2}
-    - target: {fileID: 593781117, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
-      propertyPath: screenMats.Array.data[6]
-      value: 
-      objectReference: {fileID: 2100000, guid: a0858e0c15c62344f8af599095514e7c, type: 2}
-    - target: {fileID: 593781117, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
-      propertyPath: screenMats.Array.data[7]
-      value: 
-      objectReference: {fileID: 2100000, guid: 27d28c83a5e4f5a40b7b1af4fa091080, type: 2}
-    - target: {fileID: 593781117, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
-      propertyPath: screenMats.Array.data[8]
-      value: 
-      objectReference: {fileID: 2100000, guid: add5223a7e1471a4dad544c399cb77d3, type: 2}
-    - target: {fileID: 593781117, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
-      propertyPath: screenMats.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7632fe27ec6f9524f95a80ad542eaf93, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d94ca3fb353e1e4d8d5757c738feed8, type: 3}
 --- !u!1 &961405654
@@ -1090,7 +1042,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12, y: -4}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &970883458
@@ -3283,27 +3235,27 @@ PrefabInstance:
         type: 3}
       propertyPath: heartImage.Array.data[1]
       value: 
-      objectReference: {fileID: 1298103872}
+      objectReference: {fileID: 1180082488}
     - target: {fileID: 649821551608408589, guid: b1fe1cca72118694ca68552ad1bb08c8,
         type: 3}
       propertyPath: heartImage.Array.data[2]
       value: 
-      objectReference: {fileID: 961405656}
+      objectReference: {fileID: 1180082488}
     - target: {fileID: 649821551608408589, guid: b1fe1cca72118694ca68552ad1bb08c8,
         type: 3}
       propertyPath: heartImage.Array.data[3]
       value: 
-      objectReference: {fileID: 192034652}
+      objectReference: {fileID: 1180082488}
     - target: {fileID: 649821551608408589, guid: b1fe1cca72118694ca68552ad1bb08c8,
         type: 3}
       propertyPath: heartImage.Array.data[4]
       value: 
-      objectReference: {fileID: 733026079}
+      objectReference: {fileID: 1180082488}
     - target: {fileID: 649821551608408589, guid: b1fe1cca72118694ca68552ad1bb08c8,
         type: 3}
       propertyPath: heartImage.Array.data[5]
       value: 
-      objectReference: {fileID: 1788805674}
+      objectReference: {fileID: 1180082488}
     - target: {fileID: 649821551608408589, guid: b1fe1cca72118694ca68552ad1bb08c8,
         type: 3}
       propertyPath: heartUI

@@ -10,16 +10,17 @@ public class BossFaceController : MonoBehaviour
     Renderer newFace;
     Renderer rendStatic;
 
-    [Range(0.01f, 0.2f)]
-    public float statucDuration;
-
-    private bool antWarsRuler=true;
-
+    public int staticDuration;
     private float timer=0;
     int screenController;
-        
+
+
+
     void Start()
     {
+      //screenMaterial1 = GetComponent<Renderer>().material;
+
+
         newFace = GetComponent<Renderer>();
         newFace.enabled = true;
         newFace.sharedMaterial = screenMats[0];
@@ -38,27 +39,28 @@ public class BossFaceController : MonoBehaviour
         //StartCoroutine(warOfTheAnts(0));
     }
 
-    public IEnumerator warOfTheAnts(int screenController)
+    public IEnumerator warOfTheAnts(int staticScreenDuration)
     {
-        if (antWarsRuler == true) {
-            antWarsRuler = false;
+        for (int i = 0; i < staticDuration; i++)
+      
+        {
             rendStatic.sharedMaterial = staticMats[0];
-            yield return new WaitForSeconds(statucDuration);
-
+            yield return new WaitForSeconds(0.1f);
+           
 
             rendStatic.sharedMaterial = staticMats[1];
-            yield return new WaitForSeconds(statucDuration);
+            yield return new WaitForSeconds(0.1f);
 
-
+            
             rendStatic.sharedMaterial = staticMats[2];
-            yield return new WaitForSeconds(statucDuration);
-
+            yield return new WaitForSeconds(0.1f);
+           
 
             rendStatic.sharedMaterial = staticMats[3];
-            yield return new WaitForSeconds(statucDuration);
+            yield return new WaitForSeconds(0.1f);
 
-            antWarsRuler = true;
         }
+
         newFace.sharedMaterial = screenMats[screenController];
         yield break;
     }

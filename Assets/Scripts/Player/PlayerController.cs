@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
 /// Made By: Filip Nilsson, Edited By: Jesper Uddefors
@@ -23,6 +23,7 @@ public class PlayerController : Character
     [SerializeField] [Range(0, 10)] private float hitInvincibleDuration = 0.1f; //Duration of invincibility state after being hit, necessary to avoid getting hit rapidly multiple times.    
     [SerializeField] internal ParticleSystem vfx;
 
+    public Image heartUI;
     public Image[] heartImage;
     
     //Private
