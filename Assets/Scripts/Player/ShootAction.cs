@@ -102,10 +102,11 @@ public class ShootAction : MonoBehaviour
 
     public void DestroyAllBullets()
     {
-        foreach (Transform bullet in bullets)
+        /*foreach (Transform bullet in bullets)
         {
-            bullet.GetComponent<Bullet>().ResetBullet();
-        }
+            if (bullet != null) bullet.GetComponent<Bullet>().ResetBullet();
+            else Debug.Log(bullet == null);
+        }*/
     }
 
     public void MyStopCorutine()
