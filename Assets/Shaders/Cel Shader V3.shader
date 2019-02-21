@@ -1,4 +1,4 @@
-﻿Shader "Custom/Cel Shader No Outline" 
+﻿Shader "Custom/Cel Shader V3" 
 {
 	Properties 
 	{
@@ -27,11 +27,27 @@
 
 	SubShader 
 	{
+		/*
+		Tags{ "RenderType" = "Transparent" "Queue" = "Transparent" }
+		LOD 200
+		Blend srcAlpha OneMinusSrcAlpha
+		ZWrite off
+		*/
+
 		Tags{ "RenderType" = "Opaque" "Queue" = "Geometry" }
+
+		//Write to Stencil buffer (so that outline pass can read)
+		Stencil
+		{
+			Ref 4
+			Comp always
+			Pass replace
+			ZFail keep
+		}
 
 		CGPROGRAM
 
-		#pragma surface surf Stepped fullforwardshadows
+		#pragma surface surf Stepped fullforwardshadows //alpha:fade
 		#pragma target 3.0
 
 		sampler2D _MainTex;
@@ -114,6 +130,66 @@
 			o.Emission = _Emission + shadowColor;
 		}
 		ENDCG
+
+		//Outline 
+		Pass 
+		{
+			Cull OFF
+			ZWrite OFF
+			ZTest ON
+
+			Stencil
+			{
+				Ref 4
+				Comp notequal
+				Fail keep
+				Pass replace
+			}
+
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			#pragma shader_feature SHOW_OUTLINE
+
+			uniform float4 _OutlineColor;
+			uniform float _OutlineSize;
+			uniform float _OutlineExtrusion;
+			uniform float _OutlineDot;
+
+			struct vertexInput
+			{
+				float4 vertex : POSITION;
+				float3 normal : NORMAL;
+			};
+
+			struct vertexOutput
+			{
+				float4 pos : SV_POSITION;
+				float4 color : COLOR;
+			};
+
+			vertexOutput vert(vertexInput input)
+			{
+				vertexOutput output;
+				float4 newPos = input.vertex;
+				float3 normal = normalize(input.normal);
+				
+				#if SHOW_OUTLINE
+					newPos += float4(normal, 0.0) * _OutlineExtrusion;
+				#endif
+
+				output.pos = UnityObjectToClipPos(newPos);
+				output.color = _OutlineColor;
+
+				return output;
+			}
+
+			float4 frag(vertexOutput input) : COLOR
+			{
+				return input.color;
+			}
+			ENDCG
+		}
 	}
 	FallBack "Standard"
 }

@@ -19,6 +19,7 @@ public class InterfaceController : MonoBehaviour
     [SerializeField] private Text bossStateText;
 
     [SerializeField] private GameObject failPanel;
+    [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject successPanel;
 
     [SerializeField] public GameObject targetOverlay;
@@ -55,7 +56,7 @@ public class InterfaceController : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
         }
@@ -85,16 +86,15 @@ public class InterfaceController : MonoBehaviour
     {
         failPanel.SetActive(true);
     }
-
     public void Success()
     {
         successPanel.SetActive(true);
     }
     public void Pause()
     { 
-        successPanel.SetActive(!successPanel.active);
+        pausePanel.SetActive(!pausePanel.active);
 
-        if (successPanel.active)
+        if (pausePanel.active)
         {
             GameController.instance.SetGameState(Global.GameState.Pause);
             Time.timeScale = 0;
