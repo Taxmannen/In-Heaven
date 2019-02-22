@@ -2202,7 +2202,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422830664}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -6430,6 +6430,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 649821551608408589, guid: b1fe1cca72118694ca68552ad1bb08c8,
+        type: 3}
+      propertyPath: heartUI
+      value: 
+      objectReference: {fileID: 2056513455}
     - target: {fileID: 649821551608408587, guid: b1fe1cca72118694ca68552ad1bb08c8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7535,6 +7540,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -155.40002
       objectReference: {fileID: 0}
+    - target: {fileID: 1031078179, guid: ff3809ce05ec13140831cf6e93f92a88, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 967604298, guid: ff3809ce05ec13140831cf6e93f92a88, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -7693,10 +7702,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031078179, guid: ff3809ce05ec13140831cf6e93f92a88, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff3809ce05ec13140831cf6e93f92a88, type: 3}
@@ -9165,6 +9170,12 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!1 &2056513455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 967604298, guid: ff3809ce05ec13140831cf6e93f92a88,
+    type: 3}
+  m_PrefabInstance: {fileID: 1746799702}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2059464508
 GameObject:
   m_ObjectHideFlags: 0

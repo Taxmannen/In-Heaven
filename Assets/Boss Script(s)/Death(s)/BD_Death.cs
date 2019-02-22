@@ -21,6 +21,7 @@ public class BD_Death : BossDeath
 
         yield return new WaitForSeconds(2);
         boss.Die();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         executeRoutine = null;
 
         yield break;
