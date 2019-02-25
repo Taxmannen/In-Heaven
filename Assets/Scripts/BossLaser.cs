@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BossLaser : MonoBehaviour
 {
-    float damage;
+    float damage = 1;
 
     [SerializeField]
     internal ParticleSystem vfx;
@@ -31,12 +29,9 @@ public class BossLaser : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.tag == "Player Hitbox")
         {
             other.GetComponentInParent<PlayerController>().Receive(damage);
         }
-
     }
-
 }
