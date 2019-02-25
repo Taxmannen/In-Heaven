@@ -1880,7 +1880,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1454349058}
     - target: {fileID: 6525200260677797338, guid: 7680cb7d4288b0149bbb553db8a8336d,
         type: 3}
       propertyPath: bossController
@@ -10648,6 +10648,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1524692163}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1454349058 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 649821551608408589, guid: b1fe1cca72118694ca68552ad1bb08c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1524692163}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454349048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7846307425818459763d58595dca98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1506269246
 GameObject:
   m_ObjectHideFlags: 0

@@ -70,6 +70,12 @@ public class Parrybox : MonoBehaviour
         {
             Statistics.instance.numberOfSuccessfulParrys++;
             AudioController.instance.PlayerSuccessfulParry();
+            parryActivation.Stop();
+            parryActivation.gameObject.SetActive(false);
+            if (parryEffect)
+            {
+                parryEffect.Play();
+            }
             other.GetComponent<Bullet>().ResetBullet();
             playerController.superChargeResource.IncreaseSuperCharge(1);
             GetComponent<Collider>().enabled = false;
