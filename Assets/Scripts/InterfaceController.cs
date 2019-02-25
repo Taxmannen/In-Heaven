@@ -102,19 +102,22 @@ public class InterfaceController : MonoBehaviour
         heartContainer.SetActive(true);
     }
     public void Pause()
-    { 
-        pausePanel.SetActive(!pausePanel.active);
+    {
+        if (pausePanel)
+        {
+            pausePanel.SetActive(!pausePanel.active);
 
-        if (pausePanel.active)
-        {
-            GameController.instance.SetGameState(Global.GameState.Pause);
-            Time.timeScale = 0;
-        }
-        else
-        {
-            GameController.instance.SetGameState(Global.GameState.Game);
-            Time.timeScale = 1;
-            Debug.Log("Resume: " + Time.timeScale);
+            if (pausePanel.active)
+            {
+                GameController.instance.SetGameState(Global.GameState.Pause);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                GameController.instance.SetGameState(Global.GameState.Game);
+                Time.timeScale = 1;
+                Debug.Log("Resume: " + Time.timeScale);
+            }
         }
     }
 
