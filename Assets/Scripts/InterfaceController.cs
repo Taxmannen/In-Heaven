@@ -105,6 +105,7 @@ public class InterfaceController : MonoBehaviour
     {
         if (pausePanel)
         {
+            AudioController.instance.StopFailMenuDuck();
             pausePanel.SetActive(!pausePanel.active);
 
             if (pausePanel.active)
@@ -116,6 +117,7 @@ public class InterfaceController : MonoBehaviour
             {
                 GameController.instance.SetGameState(Global.GameState.Game);
                 Time.timeScale = 1;
+                AudioController.instance.StopFailMenuDuck();
                 Debug.Log("Resume: " + Time.timeScale);
             }
         }
