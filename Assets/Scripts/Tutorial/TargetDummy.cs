@@ -36,7 +36,9 @@ public class TargetDummy : Character
             AudioController.instance.BossDestruction();
             if (index + 1 < TutorialController.instance.shootDummyParent.childCount)
             {
-                TutorialController.instance.shootDummyParent.GetChild(index + 1).gameObject.SetActive(true);
+                var nextDummy = TutorialController.instance.shootDummyParent.GetChild(index + 1).gameObject;
+                nextDummy.SetActive(true);
+                GameController.instance.playerController.aim.playerBulletTrajectoryDistance = nextDummy.transform.position.z;
             }
             TutorialController.instance.CheckShootingGoal();
         }
