@@ -15,6 +15,7 @@ public class BP_PhaseTwo : BossPhase
         InterfaceController.instance.HideBossHPBar();
         //Destroy(explosion, 5);
         Invoke("EnableCore", 0.15f);
+        InvokeRepeating("GiveHealthToPlayer", 0, 0.2f);
         yield return new WaitForSeconds(5.0f);
         explosion.GetComponent<ParticleSystem>().Stop();
         boss.Die();
@@ -32,5 +33,11 @@ public class BP_PhaseTwo : BossPhase
             GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Sparks");
             foreach (GameObject g in gameObjects) Destroy(g);
         }
+    }
+
+    private void GiveHealthToPlayer()
+    {
+        if (GameController.instance.playerController.hP == GameController.instance.playerController.maxHP) CancelInvoke("GiveHealthToPlayer");
+        GameController.instance.playerController.GiveHealth();
     }
 }
