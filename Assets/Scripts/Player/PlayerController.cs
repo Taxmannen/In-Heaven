@@ -261,7 +261,6 @@ public class PlayerController : Character
         AudioController.instance.FailMenuDuck();
         GameController.instance.SetGameState(Global.GameState.Fail);
         InterfaceController.instance.Fail();
-
     }
 
     /// <summary>
@@ -275,6 +274,15 @@ public class PlayerController : Character
         vfx.Play();
         Invincible(hitInvincibleDuration, true);
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
+    }
+
+    public void GiveHealth()
+    {
+        if (hP + 1 <= maxHP)
+        {
+            heartImage[(int)hP].gameObject.SetActive(true);
+            hP += 1;
+        } 
     }
 
     //Getters

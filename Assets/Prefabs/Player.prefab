@@ -353,9 +353,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6ac2bfbf3b8f748b817228f9aaaff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitColor: {r: 0.7264151, g: 0.38033998, b: 0.38033998, a: 1}
+  hitColor: {r: 0.7830189, g: 0.21791564, b: 0.21791564, a: 1}
   hitSpeed: 5
-  dashColor: {r: 0.58873266, g: 0.6846415, b: 0.8490566, a: 1}
+  dashColor: {r: 0.46337664, g: 0.60376704, b: 0.8396226, a: 1}
   dashSpeed: 5
   effect: {fileID: 0}
   renderers:
@@ -8105,7 +8105,7 @@ PrefabInstance:
     - target: {fileID: 2341461086725890536, guid: 6d070e6b76950b7428cac468c60eb946,
         type: 3}
       propertyPath: m_Name
-      value: Dash VFX
+      value: VFX_Dash
       objectReference: {fileID: 0}
     - target: {fileID: 2341461086725890537, guid: 6d070e6b76950b7428cac468c60eb946,
         type: 3}
@@ -8161,6 +8161,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2341461085539671134, guid: 6d070e6b76950b7428cac468c60eb946,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2341461085539671134, guid: 6d070e6b76950b7428cac468c60eb946,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2341461085539671134, guid: 6d070e6b76950b7428cac468c60eb946,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d070e6b76950b7428cac468c60eb946, type: 3}
