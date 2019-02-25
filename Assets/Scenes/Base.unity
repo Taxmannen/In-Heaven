@@ -948,7 +948,7 @@ PrefabInstance:
     - target: {fileID: 786254963506694969, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
       propertyPath: magnitude
-      value: 0.01
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 786254963506694969, guid: 2d94ca3fb353e1e4d8d5757c738feed8,
         type: 3}
@@ -2558,15 +2558,15 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1989255086}
+    - target: {fileID: 1233284820, guid: ff3809ce05ec13140831cf6e93f92a88, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 97646381}
     - target: {fileID: 2127280582, guid: ff3809ce05ec13140831cf6e93f92a88, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 97646381}
     - target: {fileID: 592392787, guid: ff3809ce05ec13140831cf6e93f92a88, type: 3}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 97646381}
-    - target: {fileID: 1233284820, guid: ff3809ce05ec13140831cf6e93f92a88, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 97646381}
@@ -2884,12 +2884,12 @@ PrefabInstance:
       propertyPath: bullets
       value: 
       objectReference: {fileID: 779727202}
-    - target: {fileID: 649821552409371824, guid: b1fe1cca72118694ca68552ad1bb08c8,
+    - target: {fileID: 7572696779648250065, guid: b1fe1cca72118694ca68552ad1bb08c8,
         type: 3}
-      propertyPath: m_Enabled
+      propertyPath: moveWithTransform
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7572696779648250065, guid: b1fe1cca72118694ca68552ad1bb08c8,
+    - target: {fileID: 7419313159175235182, guid: b1fe1cca72118694ca68552ad1bb08c8,
         type: 3}
       propertyPath: moveWithTransform
       value: 1
@@ -2900,11 +2900,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5646763656642123579, guid: b1fe1cca72118694ca68552ad1bb08c8,
-        type: 3}
-      propertyPath: moveWithTransform
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7419313159175235182, guid: b1fe1cca72118694ca68552ad1bb08c8,
         type: 3}
       propertyPath: moveWithTransform
       value: 1
@@ -2922,6 +2917,11 @@ PrefabInstance:
     - target: {fileID: 877290624143892973, guid: b1fe1cca72118694ca68552ad1bb08c8,
         type: 3}
       propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 649821552409371824, guid: b1fe1cca72118694ca68552ad1bb08c8,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4208715879030777833, guid: b1fe1cca72118694ca68552ad1bb08c8,
