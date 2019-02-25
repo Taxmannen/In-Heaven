@@ -88,10 +88,6 @@ public class Bullet : MonoBehaviour
         if (other.tag == "Player Hitbox" && !fromPlayer)
         {
             other.GetComponentInParent<PlayerController>().Receive(damage);
-            if (other.GetComponentInParent<PlayerController>().playerState == Global.PlayerState.Default)
-            {
-            AudioController.instance.PlayerTakingDamage();
-            }
             ResetBullet();
         }
     }

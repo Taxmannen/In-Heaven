@@ -27,7 +27,6 @@ public class TutorialCannon : MonoBehaviour
 
     public void SpawnBullet()
     {
-        Debug.Log("SPAWNEEEEEED");
         speedBox.StopCoroutines();
         tutorialBulletClone = Instantiate(tutorialBulletPrefab, tutorialBulletOriginpos.position, tutorialBulletOriginpos.rotation, bulletParent);
         Destroy(tutorialBulletClone, bulletLifeTime);

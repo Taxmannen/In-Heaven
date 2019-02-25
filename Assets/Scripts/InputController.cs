@@ -56,7 +56,7 @@ public class InputController : MonoBehaviour {
         dash = all[4];
         shoot = all[5];
         parry = all[6];
-        parry = all[7];
+        //parry = all[7];
 
         left1 = all[8];
         right1 = all[9];
@@ -65,7 +65,7 @@ public class InputController : MonoBehaviour {
         dash1 = all[12];
         shoot1 = all[13];
         parry1 = all[12];
-        parry1 = all[15];
+        //parry1 = all[15];
 
     }
 
@@ -98,7 +98,7 @@ public class InputController : MonoBehaviour {
         all.Add(dash);
         all.Add(shoot);
         all.Add(parry);
-        all.Add(parry);
+        //all.Add(parry);
         all.Add(left1);
         all.Add(right1);
         all.Add(jump1);

@@ -7,7 +7,7 @@ public class PlayerBulletPool : MonoBehaviour
     public static PlayerBulletPool current;
     public int poolAmount = 100;
     public GameObject playerBulletPrefab;
-
+    public bool scale = true;
     List<GameObject> playerBullets;
     private void Awake()
     {
@@ -42,6 +42,14 @@ public class PlayerBulletPool : MonoBehaviour
             {
                 return playerBullets[i];
             }
+        }
+        if (scale)
+        {
+            GameObject obj = (GameObject)Instantiate(playerBulletPrefab, transform);
+            obj.transform.position = new Vector3(0, -30, 0);
+            playerBullets.Add(obj);
+            poolAmount = playerBullets.Count;
+            return obj;
         }
 
         return null;

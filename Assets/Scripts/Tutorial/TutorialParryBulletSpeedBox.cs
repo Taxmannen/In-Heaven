@@ -24,7 +24,6 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
         {
             if (lowerBulletSpeedRoutine == null)
             {
-                Debug.Log("Entered");
                 lowerBulletSpeedRoutine = StartCoroutine(LowerBulletSpeed());
             }
         }
@@ -36,7 +35,6 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
 
             if (increaseBulletSpeedRoutine == null)
             {
-                Debug.Log("Exited");
 
                 if(lowerBulletSpeedRoutine != null)
                 {
@@ -107,7 +105,6 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
             return;
         }
 
-            Debug.Log("kollakolla");
         if (instantiateBulletRoutine == null)
         {
             instantiateBulletRoutine = StartCoroutine(InstantiateBulletRoutine());
@@ -119,7 +116,6 @@ public class TutorialParryBulletSpeedBox : MonoBehaviour
         StopCoroutines();
         tutorialCannon.bulletSpeed = tutorialCannon.originalBulletSpeed;
         tutorialCannon.SpawnBullet();
-        Debug.Log("BulletSpawn");
         yield return new WaitForSeconds(1f);
         instantiateBulletRoutine = null;        
         yield break;

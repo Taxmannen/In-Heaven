@@ -130,8 +130,7 @@ public class TutorialController : MonoBehaviour
     public void CheckParryGoal()
     {
         if (superChargeResource.superCharge == superChargeResource.superChargeMax)
-        {
-            Debug.Log("ldkjfgijsrigrskfjsdjfihoklsedhvfjkshiogrshgjkrsdfbngjkdrhgjkrdbgjkdrbgjkrbgvjkrsngjkerhguin");
+        { 
             StopAllCoroutines();
             parryCanvas.enabled = false;
             superChargeCanvas.enabled = true;
@@ -148,7 +147,6 @@ public class TutorialController : MonoBehaviour
     private IEnumerator LoadScene()
     {
         yield return new WaitForSeconds(5f);
-        Debug.Log("tutorial finished");
         superChargeCanvas.enabled = false;
         tutorialFinishedCanvas.enabled = true;
         yield return new WaitForSeconds(2f);
