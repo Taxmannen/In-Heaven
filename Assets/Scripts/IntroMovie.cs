@@ -45,12 +45,12 @@ public class IntroMovie : MonoBehaviour
         }
 
         //Fulfix. Går inte upp till summan som vi vill ha annars..
-        if (frameCountTemp == frameTemp + 600)
+        if (frameCountTemp == frameTemp + 450)
         {
             fade.StartWhiteFade();
         }
 
-        if (frameCountTemp == frameTemp + 500)
+        if (frameCountTemp == frameTemp + 350)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
