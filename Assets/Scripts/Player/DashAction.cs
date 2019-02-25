@@ -80,6 +80,8 @@ public class DashAction : MonoBehaviour
         AudioController.instance.PlayerDash();
         Statistics.instance.numberOfDashes++;
         actualVerticalReductionDuringDash = verticalReduction;
+        if (velocity > 0) dashVFX.transform.localEulerAngles = new Vector3(0, 180, 0);
+        else              dashVFX.transform.localEulerAngles = new Vector3(0, 0, 0);
         dashVFX.Play();
         yield return new WaitForSeconds(duration);
         dashVFX.Stop();
