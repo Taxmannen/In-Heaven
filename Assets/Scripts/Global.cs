@@ -9,7 +9,7 @@ public class Global : MonoBehaviour
 {
 
     public static bool shiftDashing = true;
-    public static bool doubleTapDashing = true;
+    public static bool doubleTapDashing = false;
 
     //Use These
     public static LayerMask groundLayerMask = 1 << 9;
