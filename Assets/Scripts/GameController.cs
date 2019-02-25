@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour
     /// </summary>
     public void Restart()
     {
+        AudioController.instance.SoundKiller();
         AudioController.instance.MenuClick();
         AudioController.instance.StopFailMenuDuck();
         

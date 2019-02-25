@@ -310,7 +310,7 @@ public class BossController : Character
     private IEnumerator ShootCoroutine(Vector3 target, Vector3 spawnPosition, GameObject bullet)
     {
         GameObject bossBulletClone = Instantiate(bullet, spawnPosition, Quaternion.identity, bullets);
-        AudioController.instance.BossShoot();
+        //AudioController.instance.BossShoot();
         Destroy(bossBulletClone, 3f);
         
 
