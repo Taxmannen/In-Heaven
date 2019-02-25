@@ -166,9 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7846307425818459763d58595dca98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hP: 6
-  maxHP: 6
-  playerMaxHP: 6
+  hP: 4
+  maxHP: 4
+  playerMaxHP: 4
   rigi: {fileID: 649821551608408586}
   animator: {fileID: 649821552487925687}
   groundcheckDistance: 1.15
@@ -176,8 +176,6 @@ MonoBehaviour:
   vfx: {fileID: 104608126400115460}
   heartUI: {fileID: 0}
   heartImage:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

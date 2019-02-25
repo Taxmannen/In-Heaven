@@ -54,8 +54,8 @@ public class InputController : MonoBehaviour {
         jump = all[2];
         down = all[3];
         dash = all[4];
-        shoot = all[5]; //actually shootparry
-        //actuallyshoot
+        shoot = all[5];
+        parry = all[6];
         parry = all[7];
 
         left1 = all[8];
@@ -63,8 +63,8 @@ public class InputController : MonoBehaviour {
         jump1 = all[10];
         down1 = all[11];
         dash1 = all[12];
-        shoot1 = all[13]; //actually shootparry
-        //actuallyshoot
+        shoot1 = all[13];
+        parry1 = all[12];
         parry1 = all[15];
 
     }
@@ -97,7 +97,7 @@ public class InputController : MonoBehaviour {
         all.Add(down);
         all.Add(dash);
         all.Add(shoot);
-        all.Add(new KeyCode());
+        all.Add(parry);
         all.Add(parry);
         all.Add(left1);
         all.Add(right1);
@@ -105,7 +105,7 @@ public class InputController : MonoBehaviour {
         all.Add(down1);
         all.Add(dash1);
         all.Add(shoot1);
-        all.Add(new KeyCode());
+        all.Add(parry1);
         all.Add(parry1);
     }
 
