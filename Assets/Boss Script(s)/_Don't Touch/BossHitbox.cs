@@ -74,6 +74,7 @@ public class BossHitbox : MonoBehaviour
         boss.Receive(hP);
         hP = 0;
         weakpoint = false;
+        CameraController.instance.CameraShake();
         //gameObject.GetComponent<Renderer>().enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
         AudioController.instance.BossDestruction();

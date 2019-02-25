@@ -233,6 +233,7 @@ public class PlayerController : Character
 
         if (playerState == Global.PlayerState.Default)
         {
+            CameraController.instance.CameraShake();
             if (hP - amt <= 0)
             {
                 Die();
@@ -272,6 +273,7 @@ public class PlayerController : Character
         hP -= amt;
         heartImage[Mathf.RoundToInt(hP)].gameObject.SetActive(false);
         vfx.Play();
+        AudioController.instance.PlayerTakingDamage();
         Invincible(hitInvincibleDuration, true);
         InterfaceController.instance.UpdatePlayerHP(hP, maxHP);
     }

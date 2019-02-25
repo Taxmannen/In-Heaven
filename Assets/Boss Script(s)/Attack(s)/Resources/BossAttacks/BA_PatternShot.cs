@@ -35,6 +35,7 @@ public class BA_PatternShot : BossAttack
         //Debug.Log("Run Pattern Shot");
         // Starting by creating the Pattern to a real GameObject
         pattern = Instantiate(data.patternPrefab, transform);
+        
         Transform[] listOfSpawnPoints = GameObject.Find("PatternShotList").GetComponentsInChildren<Transform>();
         // Here i get the Data from that object
         List<PatternStruct> targetLocations = pattern.GetComponent<PatternImporter>().patternList;
