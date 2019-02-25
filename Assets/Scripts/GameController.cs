@@ -63,7 +63,9 @@ public class GameController : MonoBehaviour
     /// </summary>
     public void Restart()
     {
+        AudioController.instance.MenuClick();
         AudioController.instance.StopFailMenuDuck();
+        
         gameState = Global.GameState.Game;
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -71,6 +73,7 @@ public class GameController : MonoBehaviour
 
     public void MainMenu()
     {
+        AudioController.instance.MenuClick();
         AudioController.instance.StopFailMenuDuck();
         gameState = Global.GameState.Game;
         Time.timeScale = 1;
@@ -78,6 +81,7 @@ public class GameController : MonoBehaviour
     }
     public void QuitApp()
     {
+        AudioController.instance.MenuClick();
         AudioController.instance.StopFailMenuDuck();
         Application.Quit();
     }
