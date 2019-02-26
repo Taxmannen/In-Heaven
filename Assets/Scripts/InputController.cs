@@ -5,7 +5,7 @@ using UnityEngine;
 /// Made by: Filip Nilsson, Edited By: Daniel Nordahl and Jesper Uddefors
 /// </summary>
 public class InputController : MonoBehaviour {
-    [HideInInspector] public bool isGamePad;
+    [HideInInspector] public bool isGamePad = false;
 
     public static InputController instance;
 
@@ -83,9 +83,9 @@ public class InputController : MonoBehaviour {
             enabled = true;
         }
 
-        string[] gamepads = Input.GetJoystickNames();
+        /*string[] gamepads = Input.GetJoystickNames();
         if (gamepads.Length > 0 && gamepads[0].Length > 0) isGamePad = true;
-        else isGamePad = false;
+        else isGamePad = false;*/
     }
 
     private void Start()
