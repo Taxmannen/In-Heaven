@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Script by Tåqvist
+//Script by Tåqvist & .. & ..
 public class BD_Death : BossDeath
 {
     [SerializeField]
@@ -19,7 +19,9 @@ public class BD_Death : BossDeath
         InterfaceController.instance.HideBossHPBar();
         whiteFade.StartWhiteFade();
 
+
         yield return new WaitForSeconds(2);
+        AudioController.instance.StopBossDeath();
         boss.Die();
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         executeRoutine = null;
